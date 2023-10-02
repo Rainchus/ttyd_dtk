@@ -10,3 +10,8 @@ Sections:
 	.sbss       type:bss
 	.sdata2     type:rodata
 	.sbss2      type:bss
+
+Runtime.PPCEABI.H/global_destructor_chain.c:
+	.text       start:0x80264818 end:0x80264860
+	.dtors      start:0x802BF140 end:0x802BF144
+	.sbss       start:0x8041EE08 end:0x8041EE0C

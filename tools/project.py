@@ -653,7 +653,7 @@ def generate_build_ninja(config, build_config):
         ok_path = build_path / "ok"
         n.rule(
             name="check",
-            command=f"{dtk} shasum -q -c $in -o $out",
+            command=f"sha1sum -c $in",
             description="CHECK $in",
         )
         n.build(

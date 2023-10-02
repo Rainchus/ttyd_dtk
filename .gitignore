@@ -11,3 +11,4 @@ ldscript.lcf
 config/G8ME01/main.dol
 .ninja_deps
 objdiff.json
+tools/__pycache__/project.cpython-310.pyc
