@@ -1,0 +1,13 @@
+dep
+config.json
+.ninja_log
+build.ninja
+asm/
+obj/
+build/
+rels/bin
+mwcc_compiler
+ldscript.lcf
+config/G8ME01/main.dol
+.ninja_deps
+objdiff.json
