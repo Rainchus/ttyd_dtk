@@ -2,8 +2,9 @@ import csv
 import os
 
 rel_path = "config/rel/"
-dol_path = "config/dol/"
+dol_path = "config/G8ME01/"
 katakana_space = "　"
+dol_only = True
 
 substring_list_to_omit = ["ptrarr", "savefpr", "savegpr", "restfpr", "restgpr", "savefpr"]
 substring_list_to_local = [
@@ -33,7 +34,7 @@ with open('tools/us_symbols.csv', 'r') as csvfile:
     symbol_counts = {}
     prevArea = "_main"
 
-    with open('config/dol/dol_symbols.txt', 'w') as outputfile:
+    with open('config/G8ME01/dol_symbols.txt', 'w') as outputfile:
         for row in reader:
             name = row['name']
             if not name:
@@ -58,7 +59,8 @@ with open('tools/us_symbols.csv', 'r') as csvfile:
             if area == "_main":
                 scope_string = "scope:global"
             else:
-                scope_string = "scope:local"
+                if dol_only == False:
+                    scope_string = "scope:local"
 
             section_name = row['sec_name']
             ram_addr = row['ram_addr'][:8] #some ram_addr have multiple entries, just grab the first
