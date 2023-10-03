@@ -1,7 +1,126 @@
 Sections:
-	.text       type:code align:32
-	.ctors      type:rodata align:32
-	.dtors      type:rodata align:32
-	.rodata     type:rodata align:32
-	.data       type:data align:32
-	.bss        type:bss align:32
+	.text       type:code align:4
+	.ctors      type:rodata align:4
+	.dtors      type:rodata align:4
+	.rodata     type:rodata align:8
+	.data       type:data align:8
+	.bss        type:bss align:8
+
+gor.o:
+	.text       start:0x00000000 end:0x00000620
+	.rodata     start:0x00000000 end:0x00000268
+	.data       start:0x00000000 end:0x00000858
+
+gor_00.o:
+	.text       start:0x00000620 end:0x00003410
+	.rodata     start:0x00000268 end:0x00001D30
+	.data       start:0x00000858 end:0x0000F7F0
+	.bss        start:0x00000000 end:0x00000020
+
+gor_01.o:
+	.text       start:0x00003410 end:0x00004DB4
+	.rodata     start:0x00001D30 end:0x00004950
+	.data       start:0x0000F7F0 end:0x0001EB48
+	.bss        start:0x00000020 end:0x00000078
+
+gor_02.o:
+	.text       start:0x00004DB4 end:0x0000688C
+	.rodata     start:0x00004950 end:0x00006E10
+	.data       start:0x0001EB48 end:0x0002DD48
+	.bss        start:0x00000078 end:0x000000C8
+
+gor_03.o:
+	.text       start:0x0000688C end:0x00009DE4
+	.rodata     start:0x00006E10 end:0x00009570
+	.data       start:0x0002DD48 end:0x0003ADC8
+	.bss        start:0x000000C8 end:0x00000138
+
+gor_04.o:
+	.text       start:0x00009DE4 end:0x00009F04
+	.rodata     start:0x00009570 end:0x0000A080
+	.data       start:0x0003ADC8 end:0x000406D8
+
+gor_door.o:
+	.data       start:0x000406D8 end:0x00040728
+
+evt_keijiban.o:
+	.text       start:0x00009F04 end:0x0000A344
+	.rodata     start:0x0000A080 end:0x0000A098
+	.data       start:0x00040728 end:0x00040790
+
+battle_database_gor.o:
+	.rodata     start:0x0000A098 end:0x0000A1E8
+	.data       start:0x00040790 end:0x00040FC0
+
+unit_kuriboo.o:
+	.text       start:0x0000A344 end:0x0000A45C
+	.rodata     start:0x0000A1E8 end:0x0000A340
+	.data       start:0x00040FC0 end:0x00041B58
+
+unit_monban.o:
+	.rodata     start:0x0000A340 end:0x0000A4D8
+	.data       start:0x00041B58 end:0x00042F00
+
+unit_gundan_zako.o:
+	.rodata     start:0x0000A4D8 end:0x0000A6F8
+	.data       start:0x00042F00 end:0x000444F0
+
+unit_boss_kanbu1.o:
+	.text       start:0x0000A45C end:0x0000A4D4
+	.rodata     start:0x0000A6F8 end:0x0000A920
+	.data       start:0x000444F0 end:0x000458F8
+
+evt_yuuranking.o:
+	.text       start:0x0000A4D4 end:0x0000F214
+	.rodata     start:0x0000A920 end:0x0000AD68
+	.data       start:0x000458F8 end:0x00045980
+	.bss        start:0x00000138 end:0x00000140
+
+evt_goryuugijo.o:
+	.text       start:0x0000F214 end:0x0000F594
+	.rodata     start:0x0000AD68 end:0x0000AD70
+	.data       start:0x00045980 end:0x000459E0
+
+gor_irai.o:
+	.text       start:0x0000F594 end:0x00010ABC
+	.rodata     start:0x0000AD70 end:0x0000B7A0
+	.data       start:0x000459E0 end:0x00046628
+
+gor_10.o:
+	.text       start:0x00010ABC end:0x00011634
+	.rodata     start:0x0000B7A0 end:0x0000B930
+	.data       start:0x00046628 end:0x00046CA0
+	.bss        start:0x00000140 end:0x00000150
+
+unit_npc_christine.o:
+	.rodata     start:0x0000B930 end:0x0000B9B0
+	.data       start:0x00046CA0 end:0x00046F10
+
+unit_lecture_christine.o:
+	.text       start:0x00011634 end:0x000118C0
+	.rodata     start:0x0000B9B0 end:0x0000BB00
+	.data       start:0x00046F10 end:0x00047EE0
+
+unit_lecture_frankli.o:
+	.rodata     start:0x0000BB00 end:0x0000BE20
+	.data       start:0x00047EE0 end:0x0004A438
+
+unit_lecture_frankli_sac.o:
+	.text       start:0x000118C0 end:0x00012254
+	.rodata     start:0x0000BE20 end:0x0000C038
+	.data       start:0x0004A438 end:0x0004B2D8
+	.bss        start:0x00000150 end:0x00000168
+
+evt_lect_gor.o:
+	.text       start:0x00012254 end:0x00013A2C
+	.rodata     start:0x0000C038 end:0x0000C518
+	.data       start:0x0004B2D8 end:0x0004D450
+	.bss        start:0x00000168 end:0x00000208
+
+gor_12.o:
+	.rodata     start:0x0000C518 end:0x0000C558
+	.data       start:0x0004D450 end:0x0004D5F0
+
+gor_11.o:
+	.rodata     start:0x0000C558 end:0x0000C585
+	.data       start:0x0004D5F0 end:0x0004D7AC

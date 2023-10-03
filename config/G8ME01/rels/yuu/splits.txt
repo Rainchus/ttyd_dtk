@@ -1,7 +1,65 @@
 Sections:
-	.text       type:code align:32
-	.ctors      type:rodata align:32
-	.dtors      type:rodata align:32
-	.rodata     type:rodata align:32
-	.data       type:data align:32
-	.bss        type:bss align:32
+	.text       type:code align:4
+	.ctors      type:rodata align:4
+	.dtors      type:rodata align:4
+	.rodata     type:rodata align:8
+	.data       type:data align:8
+	.bss        type:bss align:8
+
+yuu_02.o:
+	.text       start:0x00000000 end:0x0000118C
+	.rodata     start:0x00000000 end:0x00000200
+	.data       start:0x00000000 end:0x00001190
+	.bss        start:0x00000000 end:0x00000010
+
+yuu_03.o:
+	.text       start:0x0000118C end:0x000036C4
+	.rodata     start:0x00000200 end:0x00000430
+	.data       start:0x00001190 end:0x00001C30
+	.bss        start:0x00000010 end:0x00000020
+
+yuu.o:
+	.text       start:0x000036C4 end:0x000037B0
+	.rodata     start:0x00000430 end:0x00000450
+	.data       start:0x00001C30 end:0x00001C80
+
+yuu_00.o:
+	.text       start:0x000037B0 end:0x00004314
+	.rodata     start:0x00000450 end:0x00000930
+	.data       start:0x00001C80 end:0x00004968
+	.bss        start:0x00000020 end:0x00000028
+
+yuu_01.o:
+	.text       start:0x00004314 end:0x00005344
+	.rodata     start:0x00000930 end:0x00000D68
+	.data       start:0x00004968 end:0x00006440
+	.bss        start:0x00000028 end:0x00000030
+
+evt_yuuranking.o:
+	.text       start:0x00005344 end:0x0000A084
+	.rodata     start:0x00000D68 end:0x000011B0
+	.data       start:0x00006440 end:0x000064C8
+	.bss        start:0x00000030 end:0x00000038
+
+evt_yuutitle.o:
+	.text       start:0x0000A084 end:0x0000A3E0
+	.rodata     start:0x000011B0 end:0x000011E8
+	.data       start:0x000064C8 end:0x00006528
+	.bss        start:0x00000038 end:0x00000040
+
+evt_yuucounter.o:
+	.text       start:0x0000A3E0 end:0x0000AEEC
+	.rodata     start:0x000011E8 end:0x00001238
+	.data       start:0x00006528 end:0x000065A8
+	.bss        start:0x00000040 end:0x00000048
+
+evt_yuuminigame.o:
+	.text       start:0x0000AEEC end:0x0000B4E0
+	.rodata     start:0x00001238 end:0x00001240
+	.data       start:0x000065A8 end:0x00006608
+	.bss        start:0x00000048 end:0x000000E0
+
+evt_yuunpc.o:
+	.text       start:0x0000B4E0 end:0x000151C8
+	.rodata     start:0x00001240 end:0x000015B9
+	.data       start:0x00006608 end:0x00007CCC

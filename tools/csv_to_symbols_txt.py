@@ -1,6 +1,5 @@
 import csv
 import os
-import shutil
 
 rel_path = "config/G8ME01/rels/"
 dol_path = "config/G8ME01/"
@@ -66,11 +65,37 @@ rel_name_and_sha1sum = {
 }
 
 split_file_text = """Sections:
-	.text       type:code align:32
-	.ctors      type:rodata align:32
-	.dtors      type:rodata align:32
-	.rodata     type:rodata align:32
-	.data       type:data align:32"""
+	.text       type:code align:4
+	.ctors      type:rodata align:4
+	.dtors      type:rodata align:4
+	.rodata     type:rodata align:8
+	.data       type:data align:8"""
+
+#               Name | Address    | Size       | File Off
+#              .init | 0x80003100 | 0x24D0     | 0x100
+#              .text | 0x800055E0 | 0x2B9B40   | 0x25E0
+#             .ctors | 0x802BF120 | 0x4        | 0x2BC120
+#             .dtors | 0x802BF140 | 0x8        | 0x2BC140
+#            .rodata | 0x802BF160 | 0x45072    | 0x2BC160
+#              .data | 0x803041E0 | 0xC117B    | 0x3011E0
+#               .bss | 0x803C5360 | 0x4FBB0    | 0x0
+#             .sdata | 0x80414F20 | 0x964C     | 0x3C2360
+#              .sbss | 0x8041E580 | 0xEA4      | 0x0
+#            .sdata2 | 0x8041F440 | 0xA0A4     | 0x3CB9C0
+#              .sbss2 | 0x80429500 | 0x40C      | 0x0
+dol_sections = {
+    ".init": [0x80003100, 0x24D0],
+    ".text": [0x800055E0, 0x2B9B40],
+    ".ctors": [0x802BF120, 0x4],
+    ".dtors": [0x802BF140, 0x8],
+    ".rodata": [0x802BF160, 0x45072],
+    ".data": [0x803041E0, 0xC117B],
+    ".bss": [0x803C5360, 0x4FBB0],
+    ".sdata": [0x80414F20, 0x964C],
+    ".sbss": [0x8041E580, 0xEA4],
+    ".sdata2": [0x8041F440, 0xA0A4],
+    ".sbss2": [0x80429500, 0x40C]
+}
 
 if not os.path.exists(rel_path):
     os.makedirs(rel_path)
@@ -81,124 +106,178 @@ if not os.path.exists(dol_path):
     #print(f"Created directory: {dol_path}")
 
 # Define the source and destination directories
-source_directory = 'rels/bin'
 destination_directory = 'config/G8ME01/rels'
 
 # Ensure the destination directory exists
 os.makedirs(destination_directory, exist_ok=True)
 
-# Loop through all files in the source directory with the .rel extension
-for filename in os.listdir(source_directory):
-    if filename.endswith('.rel'):
-        # Extract the name before the extension
-        name_without_extension = os.path.splitext(filename)[0]
-        
-        # Create the destination folder if it doesn't exist
-        destination_folder = os.path.join(destination_directory, name_without_extension)
-        os.makedirs(destination_folder, exist_ok=True)
-        
-        # Copy the file to the destination folder
-        source_path = os.path.join(source_directory, filename)
-        destination_path = os.path.join(destination_folder, filename)
-        shutil.copy2(source_path, destination_path)
-
-with open('tools/us_symbols.csv', 'r') as csvfile:
+with open('tools/us_symbols.csv', 'r', encoding='utf-8') as csvfile:
     reader = csv.DictReader(csvfile)
     encountered_namespaces = set()
     symbol_counts = {}
     prevArea = "_main"
+    prevNamespace = None
+    prevSection = None
+    split_section_start = None
+    split_section_end = None
+    splits_map = {}
 
-    with open('config/G8ME01/dol_symbols.txt', 'w') as outputfile:
-        symbols_yaml = open(f'config/G8ME01/config.yml', 'w')
-        symbols_yaml.write(f"object: config/G8ME01/main.dol\n")
-        symbols_yaml.write(f"hash: bc62d5e4674d139fd50d6c05694b34f955e37039\n")
-        symbols_yaml.write(f"symbols: config/G8ME01/dol_symbols.txt\n")
-        symbols_yaml.write(f"splits: config/G8ME01/splits.txt\n\n")
-        symbols_yaml.write(f"modules:\n")
+    shasum_file = open('orig/G8ME01.sha1', 'w', encoding='utf-8')
+    shasum_file.write(f"bc62d5e4674d139fd50d6c05694b34f955e37039  orig/G8ME01/sys/main.dol\n")
+
+    symbols_file = open('config/G8ME01/dol_symbols.txt', 'w', encoding='utf-8')
+    splits_file = open('config/G8ME01/splits.txt', 'w', encoding='utf-8')
+    splits_file.write("""Sections:
+	.init       type:code
+	.text       type:code
+	.ctors      type:rodata
+	.dtors      type:rodata
+	.rodata     type:rodata
+	.data       type:data
+	.bss        type:bss
+	.sdata      type:data
+	.sbss       type:bss
+	.sdata2     type:rodata
+	.sbss2      type:bss
+""")
+
+    symbols_yaml = open(f'config/G8ME01/config.yml', 'w', encoding='utf-8')
+    symbols_yaml.write(f"object: orig/G8ME01/sys/main.dol\n")
+    symbols_yaml.write(f"hash: bc62d5e4674d139fd50d6c05694b34f955e37039\n")
+    symbols_yaml.write(f"symbols: config/G8ME01/dol_symbols.txt\n")
+    symbols_yaml.write(f"splits: config/G8ME01/splits.txt\n\n")
+    symbols_yaml.write(f"modules:\n")
+    
+    for row in reader:
+        name = row['name']
+        area = row['area']
+
+        if not name:
+            continue
+
+        #TEMP, skip end for now
+        if area == "end":
+            continue
+
+        skip_current_iteration = False
+
+        for substring in substring_list_to_omit:
+            if substring in name:
+                #print(f"{name}")
+                skip_current_iteration = True
+                break
+
+        if skip_current_iteration == True:
+            continue
+
+        if katakana_space in name: #remove spaces and replace with underscores
+            name = name.replace(katakana_space, "_")
+            
         
-        for row in reader:
-            name = row['name']
-            if not name:
-                continue
 
-            skip_current_iteration = False
+        words = name.split()  # Split the string by spaces
+        name = ' '.join(words[:1])
+        sec_offset = row['sec_offset'][:8]
+        ram_addr = row['ram_addr'][:8] #some ram_addr have multiple entries, just grab the first
+        addr_to_use = ""
 
-            for substring in substring_list_to_omit:
-                if substring in name:
-                    #print(f"{name}")
-                    skip_current_iteration = True
-                    break
+        section_name = row['sec_name']
+        namespace = row['namespace']
 
-            if skip_current_iteration == True:
-                continue
+        if area == "_main":
+            addr_to_use = ram_addr
+        else:
+            addr_to_use = sec_offset
+        
+        if addr_to_use is None or addr_to_use == '':
+            continue
 
-            if katakana_space in name: #remove spaces and replace with underscores
-                name = name.replace(katakana_space, "_")
+        if area == "_main":
+            scope_string = "scope:global"
+        else:
+            if dol_only == False:
+                scope_string = "scope:local"
                 
-            area = row['area']
 
-            words = name.split()  # Split the string by spaces
-            name = ' '.join(words[:1])
-            sec_offset = row['sec_offset'][:8]
-            ram_addr = row['ram_addr'][:8] #some ram_addr have multiple entries, just grab the first
-            addr_to_use = ""
-            
-            section_name = row['sec_name']
+        if row['size']:
+            size_string = " size:0x" + row['size'].lstrip('0')
+        else:
+            size_string = ""
 
-            if area == "_main":
-                addr_to_use = ram_addr
-            else:
-                addr_to_use = sec_offset
-            
-            if addr_to_use is None or addr_to_use == '':
-                continue
+        if namespace != prevNamespace or section_name != prevSection:
+            if prevNamespace is not None:
+                splits = splits_map.get(prevArea, {})
+                sections = splits.get(prevNamespace, {})
+                section = sections.get(prevSection, {})
+                if 'end' in section:
+                    print(f"{prevArea} {prevNamespace} {prevSection} is duplicated")
+                    exit(1)
+                section['start'] = f"0x{split_section_start}"
+                end = addr_to_use
+                if split_section_end is not None and int(addr_to_use, 16) <= split_section_end:
+                    end = split_section_end
+                else:
+                    end = int(addr_to_use, 16)
+                if prevArea == "_main":
+                    section_end = dol_sections[prevSection][0] + dol_sections[prevSection][1]
+                    if end > section_end:
+                        end = section_end
+                section['end'] = hex(end)
+                sections[prevSection] = section
+                splits[prevNamespace] = sections
+                splits_map[prevArea] = splits
 
-            if area == "_main":
-                scope_string = "scope:global"
-            else:
-                if dol_only == False:
-                    scope_string = "scope:local"
-                    
+            prevNamespace = namespace
+            prevSection = section_name
+            split_section_start = addr_to_use
+        if row['size']:
+            split_section_end = int(addr_to_use, 16) + int(row['size'], 16)
 
-            if row['size']:
-                size_string = " size:0x" + row['size'].lstrip('0')
-            else:
-                size_string = ""
-            #root, extension = os.path.splitext(filename)
-            if area != prevArea:
-                #temporary
-                if area == "mri" or area == "end":
-                    continue
-                # #end of temporary
-                outputfile.close() #close previous file, then open new area file
-                if not os.path.exists(f"config/G8ME01/rels/{area}"):
-                    os.makedirs(f"config/G8ME01/rels/{area}")
-                symbols_yaml.write(f"- object: config/G8ME01/rels/{area}/{area}.rel\n")
-                symbols_yaml.write(f"  hash: {rel_name_and_sha1sum.get(area, 'UNKNOWN')}\n")
-                symbols_yaml.write(f"  symbols: config/G8ME01/rels/{area}/symbols.txt\n")
-                symbols_yaml.write(f"  splits: config/G8ME01/rels/{area}/splits.txt\n")
-                if area != "_main":
-                    rel_split_file = open(f'config/G8ME01/rels/{area}/splits.txt', 'w')
-                    rel_split_file.write(f"{split_file_text}\n")
-                    if area != "pik":
-                        rel_split_file.write(f"	.bss        type:bss align:32\n")
-                    rel_split_file.close()
+        if area != prevArea:
+            symbols_file.close() #close previous file, then open new area file
+            if not os.path.exists(f"config/G8ME01/rels/{area}"):
+                os.makedirs(f"config/G8ME01/rels/{area}")
+            shasum_file.write(f"{rel_name_and_sha1sum.get(area, 'UNKNOWN')}  build/G8ME01/{area}/{area}.rel\n")
+            symbols_yaml.write(f"- object: orig/G8ME01/files/rel/{area}.rel\n")
+            symbols_yaml.write(f"  hash: {rel_name_and_sha1sum.get(area, 'UNKNOWN')}\n")
+            symbols_yaml.write(f"  symbols: config/G8ME01/rels/{area}/symbols.txt\n")
+            symbols_yaml.write(f"  splits: config/G8ME01/rels/{area}/splits.txt\n")
+            for n_namespace in splits_map.get(prevArea, {}):
+                namespace_conv = n_namespace.replace(".a", "").replace(" ", "/")
+                splits_file.write(f"\n{namespace_conv}:\n")
+                for n_section_name in splits_map[prevArea][n_namespace]:
+                    n_section = splits_map[prevArea][n_namespace][n_section_name]
+                    splits_file.write(f"\t{n_section_name} start:{n_section['start']} end:{n_section['end']}\n")
+            if area != "_main":
+                splits_file.close()
+                splits_file = open(f'config/G8ME01/rels/{area}/splits.txt', 'w', encoding='utf-8')
+                splits_file.write(f"{split_file_text}\n")
+                if area != "pik":
+                    splits_file.write(f"	.bss        type:bss align:8\n")
 
-                outputfile = open(f'config/G8ME01/rels/{area}/symbols.txt', 'w')
-                prevArea = area
+            symbols_file = open(f'config/G8ME01/rels/{area}/symbols.txt', 'w', encoding='utf-8')
+            prevArea = area
 
-            for substring in substring_list_to_local:
-                if substring == name:
-                    scope_string = "scope:local"
-                    break
+        for substring in substring_list_to_local:
+            if substring == name:
+                scope_string = "scope:local"
+                break
 
-            if name == "_unresolved" or name == "_prolog" or name == "_epilog":
-                scope_string = "scope:global"
+        if name == "_unresolved" or name == "_prolog" or name == "_epilog":
+            scope_string = "scope:global"
 
-            if row['sec_type'] == "text":
-                outputfile.write(f"{name} = {section_name}:0x{addr_to_use}; //type:function{size_string} {scope_string}\n")
-            else:
-                outputfile.write(f"{name} = {section_name}:0x{addr_to_use}; //type:object{size_string} {scope_string}\n")
+        if row['sec_type'] == "text":
+            symbols_file.write(f"{name} = {section_name}:0x{addr_to_use}; // type:function{size_string} {scope_string}\n")
+        else:
+            symbols_file.write(f"{name} = {section_name}:0x{addr_to_use}; // type:object{size_string} {scope_string}\n")
+    
+    for namespace in splits_map.get(prevArea, {}):
+        splits_file.write(f"\n{namespace}:\n")
+        for section_name in splits_map[prevArea][namespace]:
+            section = splits_map[prevArea][namespace][section_name]
+            splits_file.write(f"\t{section_name} start:{section['start']} end:{section['end']}\n")
 
-outputfile.close()
+    symbols_file.close()
+    splits_file.close()
+    shasum_file.close()
 

@@ -1,7 +1,78 @@
 Sections:
-	.text       type:code align:32
-	.ctors      type:rodata align:32
-	.dtors      type:rodata align:32
-	.rodata     type:rodata align:32
-	.data       type:data align:32
-	.bss        type:bss align:32
+	.text       type:code align:4
+	.ctors      type:rodata align:4
+	.dtors      type:rodata align:4
+	.rodata     type:rodata align:8
+	.data       type:data align:8
+	.bss        type:bss align:8
+
+eki.o:
+	.text       start:0x00000000 end:0x00000144
+	.rodata     start:0x00000000 end:0x00000040
+	.data       start:0x00000000 end:0x00000060
+
+eki_00.o:
+	.text       start:0x00000144 end:0x00005808
+	.rodata     start:0x00000040 end:0x00000668
+	.data       start:0x00000060 end:0x00002508
+	.bss        start:0x00000000 end:0x00000008
+
+eki_01.o:
+	.rodata     start:0x00000668 end:0x000007C0
+	.data       start:0x00002508 end:0x00002DF0
+
+eki_02.o:
+	.text       start:0x00005808 end:0x000059E8
+	.rodata     start:0x000007C0 end:0x00000838
+	.data       start:0x00002DF0 end:0x00003008
+
+eki_03.o:
+	.text       start:0x000059E8 end:0x00005E08
+	.rodata     start:0x00000838 end:0x00000A50
+	.data       start:0x00003008 end:0x00003CB8
+	.bss        start:0x00000008 end:0x00000010
+
+eki_04.o:
+	.rodata     start:0x00000A50 end:0x00000AD0
+	.data       start:0x00003CB8 end:0x00003FD8
+
+eki_05.o:
+	.rodata     start:0x00000AD0 end:0x00000BB8
+	.data       start:0x00003FD8 end:0x00004580
+
+eki_06.o:
+	.text       start:0x00005E08 end:0x000073B8
+	.rodata     start:0x00000BB8 end:0x00000DB8
+	.data       start:0x00004580 end:0x00004F00
+	.bss        start:0x00000010 end:0x00000018
+
+battle_database_eki.o:
+	.rodata     start:0x00000DB8 end:0x00001070
+	.data       start:0x00004F00 end:0x00006978
+
+unit_kuriboo.o:
+	.text       start:0x000073B8 end:0x000074D0
+	.rodata     start:0x00001070 end:0x000011C8
+	.data       start:0x00006978 end:0x00007510
+
+unit_sambo.o:
+	.rodata     start:0x000011C8 end:0x00001510
+	.data       start:0x00007510 end:0x0000BC28
+
+unit_sambo_mummy.o:
+	.rodata     start:0x00001510 end:0x00001860
+	.data       start:0x0000BC28 end:0x00010340
+
+unit_patatogemet.o:
+	.rodata     start:0x00001860 end:0x00001B68
+	.data       start:0x00010340 end:0x00012E30
+
+unit_kurokumorn.o:
+	.rodata     start:0x00001B68 end:0x00001D18
+	.data       start:0x00012E30 end:0x000145F0
+
+evt_lect_eki.o:
+	.text       start:0x000074D0 end:0x00008710
+	.rodata     start:0x00001D18 end:0x00001F08
+	.data       start:0x000145F0 end:0x000154F8
+	.bss        start:0x00000018 end:0x000000B0

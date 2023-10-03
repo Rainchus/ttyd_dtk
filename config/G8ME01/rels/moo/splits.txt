@@ -1,7 +1,76 @@
 Sections:
-	.text       type:code align:32
-	.ctors      type:rodata align:32
-	.dtors      type:rodata align:32
-	.rodata     type:rodata align:32
-	.data       type:data align:32
-	.bss        type:bss align:32
+	.text       type:code align:4
+	.ctors      type:rodata align:4
+	.dtors      type:rodata align:4
+	.rodata     type:rodata align:8
+	.data       type:data align:8
+	.bss        type:bss align:8
+
+moo_00.o:
+	.text       start:0x00000000 end:0x000001D8
+	.rodata     start:0x00000000 end:0x00000220
+	.data       start:0x00000000 end:0x00000F40
+
+moo_01.o:
+	.rodata     start:0x00000220 end:0x000002C0
+	.data       start:0x00000F40 end:0x00001230
+
+moo_02.o:
+	.rodata     start:0x000002C0 end:0x000003D8
+	.data       start:0x00001230 end:0x000018F0
+
+moo_03.o:
+	.text       start:0x000001D8 end:0x0000035C
+	.rodata     start:0x000003D8 end:0x000004E8
+	.data       start:0x000018F0 end:0x00001DC8
+
+moo_04.o:
+	.text       start:0x0000035C end:0x000004AC
+	.rodata     start:0x000004E8 end:0x00000628
+	.data       start:0x00001DC8 end:0x000029F0
+
+moo.o:
+	.text       start:0x000004AC end:0x00000604
+	.rodata     start:0x00000628 end:0x00000670
+	.data       start:0x000029F0 end:0x00002A40
+
+battle_database_moo.o:
+	.text       start:0x00000604 end:0x000006D0
+	.rodata     start:0x00000670 end:0x00000820
+	.data       start:0x00002A40 end:0x00004368
+
+unit_kuriboo.o:
+	.text       start:0x000006D0 end:0x000007E8
+	.rodata     start:0x00000820 end:0x00000978
+	.data       start:0x00004368 end:0x00004F00
+
+moo_05.o:
+	.rodata     start:0x00000978 end:0x000009F8
+	.data       start:0x00004F00 end:0x00005130
+
+moo_06.o:
+	.rodata     start:0x000009F8 end:0x00000A98
+	.data       start:0x00005130 end:0x00005420
+
+moo_07.o:
+	.rodata     start:0x00000A98 end:0x00000B20
+	.data       start:0x00005420 end:0x00005678
+
+unit_sinemon.o:
+	.rodata     start:0x00000B20 end:0x00000CC8
+	.data       start:0x00005678 end:0x00006700
+
+unit_barriern_z_satellite.o:
+	.text       start:0x000007E8 end:0x00000938
+	.rodata     start:0x00000CC8 end:0x00000DF8
+	.data       start:0x00006700 end:0x00006C40
+
+unit_barriern_z.o:
+	.text       start:0x00000938 end:0x00002FC0
+	.rodata     start:0x00000DF8 end:0x00001148
+	.data       start:0x00006C40 end:0x00009D60
+	.bss        start:0x00000000 end:0x00000014
+
+unit_hyper_sinemon.o:
+	.rodata     start:0x00001148 end:0x0000130F
+	.data       start:0x00009D60 end:0x0000B0DC
