@@ -1,7 +1,31 @@
 Sections:
-	.text       type:code align:32
-	.ctors      type:rodata align:32
-	.dtors      type:rodata align:32
-	.rodata     type:rodata align:32
-	.data       type:data align:32
-	.bss        type:bss align:32
+	.text       type:code align:4
+	.ctors      type:rodata align:4
+	.dtors      type:rodata align:4
+	.rodata     type:rodata align:8
+	.data       type:data align:8
+	.bss        type:bss align:8
+
+hom.o:
+	.text       start:0x00000000 end:0x000000EC
+	.rodata     start:0x00000000 end:0x00000020
+	.data       start:0x00000000 end:0x00000060
+
+hom_00.o:
+	.text       start:0x000000EC end:0x00000650
+	.rodata     start:0x00000020 end:0x00000430
+	.data       start:0x00000060 end:0x00002160
+	.bss        start:0x00000000 end:0x00000004
+
+hom_10.o:
+	.text       start:0x00000650 end:0x00000728
+	.rodata     start:0x00000430 end:0x00000870
+	.data       start:0x00002160 end:0x00003BB8
+
+hom_11.o:
+	.rodata     start:0x00000870 end:0x000008E0
+	.data       start:0x00003BB8 end:0x00003E38
+
+hom_12.o:
+	.rodata     start:0x000008E0 end:0x0000094F
+	.data       start:0x00003E38 end:0x000040B8
