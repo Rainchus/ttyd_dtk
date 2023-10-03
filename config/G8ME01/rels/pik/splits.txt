@@ -6,38 +6,38 @@ Sections:
 	.data       type:data align:8
 
 pik.o:
-	.text start:0x00000000 end:0x11c
-	.rodata start:0x00000000 end:0x30
-	.data start:0x00000000 end:0x60
+	.text       start:0x00000000 end:0x0000011C
+	.rodata     start:0x00000000 end:0x00000030
+	.data       start:0x00000000 end:0x00000060
 
 pik_00.o:
-	.text start:0x0000011c end:0x55c
-	.rodata start:0x00000030 end:0xc30
-	.data start:0x00000060 end:0x4800
+	.text       start:0x0000011C end:0x0000055C
+	.rodata     start:0x00000030 end:0x00000C30
+	.data       start:0x00000060 end:0x00004800
 
 pik_01.o:
-	.text start:0x0000055c end:0x990
-	.rodata start:0x00000c30 end:0x16a0
-	.data start:0x00004800 end:0x8328
+	.text       start:0x0000055C end:0x00000990
+	.rodata     start:0x00000C30 end:0x000016A0
+	.data       start:0x00004800 end:0x00008328
 
 pik_02.o:
-	.text start:0x00000990 end:0x11a8
-	.rodata start:0x000016a0 end:0x1de0
-	.data start:0x00008328 end:0xaea8
-
-unit_purple_teresa.o:
-	.text start:0x000011a8 end:0x1400
-	.rodata start:0x00002650 end:0x2779
-	.data start:0x0000e5f0 end:0xfe70
+	.text       start:0x00000990 end:0x000011A8
+	.rodata     start:0x000016A0 end:0x00001DE0
+	.data       start:0x00008328 end:0x0000AEA8
 
 pik_03.o:
-	.rodata start:0x00001de0 end:0x1e50
-	.data start:0x0000aea8 end:0xb330
+	.rodata     start:0x00001DE0 end:0x00001E50
+	.data       start:0x0000AEA8 end:0x0000B330
 
 pik_04.o:
-	.rodata start:0x00001e50 end:0x2558
-	.data start:0x0000b330 end:0xda48
+	.rodata     start:0x00001E50 end:0x00002558
+	.data       start:0x0000B330 end:0x0000DA48
 
 battle_database_pik.o:
-	.rodata start:0x00002558 end:0x2650
-	.data start:0x0000da48 end:0xe5f0
+	.rodata     start:0x00002558 end:0x00002650
+	.data       start:0x0000DA48 end:0x0000E5F0
+
+unit_purple_teresa.o:
+	.text       start:0x000011A8 end:0x00001400
+	.rodata     start:0x00002650 end:0x00002779
+	.data       start:0x0000E5F0 end:0x0000FE70
