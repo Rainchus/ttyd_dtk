@@ -68,8 +68,7 @@ split_file_text = """Sections:
 	.text       type:code align:4
 	.ctors      type:rodata align:4
 	.dtors      type:rodata align:4
-	.rodata     type:rodata align:8
-	.data       type:data align:8"""
+	.rodata     type:rodata align:8"""
 
 #               Name | Address    | Size       | File Off
 #              .init | 0x80003100 | 0x24D0     | 0x100
@@ -123,7 +122,7 @@ with open('tools/us_symbols.csv', 'r', encoding='utf-8') as csvfile:
     splits_map = {}
 
     shasum_file = open('orig/G8ME01.sha1', 'w', encoding='utf-8')
-    shasum_file.write(f"bc62d5e4674d139fd50d6c05694b34f955e37039  orig/G8ME01/sys/main.dol\n")
+    shasum_file.write(f"bc62d5e4674d139fd50d6c05694b34f955e37039  build/G8ME01/main.dol\n")
 
     symbols_file = open('config/G8ME01/dol_symbols.txt', 'w', encoding='utf-8')
     splits_file = open('config/G8ME01/splits.txt', 'w', encoding='utf-8')
@@ -145,7 +144,8 @@ with open('tools/us_symbols.csv', 'r', encoding='utf-8') as csvfile:
     symbols_yaml.write(f"object: orig/G8ME01/sys/main.dol\n")
     symbols_yaml.write(f"hash: bc62d5e4674d139fd50d6c05694b34f955e37039\n")
     symbols_yaml.write(f"symbols: config/G8ME01/dol_symbols.txt\n")
-    symbols_yaml.write(f"splits: config/G8ME01/splits.txt\n\n")
+    symbols_yaml.write(f"splits: config/G8ME01/splits.txt\n")
+    symbols_yaml.write(f"mw_comment_version: 10 # GC 2.6 linker\n\n")
     symbols_yaml.write(f"modules:\n")
     
     for row in reader:
@@ -156,8 +156,8 @@ with open('tools/us_symbols.csv', 'r', encoding='utf-8') as csvfile:
             continue
 
         #TEMP, skip end for now
-        if area == "end":
-            continue
+        # if area == "end":
+        #     continue
 
         skip_current_iteration = False
 
@@ -252,6 +252,10 @@ with open('tools/us_symbols.csv', 'r', encoding='utf-8') as csvfile:
                 splits_file.close()
                 splits_file = open(f'config/G8ME01/rels/{area}/splits.txt', 'w', encoding='utf-8')
                 splits_file.write(f"{split_file_text}\n")
+                if area == "mri":
+                    splits_file.write(f"	.data       type:data align:32\n")
+                else:
+                    splits_file.write(f"	.data       type:data align:8\n")
                 if area != "pik":
                     splits_file.write(f"	.bss        type:bss align:8\n")
 
@@ -266,10 +270,13 @@ with open('tools/us_symbols.csv', 'r', encoding='utf-8') as csvfile:
         if name == "_unresolved" or name == "_prolog" or name == "_epilog":
             scope_string = "scope:global"
 
-        if row['sec_type'] == "text":
-            symbols_file.write(f"{name} = {section_name}:0x{addr_to_use}; // type:function{size_string} {scope_string}\n")
+        if name == 'gTRKInterruptVectorTable':
+            sym_type = 'label'
+        elif row['sec_type'] == "text":
+            sym_type = 'function'
         else:
-            symbols_file.write(f"{name} = {section_name}:0x{addr_to_use}; // type:object{size_string} {scope_string}\n")
+            sym_type = 'object'
+        symbols_file.write(f"{name} = {section_name}:0x{addr_to_use}; // type:{sym_type}{size_string} {scope_string}\n")
     
     for namespace in splits_map.get(prevArea, {}):
         splits_file.write(f"\n{namespace}:\n")

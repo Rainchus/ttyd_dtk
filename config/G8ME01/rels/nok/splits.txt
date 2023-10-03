@@ -7,46 +7,46 @@ Sections:
 	.bss        type:bss align:8
 
 nok.o:
-	.text start:0x00000000 end:0x228
-	.rodata start:0x00000000 end:0x30
-	.data start:0x00000000 end:0x1e8
+	.text       start:0x00000000 end:0x00000228
+	.rodata     start:0x00000000 end:0x00000030
+	.data       start:0x00000000 end:0x000001E8
 
 nok_00.o:
-	.text start:0x00000228 end:0x3c4
-	.rodata start:0x00000030 end:0xba8
-	.data start:0x000001e8 end:0x3158
-	.bss start:0x00000000 end:0x4
+	.text       start:0x00000228 end:0x000003C4
+	.rodata     start:0x00000030 end:0x00000BA8
+	.data       start:0x000001E8 end:0x00003158
+	.bss        start:0x00000000 end:0x00000004
 
 nok_01.o:
-	.text start:0x000003c4 end:0x6ec
-	.rodata start:0x00000ba8 end:0x1818
-	.data start:0x00003158 end:0x72b8
-
-unit_act_mario.o:
-	.text start:0x000006ec end:0x994
-	.rodata start:0x00001aa0 end:0x1be0
-	.data start:0x00007b00 end:0x9830
+	.text       start:0x000003C4 end:0x000006EC
+	.rodata     start:0x00000BA8 end:0x00001818
+	.data       start:0x00003158 end:0x000072B8
 
 unit_act_atmic_teresa.o:
-	.rodata start:0x00001818 end:0x18b8
-	.data start:0x000072b8 end:0x74d8
+	.rodata     start:0x00001818 end:0x000018B8
+	.data       start:0x000072B8 end:0x000074D8
 
 unit_act_clauda.o:
-	.rodata start:0x000018b8 end:0x1940
-	.data start:0x000074d8 end:0x76c0
+	.rodata     start:0x000018B8 end:0x00001940
+	.data       start:0x000074D8 end:0x000076C0
 
 unit_act_kinopiko.o:
-	.rodata start:0x00001940 end:0x19f0
-	.data start:0x000076c0 end:0x78e0
+	.rodata     start:0x00001940 end:0x000019F0
+	.data       start:0x000076C0 end:0x000078E0
 
 unit_act_kinopio.o:
-	.rodata start:0x000019f0 end:0x1aa0
-	.data start:0x000078e0 end:0x7b00
+	.rodata     start:0x000019F0 end:0x00001AA0
+	.data       start:0x000078E0 end:0x00007B00
+
+unit_act_mario.o:
+	.text       start:0x000006EC end:0x00000994
+	.rodata     start:0x00001AA0 end:0x00001BE0
+	.data       start:0x00007B00 end:0x00009830
 
 unit_act_teresa.o:
-	.rodata start:0x00001be0 end:0x1c80
-	.data start:0x00009830 end:0x9a50
+	.rodata     start:0x00001BE0 end:0x00001C80
+	.data       start:0x00009830 end:0x00009A50
 
 battle_database_nok.o:
-	.rodata start:0x00001c80 end:0x1d18
-	.data start:0x00009a50 end:0x9e44
+	.rodata     start:0x00001C80 end:0x00001D18
+	.data       start:0x00009A50 end:0x00009E44
