@@ -1,6 +1,5 @@
 TRK_memset = .init:0x80003100; // type:function size:0x30 scope:global
 TRK_memcpy = .init:0x80003130; // type:function size:0x24 scope:global
-TRK_MINNOW_DOLPHIN.a = .init:0x80003154; // type:function scope:global
 gTRKInterruptVectorTable = .init:0x80003154; // type:label scope:global
 lbl_80003500 = .init:0x80003500; // type:label
 __TRK_reset = .init:0x80005088; // type:function size:0x2C scope:global
