@@ -98,23 +98,28 @@ dol_sections = {
 
 if not os.path.exists(rel_path):
     os.makedirs(rel_path)
-    #print(f"Created directory: {rel_path}")
 
 if not os.path.exists(dol_path):
     os.makedirs(dol_path)
-    #print(f"Created directory: {dol_path}")
 
-# Define the source and destination directories
-destination_directory = 'config/G8ME01/rels'
-
-# Ensure the destination directory exists
-os.makedirs(destination_directory, exist_ok=True)
+def writeToYaml(shasum_file, symbols_yaml, splits_map):
+    shasum_file.write(f"{rel_name_and_sha1sum.get(area, 'UNKNOWN')}  build/G8ME01/{area}/{area}.rel\n")
+    symbols_yaml.write(f"- object: orig/G8ME01/files/rel/{area}.rel\n")
+    symbols_yaml.write(f"  hash: {rel_name_and_sha1sum.get(area, 'UNKNOWN')}\n")
+    symbols_yaml.write(f"  symbols: config/G8ME01/rels/{area}/symbols.txt\n")
+    symbols_yaml.write(f"  splits: config/G8ME01/rels/{area}/splits.txt\n")
+    for n_namespace in splits_map.get(prev_area, {}):
+        namespace_conv = n_namespace.replace(".a", "").replace(" ", "/")
+        splits_file.write(f"\n{namespace_conv}:\n")
+        for n_section_name in splits_map[prev_area][n_namespace]:
+            n_section = splits_map[prev_area][n_namespace][n_section_name]
+            splits_file.write(f"\t{n_section_name} start:{n_section['start']} end:{n_section['end']}\n")
 
 with open('tools/us_symbols.csv', 'r', encoding='utf-8') as csvfile:
     reader = csv.DictReader(csvfile)
     encountered_namespaces = set()
     symbol_counts = {}
-    prevArea = "_main"
+    prev_area = "_main"
     prevNamespace = None
     prevSection = None
     split_section_start = None
@@ -155,15 +160,10 @@ with open('tools/us_symbols.csv', 'r', encoding='utf-8') as csvfile:
         if not name:
             continue
 
-        #TEMP, skip end for now
-        # if area == "end":
-        #     continue
-
         skip_current_iteration = False
 
         for substring in substring_list_to_omit:
             if substring in name:
-                #print(f"{name}")
                 skip_current_iteration = True
                 break
 
@@ -192,12 +192,9 @@ with open('tools/us_symbols.csv', 'r', encoding='utf-8') as csvfile:
         if addr_to_use is None or addr_to_use == '':
             continue
 
-        if area == "_main":
-            scope_string = "scope:global"
-        else:
-            if dol_only == False:
-                scope_string = "scope:local"
-                
+        scope_string = "scope:global"
+        if area != "_main":
+            scope_string = "scope:local"
 
         if row['size']:
             size_string = " size:0x" + row['size'].lstrip('0')
@@ -206,11 +203,11 @@ with open('tools/us_symbols.csv', 'r', encoding='utf-8') as csvfile:
 
         if namespace != prevNamespace or section_name != prevSection:
             if prevNamespace is not None:
-                splits = splits_map.get(prevArea, {})
+                splits = splits_map.get(prev_area, {})
                 sections = splits.get(prevNamespace, {})
                 section = sections.get(prevSection, {})
                 if 'end' in section:
-                    print(f"{prevArea} {prevNamespace} {prevSection} is duplicated")
+                    print(f"{prev_area} {prevNamespace} {prevSection} is duplicated")
                     exit(1)
                 section['start'] = f"0x{split_section_start}"
                 end = addr_to_use
@@ -218,14 +215,14 @@ with open('tools/us_symbols.csv', 'r', encoding='utf-8') as csvfile:
                     end = split_section_end
                 else:
                     end = int(addr_to_use, 16)
-                if prevArea == "_main":
+                if prev_area == "_main":
                     section_end = dol_sections[prevSection][0] + dol_sections[prevSection][1]
                     if end > section_end:
                         end = section_end
                 section['end'] = hex(end)
                 sections[prevSection] = section
                 splits[prevNamespace] = sections
-                splits_map[prevArea] = splits
+                splits_map[prev_area] = splits
 
             prevNamespace = namespace
             prevSection = section_name
@@ -233,21 +230,11 @@ with open('tools/us_symbols.csv', 'r', encoding='utf-8') as csvfile:
         if row['size']:
             split_section_end = int(addr_to_use, 16) + int(row['size'], 16)
 
-        if area != prevArea:
-            symbols_file.close() #close previous file, then open new area file
-            if not os.path.exists(f"config/G8ME01/rels/{area}"):
-                os.makedirs(f"config/G8ME01/rels/{area}")
-            shasum_file.write(f"{rel_name_and_sha1sum.get(area, 'UNKNOWN')}  build/G8ME01/{area}/{area}.rel\n")
-            symbols_yaml.write(f"- object: orig/G8ME01/files/rel/{area}.rel\n")
-            symbols_yaml.write(f"  hash: {rel_name_and_sha1sum.get(area, 'UNKNOWN')}\n")
-            symbols_yaml.write(f"  symbols: config/G8ME01/rels/{area}/symbols.txt\n")
-            symbols_yaml.write(f"  splits: config/G8ME01/rels/{area}/splits.txt\n")
-            for n_namespace in splits_map.get(prevArea, {}):
-                namespace_conv = n_namespace.replace(".a", "").replace(" ", "/")
-                splits_file.write(f"\n{namespace_conv}:\n")
-                for n_section_name in splits_map[prevArea][n_namespace]:
-                    n_section = splits_map[prevArea][n_namespace][n_section_name]
-                    splits_file.write(f"\t{n_section_name} start:{n_section['start']} end:{n_section['end']}\n")
+        #check if a new symbols file needs to be created
+        #if so, write data pertaining to sections of the file
+        if area != prev_area:
+            symbols_file.close()
+            writeToYaml(shasum_file, symbols_yaml, splits_map)
             if area != "_main":
                 splits_file.close()
                 splits_file = open(f'config/G8ME01/rels/{area}/splits.txt', 'w', encoding='utf-8')
@@ -260,13 +247,15 @@ with open('tools/us_symbols.csv', 'r', encoding='utf-8') as csvfile:
                     splits_file.write(f"	.bss        type:bss align:8\n")
 
             symbols_file = open(f'config/G8ME01/rels/{area}/symbols.txt', 'w', encoding='utf-8')
-            prevArea = area
+            prev_area = area
 
+        #strings found multiple times in the dol should be scoped to local
         for substring in substring_list_to_local:
             if substring == name:
                 scope_string = "scope:local"
                 break
 
+        #special rel sections that need to be global
         if name == "_unresolved" or name == "_prolog" or name == "_epilog":
             scope_string = "scope:global"
 
@@ -278,10 +267,10 @@ with open('tools/us_symbols.csv', 'r', encoding='utf-8') as csvfile:
             sym_type = 'object'
         symbols_file.write(f"{name} = {section_name}:0x{addr_to_use}; // type:{sym_type}{size_string} {scope_string}\n")
     
-    for namespace in splits_map.get(prevArea, {}):
+    for namespace in splits_map.get(prev_area, {}):
         splits_file.write(f"\n{namespace}:\n")
-        for section_name in splits_map[prevArea][namespace]:
-            section = splits_map[prevArea][namespace][section_name]
+        for section_name in splits_map[prev_area][namespace]:
+            section = splits_map[prev_area][namespace][section_name]
             splits_file.write(f"\t{section_name} start:{section['start']} end:{section['end']}\n")
 
     symbols_file.close()
