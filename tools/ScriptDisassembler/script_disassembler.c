@@ -185,7 +185,6 @@ void ParseScriptOpcodeAndArgs(unsigned short opcode, int argCount, FILE* file, c
         if (argString[0] == '0' && argString[1] == 'x') {
             int resultHex = (unsigned int)strtol(hexString, NULL, 16);
             argString = ParseHexForScriptSpecialValue(argString, resultHex, mnemonicResult);
-
         } else {
             //is symbol
         }
@@ -236,9 +235,10 @@ int ParseScriptForReturnOrEnd(unsigned short opcode, unsigned short argCount, Op
 //argv[3] is line number of ".obj objectName"
 
 int main(int argc, char *argv[]) {
-    //printf("%s, %s, %s\n", argv[1], argv[2], argv[3]);
     int line_number = atoi(argv[3]);
-    int instructionBuffer[80000];
+    int inSwitchCounter[7] = {0, 0, 0, 0, 0, 0, 0};
+    int switchTabCounterStart = 0;
+    int switchCounter = 0;
 
     OpcodeIDAndString* mnemonicToUse;
     int mnemonicResult;
@@ -254,9 +254,6 @@ int main(int argc, char *argv[]) {
         mnemonicToUse = mnemonicStrings;
         mnemonicResult = 0;
     }
-
-
-    // printf("%s %s", argv[0], argv[1]);
 
     FILE *file = fopen(argv[1], "r");
     if (file == NULL) {
@@ -278,10 +275,9 @@ int main(int argc, char *argv[]) {
     }
 
     int lineCount = current_line;
-    //printf("%s: \n", argv[2]);
     printf("EvtScript %s = {\n", argv[2]);
     int tabCounter = 1;
-    int labelCounter = 0;
+    unsigned short prevOpcode = 0;
 
     while (1) {
         char* opcodeString = fgets(line, sizeof(line), file);
@@ -309,32 +305,67 @@ int main(int argc, char *argv[]) {
             char *curScriptLineBuffer = malloc(1);
             curScriptLineBuffer[0] = '\0';
             char* curMnemonicString = mnemonicToUse[opcode].mnemonicString;
-            
+
+
+            // //track where cases for current switch should tab to
+            // if (opcode == EVT_OPC_SWITCH) {
+            //     switchCounter++;
+            //     inSwitchCounter[switchCounter] = tabCounter + 1;
+                
+            // } else if (opcode == EVT_OPC_END_SWITCH) {
+            //     tabCounter = inSwitchCounter[switchCounter];
+            //     switchCounter--;
+            // }
+
+            // if (prevOpcode == EVT_OPC_SWITCH) {
+            //     tabCounter--;
+            // }
+
             if (mnemonicToUse[opcode].tabIncrement == 0 || mnemonicToUse[opcode].tabIncrement == 1) {
+                if (opcode >= EVT_OPC_CASE_EQUAL && opcode <= EVT_OPC_CASE_BETWEEN) {
+                    tabCounter = inSwitchCounter[switchCounter];
+                }
                 ParseScriptOpcodeAndArgs(opcode, argCount, file, curScriptLineBuffer, opcodeString, mnemonicResult);
                 RESET_AND_APPEND_STRING(tabCounterString, '\0', tabSpace, tabCounter);
 
+                // if (switchCounter != 0) {
+                //     tabCounter = inSwitchCounter[switchCounter];
+                // }
+
+
+
+                
                 tabCounter += mnemonicToUse[opcode].tabIncrement;
+
+                if (opcode == EVT_OPC_SWITCH) {
+                    switchCounter++;
+                    inSwitchCounter[switchCounter] = tabCounter;
+                }
+
+
                 if (argCount == 0) {
                     printf("%s%s %s\n", tabCounterString, curMnemonicString, curScriptLineBuffer);
                 } else {
                     printf("%s%s(%s)\n", tabCounterString, curMnemonicString, curScriptLineBuffer);
                 }
             } else {
+                if (opcode == EVT_OPC_END_SWITCH) {
+                    tabCounter = inSwitchCounter[switchCounter];
+                    switchCounter--;
+                }
                 tabCounter += mnemonicToUse[opcode].tabIncrement;
+
                 RESET_AND_APPEND_STRING(tabCounterString, '\0', tabSpace, tabCounter);
 
                 ParseScriptOpcodeAndArgs(opcode, argCount, file, curScriptLineBuffer, opcodeString, mnemonicResult);
                 if (opcode == EVT_OPC_ELSE) {
                     tabCounter++;
                 }
-                if (opcode == EVT_OPC_LBL) {
-                    labelCounter++;
-                }
                 printf("%s%s %s\n", tabCounterString, curMnemonicString, curScriptLineBuffer);
             }
             free(curScriptLineBuffer);
             curScriptLineBuffer = NULL;
         }
+        prevOpcode = opcode;
     }
 }
