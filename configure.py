@@ -16,6 +16,7 @@ import sys
 import argparse
 
 from pathlib import Path
+from typing import Dict, List, Any
 from tools.project import (
     Object,
     ProjectConfig,
@@ -27,7 +28,7 @@ from tools.project import (
 # Game versions
 DEFAULT_VERSION = 0
 VERSIONS = [
-    "G8ME01"
+    "G8ME01",  # 0
 ]
 
 if len(VERSIONS) > 1:
@@ -118,16 +119,17 @@ if not is_windows():
 
 # Tool versions
 config.compilers_tag = "1"
-config.dtk_tag = "v0.5.6"
+config.dtk_tag = "v0.6.3"
 config.sjiswrap_tag = "v1.1.1"
-config.wibo_tag = "0.6.3"
+config.wibo_tag = "0.6.9"
 
 # Project
 config.config_path = Path("config") / config.version / "config.yml"
-config.check_sha_path = Path("orig") / f"{config.version}.sha1"
+config.check_sha_path = Path("config") / config.version / "build.sha1"
 config.ldflags = [
     "-fp hardware",
     "-nodefaults",
+    # "-listclosure", # Uncomment for Wii linkers
 ]
 
 # Base flags, common to most GC/Wii games.
@@ -149,9 +151,9 @@ cflags_base = [
     "-RTTI off",
     "-fp_contract on",
     "-str reuse",
+    "-multibyte",  # For Wii compilers, replace with `-enc SJIS`
     "-i include",
-    "-i libc",
-	"-enc SJIS",
+    f"-i build/{config.version}/include",
     f"-DVERSION={version_num}",
 ]
 
@@ -168,7 +170,7 @@ cflags_runtime = [
     "-str reuse,pool,readonly",
     "-gccinc",
     "-common off",
-	"-inline auto",
+    "-inline auto",
 ]
 
 # REL flags
@@ -178,14 +180,14 @@ cflags_rel = [
     "-sdata2 0",
 ]
 
-config.linker_version = "GC/2.6"
+config.linker_version = "GC/1.3.2"
 
 
 # Helper function for Dolphin libraries
-def DolphinLib(lib_name, objects):
+def DolphinLib(lib_name: str, objects: List[Object]) -> Dict[str, Any]:
     return {
         "lib": lib_name,
-        "mw_version": "GC/2.7",
+        "mw_version": "GC/1.2.5n",
         "cflags": cflags_base,
         "host": False,
         "objects": objects,
@@ -193,10 +195,10 @@ def DolphinLib(lib_name, objects):
 
 
 # Helper function for REL script objects
-def Rel(lib_name, objects):
+def Rel(lib_name: str, objects: List[Object]) -> Dict[str, Any]:
     return {
         "lib": lib_name,
-        "mw_version": "GC/2.7",
+        "mw_version": "GC/1.3.2",
         "cflags": cflags_rel,
         "host": True,
         "objects": objects,
@@ -206,7 +208,7 @@ def Rel(lib_name, objects):
 Matching = True
 NonMatching = False
 
-config.warn_missing_config = False
+config.warn_missing_config = True
 config.warn_missing_source = False
 config.libs = [
     {
@@ -217,7 +219,6 @@ config.libs = [
         "objects": [
             Object(NonMatching, "Runtime.PPCEABI.H/global_destructor_chain.c"),
             Object(NonMatching, "Runtime.PPCEABI.H/__init_cpp_exceptions.cpp"),
-            # TODO: need to implement all
         ],
     },
 ]
