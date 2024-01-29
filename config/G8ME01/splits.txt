@@ -16,7 +16,7 @@ main.o:
 
 system.o:
 	.text       start:0x80005634 end:0x80007390
-	.rodata     start:0x802BF160 end:0x802BF284
+	.rodata     start:0x802BF160 end:0x802BF268
 	.data       start:0x803041E0 end:0x80304400
 	.bss        start:0x803C5360 end:0x803C8460
 	.sdata      start:0x80414F20 end:0x80414F28
@@ -34,7 +34,7 @@ seq_game.o:
 
 seq_mapchange.o:
 	.text       start:0x80007574 end:0x80008888
-	.rodata     start:0x802BF284 end:0x802BF3F8
+	.rodata     start:0x802BF268 end:0x802BF3F8
 	.bss        start:0x803C8460 end:0x803C9370
 	.sdata      start:0x80414F58 end:0x80414FA0
 	.sbss       start:0x8041E5A8 end:0x8041E608
@@ -109,7 +109,7 @@ lightdrv.o:
 mapdrv.o:
 	.text       start:0x8001C450 end:0x8002B4D8
 	.rodata     start:0x802BF958 end:0x802BFD10
-	.data       start:0x803048A0 end:0x80304A28
+	.data       start:0x803048A0 end:0x80304A20
 	.bss        start:0x803C97B0 end:0x803C9C30
 	.sdata      start:0x804150B0 end:0x804150E0
 	.sbss       start:0x8041E660 end:0x8041E6E0
@@ -119,7 +119,7 @@ mapdrv.o:
 shadowdrv.o:
 	.text       start:0x8002B4D8 end:0x8002E1E4
 	.rodata     start:0x802BFD10 end:0x802BFE68
-	.data       start:0x80304A28 end:0x803051B0
+	.data       start:0x80304A20 end:0x803051B0
 	.bss        start:0x803C9C30 end:0x803C9F58
 	.sdata      start:0x804150E0 end:0x80415190
 	.sbss       start:0x8041E6E0 end:0x8041E778
@@ -637,14 +637,14 @@ npc_event.o:
 
 cam_shift.o:
 	.text       start:0x800F34D0 end:0x800F39DC
-	.rodata     start:0x802EDB80 end:0x802EDBA0
+	.rodata     start:0x802EDB80 end:0x802EDB88
 	.bss        start:0x803E1B30 end:0x803E1B68
 	.sdata      start:0x804169C8 end:0x804169D0
 	.sdata2     start:0x80421FE8 end:0x80422010
 
 seq_load.o:
 	.text       start:0x800F39DC end:0x800F7324
-	.rodata     start:0x802EDBA0 end:0x802EE018
+	.rodata     start:0x802EDB88 end:0x802EE018
 	.data       start:0x8034C3C0 end:0x8034CB48
 	.bss        start:0x803E1B68 end:0x803E1BB8
 	.sdata      start:0x804169D0 end:0x80416A50
@@ -3122,14 +3122,14 @@ musyx/snd_math.c:
 
 musyx/snd_midictrl.c:
 	.text       start:0x8028DFCC end:0x802902DC
-	.rodata     start:0x80303F88 end:0x80304098
+	.rodata     start:0x80303F88 end:0x80304010
 	.data       start:0x803BE680 end:0x803BE710
 	.bss        start:0x80409548 end:0x80410348
 	.sbss       start:0x8041EFB0 end:0x8041EFB8
 
 musyx/snd_service.c:
 	.text       start:0x802902DC end:0x802905B0
-	.rodata     start:0x80304098 end:0x803040C8
+	.rodata     start:0x80304010 end:0x803040C8
 	.data       start:0x803BE710 end:0x803BEF20
 	.sdata      start:0x8041E3F0 end:0x8041E3F8
 	.sdata2     start:0x804292A0 end:0x804292A8
