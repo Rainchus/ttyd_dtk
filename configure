@@ -7,8 +7,8 @@ import os
 
 def run_commands():
     try:
-        # Run the first command
-        subprocess.run(['python3', './tools/csv_to_symbols_txt.py'], check=True)
+        # Run the first command (this overwrites the file names in `spilts.txt`, so this shouldn't be ran)
+        #subprocess.run(['python3', './tools/csv_to_symbols_txt.py'], check=True)
 
         # Run the second command with command-line arguments
         subprocess.run(['python3', './configure.py'] + sys.argv[1:], check=True)
