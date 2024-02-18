@@ -1,3 +1,5 @@
+#ifndef _EVT_H_
+#define _EVT_H_
 
 typedef long Bytecode;
 typedef Bytecode EvtScript[];
@@ -372,3 +374,5 @@ enum EvtOpcode
 #define LFlagD LocalFlag(13)
 #define LFlagE LocalFlag(14)
 #define LFlagF LocalFlag(15)
+
+#endif //_EVT_H_

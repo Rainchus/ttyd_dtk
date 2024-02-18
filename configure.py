@@ -119,7 +119,7 @@ if not is_windows():
 
 # Tool versions
 config.compilers_tag = "1"
-config.dtk_tag = "v0.7.2"
+config.dtk_tag = "v0.7.3"
 config.sjiswrap_tag = "v1.1.1"
 config.wibo_tag = "0.6.9"
 
@@ -221,6 +221,12 @@ config.libs = [
             Object(NonMatching, "Runtime.PPCEABI.H/__init_cpp_exceptions.cpp"),
         ],
     },
+    Rel('aaa',
+        objects = [
+            Object(NonMatching, "REL/aaa/aaa.c"),
+            Object(NonMatching, "REL/aaa/aaa_00.c"),
+        ]
+    ),
 ]
 
 if args.mode == "configure":
