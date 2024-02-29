@@ -51,7 +51,7 @@ def wibo_url(tag):
 
 def compilers_url(tag):
     if tag == "1":
-        return "https://cdn.discordapp.com/attachments/727918646525165659/1129759991696457728/GC_WII_COMPILERS.zip"
+        return "https://files.decomp.dev/compilers_latest.zip"
     else:
         sys.exit("Unknown compilers tag %s" % tag)
 
