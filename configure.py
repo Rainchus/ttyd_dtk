@@ -12,11 +12,11 @@
 # Append --help to see available options.
 ###
 
-import sys
 import argparse
-
+import sys
 from pathlib import Path
-from typing import Dict, List, Any
+from typing import Any, Dict, List
+
 from tools.project import (
     Object,
     ProjectConfig,
@@ -31,127 +31,150 @@ VERSIONS = [
     "G8ME01",  # 0
 ]
 
-if len(VERSIONS) > 1:
-    versions_str = ", ".join(VERSIONS[:-1]) + f" or {VERSIONS[-1]}"
-else:
-    versions_str = VERSIONS[0]
-
 parser = argparse.ArgumentParser()
 parser.add_argument(
     "mode",
+    choices=["configure", "progress"],
     default="configure",
-    help="configure or progress (default: configure)",
+    help="script mode (default: configure)",
     nargs="?",
 )
 parser.add_argument(
     "--version",
-    dest="version",
+    choices=VERSIONS,
+    type=str.upper,
     default=VERSIONS[DEFAULT_VERSION],
-    help=f"version to build ({versions_str})",
+    help="version to build",
 )
 parser.add_argument(
     "--build-dir",
-    dest="build_dir",
+    metavar="DIR",
     type=Path,
     default=Path("build"),
     help="base build directory (default: build)",
 )
 parser.add_argument(
+    "--binutils",
+    metavar="BINARY",
+    type=Path,
+    help="path to binutils (optional)",
+)
+parser.add_argument(
     "--compilers",
-    dest="compilers",
+    metavar="DIR",
     type=Path,
     help="path to compilers (optional)",
 )
 parser.add_argument(
     "--map",
-    dest="map",
     action="store_true",
     help="generate map file(s)",
 )
 parser.add_argument(
+    "--no-asm",
+    action="store_true",
+    help="don't incorporate .s files from asm directory",
+)
+parser.add_argument(
     "--debug",
-    dest="debug",
     action="store_true",
     help="build with debug info (non-matching)",
 )
 if not is_windows():
     parser.add_argument(
         "--wrapper",
-        dest="wrapper",
+        metavar="BINARY",
         type=Path,
         help="path to wibo or wine (optional)",
     )
 parser.add_argument(
-    "--build-dtk",
-    dest="build_dtk",
+    "--dtk",
+    metavar="BINARY | DIR",
     type=Path,
-    help="path to decomp-toolkit source (optional)",
+    help="path to decomp-toolkit binary or source (optional)",
 )
 parser.add_argument(
     "--sjiswrap",
-    dest="sjiswrap",
+    metavar="EXE",
     type=Path,
     help="path to sjiswrap.exe (optional)",
 )
 parser.add_argument(
     "--verbose",
-    dest="verbose",
     action="store_true",
     help="print verbose output",
 )
 args = parser.parse_args()
 
 config = ProjectConfig()
-config.version = args.version.upper()
-if config.version not in VERSIONS:
-    sys.exit(f"Invalid version '{config.version}', expected {versions_str}")
+config.version = args.version
 version_num = VERSIONS.index(config.version)
 
 # Apply arguments
 config.build_dir = args.build_dir
-config.build_dtk_path = args.build_dtk
+config.dtk_path = args.dtk
+config.binutils_path = args.binutils
 config.compilers_path = args.compilers
 config.debug = args.debug
 config.generate_map = args.map
 config.sjiswrap_path = args.sjiswrap
 if not is_windows():
     config.wrapper = args.wrapper
+if args.no_asm:
+    config.asm_dir = None
 
 # Tool versions
-config.compilers_tag = "1"
-config.dtk_tag = "v0.7.3"
+config.binutils_tag = "2.42-1"
+config.compilers_tag = "20231018"
+config.dtk_tag = "v0.7.6"
 config.sjiswrap_tag = "v1.1.1"
-config.wibo_tag = "0.6.9"
+config.wibo_tag = "0.6.13"
 
 # Project
 config.config_path = Path("config") / config.version / "config.yml"
 config.check_sha_path = Path("config") / config.version / "build.sha1"
+config.asflags = [
+    "-mgekko",
+    "--strip-local-absolute",
+    "-I include",
+    f"-I build/{config.version}/include",
+    f"--defsym version={version_num}",
+]
 config.ldflags = [
     "-fp hardware",
     "-nodefaults",
-    # "-listclosure", # Uncomment for Wii linkers
+    "-W off",
 ]
 
 # Base flags, common to most GC/Wii games.
 # Generally leave untouched, with overrides added below.
 cflags_base = [
+    #define the platform
     "-nodefaults",
     "-proc gekko",
     "-align powerpc",
     "-enum int",
+    
+    # for multibyte
+    "-multibyte",
+    "-char unsigned",
+    
+    #platform specific
     "-fp hardware",
     "-Cpp_exceptions off",
-    # "-W all",
+    '-pragma "cats off"',
+    
+    #default compiler flags
+    "-W all",
     "-O4,p",
     "-inline auto",
-    '-pragma "cats off"',
     '-pragma "warn_notinlined off"',
+    
+    #helpful linking stuff
     "-maxerrors 1",
     "-nosyspath",
-    "-RTTI off",
-    "-fp_contract on",
-    "-str reuse",
-    "-multibyte",  # For Wii compilers, replace with `-enc SJIS`
+    
+    #dtk-specific includes
     "-i include",
     f"-i build/{config.version}/include",
     f"-DVERSION={version_num}",
@@ -173,6 +196,19 @@ cflags_runtime = [
     "-inline auto",
 ]
 
+# Game-specific flags
+cflags_static = [
+    *cflags_base,
+    "-fp_contract on",
+    "-use_lmw_stmw on",
+    "-rostr",
+    "-inline auto,deferred",
+    "-sdata 48",
+    "-sdata2 6",
+    "-w nonotused",
+    "-once",
+]
+
 # REL flags
 cflags_rel = [
     *cflags_base,
@@ -180,14 +216,14 @@ cflags_rel = [
     "-sdata2 0",
 ]
 
-config.linker_version = "GC/1.3.2"
+config.linker_version = "GC/2.6"
 
 
 # Helper function for Dolphin libraries
 def DolphinLib(lib_name: str, objects: List[Object]) -> Dict[str, Any]:
     return {
         "lib": lib_name,
-        "mw_version": "GC/1.2.5n",
+        "mw_version": "GC/1.3.2",
         "cflags": cflags_base,
         "host": False,
         "objects": objects,
@@ -198,7 +234,7 @@ def DolphinLib(lib_name: str, objects: List[Object]) -> Dict[str, Any]:
 def Rel(lib_name: str, objects: List[Object]) -> Dict[str, Any]:
     return {
         "lib": lib_name,
-        "mw_version": "GC/1.3.2",
+        "mw_version": "GC/2.6",
         "cflags": cflags_rel,
         "host": True,
         "objects": objects,
@@ -208,7 +244,7 @@ def Rel(lib_name: str, objects: List[Object]) -> Dict[str, Any]:
 Matching = True
 NonMatching = False
 
-config.warn_missing_config = True
+config.warn_missing_config = False
 config.warn_missing_source = False
 config.libs = [
     {
@@ -218,7 +254,6 @@ config.libs = [
         "host": False,
         "objects": [
             Object(NonMatching, "Runtime.PPCEABI.H/global_destructor_chain.c"),
-            Object(NonMatching, "Runtime.PPCEABI.H/__init_cpp_exceptions.cpp"),
         ],
     },
     Rel('aaa',
