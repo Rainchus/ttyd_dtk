@@ -1,6 +1,6 @@
 object: orig/G8ME01/sys/main.dol
 hash: bc62d5e4674d139fd50d6c05694b34f955e37039
-symbols: config/G8ME01/dol_symbols.txt
+symbols: config/G8ME01/symbols.txt
 splits: config/G8ME01/splits.txt
 mw_comment_version: 10 # GC 2.6 linker
 
