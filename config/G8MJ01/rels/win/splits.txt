@@ -3,5 +3,99 @@ Sections:
 	.ctors      type:rodata align:4
 	.dtors      type:rodata align:4
 	.rodata     type:rodata align:8
-	.data       type:data align:32
+	.data       type:data align:8
 	.bss        type:bss align:8
+
+win_00.o:
+	.text       start:0x00000000 end:0x000002B4
+	.rodata     start:0x00000000 end:0x000007E8
+	.data       start:0x00000000 end:0x00003678
+
+win_01.o:
+	.rodata     start:0x000007E8 end:0x00000A30
+	.data       start:0x00003678 end:0x000043F0
+
+win_02.o:
+	.rodata     start:0x00000A30 end:0x00000BB0
+	.data       start:0x000043F0 end:0x00004BA0
+
+win_03.o:
+	.text       start:0x000002B4 end:0x000004D8
+	.rodata     start:0x00000BB0 end:0x00000DC8
+	.data       start:0x00004BA0 end:0x000055C0
+
+win_04.o:
+	.text       start:0x000004D8 end:0x00000D70
+	.rodata     start:0x00000DC8 end:0x00001398
+	.data       start:0x000055C0 end:0x00009AB0
+	.bss        start:0x00000000 end:0x00000010
+
+win_05.o:
+	.rodata     start:0x00001398 end:0x00001440
+	.data       start:0x00009AB0 end:0x00009EF0
+
+win.o:
+	.text       start:0x00000D70 end:0x00000EB4
+	.rodata     start:0x00001440 end:0x000014F0
+	.data       start:0x00009EF0 end:0x0000A4D8
+
+battle_database_win.o:
+	.rodata     start:0x000014F0 end:0x00001688
+	.data       start:0x0000A4D8 end:0x0000BA78
+
+unit_kuriboo.o:
+	.text       start:0x00000EB4 end:0x00000FCC
+	.rodata     start:0x00001688 end:0x000017E0
+	.data       start:0x0000BA78 end:0x0000C610
+
+unit_gundan_zako.o:
+	.rodata     start:0x000017E0 end:0x00001A00
+	.data       start:0x0000C610 end:0x0000DC00
+
+unit_dokugassun.o:
+	.text       start:0x00000FCC end:0x000012F4
+	.rodata     start:0x00001A00 end:0x00001BB0
+	.data       start:0x0000DC00 end:0x0000F060
+
+unit_pakkun_flower.o:
+	.text       start:0x000012F4 end:0x00001584
+	.rodata     start:0x00001BB0 end:0x00001D70
+	.data       start:0x0000F060 end:0x00010220
+
+win_06.o:
+	.text       start:0x00001584 end:0x00001D18
+	.rodata     start:0x00001D70 end:0x00001E40
+	.data       start:0x00010220 end:0x000108E0
+	.bss        start:0x00000010 end:0x00000020
+
+unit_boss_vivian.o:
+	.rodata     start:0x00001E40 end:0x00002000
+	.data       start:0x000108E0 end:0x00011D70
+
+unit_boss_majolyne.o:
+	.text       start:0x00001D18 end:0x00001E1C
+	.rodata     start:0x00002000 end:0x00002218
+	.data       start:0x00011D70 end:0x000140A8
+
+unit_boss_marilyn.o:
+	.rodata     start:0x00002218 end:0x00002420
+	.data       start:0x000140A8 end:0x000155D0
+
+unit_monochrome_sinemon.o:
+	.rodata     start:0x00002420 end:0x000025D0
+	.data       start:0x000155D0 end:0x00016658
+
+unit_monochrome_pakkun.o:
+	.text       start:0x00001E1C end:0x000020AC
+	.rodata     start:0x000025D0 end:0x00002790
+	.data       start:0x00016658 end:0x00017818
+
+unit_monochrome_kurokumorn.o:
+	.rodata     start:0x00002790 end:0x00002950
+	.data       start:0x00017818 end:0x00018FD8
+
+evt_lect_win.o:
+	.text       start:0x000020AC end:0x00003640
+	.rodata     start:0x00002950 end:0x00002B38
+	.data       start:0x00018FD8 end:0x00019A3C
+	.bss        start:0x00000020 end:0x000000C0

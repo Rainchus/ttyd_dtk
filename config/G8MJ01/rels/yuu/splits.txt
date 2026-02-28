@@ -5,3 +5,61 @@ Sections:
 	.rodata     type:rodata align:8
 	.data       type:data align:8
 	.bss        type:bss align:8
+
+yuu_02.o:
+	.text       start:0x00000000 end:0x00001168
+	.rodata     start:0x00000000 end:0x00000158
+	.data       start:0x00000000 end:0x00000DE8
+	.bss        start:0x00000000 end:0x00000010
+
+yuu_03.o:
+	.text       start:0x00001168 end:0x00003674
+	.rodata     start:0x00000158 end:0x00000350
+	.data       start:0x00000DE8 end:0x000016C0
+	.bss        start:0x00000010 end:0x00000020
+
+yuu.o:
+	.text       start:0x00003674 end:0x00003760
+	.rodata     start:0x00000350 end:0x00000370
+	.data       start:0x000016C0 end:0x00001710
+
+yuu_00.o:
+	.text       start:0x00003760 end:0x000041A8
+	.rodata     start:0x00000370 end:0x00000580
+	.data       start:0x00001710 end:0x00002AC8
+	.bss        start:0x00000020 end:0x00000028
+
+yuu_01.o:
+	.text       start:0x000041A8 end:0x000051C0
+	.rodata     start:0x00000580 end:0x00000988
+	.data       start:0x00002AC8 end:0x00004438
+	.bss        start:0x00000028 end:0x00000030
+
+evt_yuuranking.o:
+	.text       start:0x000051C0 end:0x00008ED0
+	.rodata     start:0x00000988 end:0x00000D90
+	.data       start:0x00004438 end:0x000044C0
+	.bss        start:0x00000030 end:0x00000038
+
+evt_yuutitle.o:
+	.text       start:0x00008ED0 end:0x00009214
+	.rodata     start:0x00000D90 end:0x00000DC8
+	.data       start:0x000044C0 end:0x00004520
+	.bss        start:0x00000038 end:0x00000040
+
+evt_yuucounter.o:
+	.text       start:0x00009214 end:0x00009D08
+	.rodata     start:0x00000DC8 end:0x00000E18
+	.data       start:0x00004520 end:0x000045A0
+	.bss        start:0x00000040 end:0x00000048
+
+evt_yuuminigame.o:
+	.text       start:0x00009D08 end:0x0000A2A8
+	.rodata     start:0x00000E18 end:0x00000E20
+	.data       start:0x000045A0 end:0x00004600
+	.bss        start:0x00000048 end:0x000000E0
+
+evt_yuunpc.o:
+	.text       start:0x0000A2A8 end:0x00013F30
+	.rodata     start:0x00000E20 end:0x00001199
+	.data       start:0x00004600 end:0x00005CC4

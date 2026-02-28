@@ -1,8 +1,8 @@
 import csv
 import os
 
-rel_path = "config/G8ME01/rels/"
-dol_path = "config/G8ME01/"
+rel_path = "config/G8MJ01/rels/"
+dol_path = "config/G8MJ01/"
 katakana_space = "　"
 dol_only = False
 
@@ -32,36 +32,40 @@ substring_list_to_local = [
     'bom_dir', 'bom_spd', 'dead_event'
 ]
 
+DOL_HASH = 'cf559d97fef1b3efb8788126250aee88f0491410'
+
 rel_name_and_sha1sum = {
-    'moo': '6c64a522d758dc65b7d650de37ae9560dc68842b',
-    'bom': 'dbf15e225a5421f331801a0c7a10f5d68316ef94',
-    'tou': 'a6a696bf83c86647972e3181470dbe10e7fd8275',
-    'tou2': 'bdb6a495734abaa1754de28db3c3dfb26459789f',
-    'muj': 'fb12a2618040ebe3310184fed3dc0db3f6fcb54c',
-    'las': 'b31c87418da3cdb214809610679619d9487f8191',
-    'yuu': 'd1631fd60d0064d773098f46eeb787ddcff3aec6',
-    'pik': 'f64f2fab00c5cbdb2d32d87cdde0a96ef08495dc',
-    'jin': 'b6527aa781ec807a6e7f81893bd6863909986e77',
-    'gor': '23b6de1981b4790548b7767d823bcea7e10e9765',
-    'dmo': '4338a674a7073765d3b4a966d3efdd80e5a8fa27',
-    'hei': '8c4278b5d815e5aed9c1f36c7e18b6922e6126ee',
-    'hom': 'c32a360fc1badbf73905c4cdf8828531395f103d',
-    'nok': '70a09f6f09772654391a86d41d2f3a47a8ec8060',
-    'mri': 'fcb0bf6ec7be87ba959864c740203ef89184c15c',
-    'end': '627a4744b7b20c534d10443c07dce6cc6567ddea',
-    'usu': 'f7735563935f73dc34a2a591422ee36981a724a9',
-    'gon': 'e17361b42bb4bc5a9d62c355975b773b98018368',
-    'eki': 'a7e46734754529f5bc405ea12a5b2481fa8636b0',
-    'sys': '0bacf3f0ddf7642615a8e5c3cf33940bb5ab71ca',
-    'jon': '5000fab55292914fe8999e36ab9ee23c882f4c87',
-    'dou': '2bb25ac6dce0fefe34a8233a960b8da7456ced11',
-    'aaa': 'f5b44ff83064e9bf61c4122c3715a68161da8ad0',
-    'rsh': 'dacc04c6d778813e5ce42db0ad1111c48894c0a1',
-    'kpa': 'ed7b01c390f0f1d559463c31a4e0f7da2d994435',
-    'aji': 'ce37fe134c24261fe870a9ef4389040ca6ea5bc8',
-    'gra': 'a6c1de813d9e3a2b8d03a47b2b5417c3cd8cb427',
-    'tik': '2721d98eff7db5a138afeefd312b70a60ec76a9e',
-    'win': '27e8bd9b2286c73c1cf2555521b52b4c9e0fba49'
+    'aaa':  '66d0e5d1d2e2901c5efd282ed4da5af6938f9461',
+    'aji':  '56af821581e0503402b73f8932a30138a1cfbba8',
+    'bom':  'c0846b6084fb85690b3a555ce471973fa7e0d7b1',
+    'dig':  'f3b088b23a295fb09dadca1ebc256969dc1ea27c',
+    'dmo':  '5bd9d6fae723924295807c144bfb20ff9dba64c3',
+    'dou':  '9560fa09485f1e02e43a07834ec4b8af47547551',
+    'eki':  'd5eb271be7483d4b01e8160fc46ed754dd1b58af',
+    'end':  'f577f264bbdc10969ca25f7dbc84833c9564c1ed',
+    'gon':  '4d51e63a545aa2d867887f4a113b073de948956c',
+    'gor':  '3bf36642758ea61254b1e4d1b3d3fc89cecb30f4',
+    'gra':  'ec1704b208654ec1f32a7023bad9f942de392e8a',
+    'hei':  'a7e27f05a88a80af3e44de29e50ee0563d62ad17',
+    'hom':  'f1a3590713ca8b06c73cd8fff8dab29bea9a3bfb',
+    'jin':  'd8124f1e405053a6e27cf4c69df9990fef730c36',
+    'jon':  '319e3737b003d87c2f124b83489ad65a93f03479',
+    'kpa':  '9f5d731b152343afc51279df109a121fe7d9302a',
+    'las':  'e15faef89101b32f4b7a337058c65b3aba910aa3',
+    'moo':  '357e5b6724557e4eb76f5d70324c860217f6c81a',
+    'mri':  '11d11bf8f75eee99fcc304c67fdd414d7f8c85fc',
+    'muj':  '10b4f37b948497e48db829c42915e0b23a097fd5',
+    'nok':  '54dd220f5ee9f3f496c33479ff474da062f635ee',
+    'pik':  '80acba59e6d4d4aea017dbecfabbbddd6461115d',
+    'qiz':  '0ba6626026cdc093c56ebb87a6995dcb2c2fa679',
+    'rsh':  'cd279de6fa8d76af5640fab8fb37f9e95d365624',
+    'sys':  '1243496d414bfde2482d2206121208858cecedea',
+    'tik':  '39bad771291224ccd2b4e3b87361d3f2563d1643',
+    'tou':  '0b45e0f8d204e8ee394eb33f52b59658b08ccb15',
+    'tou2': 'dfb56dca8cc27fd24c0da1d812329b37383827c0',
+    'usu':  '21dcf5444bf9d6f4af7f4ac53d9b9d6aaa4d80f9',
+    'win':  '3f212ac788e4885ca68649cc7949d3488888e0b8',
+    'yuu':  '10f5980e6c0e1d725cdf97e63d48477c45a5f628',
 }
 
 split_file_text = """Sections:
@@ -70,30 +74,17 @@ split_file_text = """Sections:
 	.dtors      type:rodata align:4
 	.rodata     type:rodata align:8"""
 
-#               Name | Address    | Size       | File Off
-#              .init | 0x80003100 | 0x24D0     | 0x100
-#              .text | 0x800055E0 | 0x2B9B40   | 0x25E0
-#             .ctors | 0x802BF120 | 0x4        | 0x2BC120
-#             .dtors | 0x802BF140 | 0x8        | 0x2BC140
-#            .rodata | 0x802BF160 | 0x45072    | 0x2BC160
-#              .data | 0x803041E0 | 0xC117B    | 0x3011E0
-#               .bss | 0x803C5360 | 0x4FBB0    | 0x0
-#             .sdata | 0x80414F20 | 0x964C     | 0x3C2360
-#              .sbss | 0x8041E580 | 0xEA4      | 0x0
-#            .sdata2 | 0x8041F440 | 0xA0A4     | 0x3CB9C0
-#              .sbss2 | 0x80429500 | 0x40C      | 0x0
 dol_sections = {
-    ".init": [0x80003100, 0x24D0],
-    ".text": [0x800055E0, 0x2B9B40],
-    ".ctors": [0x802BF120, 0x4],
-    ".dtors": [0x802BF140, 0x8],
-    ".rodata": [0x802BF160, 0x45072],
-    ".data": [0x803041E0, 0xC117B],
-    ".bss": [0x803C5360, 0x4FBB0],
-    ".sdata": [0x80414F20, 0x964C],
-    ".sbss": [0x8041E580, 0xEA4],
-    ".sdata2": [0x8041F440, 0xA0A4],
-    ".sbss2": [0x80429500, 0x40C]
+    ".init":   [0x80003100, 0x2444],
+    ".text":   [0x800055E0, 0x2BB8EC],
+    ".dtors":  [0x802C0F00, 0x4],
+    ".rodata": [0x802C0F20, 0x41CE8],
+    ".data":   [0x80302C20, 0xBEBBC],
+    ".sdata":  [0x8040F260, 0x90F4],
+    ".sdata2": [0x80419380, 0x9BDC],
+    ".bss":    [0x803C17E0, 0x4DA70],
+    ".sbss":   [0x80418360, 0x1018],
+    ".sbss2":  [0x80422F60, 0x404],
 }
 
 if not os.path.exists(rel_path):
@@ -103,11 +94,11 @@ if not os.path.exists(dol_path):
     os.makedirs(dol_path)
 
 def writeToYaml(shasum_file, symbols_yaml, splits_map):
-    shasum_file.write(f"{rel_name_and_sha1sum.get(area, 'UNKNOWN')}  build/G8ME01/{area}/{area}.rel\n")
-    symbols_yaml.write(f"- object: orig/G8ME01/files/rel/{area}.rel\n")
+    shasum_file.write(f"{rel_name_and_sha1sum.get(area, 'UNKNOWN')}  build/G8MJ01/{area}/{area}.rel\n")
+    symbols_yaml.write(f"- object: orig/G8MJ01/files/rel/{area}.rel\n")
     symbols_yaml.write(f"  hash: {rel_name_and_sha1sum.get(area, 'UNKNOWN')}\n")
-    symbols_yaml.write(f"  symbols: config/G8ME01/rels/{area}/symbols.txt\n")
-    symbols_yaml.write(f"  splits: config/G8ME01/rels/{area}/splits.txt\n")
+    symbols_yaml.write(f"  symbols: config/G8MJ01/rels/{area}/symbols.txt\n")
+    symbols_yaml.write(f"  splits: config/G8MJ01/rels/{area}/splits.txt\n")
     for n_namespace in splits_map.get(prev_area, {}):
         namespace_conv = n_namespace.replace(".a", "").replace(" ", "/")
         splits_file.write(f"\n{namespace_conv}:\n")
@@ -115,7 +106,7 @@ def writeToYaml(shasum_file, symbols_yaml, splits_map):
             n_section = splits_map[prev_area][n_namespace][n_section_name]
             splits_file.write(f"\t{n_section_name} start:{n_section['start']} end:{n_section['end']}\n")
 
-with open('tools/us_symbols.csv', 'r', encoding='utf-8') as csvfile:
+with open('tools/jp_symbols.csv', 'r', encoding='utf-8') as csvfile:
     reader = csv.DictReader(csvfile)
     encountered_namespaces = set()
     symbol_counts = {}
@@ -126,11 +117,11 @@ with open('tools/us_symbols.csv', 'r', encoding='utf-8') as csvfile:
     split_section_end = None
     splits_map = {}
 
-    shasum_file = open('orig/G8ME01.sha1', 'w', encoding='utf-8')
-    shasum_file.write(f"bc62d5e4674d139fd50d6c05694b34f955e37039  build/G8ME01/main.dol\n")
+    shasum_file = open('orig/G8MJ01.sha1', 'w', encoding='utf-8')
+    shasum_file.write(f"{DOL_HASH}  build/G8MJ01/main.dol\n")
 
-    symbols_file = open('config/G8ME01/dol_symbols.txt', 'w', encoding='utf-8')
-    splits_file = open('config/G8ME01/splits.txt', 'w', encoding='utf-8')
+    symbols_file = open('config/G8MJ01/dol_symbols.txt', 'w', encoding='utf-8')
+    splits_file = open('config/G8MJ01/splits.txt', 'w', encoding='utf-8')
     splits_file.write("""Sections:
 	.init       type:code
 	.text       type:code
@@ -145,14 +136,14 @@ with open('tools/us_symbols.csv', 'r', encoding='utf-8') as csvfile:
 	.sbss2      type:bss
 """)
 
-    symbols_yaml = open(f'config/G8ME01/config.yml', 'w', encoding='utf-8')
-    symbols_yaml.write(f"object: orig/G8ME01/sys/main.dol\n")
-    symbols_yaml.write(f"hash: bc62d5e4674d139fd50d6c05694b34f955e37039\n")
-    symbols_yaml.write(f"symbols: config/G8ME01/dol_symbols.txt\n")
-    symbols_yaml.write(f"splits: config/G8ME01/splits.txt\n")
+    symbols_yaml = open(f'config/G8MJ01/config.yml', 'w', encoding='utf-8')
+    symbols_yaml.write(f"object: orig/G8MJ01/sys/main.dol\n")
+    symbols_yaml.write(f"hash: {DOL_HASH}\n")
+    symbols_yaml.write(f"symbols: config/G8MJ01/dol_symbols.txt\n")
+    symbols_yaml.write(f"splits: config/G8MJ01/splits.txt\n")
     symbols_yaml.write(f"mw_comment_version: 10 # GC 2.6 linker\n\n")
     symbols_yaml.write(f"modules:\n")
-    
+
     for row in reader:
         name = row['name']
         area = row['area']
@@ -167,18 +158,16 @@ with open('tools/us_symbols.csv', 'r', encoding='utf-8') as csvfile:
                 skip_current_iteration = True
                 break
 
-        if skip_current_iteration == True:
+        if skip_current_iteration:
             continue
 
-        if katakana_space in name: #remove spaces and replace with underscores
+        if katakana_space in name:
             name = name.replace(katakana_space, "_")
-            
-        
 
-        words = name.split()  # Split the string by spaces
+        words = name.split()
         name = ' '.join(words[:1])
         sec_offset = row['sec_offset'][:8]
-        ram_addr = row['ram_addr'][:8] #some ram_addr have multiple entries, just grab the first
+        ram_addr = row['ram_addr'][:8]
         addr_to_use = ""
 
         section_name = row['sec_name']
@@ -188,7 +177,7 @@ with open('tools/us_symbols.csv', 'r', encoding='utf-8') as csvfile:
             addr_to_use = ram_addr
         else:
             addr_to_use = sec_offset
-        
+
         if addr_to_use is None or addr_to_use == '':
             continue
 
@@ -206,23 +195,19 @@ with open('tools/us_symbols.csv', 'r', encoding='utf-8') as csvfile:
                 splits = splits_map.get(prev_area, {})
                 sections = splits.get(prevNamespace, {})
                 section = sections.get(prevSection, {})
-                if 'end' in section:
-                    print(f"{prev_area} {prevNamespace} {prevSection} is duplicated")
-                    exit(1)
-                section['start'] = f"0x{split_section_start}"
-                end = addr_to_use
-                if split_section_end is not None and int(addr_to_use, 16) <= split_section_end:
-                    end = split_section_end
-                else:
+                if 'end' not in section:
+                    section['start'] = f"0x{split_section_start}"
                     end = int(addr_to_use, 16)
-                if prev_area == "_main":
-                    section_end = dol_sections[prevSection][0] + dol_sections[prevSection][1]
-                    if end > section_end:
-                        end = section_end
-                section['end'] = hex(end)
-                sections[prevSection] = section
-                splits[prevNamespace] = sections
-                splits_map[prev_area] = splits
+                    if split_section_end is not None and end <= split_section_end:
+                        end = split_section_end
+                    if prev_area == "_main" and prevSection in dol_sections:
+                        section_end = dol_sections[prevSection][0] + dol_sections[prevSection][1]
+                        if end > section_end:
+                            end = section_end
+                    section['end'] = hex(end)
+                    sections[prevSection] = section
+                    splits[prevNamespace] = sections
+                    splits_map[prev_area] = splits
 
             prevNamespace = namespace
             prevSection = section_name
@@ -230,32 +215,28 @@ with open('tools/us_symbols.csv', 'r', encoding='utf-8') as csvfile:
         if row['size']:
             split_section_end = int(addr_to_use, 16) + int(row['size'], 16)
 
-        #check if a new symbols file needs to be created
-        #if so, write data pertaining to sections of the file
         if area != prev_area:
             symbols_file.close()
             writeToYaml(shasum_file, symbols_yaml, splits_map)
             if area != "_main":
                 splits_file.close()
-                splits_file = open(f'config/G8ME01/rels/{area}/splits.txt', 'w', encoding='utf-8')
+                splits_file = open(f'config/G8MJ01/rels/{area}/splits.txt', 'w', encoding='utf-8')
                 splits_file.write(f"{split_file_text}\n")
                 if area == "mri":
                     splits_file.write(f"	.data       type:data align:32\n")
                 else:
                     splits_file.write(f"	.data       type:data align:8\n")
-                if area != "pik":
+                if area != "pik" and area != "qiz":
                     splits_file.write(f"	.bss        type:bss align:8\n")
 
-            symbols_file = open(f'config/G8ME01/rels/{area}/symbols.txt', 'w', encoding='utf-8')
+            symbols_file = open(f'config/G8MJ01/rels/{area}/symbols.txt', 'w', encoding='utf-8')
             prev_area = area
 
-        #strings found multiple times in the dol should be scoped to local
         for substring in substring_list_to_local:
             if substring == name:
                 scope_string = "scope:local"
                 break
 
-        #special rel sections that need to be global
         if name == "_unresolved" or name == "_prolog" or name == "_epilog":
             scope_string = "scope:global"
 
@@ -266,7 +247,7 @@ with open('tools/us_symbols.csv', 'r', encoding='utf-8') as csvfile:
         else:
             sym_type = 'object'
         symbols_file.write(f"{name} = {section_name}:0x{addr_to_use}; // type:{sym_type}{size_string} {scope_string}\n")
-    
+
     for namespace in splits_map.get(prev_area, {}):
         splits_file.write(f"\n{namespace}:\n")
         for section_name in splits_map[prev_area][namespace]:
@@ -276,4 +257,3 @@ with open('tools/us_symbols.csv', 'r', encoding='utf-8') as csvfile:
     symbols_file.close()
     splits_file.close()
     shasum_file.close()
-
