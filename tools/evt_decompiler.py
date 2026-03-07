@@ -129,6 +129,7 @@ OPCODES = {
     0x6E: ("BEGIN_CHILD_THREAD",    0),
     0x6F: ("BEGIN_CHILD_THREAD_TID",1),
     0x70: ("END_CHILD_THREAD",      0),
+    0x70: ("END_CHILD_THREAD",      0),
 }
 
 # Opcodes that increase indent level for the lines that follow
@@ -185,7 +186,7 @@ def format_value(token: str) -> str:
     if not (token.startswith("0x") or token.startswith("-") or token.lstrip("-").isdigit()):
         if token.startswith("str_"):
             c_sym = _sym_rename.get(token, sanitize_sym(token))
-            return f"(Bytecode)(const char*){c_sym}"
+            return f"(Bytecode)(const void*){c_sym}"
         return token  # symbol reference
 
     try:
@@ -261,7 +262,7 @@ def format_value(token: str) -> str:
             f = (val + EVTDAT_FLOAT_BASE) / 1024.0
             return f"FLOAT({f:.3f})"
 
-    # Plain integer: decimal for small, hex for everything else
+    # Plain integer: decimal for small values, hex for large
     if -9999 <= val <= 9999:
         return str(val)
     return f"0x{raw & 0xFFFFFFFF:08X}"
@@ -274,7 +275,7 @@ def format_value(token: str) -> str:
 def parse_obj_blocks(asm_text: str) -> dict:
     objects = {}
     for m in re.finditer(
-        r'\.obj\s+(\w+),\s*\w+\n(.*?)\.endobj\s+\1',
+        r'\.obj\s+(\S+),\s*\S+\n(.*?)\.endobj\s+\1',
         asm_text, re.DOTALL
     ):
         name = m.group(1)
@@ -306,8 +307,8 @@ EVT_VALID_FIRST_OPCODES = {
     0x22, 0x23,
     0x32, 0x33, 0x34, 0x35, 0x36, 0x37, 0x38, 0x3A, 0x3B, 0x3C, 0x3D,
     0x3E, 0x44, 0x4B, 0x4C, 0x4D,
-    0x5B, 0x5C, 0x5D, 0x5E, 0x5F,
-    0x62, 0x63, 0x65, 0x66, 0x6B, 0x6F,
+    0x5B, 0x5C, 0x5D, 0x5E, 0x5F, 0x60,
+    0x61, 0x62, 0x63, 0x64, 0x65, 0x6B, 0x6E,
 }
 
 # Terminal opcodes — a valid script must contain at least one
@@ -358,7 +359,7 @@ def is_evt_script(tokens: list) -> bool:
         # Opcodes that take pointer/symbol arguments
         # CALL (0x5B): func ptr at slot 1, str_ refs at other slots
         # Script-pointer opcodes (0x5D-0x61): take evt script symbol at slot 1
-        PTR_OPCODES = {0x5B, 0x5D, 0x5E, 0x5F, 0x60, 0x61}
+        PTR_OPCODES = {0x5B, 0x5C, 0x5D, 0x5E, 0x5F, 0x60}
         is_call = (opcode == 0x5B)
         is_ptr_opcode = (opcode in PTR_OPCODES)
         for j in range(1, argc + 1):
@@ -388,7 +389,7 @@ def is_evt_script(tokens: list) -> bool:
 # ---------------------------------------------------------------------------
 
 def decompile_script(name: str, tokens: list) -> str:
-    lines = [f"EvtScript {name} = {{"]
+    lines = [f"EVT_BEGIN({name}) {{"]
     indent = 1
     i = 0
 
@@ -479,7 +480,7 @@ def extract_string_decls(asm_text: str) -> list:
 
     # ASCII .string
     for m in re.finditer(
-        r'\.obj\s+(str_\w+),\s*\w+\n\s*\.string\s+"([^"]*)"',
+        r'\.obj\s+(str_\S+),\s*\S+\n\s*\.string\s+"([^"]*)"',
         asm_text
     ):
         sym, val = m.group(1), m.group(2)
@@ -504,7 +505,7 @@ def extract_string_decls(asm_text: str) -> list:
 
     # Shift-JIS raw bytes — .byte directive form
     for m in re.finditer(
-        r'\.obj\s+(str_\w+),\s*\w+\n(?:\s*#[^\n]*\n)?\s*((?:\t\.byte[^\n]+\n)+)',
+        r'\.obj\s+(str_\S+),\s*\S+\n(?:\s*#[^\n]*\n)?\s*((?:\t\.byte[^\n]+\n)+)',
         asm_text
     ):
         sym = m.group(1)
@@ -514,7 +515,7 @@ def extract_string_decls(asm_text: str) -> list:
 
     # Shift-JIS packed — .4byte directive form (each word is 4 big-endian bytes)
     for m in re.finditer(
-        r'\.obj\s+(str_\w+),\s*\w+\n(?:\s*#[^\n]*\n)?((?:\t\.4byte\s+0x[0-9A-Fa-f]+\n)+(?:\t\.byte\s+0x00\n)?)',
+        r'\.obj\s+(str_\S+),\s*\S+\n(?:\s*#[^\n]*\n)?((?:\t\.4byte\s+0x[0-9A-Fa-f]+\n)+(?:\t\.byte\s+0x00\n)?)',
         asm_text
     ):
         sym = m.group(1)
@@ -545,9 +546,27 @@ def extract_string_decls(asm_text: str) -> list:
 def main():
     if len(sys.argv) < 2:
         print("Usage: evt_decompile.py <file.s> [-o output.c] [script_name ...]")
+        print("       evt_decompile.py --snippet [file.s]  (reads .obj block from stdin or file)")
         sys.exit(1)
 
     args = sys.argv[1:]
+
+    # --snippet mode: decompile a single .obj block from stdin or a file argument
+    if args[0] == "--snippet":
+        if len(args) >= 2:
+            with open(args[1], "r", encoding="utf-8") as f:
+                snippet = f.read()
+        else:
+            snippet = sys.stdin.read()
+        all_objects = parse_obj_blocks(snippet)
+        if not all_objects:
+            print("// No .obj blocks found in snippet.", file=sys.stderr)
+            sys.exit(1)
+        for name, toks in all_objects.items():
+            sys.stdout.buffer.write(decompile_script(name, toks).encode("utf-8"))
+            sys.stdout.buffer.write(b"\n")
+        return
+
     output_file = None
     if "-o" in args:
         idx = args.index("-o")
