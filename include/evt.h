@@ -3,6 +3,12 @@
 
 typedef long Bytecode;
 typedef Bytecode EvtScript[];
+typedef long s32;
+typedef s32 ApiStatus;
+
+#define Ref(sym) ((Bytecode) &(sym))
+#define EVT_BEGIN(name) __declspec(section ".data") EvtScript name =
+#define API_CALLABLE(name) ApiStatus name(EvtScript* script, s32 isInitialCall)
 
 enum EvtOpcode
 {
@@ -264,7 +270,7 @@ enum EvtOpcode
 #define CALL(...)                       EVT_CMD(NUMARGS((Bytecode)__VA_ARGS__), EVT_OPC_USER_FUNC, (Bytecode)__VA_ARGS__),
 #define SCRIPT_ASYNC(script)            EVT_CMD(1, EVT_OPC_RUN_EVT, script),
 #define SCRIPT_ASYNC_TID(script, expr)  EVT_CMD(2, EVT_OPC_RUN_EVT_ID, script, expr),
-#define SCRIPT_SYNC(script)             EVT_CMD(1, EVT_OPC_RUN_CHILD_EVT, script),
+#define SCRIPT_SYNC(script)             EVT_CMD(1, EVT_OPC_RUN_CHILD_EVT, (Bytecode)(void*)(script)),
 #define STOP_TID(script)                EVT_CMD(1, EVT_OPC_DELETE_EVT, script),
 #define JUMP(ptr)                       EVT_CMD(1, EVT_OPC_RESTART_EVT, ptr),
 #define SET_THREAD_PRIORITY(priority)   EVT_CMD(1, EVT_OPC_SET_PRI, priority),
