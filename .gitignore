@@ -13,3 +13,4 @@ orig/*/*
 ctx.c
 data
 ida
+compile_commands.json
