@@ -1,6 +1,80 @@
 #include "evt.h"
-//#include "math.h"
+#include "dolphin/types.h"
+#include "common_structs.h"
+#include "dolphin/gx/GXStruct.h"
 
+//TODO: place this correctly
+typedef void (*DispCallback)(CameraId cameraId, void* param);
+
+void    GXGetProjectionv(void* proj);
+void    GXGetViewportv(f32* vp);
+void    GXSetProjection(void* mtx, s32 type);
+void    GXSetProjectionv(void* proj);
+void    GXSetViewport(f32 x, f32 y, f32 w, f32 h, f32 nearZ, f32 farZ);
+void*   _mapAlloc(void* base, s32 size);
+CameraEntry* camGetCurPtr(void);
+CameraEntry* camGetPtr(s32 cam);
+void dispEntry(CameraId cameraId, s32 renderMode, f32 order, DispCallback callback, void* param);
+void    evtSetValue(s32 evt, s32 var, s32 val);
+void*   fileAllocf(s32 flags, const char* fmt, ...);
+void    fileFree(void *ptr);
+s32     getMarioStDvdRoot(void);
+void*   memset(void* dst, s32 val, s32 size);
+void    winTexInit(void* texture);
+void winTexSet(u32 textureId, Vec translate, Vec scale, GXColor color);
+
+typedef struct FileEntry {
+	u8 state; //0x0
+	s8 field_0x1; //0x1, TODO enum archivetype/type
+	u16 references; //0x2
+	void* field_0x4; //0x4
+	u8 field_0x8[0x20 - 0x8]; //0x8
+	char filename[64]; //0x20
+	u8 field_0x60[0xA0 - 0x60]; //0x60
+	void** data; //0xA0
+	struct FileEntry* next; //0xA4
+	void* callback; // FileCallback callback; //0xA8
+	void* entry; // DVDEntry* entry; //0xAC
+} FileEntry;
+
+typedef struct MarioHouseWork {
+	FileEntry* texture; //0x0
+	s32 alpha; //0x4
+} MarioHouseWork;
+
+//TODO: fix type/group this data correctly. What is this?
+typedef struct UnkData {
+   Vec unk_00;
+   f32 unk_0C;
+   f32 unk_10;
+   f32 unk_14;
+   f32 unk_18;
+   f32 unk_1C;
+   f32 unk_20;
+   f32 unk_24;
+} UnkData; //sizeof 0x28
+
+UnkData unk0 = {
+   {-1.0f, 1.0f, -1.0f},
+   M_PI,
+   (M_PI/2) + M_PI,
+   0.0f,
+   1.0f,
+   -1.0f,
+   M_PI/2,
+   1.0f
+};
+
+UnkData unk1 = {
+   {-1.0f, 1.0f, -1.0f},
+   M_PI,
+   (M_PI/2) + M_PI,
+   0.0f,
+   1.0f,
+   -1.0f,
+   M_PI/2,
+   1.0f
+};
 
 extern char evt_eff_fukidashi[]; //unknown type
 extern char const zero_aaa_00000728; //unknown type
@@ -8,7 +82,7 @@ extern char const zero_aaa_00000728; //unknown type
 extern EvtScript evt_door_open_quick;
 extern EvtScript door_open_se;
 
-void mapdraw(void);
+API_CALLABLE(mapdraw);
 API_CALLABLE(evt_mario_get_pos);
 API_CALLABLE(evt_npc_wait_pera);
 API_CALLABLE(evt_fade_set_spot_pos);
@@ -79,7 +153,7 @@ API_CALLABLE(evt_npc_entry);
 API_CALLABLE(evt_npc_set_tribe);
 API_CALLABLE(evt_map_blend_set_flag);
 
-// String declarations
+// String declarations (probably replace the instances of the strings in the scripts with references rather than direct usage of the strings)
 char const str_sjis_aaa_00000468[] = "パレッタ";
 char const str_sjis_aaa_00000474[] = "ルイージ";
 char const str_S_ie_door_aaa_00000480[] = "S_ie_door";
@@ -143,6 +217,7 @@ char const str_M_N_10_aaa_00000710[] = "M_N_10";
 char const str_ep_35_aaa_00000718[] = "ep_35";
 char const str_gor_02_aaa_00000720[] = "gor_02";
 char const zero_aaa_00000728 = 0;
+char const pad = 0; //?
 char const str_sjis_aaa_0000072c[] = "ピーチ姫";
 char const str_c_peach_aaa_00000738[] = "c_peach";
 char const str_sjis_aaa_00000740[] = "ピーチ姫（普通）";
@@ -200,7 +275,7 @@ char const str_epilogue2_aaa_00000990[] = "epilogue2";
 char const str_PCTs_mariost_tpl_aaa_0000099c[] = "%s/mariost.tpl";
 float const float_1000_aaa_000009ac = 1000.0f;
 
-char wp[4];
+static MarioHouseWork *wp;
 
 typedef struct NpcEntry {
    char const* name;       // 0x00 - NPC name string
@@ -229,8 +304,8 @@ typedef struct NpcEntry {
 } NpcEntry;
 
 NpcEntry npcEnt[] = {
-   { str_sjis_aaa_00000468, 0x40000600, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
-   { str_sjis_aaa_00000474, 0x40000600, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
+   { "パレッタ", 0x40000600, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
+   { "ルイージ", 0x40000600, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
    //always ends with a blank entry?
    { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
 };
@@ -238,28 +313,28 @@ NpcEntry npcEnt[] = {
 EVT_BEGIN(evt_door) {
    MULF(LVar0, FLOAT(-0.555))
    MULF(LVar0, FLOAT(-1.000))
-   CALL(evt_mapobj_rotate, 1, (Bytecode)(void*)str_S_ie_door_aaa_00000480, 0, LVar0, 0)
+   CALL(evt_mapobj_rotate, 1, (Bytecode)(void*)"S_ie_door", 0, LVar0, 0)
    RETURN
    END
 };
 
 EVT_BEGIN(evt_door2) {
    MULF(LVar0, FLOAT(-0.500))
-   CALL(evt_mapobj_rotate, 1, (Bytecode)(void*)str_S_ie_door_aaa_00000480, 0, 0, LVar0)
+   CALL(evt_mapobj_rotate, 1, (Bytecode)(void*)"S_ie_door", 0, 0, LVar0)
    RETURN
    END
 };
 
 EVT_BEGIN(evt_wall) {
    MULF(LVar0, FLOAT(0.750))
-   CALL(evt_mapobj_rotate, 1, (Bytecode)(void*)str_S_ie_kaiten2_aaa_0000048c, LVar0, 0, 0)
+   CALL(evt_mapobj_rotate, 1, (Bytecode)(void*)"S_ie_kaiten2", LVar0, 0, 0)
    MULF(LVar0, FLOAT(-1.000))
-   CALL(evt_mapobj_rotate, 1, (Bytecode)(void*)str_S_ie_kaiten1_aaa_0000049c, LVar0, 0, 0)
+   CALL(evt_mapobj_rotate, 1, (Bytecode)(void*)"S_ie_kaiten1", LVar0, 0, 0)
    RETURN
    END
 };
 
-//char const* ie_npc = str_sjis_aaa_00000474;
+//char const* ie_npc = "ルイージ";
 
 EVT_BEGIN(door_1_open) {
    CALL(evt_snd_bgmoff, 0x00004800)
@@ -277,42 +352,21 @@ EVT_BEGIN(door_1_close) {
    END
 };
 
-typedef struct Door {
-   long unk_00;
-   long unk_04;
-   long unk_08;
-   char const* unk_0C;
-   char const* unk_10;
-   char const* unk_14;
-   char const* unk_18;
-   char const* unk_1C;
-   char const* unk_20;
-   char const* unk_24;
-   void* event1;
-   long unk_2C;
-   void* event2;
-   char const* unk_38;
-   long unk_3C;
-   long unk_40;
-   void* doorOpen;
-   void* doorClose;
-} Door;
-
 Door door_1 = {
    0x00000000,
    0x00000003,
    0x00000004,
-   str_S_ie_door_aaa_00000480,
-   str_A_ie_door_aaa_000004ac,
-   str_A_ie_door_u_aaa_000004b8,
-   str_S_ie_soto_aaa_000004c4,
-   str_A_ie_soto_aaa_000004d0,
-   str_S_naka_aaa_000004dc,
-   str_A_naka1_aaa_000004e4,
+   "S_ie_door",
+   "A_ie_door",
+   "A_ie_door_u",
+   "S_ie_soto",
+   "A_ie_soto",
+   "S_naka",
+   "A_naka1",
    (void*)evt_door,
    0x00000000,
    (void*)evt_wall,
-   str_sjis_aaa_00000474,
+   "ルイージ",
    0x00000000,
    0x00000000,
    (void*)door_1_open,
@@ -322,14 +376,14 @@ Door door_1 = {
 EVT_BEGIN(evt_prologue) {
    BEGIN_THREAD
       WAIT_MS(1500)
-      CALL(evt_snd_bgmon, 512, (Bytecode)(void*)str_BGM_EVT_MARIO_HOUSE1_aaa_000004ec)
+      CALL(evt_snd_bgmon, 512, (Bytecode)(void*)"BGM_EVT_MARIO_HOUSE1")
    END_THREAD
-   CALL(evt_snd_envon, 272, (Bytecode)(void*)str_ENV_OPN_AAA1_aaa_00000504)
+   CALL(evt_snd_envon, 272, (Bytecode)(void*)"ENV_OPN_AAA1")
    CALL(evt_snd_bgm_scope, 0, 1)
    CALL(evt_cam_letter_box_onoff, 1, 1)
    CALL(evt_cam_letter_box_camid, 6)
-   CALL(evt_npc_status_onoff, 1, (Bytecode)(void*)str_sjis_aaa_00000474, 2)
-   CALL(evt_npc_status_onoff, 1, (Bytecode)(void*)str_sjis_aaa_00000468, 2)
+   CALL(evt_npc_status_onoff, 1, (Bytecode)(void*)"ルイージ", 2)
+   CALL(evt_npc_status_onoff, 1, (Bytecode)(void*)"パレッタ", 2)
    CALL(evt_party_stop, 0)
    CALL(evt_mario_key_onoff, 0)
    CALL(evt_mario_set_pos, -150, 30, -330)
@@ -343,9 +397,9 @@ EVT_BEGIN(evt_prologue) {
       LOOP(0)
          CALL(evt_sub_intpl_msec_get_value)
          DIVF(LVar0, FLOAT(10.000))
-         CALL(evt_mapobj_trans, 1, (Bytecode)(void*)str_sai_ki2_aaa_00000514, LVar0, 0, 0)
+         CALL(evt_mapobj_trans, 1, (Bytecode)(void*)"sai_ki2", LVar0, 0, 0)
          MULF(LVar0, FLOAT(-1.000))
-         CALL(evt_mapobj_trans, 1, (Bytecode)(void*)str_sai_ki1_aaa_0000051c, LVar0, 0, 0)
+         CALL(evt_mapobj_trans, 1, (Bytecode)(void*)"sai_ki1", LVar0, 0, 0)
          WAIT_FRAMES(1)
          IF_INT_EQ(LVar1, 0)
             BREAK_LOOP
@@ -354,50 +408,50 @@ EVT_BEGIN(evt_prologue) {
    END_THREAD
    CALL(evt_cam3d_evt_set, 145, 122, 717, 145, 108, -180, 5000, 11)
    WAIT_MS(4000)
-   CALL(evt_npc_set_position, (Bytecode)(void*)str_sjis_aaa_00000468, 500, 500, 0)
+   CALL(evt_npc_set_position, (Bytecode)(void*)"パレッタ", 500, 500, 0)
    SET(LFlag1, 0)
    BEGIN_THREAD
       WAIT_MS(3000)
       LOOP(14)
-         CALL(evt_npc_get_position, (Bytecode)(void*)str_sjis_aaa_00000468, LVar0, LVar1, LVar2)
-         CALL(evt_snd_sfxon_3d, (Bytecode)(void*)str_SFX_EVT_OPN_PARETTA__aaa_00000524, LVar0, LVar1, -100, 0)
+         CALL(evt_npc_get_position, (Bytecode)(void*)"パレッタ", LVar0, LVar1, LVar2)
+         CALL(evt_snd_sfxon_3d, (Bytecode)(void*)"SFX_EVT_OPN_PARETTA_MOVE1", LVar0, LVar1, -100, 0)
          WAIT_MS(200)
       END_LOOP
       LOOP(0)
-         CALL(evt_npc_get_position, (Bytecode)(void*)str_sjis_aaa_00000468, LVar0, LVar1, LVar2)
-         CALL(evt_snd_sfxon_3d, (Bytecode)(void*)str_SFX_EVT_OPN_PARETTA__aaa_00000524, LVar0, LVar1, -100, 0)
+         CALL(evt_npc_get_position, (Bytecode)(void*)"パレッタ", LVar0, LVar1, LVar2)
+         CALL(evt_snd_sfxon_3d, (Bytecode)(void*)"SFX_EVT_OPN_PARETTA_MOVE1", LVar0, LVar1, -100, 0)
          WAIT_MS(400)
          IF_INT_EQ(LFlag1, 1)
             BREAK_LOOP
          END_IF
       END_LOOP
       LOOP(17)
-         CALL(evt_npc_get_position, (Bytecode)(void*)str_sjis_aaa_00000468, LVar0, LVar1, LVar2)
-         CALL(evt_snd_sfxon_3d, (Bytecode)(void*)str_SFX_EVT_OPN_PARETTA__aaa_00000524, LVar0, LVar1, -100, 0)
+         CALL(evt_npc_get_position, (Bytecode)(void*)"パレッタ", LVar0, LVar1, LVar2)
+         CALL(evt_snd_sfxon_3d, (Bytecode)(void*)"SFX_EVT_OPN_PARETTA_MOVE1", LVar0, LVar1, -100, 0)
          WAIT_MS(200)
       END_LOOP
    END_THREAD
-   CALL(evt_npc_glide_position, (Bytecode)(void*)str_sjis_aaa_00000468, 210, 25, -30, 0, FLOAT(80.000), FLOAT(-30.000), 11, 0)
-   CALL(evt_npc_reverse_ry, (Bytecode)(void*)str_sjis_aaa_00000468)
+   CALL(evt_npc_glide_position, (Bytecode)(void*)"パレッタ", 210, 25, -30, 0, FLOAT(80.000), FLOAT(-30.000), 11, 0)
+   CALL(evt_npc_reverse_ry, (Bytecode)(void*)"パレッタ")
    WAIT_MS(500)
-   CALL(evt_mapobj_get_position, (Bytecode)(void*)str_S_posuto_aaa_00000540, LVar0, LVar1, LVar2)
-   CALL(evt_snd_sfxon_3d, (Bytecode)(void*)str_SFX_EVT_POST_SHAKE1_aaa_0000054c, LVar0, LVar1, LVar2, 0)
+   CALL(evt_mapobj_get_position, (Bytecode)(void*)"S_posuto", LVar0, LVar1, LVar2)
+   CALL(evt_snd_sfxon_3d, (Bytecode)(void*)"SFX_EVT_POST_SHAKE1", LVar0, LVar1, LVar2, 0)
    LOOP(3)
-      CALL(evt_mapobj_trans, 1, (Bytecode)(void*)str_S_posuto_aaa_00000540, 2, 0, 0)
+      CALL(evt_mapobj_trans, 1, (Bytecode)(void*)"S_posuto", 2, 0, 0)
       WAIT_FRAMES(2)
-      CALL(evt_mapobj_trans, 1, (Bytecode)(void*)str_S_posuto_aaa_00000540, 0, 0, 0)
+      CALL(evt_mapobj_trans, 1, (Bytecode)(void*)"S_posuto", 0, 0, 0)
       WAIT_FRAMES(2)
    END_LOOP
-   CALL(evt_npc_reverse_ry, (Bytecode)(void*)str_sjis_aaa_00000468)
+   CALL(evt_npc_reverse_ry, (Bytecode)(void*)"パレッタ")
    WAIT_MS(500)
-   CALL(evt_msg_print, 0, (Bytecode)(void*)str_pro_00_aaa_00000560, 0, (Bytecode)(void*)str_sjis_aaa_00000468)
+   CALL(evt_msg_print, 0, (Bytecode)(void*)"pro_00", 0, (Bytecode)(void*)"パレッタ")
    SET(LFlag1, 1)
-   CALL(evt_npc_glide_position, (Bytecode)(void*)str_sjis_aaa_00000468, 0, 300, -100, 0, FLOAT(80.000), FLOAT(-30.000), 11, 0)
-   CALL(evt_npc_set_position, (Bytecode)(void*)str_sjis_aaa_00000474, 20, 30, -150)
-   CALL(evt_npc_set_ry, (Bytecode)(void*)str_sjis_aaa_00000474, 90)
-   CALL(evt_mapobj_flag_onoff, 1, 0, (Bytecode)(void*)str_S_naka_aaa_000004dc, 1)
-   CALL(evt_mapobj_get_position, (Bytecode)(void*)str_S_ie_door_aaa_00000480, LVar0, LVar1, LVar2)
-   CALL(evt_snd_sfxon_3d, (Bytecode)(void*)str_SFX_DOOR_OPEN1_aaa_00000568, LVar0, LVar1, LVar2, 0)
+   CALL(evt_npc_glide_position, (Bytecode)(void*)"パレッタ", 0, 300, -100, 0, FLOAT(80.000), FLOAT(-30.000), 11, 0)
+   CALL(evt_npc_set_position, (Bytecode)(void*)"ルイージ", 20, 30, -150)
+   CALL(evt_npc_set_ry, (Bytecode)(void*)"ルイージ", 90)
+   CALL(evt_mapobj_flag_onoff, 1, 0, (Bytecode)(void*)"S_naka", 1)
+   CALL(evt_mapobj_get_position, (Bytecode)(void*)"S_ie_door", LVar0, LVar1, LVar2)
+   CALL(evt_snd_sfxon_3d, (Bytecode)(void*)"SFX_DOOR_OPEN1", LVar0, LVar1, LVar2, 0)
    CALL(evt_sub_intpl_msec_init, 11, 0, 180, 500)
    LOOP(0)
       CALL(evt_sub_intpl_msec_get_value)
@@ -406,9 +460,9 @@ EVT_BEGIN(evt_prologue) {
          BREAK_LOOP
       END_IF
    END_LOOP
-   CALL(evt_npc_move_position, (Bytecode)(void*)str_sjis_aaa_00000474, 63, -110, 0, FLOAT(80.000), 1)
-   CALL(evt_mapobj_get_position, (Bytecode)(void*)str_S_ie_door_aaa_00000480, LVar0, LVar1, LVar2)
-   CALL(evt_snd_sfxon_3d, (Bytecode)(void*)str_SFX_DOOR_SHUT1_aaa_00000578, LVar0, LVar1, LVar2, 0)
+   CALL(evt_npc_move_position, (Bytecode)(void*)"ルイージ", 63, -110, 0, FLOAT(80.000), 1)
+   CALL(evt_mapobj_get_position, (Bytecode)(void*)"S_ie_door", LVar0, LVar1, LVar2)
+   CALL(evt_snd_sfxon_3d, (Bytecode)(void*)"SFX_DOOR_SHUT1", LVar0, LVar1, LVar2, 0)
    BEGIN_THREAD
       CALL(evt_sub_intpl_msec_init, 11, 180, 0, 500)
       LOOP(0)
@@ -419,29 +473,29 @@ EVT_BEGIN(evt_prologue) {
          END_IF
       END_LOOP
    END_THREAD
-   CALL(evt_npc_flag_onoff, 1, (Bytecode)(void*)str_sjis_aaa_00000474, 0x00020010)
-   CALL(evt_npc_move_position, (Bytecode)(void*)str_sjis_aaa_00000474, 195, 0, 0, FLOAT(80.000), 1)
-   CALL(evt_npc_move_position, (Bytecode)(void*)str_sjis_aaa_00000474, 225, -75, 0, FLOAT(80.000), 1)
+   CALL(evt_npc_flag_onoff, 1, (Bytecode)(void*)"ルイージ", 0x00020010)
+   CALL(evt_npc_move_position, (Bytecode)(void*)"ルイージ", 195, 0, 0, FLOAT(80.000), 1)
+   CALL(evt_npc_move_position, (Bytecode)(void*)"ルイージ", 225, -75, 0, FLOAT(80.000), 1)
    WAIT_MS(500)
-   CALL(evt_mapobj_get_position, (Bytecode)(void*)str_S_posuto_aaa_00000540, LVar0, LVar1, LVar2)
-   CALL(evt_snd_sfxon_3d, (Bytecode)(void*)str_SFX_EVT_POST_SHAKE1_aaa_0000054c, LVar0, LVar1, LVar2, 0)
+   CALL(evt_mapobj_get_position, (Bytecode)(void*)"S_posuto", LVar0, LVar1, LVar2)
+   CALL(evt_snd_sfxon_3d, (Bytecode)(void*)"SFX_EVT_POST_SHAKE1", LVar0, LVar1, LVar2, 0)
    LOOP(3)
-      CALL(evt_mapobj_trans, 1, (Bytecode)(void*)str_S_posuto_aaa_00000540, 2, 0, 0)
+      CALL(evt_mapobj_trans, 1, (Bytecode)(void*)"S_posuto", 2, 0, 0)
       WAIT_FRAMES(2)
-      CALL(evt_mapobj_trans, 1, (Bytecode)(void*)str_S_posuto_aaa_00000540, 0, 0, 0)
+      CALL(evt_mapobj_trans, 1, (Bytecode)(void*)"S_posuto", 0, 0, 0)
       WAIT_FRAMES(2)
    END_LOOP
    WAIT_MS(340)
-   CALL(evt_npc_set_anim, (Bytecode)(void*)str_sjis_aaa_00000474, (Bytecode)(void*)str_L_5_aaa_00000588)
+   CALL(evt_npc_set_anim, (Bytecode)(void*)"ルイージ", (Bytecode)(void*)"L_5")
    WAIT_MS(500)
-   CALL(evt_npc_flag_onoff, 0, (Bytecode)(void*)str_sjis_aaa_00000474, 1024)
-   CALL(evt_npc_set_anim, (Bytecode)(void*)str_sjis_aaa_00000474, (Bytecode)(void*)str_L_11_aaa_0000058c)
-   CALL(evt_npc_move_position, (Bytecode)(void*)str_sjis_aaa_00000474, 195, 0, 0, FLOAT(80.000), 1)
-   CALL(evt_npc_move_position, (Bytecode)(void*)str_sjis_aaa_00000474, 63, -110, 0, FLOAT(80.000), 1)
-   CALL(evt_npc_flag_onoff, 0, (Bytecode)(void*)str_sjis_aaa_00000474, 0x00020010)
-   CALL(evt_npc_set_anim, (Bytecode)(void*)str_sjis_aaa_00000474, (Bytecode)(void*)str_L_5_aaa_00000588)
-   CALL(evt_mapobj_get_position, (Bytecode)(void*)str_S_ie_door_aaa_00000480, LVar0, LVar1, LVar2)
-   CALL(evt_snd_sfxon_3d, (Bytecode)(void*)str_SFX_DOOR_OPEN1_aaa_00000568, LVar0, LVar1, LVar2, 0)
+   CALL(evt_npc_flag_onoff, 0, (Bytecode)(void*)"ルイージ", 1024)
+   CALL(evt_npc_set_anim, (Bytecode)(void*)"ルイージ", (Bytecode)(void*)"L_11")
+   CALL(evt_npc_move_position, (Bytecode)(void*)"ルイージ", 195, 0, 0, FLOAT(80.000), 1)
+   CALL(evt_npc_move_position, (Bytecode)(void*)"ルイージ", 63, -110, 0, FLOAT(80.000), 1)
+   CALL(evt_npc_flag_onoff, 0, (Bytecode)(void*)"ルイージ", 0x00020010)
+   CALL(evt_npc_set_anim, (Bytecode)(void*)"ルイージ", (Bytecode)(void*)"L_5")
+   CALL(evt_mapobj_get_position, (Bytecode)(void*)"S_ie_door", LVar0, LVar1, LVar2)
+   CALL(evt_snd_sfxon_3d, (Bytecode)(void*)"SFX_DOOR_OPEN1", LVar0, LVar1, LVar2, 0)
    CALL(evt_sub_intpl_msec_init, 11, 0, 180, 500)
    LOOP(0)
       CALL(evt_sub_intpl_msec_get_value)
@@ -451,23 +505,23 @@ EVT_BEGIN(evt_prologue) {
       END_IF
    END_LOOP
    BEGIN_THREAD
-      CALL(evt_npc_set_anim, (Bytecode)(void*)str_sjis_aaa_00000474, (Bytecode)(void*)str_L_6_aaa_00000594)
-      CALL(evt_npc_move_position, (Bytecode)(void*)str_sjis_aaa_00000474, 25, -155, 0, FLOAT(80.000), 1)
-      CALL(evt_npc_set_anim, (Bytecode)(void*)str_sjis_aaa_00000474, (Bytecode)(void*)str_L_5_aaa_00000588)
+      CALL(evt_npc_set_anim, (Bytecode)(void*)"ルイージ", (Bytecode)(void*)"L_6")
+      CALL(evt_npc_move_position, (Bytecode)(void*)"ルイージ", 25, -155, 0, FLOAT(80.000), 1)
+      CALL(evt_npc_set_anim, (Bytecode)(void*)"ルイージ", (Bytecode)(void*)"L_5")
    END_THREAD
    WAIT_MS(500)
    CALL(evt_cam3d_evt_set, -345, 154, 96, -32, 75, -217, 0, 11)
    WAIT_FRAMES(1)
-   CALL(evt_mapobj_flag_onoff, 1, 1, (Bytecode)(void*)str_S_aaa_00_aaa_00000598, 1)
-   CALL(evt_mapobj_flag_onoff, 1, 0, (Bytecode)(void*)str_S_naka_aaa_000004dc, 1)
-   CALL(evt_mapobj_flag_onoff, 1, 0, (Bytecode)(void*)str_S_ie_door_aaa_00000480, 1)
+   CALL(evt_mapobj_flag_onoff, 1, 1, (Bytecode)(void*)"S_aaa_00", 1)
+   CALL(evt_mapobj_flag_onoff, 1, 0, (Bytecode)(void*)"S_naka", 1)
+   CALL(evt_mapobj_flag_onoff, 1, 0, (Bytecode)(void*)"S_ie_door", 1)
    CALL(evt_bg_set_color, 0, 0, 0, 255)
    WAIT_FRAMES(1)
    CALL(evt_snd_bgmoff, 0x00004800)
    CALL(evt_snd_envoff, 0x00004800)
    CALL(evt_snd_env_lpf, 0, 800)
-   CALL(evt_mapobj_get_position, (Bytecode)(void*)str_S_ie_door_aaa_00000480, LVar0, LVar1, LVar2)
-   CALL(evt_snd_sfxon_3d, (Bytecode)(void*)str_SFX_DOOR_SHUT1_aaa_00000578, LVar0, LVar1, LVar2, 0)
+   CALL(evt_mapobj_get_position, (Bytecode)(void*)"S_ie_door", LVar0, LVar1, LVar2)
+   CALL(evt_snd_sfxon_3d, (Bytecode)(void*)"SFX_DOOR_SHUT1", LVar0, LVar1, LVar2, 0)
    BEGIN_THREAD
       CALL(evt_sub_intpl_msec_init, 11, 180, 0, 500)
       LOOP(0)
@@ -479,32 +533,32 @@ EVT_BEGIN(evt_prologue) {
       END_LOOP
    END_THREAD
    WAIT_MS(500)
-   CALL(evt_npc_set_anim, (Bytecode)(void*)str_sjis_aaa_00000474, (Bytecode)(void*)str_L_5_aaa_00000588)
-   CALL(evt_npc_set_autotalkpose, (Bytecode)(void*)str_sjis_aaa_00000474, (Bytecode)(void*)str_L_5_aaa_00000588, (Bytecode)(void*)str_L_7_aaa_000005a4)
-   CALL(evt_msg_print, 0, (Bytecode)(void*)str_pro_01_aaa_000005a8, 0, (Bytecode)(void*)str_sjis_aaa_00000474)
+   CALL(evt_npc_set_anim, (Bytecode)(void*)"ルイージ", (Bytecode)(void*)"L_5")
+   CALL(evt_npc_set_autotalkpose, (Bytecode)(void*)"ルイージ", (Bytecode)(void*)"L_5", (Bytecode)(void*)"L_7")
+   CALL(evt_msg_print, 0, (Bytecode)(void*)"pro_01", 0, (Bytecode)(void*)"ルイージ")
    CALL(evt_cam3d_evt_set, -376, 154, 65, -63, 75, -247, 2000, 11)
-   CALL(evt_npc_set_anim, (Bytecode)(void*)str_sjis_aaa_00000474, (Bytecode)(void*)str_L_6_aaa_00000594)
-   CALL(evt_npc_move_position, (Bytecode)(void*)str_sjis_aaa_00000474, 23, -156, 0, FLOAT(80.000), 1)
-   CALL(evt_npc_set_anim, (Bytecode)(void*)str_sjis_aaa_00000474, (Bytecode)(void*)str_L_5_aaa_00000588)
+   CALL(evt_npc_set_anim, (Bytecode)(void*)"ルイージ", (Bytecode)(void*)"L_6")
+   CALL(evt_npc_move_position, (Bytecode)(void*)"ルイージ", 23, -156, 0, FLOAT(80.000), 1)
+   CALL(evt_npc_set_anim, (Bytecode)(void*)"ルイージ", (Bytecode)(void*)"L_5")
    BEGIN_THREAD
       CALL(evt_mario_set_pos, -155, 30, -320)
       CALL(evt_mario_mov_pos2, -125, -290, FLOAT(80.000))
       CALL(evt_mario_mov_pos2, -85, -310, FLOAT(80.000))
       CALL(evt_mario_adjust_dir)
    END_THREAD
-   CALL(evt_npc_set_anim, (Bytecode)(void*)str_sjis_aaa_00000474, (Bytecode)(void*)str_L_6_aaa_00000594)
-   CALL(evt_npc_move_position, (Bytecode)(void*)str_sjis_aaa_00000474, -52, -275, 0, FLOAT(80.000), 1)
-   CALL(evt_npc_set_anim, (Bytecode)(void*)str_sjis_aaa_00000474, (Bytecode)(void*)str_L_5_aaa_00000588)
+   CALL(evt_npc_set_anim, (Bytecode)(void*)"ルイージ", (Bytecode)(void*)"L_6")
+   CALL(evt_npc_move_position, (Bytecode)(void*)"ルイージ", -52, -275, 0, FLOAT(80.000), 1)
+   CALL(evt_npc_set_anim, (Bytecode)(void*)"ルイージ", (Bytecode)(void*)"L_5")
    WAIT_MS(500)
-   CALL(evt_msg_print, 0, (Bytecode)(void*)str_pro_02_aaa_000005b0, 0, (Bytecode)(void*)str_sjis_aaa_00000474)
+   CALL(evt_msg_print, 0, (Bytecode)(void*)"pro_02", 0, (Bytecode)(void*)"ルイージ")
    WAIT_MS(300)
-   CALL(evt_npc_set_anim, (Bytecode)(void*)str_sjis_aaa_00000474, (Bytecode)(void*)str_L_8_aaa_000005b8)
-   CALL(evt_npc_set_autotalkpose, (Bytecode)(void*)str_sjis_aaa_00000474, (Bytecode)(void*)str_L_8_aaa_000005b8, (Bytecode)(void*)str_L_9_aaa_000005bc)
-   CALL(evt_msg_print, 0, (Bytecode)(void*)str_pro_03_aaa_000005c0, 0, (Bytecode)(void*)str_sjis_aaa_00000474)
+   CALL(evt_npc_set_anim, (Bytecode)(void*)"ルイージ", (Bytecode)(void*)"L_8")
+   CALL(evt_npc_set_autotalkpose, (Bytecode)(void*)"ルイージ", (Bytecode)(void*)"L_8", (Bytecode)(void*)"L_9")
+   CALL(evt_msg_print, 0, (Bytecode)(void*)"pro_03", 0, (Bytecode)(void*)"ルイージ")
    WAIT_MS(300)
    CALL(evt_cam_letter_box_camid, 10)
    CALL(evt_fade_set_mapchange_type, 1, 17, 800, 16, 800)
-   CALL(evt_bero_mapchange, (Bytecode)(void*)str_gor_10_aaa_000005c8, 0)
+   CALL(evt_bero_mapchange, (Bytecode)(void*)"gor_10", 0)
    RETURN
    END
 };
@@ -512,38 +566,38 @@ EVT_BEGIN(evt_prologue) {
 EVT_BEGIN(evt_prologue2) {
    CALL(evt_snd_envoff, 513)
    CALL(evt_snd_envon, 288, 0)
-   CALL(evt_mapobj_flag_onoff, 1, 1, (Bytecode)(void*)str_S_aaa_00_aaa_00000598, 1)
-   CALL(evt_mapobj_flag_onoff, 1, 0, (Bytecode)(void*)str_S_naka_aaa_000004dc, 1)
-   CALL(evt_mapobj_flag_onoff, 1, 0, (Bytecode)(void*)str_S_ie_door_aaa_00000480, 1)
+   CALL(evt_mapobj_flag_onoff, 1, 1, (Bytecode)(void*)"S_aaa_00", 1)
+   CALL(evt_mapobj_flag_onoff, 1, 0, (Bytecode)(void*)"S_naka", 1)
+   CALL(evt_mapobj_flag_onoff, 1, 0, (Bytecode)(void*)"S_ie_door", 1)
    CALL(evt_bg_set_color, 0, 0, 0, 255)
    CALL(evt_mario_key_onoff, 0)
    CALL(evt_mario_set_pos, -85, 30, -310)
    CALL(evt_mario_set_dir, 90, 0, 0)
    CALL(evt_party_stop, 0)
-   CALL(evt_npc_flag_onoff, 0, (Bytecode)(void*)str_sjis_aaa_00000474, 1024)
-   CALL(evt_npc_set_anim, (Bytecode)(void*)str_sjis_aaa_00000474, (Bytecode)(void*)str_L_8_aaa_000005b8)
-   CALL(evt_npc_set_autotalkpose, (Bytecode)(void*)str_sjis_aaa_00000474, (Bytecode)(void*)str_L_8_aaa_000005b8, (Bytecode)(void*)str_L_9_aaa_000005bc)
-   CALL(evt_npc_set_position, (Bytecode)(void*)str_sjis_aaa_00000474, -52, 30, -275)
-   CALL(evt_npc_set_ry, (Bytecode)(void*)str_sjis_aaa_00000474, 270)
-   CALL(evt_npc_flag_onoff, 1, (Bytecode)(void*)str_sjis_aaa_00000474, 0x00008000)
+   CALL(evt_npc_flag_onoff, 0, (Bytecode)(void*)"ルイージ", 1024)
+   CALL(evt_npc_set_anim, (Bytecode)(void*)"ルイージ", (Bytecode)(void*)"L_8")
+   CALL(evt_npc_set_autotalkpose, (Bytecode)(void*)"ルイージ", (Bytecode)(void*)"L_8", (Bytecode)(void*)"L_9")
+   CALL(evt_npc_set_position, (Bytecode)(void*)"ルイージ", -52, 30, -275)
+   CALL(evt_npc_set_ry, (Bytecode)(void*)"ルイージ", 270)
+   CALL(evt_npc_flag_onoff, 1, (Bytecode)(void*)"ルイージ", 0x00008000)
    CALL(evt_cam3d_evt_set, -376, 154, 65, -63, 75, -247, 0, 11)
    CALL(evt_seq_wait, 2)
    CALL(evt_mario_set_dir, 90, 0, 0)
    CALL(evt_fade_end_wait)
    CALL(evt_cam_letter_box_camid, 8)
-   CALL(evt_msg_print, 0, (Bytecode)(void*)str_pro_05_aaa_000005ec, 0, (Bytecode)(void*)str_sjis_aaa_00000474)
+   CALL(evt_msg_print, 0, (Bytecode)(void*)"pro_05", 0, (Bytecode)(void*)"ルイージ")
    WAIT_MS(300)
-   CALL(evt_npc_set_anim, (Bytecode)(void*)str_sjis_aaa_00000474, (Bytecode)(void*)str_I_1_aaa_000005f4)
-   CALL(evt_npc_get_position, (Bytecode)(void*)str_sjis_aaa_00000474, LVar0, LVar1, LVar2)
+   CALL(evt_npc_set_anim, (Bytecode)(void*)"ルイージ", (Bytecode)(void*)"I_1")
+   CALL(evt_npc_get_position, (Bytecode)(void*)"ルイージ", LVar0, LVar1, LVar2)
    ADD(LVar0, -25)
    ADD(LVar1, 15)
    ADD(LVar2, -3)
-   CALL(evt_item_entry, (Bytecode)(void*)str_map_aaa_000005f8, 96, LVar0, LVar1, LVar2, 17, -1, 0)
-   CALL(evt_item_set_scale, (Bytecode)(void*)str_map_aaa_000005f8, FLOAT(0.550))
+   CALL(evt_item_entry, (Bytecode)(void*)"map", 96, LVar0, LVar1, LVar2, 17, -1, 0)
+   CALL(evt_item_set_scale, (Bytecode)(void*)"map", FLOAT(0.550))
    WAIT_MS(1000)
-   CALL(evt_item_delete, (Bytecode)(void*)str_map_aaa_000005f8)
-   CALL(evt_npc_set_anim, (Bytecode)(void*)str_sjis_aaa_00000474, (Bytecode)(void*)str_S_1_aaa_000005fc)
-   CALL(evt_mario_set_pose, (Bytecode)(void*)str_M_L_3_aaa_00000600)
+   CALL(evt_item_delete, (Bytecode)(void*)"map")
+   CALL(evt_npc_set_anim, (Bytecode)(void*)"ルイージ", (Bytecode)(void*)"S_1")
+   CALL(evt_mario_set_pose, (Bytecode)(void*)"M_L_3")
    WAIT_MS(1500)
    SET(LFlag0, 0)
    BEGIN_THREAD
@@ -560,26 +614,26 @@ EVT_BEGIN(evt_prologue2) {
    CALL(evt_snd_envoff, 512)
    CALL(evt_fade_set_mapchange_type, 1, 49, 0, 50, 0)
    SET(GSW(0), 2)
-   CALL(evt_bero_mapchange, (Bytecode)(void*)str_muj_20_aaa_00000608, (Bytecode)(void*)str_prologue_aaa_00000610)
+   CALL(evt_bero_mapchange, (Bytecode)(void*)"muj_20", (Bytecode)(void*)"prologue")
    RETURN
    END
 };
 
 EVT_BEGIN(epilogue_evt) {
    CALL(evt_snd_bgmoff, 512)
-   CALL(evt_snd_envon, 272, (Bytecode)(void*)str_ENV_END_AAA1_aaa_0000061c)
+   CALL(evt_snd_envon, 272, (Bytecode)(void*)"ENV_END_AAA1")
    CALL(evt_mario_key_onoff, 0)
    CALL(evt_mario_set_pos, -126, 40, -224)
    CALL(evt_mario_set_dir, 90, 0, 0)
    CALL(evt_mario_adjust_dir)
-   CALL(evt_npc_set_position, (Bytecode)(void*)str_sjis_aaa_00000474, -44, 40, -163)
-   CALL(evt_npc_set_ry, (Bytecode)(void*)str_sjis_aaa_00000474, 270)
+   CALL(evt_npc_set_position, (Bytecode)(void*)"ルイージ", -44, 40, -163)
+   CALL(evt_npc_set_ry, (Bytecode)(void*)"ルイージ", 270)
    CALL(evt_seq_wait, 2)
    CALL(evt_map_set_blend, 0, 0, 0, 0, 255)
-   CALL(evt_mario_set_pose, (Bytecode)(void*)str_M_S_5_aaa_0000062c)
-   CALL(evt_npc_set_anim, (Bytecode)(void*)str_sjis_aaa_00000474, (Bytecode)(void*)str_S_2_aaa_00000634)
+   CALL(evt_mario_set_pose, (Bytecode)(void*)"M_S_5")
+   CALL(evt_npc_set_anim, (Bytecode)(void*)"ルイージ", (Bytecode)(void*)"S_2")
    WAIT_MS(3000)
-   CALL(evt_msg_print, 0, (Bytecode)(void*)str_ep_31_aaa_00000638, 0, 0)
+   CALL(evt_msg_print, 0, (Bytecode)(void*)"ep_31", 0, 0)
    WAIT_MS(500)
    CALL(evt_fade_entry, 10, 1, 0, 0, 0)
    WAIT_FRAMES(1)
@@ -590,19 +644,19 @@ EVT_BEGIN(epilogue_evt) {
    CALL(evt_snd_envoff, 0x00004800)
    CALL(evt_snd_env_lpf, 0, 800)
    WAIT_MS(500)
-   CALL(evt_npc_set_autotalkpose, (Bytecode)(void*)str_sjis_aaa_00000474, (Bytecode)(void*)str_S_2_aaa_00000634, (Bytecode)(void*)str_T_2_aaa_00000640)
-   CALL(evt_msg_print, 0, (Bytecode)(void*)str_ep_32_aaa_00000644, 0, (Bytecode)(void*)str_sjis_aaa_00000474)
+   CALL(evt_npc_set_autotalkpose, (Bytecode)(void*)"ルイージ", (Bytecode)(void*)"S_2", (Bytecode)(void*)"T_2")
+   CALL(evt_msg_print, 0, (Bytecode)(void*)"ep_32", 0, (Bytecode)(void*)"ルイージ")
    CALL(evt_mario_get_pos, 0, LVar0, LVar1, LVar2)
-   CALL(evt_snd_sfxon_3d, (Bytecode)(void*)str_SFX_VOICE_MARIO_HAND_aaa_0000064c, LVar0, LVar1, LVar2, 0)
-   CALL(evt_mario_set_pose, (Bytecode)(void*)str_M_N_11_aaa_00000668)
+   CALL(evt_snd_sfxon_3d, (Bytecode)(void*)"SFX_VOICE_MARIO_HAND_UP1_2", LVar0, LVar1, LVar2, 0)
+   CALL(evt_mario_set_pose, (Bytecode)(void*)"M_N_11")
    WAIT_MS(500)
-   CALL(evt_msg_print, 0, (Bytecode)(void*)str_ep_33_aaa_00000670, 0, (Bytecode)(void*)str_sjis_aaa_00000474)
+   CALL(evt_msg_print, 0, (Bytecode)(void*)"ep_33", 0, (Bytecode)(void*)"ルイージ")
    WAIT_MS(1000)
    CALL(evt_mario_get_pos, 0, LVar0, LVar1, LVar2)
-   CALL(evt_snd_sfxon_3d, (Bytecode)(void*)str_SFX_VOICE_MARIO_FIND_aaa_00000678, LVar0, LVar1, LVar2, 0)
+   CALL(evt_snd_sfxon_3d, (Bytecode)(void*)"SFX_VOICE_MARIO_FIND1_2", LVar0, LVar1, LVar2, 0)
    CALL(evt_mario_balloon_bikkuri)
    CALL(evt_snd_bgmoff, 1024)
-   CALL(evt_snd_bgmon, 1, (Bytecode)(void*)str_BGM_FF_MAIL_RECEPTIO_aaa_00000690)
+   CALL(evt_snd_bgmon, 1, (Bytecode)(void*)"BGM_FF_MAIL_RECEPTION3")
    SCRIPT_ASYNC_TID((Bytecode)(void*)&evt_sub_mail_vibration, LVarA)
    WAIT_MS(500)
    LOOP(0)
@@ -616,106 +670,106 @@ EVT_BEGIN(epilogue_evt) {
    CALL(evt_snd_bgmoff, 513)
    CALL(evt_snd_bgmon, 288, 0)
    CALL(evt_mario_get_pos, 0, LVar0, LVar1, LVar2)
-   CALL(evt_snd_sfxon_3d, (Bytecode)(void*)str_SFX_MAIL_RECEPTION1_aaa_000006a8, LVar0, LVar1, LVar2, 0)
+   CALL(evt_snd_sfxon_3d, (Bytecode)(void*)"SFX_MAIL_RECEPTION1", LVar0, LVar1, LVar2, 0)
    STOP_TID(LVarA)
    WAIT_FRAMES(1)
    CALL(evt_sub_rumble_onoff, 1, 0)
-   CALL(evt_msg_print, 0, (Bytecode)(void*)str_ep_34_aaa_000006bc, 0, (Bytecode)(void*)str_sjis_aaa_00000474)
+   CALL(evt_msg_print, 0, (Bytecode)(void*)"ep_34", 0, (Bytecode)(void*)"ルイージ")
    CALL(evt_mario_get_pos, 0, LVar0, LVar1, LVar2)
    CALL(evt_mario_set_dir, 90, 0, 0)
-   CALL(evt_snd_sfxon_3d, (Bytecode)(void*)str_SFX_VOICE_MARIO_FLD__aaa_000006c4, LVar0, LVar1, LVar2, 0)
+   CALL(evt_snd_sfxon_3d, (Bytecode)(void*)"SFX_VOICE_MARIO_FLD_JUMP3", LVar0, LVar1, LVar2, 0)
    CALL(evt_mario_jump_pos, -128, 30, -196, 400, 1, 20)
-   CALL(evt_snd_sfxon_3d, (Bytecode)(void*)str_SFX_MARIO_LANDING3_aaa_000006e0, LVar0, LVar1, LVar2, 0)
+   CALL(evt_snd_sfxon_3d, (Bytecode)(void*)"SFX_MARIO_LANDING3", LVar0, LVar1, LVar2, 0)
    CALL(evt_mario_set_dir, 90, 0, 0)
    CALL(evt_cam3d_evt_set, -307, 117, 9, -58, 58, -244, 1200, 11)
-   CALL(evt_npc_flag_onoff, 1, (Bytecode)(void*)str_sjis_aaa_00000474, 32)
-   CALL(evt_npc_jump_position_nohit, (Bytecode)(void*)str_sjis_aaa_00000474, -68, 30, -149, 400, 20)
-   CALL(evt_npc_move_position, (Bytecode)(void*)str_sjis_aaa_00000474, -107, -166, 800, 0, 0)
-   CALL(evt_mario_set_pose, (Bytecode)(void*)str_M_N_9_aaa_000006f4)
+   CALL(evt_npc_flag_onoff, 1, (Bytecode)(void*)"ルイージ", 32)
+   CALL(evt_npc_jump_position_nohit, (Bytecode)(void*)"ルイージ", -68, 30, -149, 400, 20)
+   CALL(evt_npc_move_position, (Bytecode)(void*)"ルイージ", -107, -166, 800, 0, 0)
+   CALL(evt_mario_set_pose, (Bytecode)(void*)"M_N_9")
    WAIT_MS(500)
    CALL(evt_mario_get_pos, 0, LVar0, LVar1, LVar2)
-   CALL(evt_snd_sfxon_3d, (Bytecode)(void*)str_SFX_MAIL_RECEPTION2_aaa_000006fc, LVar0, LVar1, LVar2, 0)
-   CALL(evt_mario_set_pose, (Bytecode)(void*)str_M_N_10_aaa_00000710)
+   CALL(evt_snd_sfxon_3d, (Bytecode)(void*)"SFX_MAIL_RECEPTION2", LVar0, LVar1, LVar2, 0)
+   CALL(evt_mario_set_pose, (Bytecode)(void*)"M_N_10")
    WAIT_MS(500)
-   CALL(evt_msg_print, 0, (Bytecode)(void*)str_ep_35_aaa_00000718, 0, 0)
+   CALL(evt_msg_print, 0, (Bytecode)(void*)"ep_35", 0, 0)
    CALL(evt_snd_bgmoff_f, 512, 3000)
    CALL(evt_snd_envoff_f, 512, 3000)
    CALL(evt_fade_set_mapchange_type, 1, 10, 900, 9, 900)
-   CALL(evt_bero_mapchange, (Bytecode)(void*)str_gor_02_aaa_00000720, zero_aaa_00000728)
+   CALL(evt_bero_mapchange, (Bytecode)(void*)"gor_02", zero_aaa_00000728)
    RETURN
    END
 };
 
 EVT_BEGIN(epilogue_npc_entry) {
-   CALL(evt_npc_entry, (Bytecode)(void*)str_sjis_aaa_0000072c, (Bytecode)(void*)str_c_peach_aaa_00000738)
-   CALL(evt_npc_set_tribe, (Bytecode)(void*)str_sjis_aaa_0000072c, (Bytecode)(void*)str_sjis_aaa_00000740)
-   CALL(evt_npc_set_position, (Bytecode)(void*)str_sjis_aaa_0000072c, 0, -1000, 0)
-   CALL(evt_npc_set_ry, (Bytecode)(void*)str_sjis_aaa_0000072c, 270)
-   CALL(evt_npc_flag_onoff, 1, (Bytecode)(void*)str_sjis_aaa_0000072c, 0x40000620)
-   CALL(evt_map_blend_set_flag, 1, (Bytecode)(void*)str_sjis_aaa_0000072c, 2048)
-   CALL(evt_map_blend_set_flag, 1, (Bytecode)(void*)str_sjis_aaa_0000072c, 4096)
-   CALL(evt_npc_entry, (Bytecode)(void*)str_sjis_aaa_00000754, (Bytecode)(void*)str_c_kino_ji_aaa_00000760)
-   CALL(evt_npc_set_tribe, (Bytecode)(void*)str_sjis_aaa_00000754, (Bytecode)(void*)str_sjis_aaa_00000754)
-   CALL(evt_npc_set_position, (Bytecode)(void*)str_sjis_aaa_00000754, 0, -1000, 0)
-   CALL(evt_npc_set_ry, (Bytecode)(void*)str_sjis_aaa_00000754, 270)
-   CALL(evt_npc_flag_onoff, 1, (Bytecode)(void*)str_sjis_aaa_00000754, 0x40000620)
-   CALL(evt_map_blend_set_flag, 1, (Bytecode)(void*)str_sjis_aaa_00000754, 2048)
-   CALL(evt_map_blend_set_flag, 1, (Bytecode)(void*)str_sjis_aaa_00000754, 4096)
+   CALL(evt_npc_entry, (Bytecode)(void*)"ピーチ姫", (Bytecode)(void*)"c_peach")
+   CALL(evt_npc_set_tribe, (Bytecode)(void*)"ピーチ姫", (Bytecode)(void*)"ピーチ姫（普通）")
+   CALL(evt_npc_set_position, (Bytecode)(void*)"ピーチ姫", 0, -1000, 0)
+   CALL(evt_npc_set_ry, (Bytecode)(void*)"ピーチ姫", 270)
+   CALL(evt_npc_flag_onoff, 1, (Bytecode)(void*)"ピーチ姫", 0x40000620)
+   CALL(evt_map_blend_set_flag, 1, (Bytecode)(void*)"ピーチ姫", 2048)
+   CALL(evt_map_blend_set_flag, 1, (Bytecode)(void*)"ピーチ姫", 4096)
+   CALL(evt_npc_entry, (Bytecode)(void*)"キノじい", (Bytecode)(void*)"c_kino_ji")
+   CALL(evt_npc_set_tribe, (Bytecode)(void*)"キノじい", (Bytecode)(void*)"キノじい")
+   CALL(evt_npc_set_position, (Bytecode)(void*)"キノじい", 0, -1000, 0)
+   CALL(evt_npc_set_ry, (Bytecode)(void*)"キノじい", 270)
+   CALL(evt_npc_flag_onoff, 1, (Bytecode)(void*)"キノじい", 0x40000620)
+   CALL(evt_map_blend_set_flag, 1, (Bytecode)(void*)"キノじい", 2048)
+   CALL(evt_map_blend_set_flag, 1, (Bytecode)(void*)"キノじい", 4096)
    RETURN
    END
 };
 
 EVT_BEGIN(epilogue_evt2) {
-   CALL(evt_snd_envon, 272, (Bytecode)(void*)str_ENV_END_AAA1_aaa_0000061c)
+   CALL(evt_snd_envon, 272, (Bytecode)(void*)"ENV_END_AAA1")
    CALL(evt_snd_envoff, 0x00004800)
    CALL(evt_snd_env_lpf, 0, 800)
    CALL(evt_mario_key_onoff, 0)
    CALL(evt_mario_set_pos, -128, 30, -196)
    CALL(evt_mario_set_dir, 90, 0, 0)
    CALL(evt_mario_adjust_dir)
-   CALL(evt_npc_set_position, (Bytecode)(void*)str_sjis_aaa_00000474, -107, 30, -166)
-   CALL(evt_npc_set_ry, (Bytecode)(void*)str_sjis_aaa_00000474, 270)
-   CALL(evt_npc_flag_onoff, 1, (Bytecode)(void*)str_sjis_aaa_00000474, 0x00008000)
+   CALL(evt_npc_set_position, (Bytecode)(void*)"ルイージ", -107, 30, -166)
+   CALL(evt_npc_set_ry, (Bytecode)(void*)"ルイージ", 270)
+   CALL(evt_npc_flag_onoff, 1, (Bytecode)(void*)"ルイージ", 0x00008000)
    CALL(evt_seq_wait, 2)
-   CALL(evt_mario_set_pose, (Bytecode)(void*)str_M_N_10_aaa_00000710)
+   CALL(evt_mario_set_pose, (Bytecode)(void*)"M_N_10")
    SET(LVar0, (Bytecode)(void*)&door_1)
    SCRIPT_SYNC(evt_door_open_quick)
    CALL(evt_cam3d_evt_set, -307, 117, 9, -58, 58, -244, 0, 11)
    WAIT_FRAMES(1)
    CALL(evt_fade_end_wait)
    WAIT_MS(500)
-   CALL(evt_npc_flag_onoff, 0, (Bytecode)(void*)str_sjis_aaa_00000474, 0x00008000)
-   CALL(evt_msg_print, 0, (Bytecode)(void*)str_ep_47_aaa_0000076c, 0, 0)
-   CALL(evt_snd_bgmon, 512, (Bytecode)(void*)str_BGM_EVT_MARIO_HOUSE2_aaa_00000774)
+   CALL(evt_npc_flag_onoff, 0, (Bytecode)(void*)"ルイージ", 0x00008000)
+   CALL(evt_msg_print, 0, (Bytecode)(void*)"ep_47", 0, 0)
+   CALL(evt_snd_bgmon, 512, (Bytecode)(void*)"BGM_EVT_MARIO_HOUSE2")
    CALL(evt_snd_bgm_scope, 0, 1)
    CALL(evt_cam3d_evt_set, -375, 154, 66, -62, 81, -248, 800, 11)
    WAIT_MS(800)
-   CALL(evt_mario_set_pose, (Bytecode)(void*)str_M_S_1_aaa_0000078c)
+   CALL(evt_mario_set_pose, (Bytecode)(void*)"M_S_1")
    CALL(evt_mario_set_dir, 90, 0, 0)
    WAIT_MS(1000)
-   CALL(evt_msg_print, 0, (Bytecode)(void*)str_ep_48_aaa_00000794, 0, (Bytecode)(void*)str_sjis_aaa_00000474)
+   CALL(evt_msg_print, 0, (Bytecode)(void*)"ep_48", 0, (Bytecode)(void*)"ルイージ")
    CALL(evt_mario_get_pos, 0, LVar0, LVar1, LVar2)
-   CALL(evt_snd_sfxon_3d, (Bytecode)(void*)str_SFX_VOICE_MARIO_NOD1_aaa_0000079c, LVar0, LVar1, LVar2, 0)
-   CALL(evt_mario_set_pose, (Bytecode)(void*)str_M_N_2_aaa_000007b4)
+   CALL(evt_snd_sfxon_3d, (Bytecode)(void*)"SFX_VOICE_MARIO_NOD1_4", LVar0, LVar1, LVar2, 0)
+   CALL(evt_mario_set_pose, (Bytecode)(void*)"M_N_2")
    WAIT_MS(200)
-   CALL(evt_mario_set_pose, (Bytecode)(void*)str_M_S_1_aaa_0000078c)
-   CALL(evt_mapobj_get_position, (Bytecode)(void*)str_S_ie_door_aaa_00000480, LVar0, LVar1, LVar2)
+   CALL(evt_mario_set_pose, (Bytecode)(void*)"M_S_1")
+   CALL(evt_mapobj_get_position, (Bytecode)(void*)"S_ie_door", LVar0, LVar1, LVar2)
    ADD(LVar1, 40)
-   CALL(evt_snd_sfxon_3d, (Bytecode)(void*)str_SFX_EVT_EPILOGUE_KIN_aaa_000007bc, LVar0, LVar1, LVar2, 0)
+   CALL(evt_snd_sfxon_3d, (Bytecode)(void*)"SFX_EVT_EPILOGUE_KINOJII_KNOCK1", LVar0, LVar1, LVar2, 0)
    WAIT_FRAMES(20)
-   CALL(evt_snd_sfxon_3d, (Bytecode)(void*)str_SFX_EVT_EPILOGUE_KIN_aaa_000007bc, LVar0, LVar1, LVar2, 0)
+   CALL(evt_snd_sfxon_3d, (Bytecode)(void*)"SFX_EVT_EPILOGUE_KINOJII_KNOCK1", LVar0, LVar1, LVar2, 0)
    WAIT_MS(1000)
-   CALL(evt_eff_fukidashi, 1, zero_aaa_00000728, (Bytecode)(void*)str_sjis_aaa_00000474, 0, 0, 0, 0, 0, 0, 0, 36)
+   CALL(evt_eff_fukidashi, 1, zero_aaa_00000728, (Bytecode)(void*)"ルイージ", 0, 0, 0, 0, 0, 0, 0, 36)
    WAIT_MS(800)
-   CALL(evt_npc_set_ry, (Bytecode)(void*)str_sjis_aaa_00000474, 90)
+   CALL(evt_npc_set_ry, (Bytecode)(void*)"ルイージ", 90)
    WAIT_FRAMES(1)
-   CALL(evt_npc_wait_pera, (Bytecode)(void*)str_sjis_aaa_00000474)
-   CALL(evt_msg_print, 0, (Bytecode)(void*)str_ep_49_aaa_000007dc, 0, (Bytecode)(void*)str_sjis_aaa_00000474)
-   CALL(evt_npc_set_position, (Bytecode)(void*)str_sjis_aaa_00000754, 60, 30, -110)
-   CALL(evt_npc_set_position, (Bytecode)(void*)str_sjis_aaa_0000072c, 78, 30, -89)
+   CALL(evt_npc_wait_pera, (Bytecode)(void*)"ルイージ")
+   CALL(evt_msg_print, 0, (Bytecode)(void*)"ep_49", 0, (Bytecode)(void*)"ルイージ")
+   CALL(evt_npc_set_position, (Bytecode)(void*)"キノじい", 60, 30, -110)
+   CALL(evt_npc_set_position, (Bytecode)(void*)"ピーチ姫", 78, 30, -89)
    CALL(evt_cam3d_evt_set, -345, 154, 96, -31, 81, -217, 600, 11)
    WAIT_MS(900)
-   CALL(evt_msg_print, 0, (Bytecode)(void*)str_ep_50_aaa_000007e4, 0, (Bytecode)(void*)str_sjis_aaa_00000754)
+   CALL(evt_msg_print, 0, (Bytecode)(void*)"ep_50", 0, (Bytecode)(void*)"キノじい")
    SET(LVar0, (Bytecode)(void*)&door_1)
    SCRIPT_ASYNC((Bytecode)(void*)&door_open_se)
    CALL(evt_sub_intpl_msec_init, 5, 0, 180, 500)
@@ -726,56 +780,56 @@ EVT_BEGIN(epilogue_evt2) {
          BREAK_LOOP
       END_IF
    END_LOOP
-   CALL(evt_npc_move_position, (Bytecode)(void*)str_sjis_aaa_00000754, 10, -205, 0, 60, 0)
-   CALL(evt_npc_move_position, (Bytecode)(void*)str_sjis_aaa_0000072c, 10, -160, 0, 60, 0)
-   CALL(evt_msg_print, 0, (Bytecode)(void*)str_ep_51_aaa_000007ec, 0, (Bytecode)(void*)str_sjis_aaa_0000072c)
+   CALL(evt_npc_move_position, (Bytecode)(void*)"キノじい", 10, -205, 0, 60, 0)
+   CALL(evt_npc_move_position, (Bytecode)(void*)"ピーチ姫", 10, -160, 0, 60, 0)
+   CALL(evt_msg_print, 0, (Bytecode)(void*)"ep_51", 0, (Bytecode)(void*)"ピーチ姫")
    WAIT_MS(500)
-   CALL(evt_msg_print, 0, (Bytecode)(void*)str_ep_52_aaa_000007f4, 0, (Bytecode)(void*)str_sjis_aaa_00000754)
+   CALL(evt_msg_print, 0, (Bytecode)(void*)"ep_52", 0, (Bytecode)(void*)"キノじい")
    CALL(evt_cam3d_evt_set, -259, 137, 44, -15, 76, -200, 800, 11)
    WAIT_MS(800)
-   CALL(evt_npc_set_autotalkpose, (Bytecode)(void*)str_sjis_aaa_0000072c, (Bytecode)(void*)str_P_S_5_aaa_000007fc, (Bytecode)(void*)str_P_T_5_aaa_00000804)
-   CALL(evt_msg_print, 0, (Bytecode)(void*)str_ep_53_aaa_0000080c, 0, (Bytecode)(void*)str_sjis_aaa_0000072c)
-   CALL(evt_npc_set_anim, (Bytecode)(void*)str_sjis_aaa_0000072c, (Bytecode)(void*)str_P_S_7_aaa_00000814)
+   CALL(evt_npc_set_autotalkpose, (Bytecode)(void*)"ピーチ姫", (Bytecode)(void*)"P_S_5", (Bytecode)(void*)"P_T_5")
+   CALL(evt_msg_print, 0, (Bytecode)(void*)"ep_53", 0, (Bytecode)(void*)"ピーチ姫")
+   CALL(evt_npc_set_anim, (Bytecode)(void*)"ピーチ姫", (Bytecode)(void*)"P_S_7")
    CALL(evt_cam3d_evt_set, -406, 179, 126, -47, 90, -232, 800, 11)
    WAIT_MS(800)
-   CALL(evt_npc_set_autotalkpose, (Bytecode)(void*)str_sjis_aaa_0000072c, (Bytecode)(void*)str_P_S_7_aaa_00000814, (Bytecode)(void*)str_P_T_13_aaa_0000081c)
-   CALL(evt_msg_print, 0, (Bytecode)(void*)str_ep_54_aaa_00000824, 0, (Bytecode)(void*)str_sjis_aaa_0000072c)
+   CALL(evt_npc_set_autotalkpose, (Bytecode)(void*)"ピーチ姫", (Bytecode)(void*)"P_S_7", (Bytecode)(void*)"P_T_13")
+   CALL(evt_msg_print, 0, (Bytecode)(void*)"ep_54", 0, (Bytecode)(void*)"ピーチ姫")
    CALL(evt_mario_get_pos, 0, LVar0, LVar1, LVar2)
-   CALL(evt_snd_sfxon_3d, (Bytecode)(void*)str_SFX_VOICE_MARIO_SURP_aaa_0000082c, LVar0, LVar1, LVar2, 0)
-   CALL(evt_mario_set_pose, (Bytecode)(void*)str_M_N_5B_aaa_00000848)
+   CALL(evt_snd_sfxon_3d, (Bytecode)(void*)"SFX_VOICE_MARIO_SURPRISED2", LVar0, LVar1, LVar2, 0)
+   CALL(evt_mario_set_pose, (Bytecode)(void*)"M_N_5B")
    WAIT_MS(550)
    BEGIN_THREAD
       LOOP(0)
-         CALL(evt_npc_reverse_ry, (Bytecode)(void*)str_sjis_aaa_00000474)
+         CALL(evt_npc_reverse_ry, (Bytecode)(void*)"ルイージ")
          WAIT_FRAMES(1)
-         CALL(evt_npc_wait_pera, (Bytecode)(void*)str_sjis_aaa_00000474)
+         CALL(evt_npc_wait_pera, (Bytecode)(void*)"ルイージ")
          WAIT_MS(300)
       END_LOOP
    END_THREAD
-   CALL(evt_mario_set_pose, (Bytecode)(void*)str_M_I_G_aaa_00000850)
+   CALL(evt_mario_set_pose, (Bytecode)(void*)"M_I_G")
    WAIT_MS(200)
-   CALL(evt_npc_set_ry, (Bytecode)(void*)str_sjis_aaa_0000072c, 90)
+   CALL(evt_npc_set_ry, (Bytecode)(void*)"ピーチ姫", 90)
    WAIT_FRAMES(1)
-   CALL(evt_npc_wait_pera, (Bytecode)(void*)str_sjis_aaa_0000072c)
+   CALL(evt_npc_wait_pera, (Bytecode)(void*)"ピーチ姫")
    SET(LFlag0, 1)
    BEGIN_THREAD
       WAIT_MS(300)
-      CALL(evt_npc_set_ry, (Bytecode)(void*)str_sjis_aaa_00000754, 90)
+      CALL(evt_npc_set_ry, (Bytecode)(void*)"キノじい", 90)
       WAIT_FRAMES(1)
-      CALL(evt_npc_wait_pera, (Bytecode)(void*)str_sjis_aaa_00000754)
-      CALL(evt_npc_move_position, (Bytecode)(void*)str_sjis_aaa_00000754, 20, -145, 0, 80, 0)
-      CALL(evt_npc_move_position, (Bytecode)(void*)str_sjis_aaa_00000754, 78, -89, 0, 80, 0)
-      CALL(evt_npc_set_position, (Bytecode)(void*)str_sjis_aaa_00000754, 0, -1000, 0)
+      CALL(evt_npc_wait_pera, (Bytecode)(void*)"キノじい")
+      CALL(evt_npc_move_position, (Bytecode)(void*)"キノじい", 20, -145, 0, 80, 0)
+      CALL(evt_npc_move_position, (Bytecode)(void*)"キノじい", 78, -89, 0, 80, 0)
+      CALL(evt_npc_set_position, (Bytecode)(void*)"キノじい", 0, -1000, 0)
       SET(LFlag0, 0)
    END_THREAD
-   CALL(evt_npc_move_position, (Bytecode)(void*)str_sjis_aaa_0000072c, 20, -145, 0, 60, 0)
-   CALL(evt_npc_move_position, (Bytecode)(void*)str_sjis_aaa_0000072c, 78, -89, 0, 60, 0)
-   CALL(evt_npc_set_position, (Bytecode)(void*)str_sjis_aaa_0000072c, 0, -1000, 0)
+   CALL(evt_npc_move_position, (Bytecode)(void*)"ピーチ姫", 20, -145, 0, 60, 0)
+   CALL(evt_npc_move_position, (Bytecode)(void*)"ピーチ姫", 78, -89, 0, 60, 0)
+   CALL(evt_npc_set_position, (Bytecode)(void*)"ピーチ姫", 0, -1000, 0)
    WAIT_UNTIL(LFlag0)
-   CALL(evt_snd_bgmon, 512, (Bytecode)(void*)str_BGM_ENDING4_aaa_00000858)
+   CALL(evt_snd_bgmon, 512, (Bytecode)(void*)"BGM_ENDING4")
    CALL(evt_cam3d_evt_set, -260, 90, -62, -68, 42, -253, 800, 11)
    WAIT_MS(800)
-   CALL(evt_mario_set_pose, (Bytecode)(void*)str_M_I_N_aaa_00000864)
+   CALL(evt_mario_set_pose, (Bytecode)(void*)"M_I_N")
    WAIT_MS(1000)
    CALL(evt_mario_get_pos, 0, LVar0, LVar1, LVar2)
    ADD(LVar1, 30)
@@ -785,7 +839,7 @@ EVT_BEGIN(epilogue_evt2) {
    WAIT_MS(3000)
    SET(GSW(0), 403)
    CALL(evt_fade_set_mapchange_type, 1, 10, 1, 9, 300)
-   CALL(evt_bero_mapchange, (Bytecode)(void*)str_end_00_aaa_0000086c, zero_aaa_00000728)
+   CALL(evt_bero_mapchange, (Bytecode)(void*)"end_00", zero_aaa_00000728)
    RETURN
    END
 };
@@ -807,9 +861,9 @@ typedef struct Unk {
 
 Unk ki_data = {
    6,
-   str_A_ki_1_aaa_00000874,
-   str_S_ki_1_aaa_0000087c,
-   str_S_ha_1_aaa_00000884,
+   "A_ki_1",
+   "S_ki_1",
+   "S_ha_1",
    0,
    0,
    7,
@@ -821,83 +875,83 @@ Unk ki_data = {
 };
 
 const char* kusa_data[] = {
-	0x00000000,
-	str_A_kusa_01_aaa_0000088c,
-	str_S_kusa_01_aaa_00000898,
-	0x00000000,
-	0x00000000,
-	str_A_kusa_02_aaa_000008a4,
-	str_S_kusa_02_aaa_000008b0,
-	0x00000000,
-	0x00000000,
-	str_A_kusa_03_aaa_000008bc,
-	str_S_kusa_03_aaa_000008c8,
-	0x00000000,
-	0x00000000,
-	str_A_kusa_04_aaa_000008d4,
-	str_S_kusa_04_aaa_000008e0,
-	0x00000000,
-	0x00000000,
-	str_A_kusa_05_aaa_000008ec,
-	str_S_kusa_05_aaa_000008f8,
-	0x00000000,
-	0x00000000,
-	str_A_kusa_06_aaa_00000904,
-	str_S_kusa_06_aaa_00000910,
-	0x00000000,
-	0x00000000,
-	str_A_kusa_07_aaa_0000091c,
-	str_S_kusa_07_aaa_00000928,
-	0x00000000,
-	0x00000000,
-	str_A_kusa_08_aaa_00000934,
-	str_S_kusa_08_aaa_00000940,
-	0x00000000,
-	0x00000000,
-	str_A_kusa_09_aaa_0000094c,
-	str_S_kusa_09_aaa_00000958,
-	0x00000000,
-	0x00000000,
-	str_A_kusa_10_aaa_00000964,
-	str_S_kusa_10_aaa_00000970,
-	0x00000000,
-	(const char*)0x00000004,
-	0x00000000,
-	0x00000000,
-	0x00000000
+        0x00000000,
+        "A_kusa_01",
+        "S_kusa_01",
+        0x00000000,
+        0x00000000,
+        "A_kusa_02",
+        "S_kusa_02",
+        0x00000000,
+        0x00000000,
+        "A_kusa_03",
+        "S_kusa_03",
+        0x00000000,
+        0x00000000,
+        "A_kusa_04",
+        "S_kusa_04",
+        0x00000000,
+        0x00000000,
+        "A_kusa_05",
+        "S_kusa_05",
+        0x00000000,
+        0x00000000,
+        "A_kusa_06",
+        "S_kusa_06",
+        0x00000000,
+        0x00000000,
+        "A_kusa_07",
+        "S_kusa_07",
+        0x00000000,
+        0x00000000,
+        "A_kusa_08",
+        "S_kusa_08",
+        0x00000000,
+        0x00000000,
+        "A_kusa_09",
+        "S_kusa_09",
+        0x00000000,
+        0x00000000,
+        "A_kusa_10",
+        "S_kusa_10",
+        0x00000000,
+        (const char*)0x00000004,
+        0x00000000,
+        0x00000000,
+        0x00000000
 };
 
 long bero_entry_data[] = {
-	(long)(void*)str_dokan_1_aaa_0000097c,
-	0x00020000,
-	0x00000009,
-	0x000186A0,
-	0x00000000,
-	0x00000000,
-	0xFFFFFFFF,
-	0x00000000,
-	0x00000006,
-	0x00000000,
-	0x00000000,
-	(long)(void*)str_dokan_1_aaa_0000097c,
-	0x00010001,
-	0x00000000,
-	0x00000000,
-	0x00000000,
-	0x00000000,
-	0x00000000,
-	0x00000000,
-	0x00000000,
-	0x00000000,
-	0x00000000,
-	0x00000000,
-	0x00000000,
-	0x00000000,
-	0x00000000,
-	0x00000000,
-	0x00000000,
-	0x00000000,
-	0x00000000
+        (long)(void*)"dokan_1",
+        0x00020000,
+        0x00000009,
+        0x000186A0,
+        0x00000000,
+        0x00000000,
+        0xFFFFFFFF,
+        0x00000000,
+        0x00000006,
+        0x00000000,
+        0x00000000,
+        (long)(void*)"dokan_1",
+        0x00010001,
+        0x00000000,
+        0x00000000,
+        0x00000000,
+        0x00000000,
+        0x00000000,
+        0x00000000,
+        0x00000000,
+        0x00000000,
+        0x00000000,
+        0x00000000,
+        0x00000000,
+        0x00000000,
+        0x00000000,
+        0x00000000,
+        0x00000000,
+        0x00000000,
+        0x00000000
 };
 
 EVT_BEGIN(aaa_00_init_evt_1_data_20CC) {
@@ -907,15 +961,15 @@ EVT_BEGIN(aaa_00_init_evt_1_data_20CC) {
    CALL(evt_npc_setup, (Bytecode)(void*)&npcEnt)
    SET(LVar0, (Bytecode)(void*)&door_1)
    SCRIPT_SYNC(evt_door_entry)
-   CALL(evt_mapobj_flag_onoff, 1, 0, (Bytecode)(void*)str_sai_ki1_aaa_0000051c, 2)
-   CALL(evt_mapobj_flag_onoff, 1, 0, (Bytecode)(void*)str_sai_ki2_aaa_00000514, 2)
+   CALL(evt_mapobj_flag_onoff, 1, 0, (Bytecode)(void*)"sai_ki1", 2)
+   CALL(evt_mapobj_flag_onoff, 1, 0, (Bytecode)(void*)"sai_ki2", 2)
    CALL(evt_bero_get_entername, LVar0)
-   IF_STR_EQ(LVar0, (Bytecode)(void*)str_prologue_aaa_00000610)
+   IF_STR_EQ(LVar0, (Bytecode)(void*)"prologue")
       SCRIPT_ASYNC((Bytecode)(void*)&evt_prologue)
       WAIT_FRAMES(1)
       RETURN
    END_IF
-   IF_STR_EQ(LVar0, (Bytecode)(void*)str_prologue2_aaa_00000984)
+   IF_STR_EQ(LVar0, (Bytecode)(void*)"prologue2")
       SCRIPT_ASYNC((Bytecode)(void*)&evt_prologue2)
       WAIT_FRAMES(1)
       RETURN
@@ -923,7 +977,7 @@ EVT_BEGIN(aaa_00_init_evt_1_data_20CC) {
    IF_INT_EQ(GSW(0), 402)
       CALL(evt_mario_kill_party, 0)
       CALL(evt_bero_get_entername, LVar0)
-      IF_STR_EQ(LVar0, (Bytecode)(void*)str_epilogue2_aaa_00000990)
+      IF_STR_EQ(LVar0, (Bytecode)(void*)"epilogue2")
          SCRIPT_SYNC((Bytecode)(void*)&epilogue_npc_entry)
          SCRIPT_ASYNC((Bytecode)(void*)&epilogue_evt2)
       ELSE
@@ -938,3 +992,52 @@ EVT_BEGIN(aaa_00_init_evt_1_data_20CC) {
    END
 };
 
+
+static const Vec s_translate = {0.0f, 0.0f, 0.0f};
+static const Vec s_scale = {1.0f, 1.0f, 1.0f};
+static const GXColor s_color = {0xFF, 0xFF, 0xFF, 0xFF};
+
+static void draw(void) {
+   CameraEntry camera;
+   f32 viewport[6];
+   f32 projection[6];
+
+
+   GXGetViewportv(viewport);
+   GXGetProjectionv(projection);
+   GXSetProjection(camGetPtr(CAMERA_2D)->projection, camGetPtr(CAMERA_2D)->type);
+   camera = *camGetCurPtr();
+   *camGetCurPtr() = *camGetPtr(CAMERA_2D);
+   winTexInit(*wp->texture->data);
+   winTexSet(3, s_translate, s_scale, s_color); //?
+   *camGetCurPtr() = camera;
+   GXSetViewport(viewport[0], viewport[1], viewport[2], viewport[3], viewport[4], viewport[5]);
+   GXSetProjectionv(projection);
+}
+
+extern void* mapalloc_base_ptr;
+
+API_CALLABLE(mapdraw) {
+   if (isInitialCall) {
+      wp = (MarioHouseWork*)_mapAlloc(mapalloc_base_ptr, sizeof(MarioHouseWork));
+      memset(wp, 0, sizeof(MarioHouseWork));
+      wp->texture = (FileEntry*)fileAllocf(4, str_PCTs_mariost_tpl_aaa_0000099c,
+                              getMarioStDvdRoot());
+      wp->alpha = 0;
+   }
+
+   wp->alpha += 2;
+   if (wp->alpha > 0xFF) {
+      wp->alpha = 0xFF;
+      evtSetValue((s32)script, LFlag0, 1);
+   }
+
+   dispEntry(CAMERA_3D, 7, 1000.0f, (void*)draw, wp);
+   return 0;
+}
+
+void mapdelete_1_text_B4(void) {
+   if (wp != NULL && wp->texture != NULL) {
+      fileFree(wp->texture);
+   }
+}
