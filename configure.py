@@ -27,7 +27,7 @@ from tools.project import (
 )
 
 # Game versions
-DEFAULT_VERSION = 0
+DEFAULT_VERSION = 1
 VERSIONS = [
     "G8MJ01",  # 0
     "G8ME01",  # 1
@@ -300,8 +300,8 @@ config.libs = [
     },
     Rel('aaa',
         objects = [
-            Object(NonMatching, "REL/aaa/aaa.c"),
-            Object(NonMatching, "REL/aaa/aaa_00.c"),
+            Object(Matching, "REL/aaa/aaa.s"),
+            Object(Matching, "REL/aaa/aaa_00.s"),
         ]
     ),
 ]
