@@ -146,6 +146,8 @@
 .set THRM2, 1021
 .set THRM3, 1022
 
+.set cr1eq, 6
+
 # Defines a sized symbol with function type.
 # Usage:
 # .fn my_function, local
