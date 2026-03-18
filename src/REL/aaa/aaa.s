@@ -59,6 +59,7 @@
 /* 00000094 00000158  38 63 00 00 */	addi r3, r3, str_aaa_00_aaa_00000460@l
 /* 00000098 0000015C  38 84 00 00 */	addi r4, r4, aaa_00_init_evt_1_data_20CC@l
 /* 0000009C 00000160  4B FF FF 65 */	bl relSetEvtAddr
+bl testFunction
 /* 000000A0 00000164  80 01 00 14 */	lwz r0, 0x14(r1)
 /* 000000A4 00000168  83 E1 00 0C */	lwz r31, 0xc(r1)
 /* 000000A8 0000016C  7C 08 03 A6 */	mtlr r0

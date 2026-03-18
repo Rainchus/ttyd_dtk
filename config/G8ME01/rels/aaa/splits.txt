@@ -16,3 +16,6 @@ REL/aaa/aaa_00.s:
 	.rodata     start:0x00000008 end:0x00000550
 	.data       start:0x00000060 end:0x00002210
 	.bss        start:0x00000000 end:0x00000004
+
+REL/aaa/test.c:
+	.text
