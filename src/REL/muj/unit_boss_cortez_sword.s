@@ -1,0 +1,2338 @@
+.include "macros.inc"
+.file "unit_boss_cortez_sword.o"
+
+# 0x00004E90..0x00004FD8 | size: 0x148
+.rodata
+.balign 8
+
+# .rodata:0x0 | 0x4E90 | size: 0x14
+.obj str_btl_un_cortez_sword_muj_00012b40, local
+	.string "btl_un_cortez_sword"
+.endobj str_btl_un_cortez_sword_muj_00012b40
+
+# .rodata:0x14 | 0x4EA4 | size: 0x16
+.obj str_SFX_BOSS_KOR_DAMAGED_muj_00012b54, local
+	.string "SFX_BOSS_KOR_DAMAGED1"
+.endobj str_SFX_BOSS_KOR_DAMAGED_muj_00012b54
+
+# .rodata:0x2A | 0x4EBA | size: 0x2
+.obj gap_03_00004EBA_rodata, global
+.hidden gap_03_00004EBA_rodata
+	.2byte 0x0000
+.endobj gap_03_00004EBA_rodata
+
+# .rodata:0x2C | 0x4EBC | size: 0x15
+.obj str_SFX_BTL_DAMAGE_FIRE1_muj_00012b6c, local
+	.string "SFX_BTL_DAMAGE_FIRE1"
+.endobj str_SFX_BTL_DAMAGE_FIRE1_muj_00012b6c
+
+# .rodata:0x41 | 0x4ED1 | size: 0x3
+.obj gap_03_00004ED1_rodata, global
+.hidden gap_03_00004ED1_rodata
+	.byte 0x00, 0x00, 0x00
+.endobj gap_03_00004ED1_rodata
+
+# .rodata:0x44 | 0x4ED4 | size: 0x14
+.obj str_SFX_BTL_DAMAGE_ICE1_muj_00012b84, local
+	.string "SFX_BTL_DAMAGE_ICE1"
+.endobj str_SFX_BTL_DAMAGE_ICE1_muj_00012b84
+
+# .rodata:0x58 | 0x4EE8 | size: 0x19
+.obj str_SFX_BTL_DAMAGE_BIRIB_muj_00012b98, local
+	.string "SFX_BTL_DAMAGE_BIRIBIRI1"
+.endobj str_SFX_BTL_DAMAGE_BIRIB_muj_00012b98
+
+# .rodata:0x71 | 0x4F01 | size: 0x3
+.obj gap_03_00004F01_rodata, global
+.hidden gap_03_00004F01_rodata
+	.byte 0x00, 0x00, 0x00
+.endobj gap_03_00004F01_rodata
+
+# .rodata:0x74 | 0x4F04 | size: 0x8
+.obj str_KRT_Z_1_muj_00012bb4, local
+	.string "KRT_Z_1"
+.endobj str_KRT_Z_1_muj_00012bb4
+
+# .rodata:0x7C | 0x4F0C | size: 0x8
+.obj str_KRT_S_1_muj_00012bbc, local
+	.string "KRT_S_1"
+.endobj str_KRT_S_1_muj_00012bbc
+
+# .rodata:0x84 | 0x4F14 | size: 0x8
+.obj str_c_buki2_muj_00012bc4, local
+	.string "c_buki2"
+.endobj str_c_buki2_muj_00012bc4
+
+# .rodata:0x8C | 0x4F1C | size: 0x1
+.obj zero_muj_00012bcc, local
+	.byte 0x00
+.endobj zero_muj_00012bcc
+
+# .rodata:0x8D | 0x4F1D | size: 0x3
+.obj gap_03_00004F1D_rodata, global
+.hidden gap_03_00004F1D_rodata
+	.byte 0x00, 0x00, 0x00
+.endobj gap_03_00004F1D_rodata
+
+# .rodata:0x90 | 0x4F20 | size: 0xB
+.obj str_toge_flush_muj_00012bd0, local
+	.string "toge_flush"
+.endobj str_toge_flush_muj_00012bd0
+
+# .rodata:0x9B | 0x4F2B | size: 0x1
+.obj gap_03_00004F2B_rodata, global
+.hidden gap_03_00004F2B_rodata
+	.byte 0x00
+.endobj gap_03_00004F2B_rodata
+
+# .rodata:0x9C | 0x4F2C | size: 0x1A
+.obj str_SFX_BOSS_KOR_SWORD_D_muj_00012bdc, local
+	.string "SFX_BOSS_KOR_SWORD_DANCE1"
+.endobj str_SFX_BOSS_KOR_SWORD_D_muj_00012bdc
+
+# .rodata:0xB6 | 0x4F46 | size: 0x2
+.obj gap_03_00004F46_rodata, global
+.hidden gap_03_00004F46_rodata
+	.2byte 0x0000
+.endobj gap_03_00004F46_rodata
+
+# .rodata:0xB8 | 0x4F48 | size: 0x1A
+.obj str_SFX_BOSS_KOR_SWORD_D_muj_00012bf8, local
+	.string "SFX_BOSS_KOR_SWORD_DANCE3"
+.endobj str_SFX_BOSS_KOR_SWORD_D_muj_00012bf8
+
+# .rodata:0xD2 | 0x4F62 | size: 0x2
+.obj gap_03_00004F62_rodata, global
+.hidden gap_03_00004F62_rodata
+	.2byte 0x0000
+.endobj gap_03_00004F62_rodata
+
+# .rodata:0xD4 | 0x4F64 | size: 0x15
+.obj str_SFX_BTL_ATTACK_MISS3_muj_00012c14, local
+	.string "SFX_BTL_ATTACK_MISS3"
+.endobj str_SFX_BTL_ATTACK_MISS3_muj_00012c14
+
+# .rodata:0xE9 | 0x4F79 | size: 0x3
+.obj gap_03_00004F79_rodata, global
+.hidden gap_03_00004F79_rodata
+	.byte 0x00, 0x00, 0x00
+.endobj gap_03_00004F79_rodata
+
+# .rodata:0xEC | 0x4F7C | size: 0x19
+.obj str_SFX_BOSS_KOR_SWORD_F_muj_00012c2c, local
+	.string "SFX_BOSS_KOR_SWORD_FALL1"
+.endobj str_SFX_BOSS_KOR_SWORD_F_muj_00012c2c
+
+# .rodata:0x105 | 0x4F95 | size: 0x3
+.obj gap_03_00004F95_rodata, global
+.hidden gap_03_00004F95_rodata
+	.byte 0x00, 0x00, 0x00
+.endobj gap_03_00004F95_rodata
+
+# .rodata:0x108 | 0x4F98 | size: 0x15
+.obj str_SFX_BTL_ENEMY_DIE1_2_muj_00012c48, local
+	.string "SFX_BTL_ENEMY_DIE1_2"
+.endobj str_SFX_BTL_ENEMY_DIE1_2_muj_00012c48
+
+# .rodata:0x11D | 0x4FAD | size: 0x3
+.obj gap_03_00004FAD_rodata, global
+.hidden gap_03_00004FAD_rodata
+	.byte 0x00, 0x00, 0x00
+.endobj gap_03_00004FAD_rodata
+
+# .rodata:0x120 | 0x4FB0 | size: 0xC
+.obj str_kemuri_test_muj_00012c60, local
+	.string "kemuri_test"
+.endobj str_kemuri_test_muj_00012c60
+
+# .rodata:0x12C | 0x4FBC | size: 0x16
+.obj str_SFX_BTL_CLAUD_BREATH_muj_00012c6c, local
+	.string "SFX_BTL_CLAUD_BREATH3"
+.endobj str_SFX_BTL_CLAUD_BREATH_muj_00012c6c
+
+# .rodata:0x142 | 0x4FD2 | size: 0x6
+.obj gap_03_00004FD2_rodata, global
+.hidden gap_03_00004FD2_rodata
+	.4byte 0x00000000
+	.2byte 0x0000
+.endobj gap_03_00004FD2_rodata
+
+# 0x00028458..0x0002A378 | size: 0x1F20
+.data
+.balign 8
+
+# .data:0x0 | 0x28458 | size: 0x8
+.obj negone_one$374, local
+	.4byte 0xBF800000
+	.4byte 0x3F800000
+.endobj negone_one$374
+
+# .data:0x8 | 0x28460 | size: 0x4
+.obj neg_one$382, local
+	.4byte 0xBF800000
+.endobj neg_one$382
+
+# .data:0xC | 0x28464 | size: 0x4
+.obj __local_PI$383, local
+	.4byte 0x40490FDB
+.endobj __local_PI$383
+
+# .data:0x10 | 0x28468 | size: 0x4
+.obj __local_3PIO2$385, local
+	.4byte 0x4096CBE4
+.endobj __local_3PIO2$385
+
+# .data:0x14 | 0x2846C | size: 0x4
+.obj gap_04_0002846C_data, global
+.hidden gap_04_0002846C_data
+	.4byte 0x00000000
+.endobj gap_04_0002846C_data
+
+# .data:0x18 | 0x28470 | size: 0x8
+.obj one_negone$373, local
+	.4byte 0x3F800000
+	.4byte 0xBF800000
+.endobj one_negone$373
+
+# .data:0x20 | 0x28478 | size: 0x4
+.obj __local_PIO2$384, local
+	.4byte 0x3FC90FDB
+.endobj __local_PIO2$384
+
+# .data:0x24 | 0x2847C | size: 0x4
+.obj one$381, local
+	.4byte 0x3F800000
+.endobj one$381
+
+# .data:0x28 | 0x28480 | size: 0x8
+.obj negone_one$360, local
+	.4byte 0xBF800000
+	.4byte 0x3F800000
+.endobj negone_one$360
+
+# .data:0x30 | 0x28488 | size: 0x4
+.obj neg_one$365, local
+	.4byte 0xBF800000
+.endobj neg_one$365
+
+# .data:0x34 | 0x2848C | size: 0x4
+.obj __local_PI$366, local
+	.4byte 0x40490FDB
+.endobj __local_PI$366
+
+# .data:0x38 | 0x28490 | size: 0x4
+.obj __local_3PIO2$368, local
+	.4byte 0x4096CBE4
+.endobj __local_3PIO2$368
+
+# .data:0x3C | 0x28494 | size: 0x4
+.obj gap_04_00028494_data, global
+.hidden gap_04_00028494_data
+	.4byte 0x00000000
+.endobj gap_04_00028494_data
+
+# .data:0x40 | 0x28498 | size: 0x8
+.obj one_negone$359, local
+	.4byte 0x3F800000
+	.4byte 0xBF800000
+.endobj one_negone$359
+
+# .data:0x48 | 0x284A0 | size: 0x4
+.obj __local_PIO2$367, local
+	.4byte 0x3FC90FDB
+.endobj __local_PIO2$367
+
+# .data:0x4C | 0x284A4 | size: 0x4
+.obj one$364, local
+	.4byte 0x3F800000
+.endobj one$364
+
+# .data:0x50 | 0x284A8 | size: 0xC4
+.obj unit_boss_cortez_sword_19_data_284A8, global
+	.4byte 0x00000061
+	.4byte str_btl_un_cortez_sword_muj_00012b40
+	.4byte 0x00040000
+	.4byte 0x01010000
+	.4byte 0x00640032
+	.4byte 0x00140082
+	.4byte 0x001E0000
+	.4byte 0x001E0000
+	.4byte 0x00000000
+	.4byte 0x41700000
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x42820000
+	.4byte 0x00000000
+	.4byte 0xC1200000
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x42820000
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x42820000
+	.4byte 0x419C0000
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x41700000
+	.4byte 0x00000000
+	.4byte 0x43020000
+	.4byte 0x41F00000
+	.4byte 0x0000FF00
+	.4byte 0x64140000
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte str_SFX_BOSS_KOR_DAMAGED_muj_00012b54
+	.4byte str_SFX_BTL_DAMAGE_FIRE1_muj_00012b6c
+	.4byte str_SFX_BTL_DAMAGE_ICE1_muj_00012b84
+	.4byte str_SFX_BTL_DAMAGE_BIRIB_muj_00012b98
+	.4byte 0x02000004
+	.4byte regist
+	.4byte 0x01000000
+	.4byte parts
+	.4byte init_event
+	.4byte data_table
+.endobj unit_boss_cortez_sword_19_data_284A8
+
+# .data:0x114 | 0x2856C | size: 0x5
+.obj defence, local
+	.4byte 0x00000000
+	.byte 0x00
+.endobj defence
+
+# .data:0x119 | 0x28571 | size: 0x3
+.obj gap_04_00028571_data, global
+.hidden gap_04_00028571_data
+	.byte 0x00, 0x00, 0x00
+.endobj gap_04_00028571_data
+
+# .data:0x11C | 0x28574 | size: 0x5
+.obj defence_attr, local
+	.4byte 0x00000000
+	.byte 0x00
+.endobj defence_attr
+
+# .data:0x121 | 0x28579 | size: 0x3
+.obj gap_04_00028579_data, global
+.hidden gap_04_00028579_data
+	.byte 0x00, 0x00, 0x00
+.endobj gap_04_00028579_data
+
+# .data:0x124 | 0x2857C | size: 0x16
+.obj regist, local
+	.4byte 0x00505F64
+	.4byte 0x5A646455
+	.4byte 0x00006400
+	.4byte 0x645A3200
+	.4byte 0x5A643200
+	.2byte 0x0000
+.endobj regist
+
+# .data:0x13A | 0x28592 | size: 0x2
+.obj gap_04_00028592_data, global
+.hidden gap_04_00028592_data
+	.2byte 0x0000
+.endobj gap_04_00028592_data
+
+# .data:0x13C | 0x28594 | size: 0xC0
+.obj weapon_cortez_sword_float_attack, local
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x64000002
+	.4byte 0x3F800000
+	.4byte 0x01010101
+	.4byte weaponGetPowerDefault
+	.4byte 0x00000002
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x01101260
+	.4byte 0x20000000
+	.4byte 0x00000302
+	.4byte 0x00000000
+	.4byte 0x00000087
+	.4byte 0x000007FF
+	.4byte 0x80000000
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000064
+	.4byte 0x00000000
+	.4byte 0x00000000
+.endobj weapon_cortez_sword_float_attack
+
+# .data:0x1FC | 0x28654 | size: 0x30
+.obj pose_table, local
+	.4byte 0x00000002
+	.4byte str_KRT_Z_1_muj_00012bb4
+	.4byte 0x00000009
+	.4byte str_KRT_Z_1_muj_00012bb4
+	.4byte 0x0000001C
+	.4byte str_KRT_S_1_muj_00012bbc
+	.4byte 0x0000001F
+	.4byte str_KRT_S_1_muj_00012bbc
+	.4byte 0x00000027
+	.4byte str_KRT_S_1_muj_00012bbc
+	.4byte 0x00000045
+	.4byte str_KRT_S_1_muj_00012bbc
+.endobj pose_table
+
+# .data:0x22C | 0x28684 | size: 0x20
+.obj pose_table_otitabuki, local
+	.4byte 0x0000001C
+	.4byte str_KRT_Z_1_muj_00012bb4
+	.4byte 0x0000001F
+	.4byte str_KRT_Z_1_muj_00012bb4
+	.4byte 0x00000027
+	.4byte str_KRT_Z_1_muj_00012bb4
+	.4byte 0x00000045
+	.4byte str_KRT_Z_1_muj_00012bb4
+.endobj pose_table_otitabuki
+
+# .data:0x24C | 0x286A4 | size: 0x20
+.obj pose_table_break, local
+	.4byte 0x0000001C
+	.4byte str_KRT_Z_1_muj_00012bb4
+	.4byte 0x0000001F
+	.4byte str_KRT_Z_1_muj_00012bb4
+	.4byte 0x00000027
+	.4byte str_KRT_Z_1_muj_00012bb4
+	.4byte 0x00000045
+	.4byte str_KRT_Z_1_muj_00012bb4
+.endobj pose_table_break
+
+# .data:0x26C | 0x286C4 | size: 0xA8
+.obj data_table, local
+	.4byte 0x00000009
+	.4byte cortez_damage_sub_event
+	.4byte 0x00000031
+	.4byte cortez_weapon_dead_event_19_data_29EA4
+	.4byte 0x00000047
+	.4byte cortez_weapon_break_event_19_data_2A034
+	.4byte 0x0000003A
+	.4byte cortez_weapon_blow_dead_event_19_data_2A194
+	.4byte 0x00000024
+	.4byte cortez_weapon_counter_damage_event_19_data_29CD8
+	.4byte 0x00000018
+	.4byte cortez_weapon_counter_damage_event_19_data_29CD8
+	.4byte 0x00000019
+	.4byte cortez_weapon_counter_damage_event_19_data_29CD8
+	.4byte 0x0000001A
+	.4byte cortez_weapon_counter_damage_event_19_data_29CD8
+	.4byte 0x0000001B
+	.4byte cortez_weapon_counter_damage_event_19_data_29CD8
+	.4byte 0x0000001C
+	.4byte cortez_weapon_counter_damage_event_19_data_29CD8
+	.4byte 0x0000001D
+	.4byte cortez_weapon_counter_damage_event_19_data_29CD8
+	.4byte 0x0000001E
+	.4byte cortez_weapon_counter_damage_event_19_data_29CD8
+	.4byte 0x0000001F
+	.4byte cortez_weapon_counter_damage_event_19_data_29CD8
+	.4byte 0x00000020
+	.4byte cortez_weapon_counter_damage_event_19_data_29CD8
+	.4byte 0x00000021
+	.4byte cortez_weapon_counter_damage_event_19_data_29CD8
+	.4byte 0x00000022
+	.4byte cortez_weapon_counter_damage_event_19_data_29CD8
+	.4byte 0x00000023
+	.4byte cortez_weapon_counter_damage_event_19_data_29CD8
+	.4byte 0x00000027
+	.4byte avoid_thorn_event
+	.4byte 0x00000025
+	.4byte avoid_thorn_event
+	.4byte 0x00000026
+	.4byte avoid_thorn_event
+	.4byte 0x00000000
+	.4byte 0x00000000
+.endobj data_table
+
+# .data:0x314 | 0x2876C | size: 0x4C
+.obj parts, local
+	.4byte 0x00000001
+	.4byte str_btl_un_cortez_sword_muj_00012b40
+	.4byte str_c_buki2_muj_00012bc4
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x41700000
+	.4byte 0x41C80000
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x41F00000
+	.4byte 0x00000000
+	.4byte 0x0014001E
+	.4byte 0x00FF0000
+	.4byte defence
+	.4byte defence_attr
+	.4byte 0x03010009
+	.4byte 0x00000007
+	.4byte pose_table
+.endobj parts
+
+# .data:0x360 | 0x287B8 | size: 0xBC
+.obj init_event, local
+	.4byte 0x0003005B
+	.4byte btlevtcmd_OnUnitFlag
+	.4byte 0xFFFFFFFE
+	.4byte 0x01000000
+	.4byte 0x0003005B
+	.4byte btlevtcmd_SetEventWait
+	.4byte 0xFFFFFFFE
+	.4byte wait_event
+	.4byte 0x0003005B
+	.4byte btlevtcmd_SetEventPhase
+	.4byte 0xFFFFFFFE
+	.4byte cortez_weapon_phase_event_19_data_28D08
+	.4byte 0x0003005B
+	.4byte btlevtcmd_SetEventUnisonPhase
+	.4byte 0xFFFFFFFE
+	.4byte cortez_weapon_unison_phase_event_19_data_28BCC
+	.4byte 0x0003005B
+	.4byte btlevtcmd_SetEventAttack
+	.4byte 0xFFFFFFFE
+	.4byte attack_event
+	.4byte 0x0003005B
+	.4byte btlevtcmd_SetEventDamage
+	.4byte 0xFFFFFFFE
+	.4byte damage_event
+	.4byte 0x0003005B
+	.4byte btlevtcmd_SetEventConfusion
+	.4byte 0xFFFFFFFE
+	.4byte btldefaultevt_Confuse
+	.4byte 0x0004005B
+	.4byte btlevtcmd_SetUnitWork
+	.4byte 0xFFFFFFFE
+	.4byte 0x00000002
+	.4byte 0x00000000
+	.4byte 0x0004005B
+	.4byte btlevtcmd_SetUnitWork
+	.4byte 0xFFFFFFFE
+	.4byte 0x00000001
+	.4byte 0x00000000
+	.4byte 0x0003005B
+	.4byte btlevtcmd_SetMaxMoveCount
+	.4byte 0xFFFFFFFE
+	.4byte 0x00000000
+	.4byte 0x0002005B
+	.4byte btlevtcmd_StartWaitEvent
+	.4byte 0xFFFFFFFE
+	.4byte 0x00000002
+	.4byte 0x00000001
+.endobj init_event
+
+# .data:0x41C | 0x28874 | size: 0x28
+.obj damage_event, local
+	.4byte 0x00020032
+	.4byte 0xFE363C8A
+	.4byte 0xFFFFFFFE
+	.4byte 0x00020032
+	.4byte 0xFE363C8B
+	.4byte 0x00000001
+	.4byte 0x0001005E
+	.4byte btldefaultevt_Damage
+	.4byte 0x00000002
+	.4byte 0x00000001
+.endobj damage_event
+
+# .data:0x444 | 0x2889C | size: 0x84
+.obj avoid_thorn_event, local
+	.4byte 0x0006005B
+	.4byte btlevtcmd_GetHitPos
+	.4byte 0xFFFFFFFE
+	.4byte 0x00000001
+	.4byte 0xFE363C80
+	.4byte 0xFE363C81
+	.4byte 0xFE363C82
+	.4byte 0x0004005B
+	.4byte btlevtcmd_FaceDirectionAdd
+	.4byte 0xFFFFFFFE
+	.4byte 0xFE363C80
+	.4byte 0x00000028
+	.4byte 0x00020035
+	.4byte 0xFE363C82
+	.4byte 0x00000005
+	.4byte 0x000F005B
+	.4byte evt_eff
+	.4byte zero_muj_00012bcc
+	.4byte str_toge_flush_muj_00012bd0
+	.4byte 0x00000000
+	.4byte 0xFE363C80
+	.4byte 0xFE363C81
+	.4byte 0xFE363C82
+	.4byte 0x0000003C
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000002
+	.4byte 0x00000001
+.endobj avoid_thorn_event
+
+# .data:0x4C8 | 0x28920 | size: 0x240
+.obj cortez_weapon_get_home_height_19_data_28920, global
+	.4byte 0x00020032
+	.4byte 0xFE363C85
+	.4byte 0x00000000
+	.4byte 0x0005005B
+	.4byte btlevtcmd_GetPos
+	.4byte 0xFE363C89
+	.4byte 0xFE363C80
+	.4byte 0xFE363C81
+	.4byte 0xFE363C82
+	.4byte 0x0004005B
+	.4byte btlevtcmd_GetUnitWork
+	.4byte 0xFE363C89
+	.4byte 0x00000000
+	.4byte 0xFE363C83
+	.4byte 0x0004005B
+	.4byte btlevtcmd_GetUnitWork
+	.4byte 0xFE363C83
+	.4byte 0x00000008
+	.4byte 0xFE363C84
+	.4byte 0x00010022
+	.4byte 0xFE363C84
+	.4byte 0x00010024
+	.4byte 0x00000000
+	.4byte 0x0004005B
+	.4byte btlevtcmd_GetUnitWork
+	.4byte 0xFE363C89
+	.4byte 0x00000002
+	.4byte 0xFE363C86
+	.4byte 0x00010022
+	.4byte 0xFE363C86
+	.4byte 0x00010024
+	.4byte 0x00000000
+	.4byte 0x00020035
+	.4byte 0xFE363C85
+	.4byte 0x00000014
+	.4byte 0x00010024
+	.4byte 0x00000001
+	.4byte 0x00020035
+	.4byte 0xFE363C85
+	.4byte 0x0000003C
+	.4byte 0x00010024
+	.4byte 0x00000002
+	.4byte 0x00020035
+	.4byte 0xFE363C85
+	.4byte 0x0000003C
+	.4byte 0x00010024
+	.4byte 0x00000003
+	.4byte 0x00020035
+	.4byte 0xFE363C85
+	.4byte 0x00000014
+	.4byte 0x00000031
+	.4byte 0x00010024
+	.4byte 0x00000001
+	.4byte 0x0004005B
+	.4byte btlevtcmd_GetUnitWork
+	.4byte 0xFE363C89
+	.4byte 0x00000002
+	.4byte 0xFE363C86
+	.4byte 0x00010022
+	.4byte 0xFE363C86
+	.4byte 0x00010024
+	.4byte 0x00000000
+	.4byte 0x00020035
+	.4byte 0xFE363C85
+	.4byte 0x00000014
+	.4byte 0x00010024
+	.4byte 0x00000001
+	.4byte 0x00020035
+	.4byte 0xFE363C85
+	.4byte 0x00000014
+	.4byte 0x00010024
+	.4byte 0x00000002
+	.4byte 0x00020035
+	.4byte 0xFE363C85
+	.4byte 0x0000003C
+	.4byte 0x00010024
+	.4byte 0x00000003
+	.4byte 0x00020035
+	.4byte 0xFE363C85
+	.4byte 0x0000003C
+	.4byte 0x00000031
+	.4byte 0x00010024
+	.4byte 0x00000002
+	.4byte 0x0004005B
+	.4byte btlevtcmd_GetUnitWork
+	.4byte 0xFE363C89
+	.4byte 0x00000002
+	.4byte 0xFE363C86
+	.4byte 0x00010022
+	.4byte 0xFE363C86
+	.4byte 0x00010024
+	.4byte 0x00000000
+	.4byte 0x00020035
+	.4byte 0xFE363C85
+	.4byte 0x0000003C
+	.4byte 0x00010024
+	.4byte 0x00000001
+	.4byte 0x00020035
+	.4byte 0xFE363C85
+	.4byte 0x00000014
+	.4byte 0x00010024
+	.4byte 0x00000002
+	.4byte 0x00020035
+	.4byte 0xFE363C85
+	.4byte 0x0000003C
+	.4byte 0x00010024
+	.4byte 0x00000003
+	.4byte 0x00020035
+	.4byte 0xFE363C85
+	.4byte 0x00000014
+	.4byte 0x00000031
+	.4byte 0x00010024
+	.4byte 0x00000003
+	.4byte 0x0004005B
+	.4byte btlevtcmd_GetUnitWork
+	.4byte 0xFE363C89
+	.4byte 0x00000002
+	.4byte 0xFE363C86
+	.4byte 0x00010022
+	.4byte 0xFE363C86
+	.4byte 0x00010024
+	.4byte 0x00000000
+	.4byte 0x00020035
+	.4byte 0xFE363C85
+	.4byte 0x0000003C
+	.4byte 0x00010024
+	.4byte 0x00000001
+	.4byte 0x00020035
+	.4byte 0xFE363C85
+	.4byte 0x00000014
+	.4byte 0x00010024
+	.4byte 0x00000002
+	.4byte 0x00020035
+	.4byte 0xFE363C85
+	.4byte 0x00000014
+	.4byte 0x00010024
+	.4byte 0x00000003
+	.4byte 0x00020035
+	.4byte 0xFE363C85
+	.4byte 0x0000003C
+	.4byte 0x00000031
+	.4byte 0x00000031
+	.4byte 0x00000002
+	.4byte 0x00000001
+.endobj cortez_weapon_get_home_height_19_data_28920
+
+# .data:0x708 | 0x28B60 | size: 0x6C
+.obj cortez_weapon_set_formation_attribute_19_data_28B60, global
+	.4byte 0x0003005B
+	.4byte btlevtcmd_GetBodyId
+	.4byte 0xFE363C89
+	.4byte 0xFE363C80
+	.4byte 0x0005005B
+	.4byte btlevtcmd_GetHomePos
+	.4byte 0xFE363C89
+	.4byte 0xF1194D80
+	.4byte 0xFE363C81
+	.4byte 0xF1194D80
+	.4byte 0x0002001D
+	.4byte 0xFE363C81
+	.4byte 0x00000028
+	.4byte 0x0004005B
+	.4byte btlevtcmd_OnPartsAttribute
+	.4byte 0xFE363C89
+	.4byte 0xFE363C80
+	.4byte 0x00600000
+	.4byte 0x00000020
+	.4byte 0x0004005B
+	.4byte btlevtcmd_OffPartsAttribute
+	.4byte 0xFE363C89
+	.4byte 0xFE363C80
+	.4byte 0x00600000
+	.4byte 0x00000021
+	.4byte 0x00000002
+	.4byte 0x00000001
+.endobj cortez_weapon_set_formation_attribute_19_data_28B60
+
+# .data:0x774 | 0x28BCC | size: 0x13C
+.obj cortez_weapon_unison_phase_event_19_data_28BCC, global
+	.4byte 0x0003005B
+	.4byte btlevtcmd_CheckPhase
+	.4byte 0xFE363C80
+	.4byte 0x04000001
+	.4byte 0x00020019
+	.4byte 0xFE363C80
+	.4byte 0x00000000
+	.4byte 0x0004005B
+	.4byte btlevtcmd_GetUnitWork
+	.4byte 0xFFFFFFFE
+	.4byte 0x00000000
+	.4byte 0xFE363C80
+	.4byte 0x00020018
+	.4byte 0xFE363C80
+	.4byte 0xFFFFFFFF
+	.4byte 0x00000002
+	.4byte 0x00000021
+	.4byte 0x0004005B
+	.4byte btlevtcmd_GetUnitWork
+	.4byte 0xFE363C80
+	.4byte 0x00000005
+	.4byte 0xFE363C81
+	.4byte 0x0002001D
+	.4byte 0xFE363C81
+	.4byte 0x00000004
+	.4byte 0x0004005B
+	.4byte btlevtcmd_GetUnitWork
+	.4byte 0xFFFFFFFE
+	.4byte 0x00000001
+	.4byte 0xFE363C80
+	.4byte 0x00020018
+	.4byte 0xFE363C80
+	.4byte 0x00000000
+	.4byte 0x0003005B
+	.4byte btlevtcmd_GetUnitId
+	.4byte 0xFFFFFFFE
+	.4byte 0xFE363C89
+	.4byte 0x00020018
+	.4byte 0xFE363C89
+	.4byte 0xFFFFFFFF
+	.4byte 0x00000002
+	.4byte 0x00000021
+	.4byte 0x0001005E
+	.4byte cortez_weapon_get_home_height_19_data_28920
+	.4byte 0x00020019
+	.4byte 0xFE363C81
+	.4byte 0xFE363C85
+	.4byte 0x0002005B
+	.4byte btlevtcmd_PhaseEventStartDeclare
+	.4byte 0xFFFFFFFE
+	.4byte 0x000A005B
+	.4byte btlevtcmd_DivePosition
+	.4byte 0xFFFFFFFE
+	.4byte 0xFE363C80
+	.4byte 0xFE363C85
+	.4byte 0xFE363C82
+	.4byte 0x0000003C
+	.4byte 0x00000000
+	.4byte 0x00000004
+	.4byte 0x00000000
+	.4byte 0xFFFFFFFF
+	.4byte 0x0005005B
+	.4byte btlevtcmd_SetHomePos
+	.4byte 0xFFFFFFFE
+	.4byte 0xFE363C80
+	.4byte 0xFE363C85
+	.4byte 0xFE363C82
+	.4byte 0x0001005E
+	.4byte cortez_weapon_set_formation_attribute_19_data_28B60
+	.4byte 0x0002005B
+	.4byte btlevtcmd_StartWaitEvent
+	.4byte 0xFFFFFFFE
+	.4byte 0x00000002
+	.4byte 0x00000021
+	.4byte 0x00000021
+	.4byte 0x00000021
+	.4byte 0x00000021
+	.4byte 0x00000002
+	.4byte 0x00000001
+.endobj cortez_weapon_unison_phase_event_19_data_28BCC
+
+# .data:0x8B0 | 0x28D08 | size: 0x1CC
+.obj cortez_weapon_phase_event_19_data_28D08, global
+	.4byte 0x0003005B
+	.4byte btlevtcmd_CheckPhase
+	.4byte 0xFE363C80
+	.4byte 0x04000001
+	.4byte 0x00020019
+	.4byte 0xFE363C80
+	.4byte 0x00000000
+	.4byte 0x0004005B
+	.4byte btlevtcmd_GetUnitWork
+	.4byte 0xFFFFFFFE
+	.4byte 0x00000001
+	.4byte 0xFE363C80
+	.4byte 0x0002001D
+	.4byte 0xFE363C80
+	.4byte 0x00000001
+	.4byte 0x00020036
+	.4byte 0xFE363C80
+	.4byte 0x00000001
+	.4byte 0x0004005B
+	.4byte btlevtcmd_SetUnitWork
+	.4byte 0xFFFFFFFE
+	.4byte 0x00000001
+	.4byte 0xFE363C80
+	.4byte 0x0002001C
+	.4byte 0xFE363C80
+	.4byte 0x00000000
+	.4byte 0x0002005B
+	.4byte btlevtcmd_PhaseEventStartDeclare
+	.4byte 0xFFFFFFFE
+	.4byte 0x0001006F
+	.4byte 0xFE363C80
+	.4byte 0x0005005B
+	.4byte evt_sub_intpl_init
+	.4byte 0x00000005
+	.4byte 0xFFFFFFA6
+	.4byte 0x00000000
+	.4byte 0x00000014
+	.4byte 0x0001005B
+	.4byte evt_sub_intpl_get_value
+	.4byte 0x00010005
+	.4byte 0x00000014
+	.4byte 0x0001005B
+	.4byte evt_sub_intpl_get_value
+	.4byte 0x0005005B
+	.4byte btlevtcmd_SetRotate
+	.4byte 0xFFFFFFFE
+	.4byte 0xFE363C80
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00010009
+	.4byte 0x00000001
+	.4byte 0x00000006
+	.4byte 0x00000070
+	.4byte 0x0002005B
+	.4byte btlevtcmd_WaitEventEnd
+	.4byte 0xFE363C80
+	.4byte 0x0003005B
+	.4byte btlevtcmd_GetUnitId
+	.4byte 0xFFFFFFFE
+	.4byte 0xFE363C89
+	.4byte 0x0001005E
+	.4byte cortez_weapon_get_home_height_19_data_28920
+	.4byte 0x000A005B
+	.4byte btlevtcmd_DivePosition
+	.4byte 0xFFFFFFFE
+	.4byte 0xFE363C80
+	.4byte 0xFE363C85
+	.4byte 0xFE363C82
+	.4byte 0x0000003C
+	.4byte 0x00000000
+	.4byte 0x00000004
+	.4byte 0x00000000
+	.4byte 0xFFFFFFFF
+	.4byte 0x0005005B
+	.4byte btlevtcmd_SetHomePos
+	.4byte 0xFFFFFFFE
+	.4byte 0xFE363C80
+	.4byte 0xFE363C85
+	.4byte 0xFE363C82
+	.4byte 0x0001005E
+	.4byte cortez_weapon_set_formation_attribute_19_data_28B60
+	.4byte 0x0003005B
+	.4byte btlevtcmd_GetMaxHp
+	.4byte 0xFFFFFFFE
+	.4byte 0xFE363C80
+	.4byte 0x0003005B
+	.4byte btlevtcmd_SetHp
+	.4byte 0xFFFFFFFE
+	.4byte 0xFE363C80
+	.4byte 0x0002005B
+	.4byte btlevtcmd_ClearAllStatus
+	.4byte 0xFFFFFFFE
+	.4byte 0x0004005B
+	.4byte btlevtcmd_OffPartsAttribute
+	.4byte 0xFFFFFFFE
+	.4byte 0x00000001
+	.4byte 0x00010000
+	.4byte 0x0004005B
+	.4byte btlevtcmd_AnimeSetPoseTable
+	.4byte 0xFFFFFFFE
+	.4byte 0x00000001
+	.4byte pose_table
+	.4byte 0x0003005B
+	.4byte btlevtcmd_OffAttribute
+	.4byte 0xFFFFFFFE
+	.4byte 0x02000000
+	.4byte 0x0002005B
+	.4byte btlevtcmd_StartWaitEvent
+	.4byte 0xFFFFFFFE
+	.4byte 0x00000002
+	.4byte 0x00000021
+	.4byte 0x00000021
+	.4byte 0x00000021
+	.4byte 0x00000002
+	.4byte 0x00000001
+.endobj cortez_weapon_phase_event_19_data_28D08
+
+# .data:0xA7C | 0x28ED4 | size: 0xD78
+.obj attack_event, local
+	.4byte 0x0004005B
+	.4byte btlevtcmd_GetUnitWork
+	.4byte 0xFFFFFFFE
+	.4byte 0x00000001
+	.4byte 0xFE363C80
+	.4byte 0x00020019
+	.4byte 0xFE363C80
+	.4byte 0x00000000
+	.4byte 0x0002005B
+	.4byte btlevtcmd_StartWaitEvent
+	.4byte 0xFFFFFFFE
+	.4byte 0x00000002
+	.4byte 0x00000021
+	.4byte 0x00020032
+	.4byte 0xFE363C8C
+	.4byte weapon_cortez_sword_float_attack
+	.4byte 0x0003005B
+	.4byte btlevtcmd_GetEnemyBelong
+	.4byte 0xFFFFFFFE
+	.4byte 0xFE363C80
+	.4byte 0x0004005B
+	.4byte btlevtcmd_SamplingEnemy
+	.4byte 0xFFFFFFFE
+	.4byte 0xFE363C80
+	.4byte 0xFE363C8C
+	.4byte 0x0004005B
+	.4byte btlevtcmd_ChoiceSamplingEnemy
+	.4byte 0xFE363C8C
+	.4byte 0xFE363C83
+	.4byte 0xFE363C84
+	.4byte 0x00020018
+	.4byte 0xFE363C83
+	.4byte 0xFFFFFFFF
+	.4byte 0x00010004
+	.4byte 0x00000063
+	.4byte 0x00000021
+	.4byte 0x0002005B
+	.4byte btlevtcmd_WeaponAftereffect
+	.4byte 0xFE363C8C
+	.4byte 0x0004005B
+	.4byte btlevtcmd_AttackDeclare
+	.4byte 0xFFFFFFFE
+	.4byte 0xFE363C83
+	.4byte 0xFE363C84
+	.4byte 0x0001005B
+	.4byte btlevtcmd_WaitGuardMove
+	.4byte 0x0003005B
+	.4byte btlevtcmd_PayWeaponCost
+	.4byte 0xFFFFFFFE
+	.4byte 0xFE363C8C
+	.4byte 0x0003005B
+	.4byte btlevtcmd_AnimeWaitPlayLoopTiming
+	.4byte 0xFFFFFFFE
+	.4byte 0x00000001
+	.4byte 0x0004005B
+	.4byte btlevtcmd_AnimeChangePose
+	.4byte 0xFFFFFFFE
+	.4byte 0x00000001
+	.4byte str_KRT_Z_1_muj_00012bb4
+	.4byte 0x0005005B
+	.4byte btlevtcmd_SetRotate
+	.4byte 0xFFFFFFFE
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x0005005B
+	.4byte btlevtcmd_SetRotateOffset
+	.4byte 0xFFFFFFFE
+	.4byte 0x00000030
+	.4byte 0x00000013
+	.4byte 0x00000000
+	.4byte 0x0000006E
+	.4byte 0x0005005B
+	.4byte evt_sub_intpl_init
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0xFFFFFFE2
+	.4byte 0x0000001E
+	.4byte 0x0001005B
+	.4byte evt_sub_intpl_get_value
+	.4byte 0x00010005
+	.4byte 0x0000001E
+	.4byte 0x0001005B
+	.4byte evt_sub_intpl_get_value
+	.4byte 0x0005005B
+	.4byte btlevtcmd_SetRotate
+	.4byte 0xFFFFFFFE
+	.4byte 0xFE363C80
+	.4byte 0xF1194D80
+	.4byte 0xF1194D80
+	.4byte 0x00010009
+	.4byte 0x00000001
+	.4byte 0x00000006
+	.4byte 0x00000070
+	.4byte 0x0000006E
+	.4byte 0x00010009
+	.4byte 0x0000000A
+	.4byte 0x0005005B
+	.4byte evt_sub_intpl_init
+	.4byte 0x00000002
+	.4byte 0x00000000
+	.4byte 0xFFFFFFC9
+	.4byte 0x0000001E
+	.4byte 0x0001005B
+	.4byte evt_sub_intpl_get_value
+	.4byte 0x00010005
+	.4byte 0x0000001E
+	.4byte 0x0001005B
+	.4byte evt_sub_intpl_get_value
+	.4byte 0x0005005B
+	.4byte btlevtcmd_SetRotate
+	.4byte 0xFFFFFFFE
+	.4byte 0xF1194D80
+	.4byte 0xF1194D80
+	.4byte 0xFE363C80
+	.4byte 0x00010009
+	.4byte 0x00000001
+	.4byte 0x00000006
+	.4byte 0x00000070
+	.4byte 0x0006005B
+	.4byte btlevtcmd_GetHitPos
+	.4byte 0xFE363C83
+	.4byte 0xFE363C84
+	.4byte 0xFE363C80
+	.4byte 0xFE363C81
+	.4byte 0xFE363C82
+	.4byte 0x00020035
+	.4byte 0xFE363C81
+	.4byte 0xFFFFFFEC
+	.4byte 0x0004005B
+	.4byte btlevtcmd_FaceDirectionAdd
+	.4byte 0xFE363C83
+	.4byte 0xFE363C80
+	.4byte 0x00000069
+	.4byte 0x000A005B
+	.4byte btlevtcmd_DivePosition
+	.4byte 0xFFFFFFFE
+	.4byte 0xFE363C80
+	.4byte 0xFE363C81
+	.4byte 0xFE363C82
+	.4byte 0x00000028
+	.4byte 0xFFFFFFF6
+	.4byte 0x00000004
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x0001006F
+	.4byte 0xFE363C8F
+	.4byte 0x0005005B
+	.4byte btlevtcmd_GetPos
+	.4byte 0xFFFFFFFE
+	.4byte 0xFE363C80
+	.4byte 0xFE363C81
+	.4byte 0xFE363C82
+	.4byte 0x0004005B
+	.4byte btlevtcmd_FaceDirectionAdd
+	.4byte 0xFFFFFFFE
+	.4byte 0xFE363C80
+	.4byte 0x00000014
+	.4byte 0x000A005B
+	.4byte btlevtcmd_DivePosition
+	.4byte 0xFFFFFFFE
+	.4byte 0xFE363C80
+	.4byte 0xFE363C81
+	.4byte 0xFE363C82
+	.4byte 0x00000034
+	.4byte 0x00000000
+	.4byte 0x00000001
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000070
+	.4byte 0x0003005B
+	.4byte evt_sub_random
+	.4byte 0x00000028
+	.4byte 0xFE363C85
+	.4byte 0x00020035
+	.4byte 0xFE363C85
+	.4byte 0x0000000C
+	.4byte 0x00010009
+	.4byte 0xFE363C85
+	.4byte 0x0001005F
+	.4byte 0xFE363C8F
+	.4byte 0x0001006F
+	.4byte 0xFE363C8F
+	.4byte 0x0005005B
+	.4byte evt_sub_intpl_init
+	.4byte 0x00000002
+	.4byte 0x00000000
+	.4byte 0x000001DB
+	.4byte 0x0000001E
+	.4byte 0x0001005B
+	.4byte evt_sub_intpl_get_value
+	.4byte 0x00010005
+	.4byte 0x0000001E
+	.4byte 0x0001005B
+	.4byte evt_sub_intpl_get_value
+	.4byte 0x00020035
+	.4byte 0xFE363C80
+	.4byte 0xFFFFFFC9
+	.4byte 0x0005005B
+	.4byte btlevtcmd_SetRotate
+	.4byte 0xFFFFFFFE
+	.4byte 0xF1194D80
+	.4byte 0xF1194D80
+	.4byte 0xFE363C80
+	.4byte 0x00010009
+	.4byte 0x00000001
+	.4byte 0x00000006
+	.4byte 0x00000070
+	.4byte 0x0000006E
+	.4byte 0x0006005B
+	.4byte btlevtcmd_snd_se
+	.4byte 0xFFFFFFFE
+	.4byte str_SFX_BOSS_KOR_SWORD_D_muj_00012bdc
+	.4byte 0xF1194D80
+	.4byte 0x00000000
+	.4byte 0xF1194D80
+	.4byte 0x00000070
+	.4byte 0x0006005B
+	.4byte btlevtcmd_GetHitPos
+	.4byte 0xFE363C83
+	.4byte 0xFE363C84
+	.4byte 0xFE363C80
+	.4byte 0xFE363C81
+	.4byte 0xFE363C82
+	.4byte 0x00020035
+	.4byte 0xFE363C81
+	.4byte 0xFFFFFFEC
+	.4byte 0x0004005B
+	.4byte btlevtcmd_FaceDirectionAdd
+	.4byte 0xFE363C83
+	.4byte 0xFE363C80
+	.4byte 0x0000002D
+	.4byte 0x000A005B
+	.4byte btlevtcmd_DivePosition
+	.4byte 0xFFFFFFFE
+	.4byte 0xFE363C80
+	.4byte 0xFE363C81
+	.4byte 0xFE363C82
+	.4byte 0x0000001C
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x0007005B
+	.4byte btlevtcmd_PreCheckDamage
+	.4byte 0xFFFFFFFE
+	.4byte 0xFE363C83
+	.4byte 0xFE363C84
+	.4byte 0xFE363C8C
+	.4byte 0x00000100
+	.4byte 0xFE363C85
+	.4byte 0x00010022
+	.4byte 0xFE363C85
+	.4byte 0x0001002B
+	.4byte 0x00000004
+	.4byte 0x00010004
+	.4byte 0x00000028
+	.4byte 0x0000002E
+	.4byte 0x00010024
+	.4byte 0x00000003
+	.4byte 0x0003005B
+	.4byte btlevtcmd_StartAvoid
+	.4byte 0xFE363C83
+	.4byte 0x00000026
+	.4byte 0x00010004
+	.4byte 0x00000028
+	.4byte 0x00010024
+	.4byte 0x00000006
+	.4byte 0x0003005B
+	.4byte btlevtcmd_StartAvoid
+	.4byte 0xFE363C83
+	.4byte 0x00000027
+	.4byte 0x00010004
+	.4byte 0x00000028
+	.4byte 0x00010024
+	.4byte 0x00000002
+	.4byte 0x0003005B
+	.4byte btlevtcmd_StartAvoid
+	.4byte 0xFE363C83
+	.4byte 0x00000028
+	.4byte 0x00010004
+	.4byte 0x00000028
+	.4byte 0x0000002A
+	.4byte 0x00010004
+	.4byte 0x00000029
+	.4byte 0x00000031
+	.4byte 0x00010003
+	.4byte 0x00000028
+	.4byte 0x0003005B
+	.4byte btlevtcmd_AnimeWaitPlayComplete
+	.4byte 0xFFFFFFFE
+	.4byte 0x00000001
+	.4byte 0x00010004
+	.4byte 0x0000002D
+	.4byte 0x00010003
+	.4byte 0x00000029
+	.4byte 0x0003005B
+	.4byte btlevtcmd_ResultACDefence
+	.4byte 0xFE363C83
+	.4byte 0xFE363C8C
+	.4byte 0x0007005B
+	.4byte btlevtcmd_CheckDamage
+	.4byte 0xFFFFFFFE
+	.4byte 0xFE363C83
+	.4byte 0xFE363C84
+	.4byte 0xFE363C8C
+	.4byte 0x00000000
+	.4byte 0xFE363C86
+	.4byte 0x00020018
+	.4byte 0xFE363C86
+	.4byte 0x00000015
+	.4byte 0x0005005B
+	.4byte btlevtcmd_GetPos
+	.4byte 0xFFFFFFFE
+	.4byte 0xFE363C80
+	.4byte 0xFE363C81
+	.4byte 0xFE363C82
+	.4byte 0x0004005B
+	.4byte btlevtcmd_FaceDirectionSub
+	.4byte 0xFFFFFFFE
+	.4byte 0xFE363C80
+	.4byte 0x00000032
+	.4byte 0x00020035
+	.4byte 0xFE363C81
+	.4byte 0x0000000F
+	.4byte 0x0000006E
+	.4byte 0x0005005B
+	.4byte evt_sub_intpl_init
+	.4byte 0x00000005
+	.4byte 0xFFFFFFE2
+	.4byte 0x00000000
+	.4byte 0x00000014
+	.4byte 0x0001005B
+	.4byte evt_sub_intpl_get_value
+	.4byte 0x00010005
+	.4byte 0x00000015
+	.4byte 0x0001005B
+	.4byte evt_sub_intpl_get_value
+	.4byte 0x0005005B
+	.4byte btlevtcmd_SetRotate
+	.4byte 0xFFFFFFFE
+	.4byte 0xFE363C80
+	.4byte 0xF1194D80
+	.4byte 0xF1194D80
+	.4byte 0x00010009
+	.4byte 0x00000001
+	.4byte 0x00000006
+	.4byte 0x00000070
+	.4byte 0x0000006E
+	.4byte 0x0005005B
+	.4byte evt_sub_intpl_init
+	.4byte 0x00000005
+	.4byte 0x00000000
+	.4byte 0xFFFFFFE2
+	.4byte 0x00000014
+	.4byte 0x0001005B
+	.4byte evt_sub_intpl_get_value
+	.4byte 0x00010005
+	.4byte 0x00000015
+	.4byte 0x0001005B
+	.4byte evt_sub_intpl_get_value
+	.4byte 0x0005005B
+	.4byte btlevtcmd_SetRotate
+	.4byte 0xFFFFFFFE
+	.4byte 0xF1194D80
+	.4byte 0xF1194D80
+	.4byte 0xFE363C80
+	.4byte 0x00010009
+	.4byte 0x00000001
+	.4byte 0x00000006
+	.4byte 0x00000070
+	.4byte 0x000A005B
+	.4byte btlevtcmd_DivePosition
+	.4byte 0xFFFFFFFE
+	.4byte 0xFE363C80
+	.4byte 0xFE363C81
+	.4byte 0xFE363C82
+	.4byte 0x00000015
+	.4byte 0x00000000
+	.4byte 0x00000005
+	.4byte 0x00000000
+	.4byte 0xFFFFFFFF
+	.4byte 0x0000006E
+	.4byte 0x0005005B
+	.4byte evt_sub_intpl_init
+	.4byte 0x00000004
+	.4byte 0xFFFFFFE2
+	.4byte 0x00000000
+	.4byte 0x00000014
+	.4byte 0x0001005B
+	.4byte evt_sub_intpl_get_value
+	.4byte 0x00010005
+	.4byte 0x00000015
+	.4byte 0x0001005B
+	.4byte evt_sub_intpl_get_value
+	.4byte 0x0005005B
+	.4byte btlevtcmd_SetRotate
+	.4byte 0xFFFFFFFE
+	.4byte 0xF1194D80
+	.4byte 0xF1194D80
+	.4byte 0xFE363C80
+	.4byte 0x00010009
+	.4byte 0x00000001
+	.4byte 0x00000006
+	.4byte 0x00000070
+	.4byte 0x0005005B
+	.4byte btlevtcmd_GetHomePos
+	.4byte 0xFFFFFFFE
+	.4byte 0xFE363C80
+	.4byte 0xFE363C81
+	.4byte 0xFE363C82
+	.4byte 0x000A005B
+	.4byte btlevtcmd_DivePosition
+	.4byte 0xFFFFFFFE
+	.4byte 0xFE363C80
+	.4byte 0xFE363C81
+	.4byte 0xFE363C82
+	.4byte 0x00000028
+	.4byte 0x00000000
+	.4byte 0x00000004
+	.4byte 0x00000000
+	.4byte 0xFFFFFFFF
+	.4byte 0x00000002
+	.4byte 0x00000021
+	.4byte 0x00010003
+	.4byte 0x0000002D
+	.4byte 0x0002005B
+	.4byte btlevtcmd_WaitEventEnd
+	.4byte 0xFE363C8F
+	.4byte 0x0001000A
+	.4byte 0x00000320
+	.4byte 0x00010003
+	.4byte 0x00000032
+	.4byte 0x0000006E
+	.4byte 0x0005005B
+	.4byte evt_sub_intpl_init
+	.4byte 0x00000002
+	.4byte 0x0000003C
+	.4byte 0xFFFFFF1F
+	.4byte 0x0000001E
+	.4byte 0x0001005B
+	.4byte evt_sub_intpl_get_value
+	.4byte 0x00010005
+	.4byte 0x0000001E
+	.4byte 0x0001005B
+	.4byte evt_sub_intpl_get_value
+	.4byte 0x0005005B
+	.4byte btlevtcmd_SetRotate
+	.4byte 0xFFFFFFFE
+	.4byte 0xF1194D80
+	.4byte 0xF1194D80
+	.4byte 0xFE363C80
+	.4byte 0x00010009
+	.4byte 0x00000001
+	.4byte 0x00000006
+	.4byte 0x00000070
+	.4byte 0x0000006E
+	.4byte 0x0005005B
+	.4byte evt_sub_intpl_init
+	.4byte 0x00000002
+	.4byte 0xFFFFFFE2
+	.4byte 0xFFFFFFA6
+	.4byte 0x00000014
+	.4byte 0x0001005B
+	.4byte evt_sub_intpl_get_value
+	.4byte 0x00010005
+	.4byte 0x00000014
+	.4byte 0x0001005B
+	.4byte evt_sub_intpl_get_value
+	.4byte 0x0005005B
+	.4byte btlevtcmd_SetRotate
+	.4byte 0xFFFFFFFE
+	.4byte 0xFE363C80
+	.4byte 0xF1194D80
+	.4byte 0xF1194D80
+	.4byte 0x00010009
+	.4byte 0x00000001
+	.4byte 0x00000006
+	.4byte 0x00000070
+	.4byte 0x0005005B
+	.4byte btlevtcmd_GetPos
+	.4byte 0xFFFFFFFE
+	.4byte 0xFE363C80
+	.4byte 0xFE363C81
+	.4byte 0xFE363C82
+	.4byte 0x0004005B
+	.4byte btlevtcmd_FaceDirectionSub
+	.4byte 0xFFFFFFFE
+	.4byte 0xFE363C80
+	.4byte 0x00000023
+	.4byte 0x000A005B
+	.4byte btlevtcmd_DivePosition
+	.4byte 0xFFFFFFFE
+	.4byte 0xFE363C80
+	.4byte 0xFE363C81
+	.4byte 0xFE363C82
+	.4byte 0x0000001E
+	.4byte 0xFFFFFFF1
+	.4byte 0x00000005
+	.4byte 0x00000000
+	.4byte 0xFFFFFFFF
+	.4byte 0x0001000A
+	.4byte 0x0000012C
+	.4byte 0x0001006F
+	.4byte 0xFE363C8E
+	.4byte 0x0005005B
+	.4byte evt_sub_intpl_init
+	.4byte 0x00000005
+	.4byte 0xFFFFFF1F
+	.4byte 0x000000B4
+	.4byte 0x0000001E
+	.4byte 0x0001005B
+	.4byte evt_sub_intpl_get_value
+	.4byte 0x00010005
+	.4byte 0x0000001E
+	.4byte 0x0001005B
+	.4byte evt_sub_intpl_get_value
+	.4byte 0x0005005B
+	.4byte btlevtcmd_SetRotate
+	.4byte 0xFFFFFFFE
+	.4byte 0xF1194D80
+	.4byte 0xF1194D80
+	.4byte 0xFE363C80
+	.4byte 0x00010009
+	.4byte 0x00000001
+	.4byte 0x00000006
+	.4byte 0x00000070
+	.4byte 0x0001006F
+	.4byte 0xFE363C8F
+	.4byte 0x0006005B
+	.4byte btlevtcmd_GetHitPos
+	.4byte 0xFE363C83
+	.4byte 0xFE363C84
+	.4byte 0xFE363C80
+	.4byte 0xFE363C81
+	.4byte 0xFE363C82
+	.4byte 0x00020035
+	.4byte 0xFE363C81
+	.4byte 0xFFFFFFEC
+	.4byte 0x0004005B
+	.4byte btlevtcmd_FaceDirectionSub
+	.4byte 0xFE363C83
+	.4byte 0xFE363C80
+	.4byte 0x0000003C
+	.4byte 0x000A005B
+	.4byte btlevtcmd_DivePosition
+	.4byte 0xFFFFFFFE
+	.4byte 0xFE363C80
+	.4byte 0xFE363C81
+	.4byte 0xFE363C82
+	.4byte 0x0000001E
+	.4byte 0x00000000
+	.4byte 0x00000006
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000070
+	.4byte 0x0000006E
+	.4byte 0x0006005B
+	.4byte btlevtcmd_snd_se
+	.4byte 0xFFFFFFFE
+	.4byte str_SFX_BOSS_KOR_SWORD_D_muj_00012bf8
+	.4byte 0xF1194D80
+	.4byte 0x00000000
+	.4byte 0xF1194D80
+	.4byte 0x00000070
+	.4byte 0x00010009
+	.4byte 0x00000007
+	.4byte 0x00010022
+	.4byte 0xFE363C85
+	.4byte 0x0001002B
+	.4byte 0x00000004
+	.4byte 0x00010004
+	.4byte 0x0000005A
+	.4byte 0x0000002E
+	.4byte 0x00010024
+	.4byte 0x00000003
+	.4byte 0x0003005B
+	.4byte btlevtcmd_StartAvoid
+	.4byte 0xFE363C83
+	.4byte 0x00000026
+	.4byte 0x00010004
+	.4byte 0x0000005A
+	.4byte 0x00010024
+	.4byte 0x00000006
+	.4byte 0x0003005B
+	.4byte btlevtcmd_StartAvoid
+	.4byte 0xFE363C83
+	.4byte 0x00000027
+	.4byte 0x00010004
+	.4byte 0x0000005A
+	.4byte 0x00010024
+	.4byte 0x00000002
+	.4byte 0x0003005B
+	.4byte btlevtcmd_StartAvoid
+	.4byte 0xFE363C83
+	.4byte 0x00000028
+	.4byte 0x00010004
+	.4byte 0x0000005A
+	.4byte 0x0000002A
+	.4byte 0x00010004
+	.4byte 0x0000005B
+	.4byte 0x00000031
+	.4byte 0x00010003
+	.4byte 0x0000005A
+	.4byte 0x0003005B
+	.4byte btlevtcmd_AnimeWaitPlayComplete
+	.4byte 0xFFFFFFFE
+	.4byte 0x00000001
+	.4byte 0x00010004
+	.4byte 0x0000005F
+	.4byte 0x00010003
+	.4byte 0x0000005B
+	.4byte 0x0003005B
+	.4byte btlevtcmd_ResultACDefence
+	.4byte 0xFE363C83
+	.4byte 0xFE363C8C
+	.4byte 0x0007005B
+	.4byte btlevtcmd_CheckDamage
+	.4byte 0xFFFFFFFE
+	.4byte 0xFE363C83
+	.4byte 0xFE363C84
+	.4byte 0xFE363C8C
+	.4byte 0x00000100
+	.4byte 0xFE363C86
+	.4byte 0x00020018
+	.4byte 0xFE363C86
+	.4byte 0x00000015
+	.4byte 0x0001005F
+	.4byte 0xFE363C8E
+	.4byte 0x0001005F
+	.4byte 0xFE363C8F
+	.4byte 0x0005005B
+	.4byte btlevtcmd_SetRotate
+	.4byte 0xFFFFFFFE
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x0005005B
+	.4byte btlevtcmd_GetPos
+	.4byte 0xFFFFFFFE
+	.4byte 0xFE363C80
+	.4byte 0xFE363C81
+	.4byte 0xFE363C82
+	.4byte 0x0004005B
+	.4byte btlevtcmd_FaceDirectionSub
+	.4byte 0xFFFFFFFE
+	.4byte 0xFE363C80
+	.4byte 0x00000032
+	.4byte 0x00020035
+	.4byte 0xFE363C81
+	.4byte 0x0000000F
+	.4byte 0x0000006E
+	.4byte 0x0005005B
+	.4byte evt_sub_intpl_init
+	.4byte 0x00000005
+	.4byte 0x00000000
+	.4byte 0xFFFFFFE2
+	.4byte 0x00000014
+	.4byte 0x0001005B
+	.4byte evt_sub_intpl_get_value
+	.4byte 0x00010005
+	.4byte 0x00000015
+	.4byte 0x0001005B
+	.4byte evt_sub_intpl_get_value
+	.4byte 0x0005005B
+	.4byte btlevtcmd_SetRotate
+	.4byte 0xFFFFFFFE
+	.4byte 0xF1194D80
+	.4byte 0xF1194D80
+	.4byte 0xFE363C80
+	.4byte 0x00010009
+	.4byte 0x00000001
+	.4byte 0x00000006
+	.4byte 0x00000070
+	.4byte 0x000A005B
+	.4byte btlevtcmd_DivePosition
+	.4byte 0xFFFFFFFE
+	.4byte 0xFE363C80
+	.4byte 0xFE363C81
+	.4byte 0xFE363C82
+	.4byte 0x00000015
+	.4byte 0x00000000
+	.4byte 0x00000005
+	.4byte 0x00000000
+	.4byte 0xFFFFFFFF
+	.4byte 0x0000006E
+	.4byte 0x0005005B
+	.4byte evt_sub_intpl_init
+	.4byte 0x00000004
+	.4byte 0xFFFFFFE2
+	.4byte 0x00000000
+	.4byte 0x00000014
+	.4byte 0x0001005B
+	.4byte evt_sub_intpl_get_value
+	.4byte 0x00010005
+	.4byte 0x00000015
+	.4byte 0x0001005B
+	.4byte evt_sub_intpl_get_value
+	.4byte 0x0005005B
+	.4byte btlevtcmd_SetRotate
+	.4byte 0xFFFFFFFE
+	.4byte 0xF1194D80
+	.4byte 0xF1194D80
+	.4byte 0xFE363C80
+	.4byte 0x00010009
+	.4byte 0x00000001
+	.4byte 0x00000006
+	.4byte 0x00000070
+	.4byte 0x0005005B
+	.4byte btlevtcmd_GetHomePos
+	.4byte 0xFFFFFFFE
+	.4byte 0xFE363C80
+	.4byte 0xFE363C81
+	.4byte 0xFE363C82
+	.4byte 0x000A005B
+	.4byte btlevtcmd_DivePosition
+	.4byte 0xFFFFFFFE
+	.4byte 0xFE363C80
+	.4byte 0xFE363C81
+	.4byte 0xFE363C82
+	.4byte 0x00000028
+	.4byte 0x00000000
+	.4byte 0x00000004
+	.4byte 0x00000000
+	.4byte 0xFFFFFFFF
+	.4byte 0x00000002
+	.4byte 0x00000021
+	.4byte 0x00010003
+	.4byte 0x0000005F
+	.4byte 0x0002005B
+	.4byte btlevtcmd_WaitEventEnd
+	.4byte 0xFE363C8F
+	.4byte 0x0001000A
+	.4byte 0x0000012C
+	.4byte 0x0001006F
+	.4byte 0xFE363C8F
+	.4byte 0x0005005B
+	.4byte evt_sub_intpl_init
+	.4byte 0x0000000B
+	.4byte 0xFFFFFFA6
+	.4byte 0x00000000
+	.4byte 0x0000000A
+	.4byte 0x0001005B
+	.4byte evt_sub_intpl_get_value
+	.4byte 0x00010005
+	.4byte 0x0000000A
+	.4byte 0x0001005B
+	.4byte evt_sub_intpl_get_value
+	.4byte 0x0005005B
+	.4byte btlevtcmd_SetRotate
+	.4byte 0xFFFFFFFE
+	.4byte 0xFE363C80
+	.4byte 0xF1194D80
+	.4byte 0xF1194D80
+	.4byte 0x00010009
+	.4byte 0x00000001
+	.4byte 0x00000006
+	.4byte 0x00000070
+	.4byte 0x0002005B
+	.4byte btlevtcmd_WaitEventEnd
+	.4byte 0xFE363C8F
+	.4byte 0x0004005B
+	.4byte btlevtcmd_GetStageSize
+	.4byte 0xFE363C81
+	.4byte 0xF1194D80
+	.4byte 0xF1194D80
+	.4byte 0x00020035
+	.4byte 0xFE363C81
+	.4byte 0x00000050
+	.4byte 0x00020032
+	.4byte 0xFE363C80
+	.4byte 0x00000000
+	.4byte 0x0004005B
+	.4byte btlevtcmd_FaceDirectionAdd
+	.4byte 0xFFFFFFFE
+	.4byte 0xFE363C80
+	.4byte 0xFE363C81
+	.4byte 0x0005005B
+	.4byte btlevtcmd_GetPos
+	.4byte 0xFFFFFFFE
+	.4byte 0xF1194D80
+	.4byte 0xFE363C81
+	.4byte 0xFE363C82
+	.4byte 0x0007005B
+	.4byte btlevtcmd_GetMoveFrame
+	.4byte 0xFFFFFFFE
+	.4byte 0xFE363C80
+	.4byte 0xFE363C81
+	.4byte 0xFE363C82
+	.4byte 0xF24A8E80
+	.4byte 0xFE363C8D
+	.4byte 0x000A005B
+	.4byte btlevtcmd_DivePosition
+	.4byte 0xFFFFFFFE
+	.4byte 0xFE363C80
+	.4byte 0xFE363C81
+	.4byte 0xFE363C82
+	.4byte 0xFE363C8D
+	.4byte 0x00000000
+	.4byte 0x00000001
+	.4byte 0x00000000
+	.4byte 0xFFFFFFFF
+	.4byte 0x0001000A
+	.4byte 0x000001F4
+	.4byte 0x0004005B
+	.4byte btlevtcmd_GetStageSize
+	.4byte 0xFE363C81
+	.4byte 0xF1194D80
+	.4byte 0xF1194D80
+	.4byte 0x00020035
+	.4byte 0xFE363C81
+	.4byte 0x00000050
+	.4byte 0x00020032
+	.4byte 0xFE363C80
+	.4byte 0x00000000
+	.4byte 0x0004005B
+	.4byte btlevtcmd_FaceDirectionSub
+	.4byte 0xFFFFFFFE
+	.4byte 0xFE363C80
+	.4byte 0xFE363C81
+	.4byte 0x0005005B
+	.4byte btlevtcmd_GetHomePos
+	.4byte 0xFFFFFFFE
+	.4byte 0xF1194D80
+	.4byte 0xFE363C81
+	.4byte 0xFE363C82
+	.4byte 0x0005005B
+	.4byte btlevtcmd_SetPos
+	.4byte 0xFFFFFFFE
+	.4byte 0xFE363C80
+	.4byte 0xFE363C81
+	.4byte 0xFE363C82
+	.4byte 0x0005005B
+	.4byte btlevtcmd_SetRotate
+	.4byte 0xFFFFFFFE
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x0005005B
+	.4byte btlevtcmd_GetHomePos
+	.4byte 0xFFFFFFFE
+	.4byte 0xFE363C80
+	.4byte 0xFE363C81
+	.4byte 0xFE363C82
+	.4byte 0x000A005B
+	.4byte btlevtcmd_DivePosition
+	.4byte 0xFFFFFFFE
+	.4byte 0xFE363C80
+	.4byte 0xFE363C81
+	.4byte 0xFE363C82
+	.4byte 0x00000028
+	.4byte 0x00000000
+	.4byte 0x00000004
+	.4byte 0x00000000
+	.4byte 0xFFFFFFFF
+	.4byte 0x00010003
+	.4byte 0x00000063
+	.4byte 0x0002005B
+	.4byte btlevtcmd_StartWaitEvent
+	.4byte 0xFFFFFFFE
+	.4byte 0x00000002
+	.4byte 0x00000001
+.endobj attack_event
+
+# .data:0x17F4 | 0x29C4C | size: 0x28
+.obj wait_event, local
+	.4byte 0x0003005B
+	.4byte btlevtcmd_AnimeWaitPlayLoopTiming
+	.4byte 0xFFFFFFFE
+	.4byte 0x00000001
+	.4byte 0x0003005B
+	.4byte btlevtcmd_AnimeChangePoseFromTable
+	.4byte 0xFFFFFFFE
+	.4byte 0x00000001
+	.4byte 0x00000002
+	.4byte 0x00000001
+.endobj wait_event
+
+# .data:0x181C | 0x29C74 | size: 0x64
+.obj cortez_damage_sub_event, local
+	.4byte 0x0003005B
+	.4byte btlevtcmd_GetDamage
+	.4byte 0xFE363C8A
+	.4byte 0xFE363C80
+	.4byte 0x00020018
+	.4byte 0xFE363C80
+	.4byte 0x00000000
+	.4byte 0x00010004
+	.4byte 0x0000005A
+	.4byte 0x00000021
+	.4byte 0x0003005B
+	.4byte btlevtcmd_GetDamagePartsId
+	.4byte 0xFFFFFFFE
+	.4byte 0xFE363C8B
+	.4byte 0x0004005B
+	.4byte btlevtcmd_AnimeChangePose
+	.4byte 0xFE363C8A
+	.4byte 0x00000001
+	.4byte str_KRT_Z_1_muj_00012bb4
+	.4byte 0x00010009
+	.4byte 0x0000001E
+	.4byte 0x00010003
+	.4byte 0x0000005A
+	.4byte 0x00000002
+	.4byte 0x00000001
+.endobj cortez_damage_sub_event
+
+# .data:0x1880 | 0x29CD8 | size: 0x1C4
+.obj cortez_weapon_counter_damage_event_19_data_29CD8, global
+	.4byte 0x0003005B
+	.4byte btlevtcmd_OnUnitFlag
+	.4byte 0xFE363C8A
+	.4byte 0x00000001
+	.4byte 0x00010022
+	.4byte 0xFE363C80
+	.4byte 0x00010024
+	.4byte 0x0000002B
+	.4byte 0x0003005B
+	.4byte evt_snd_sfxon
+	.4byte str_SFX_BTL_ATTACK_MISS3_muj_00012c14
+	.4byte 0x00000000
+	.4byte 0x00020032
+	.4byte 0xFE363C8E
+	.4byte 0x00000024
+	.4byte 0x0001002B
+	.4byte 0x0000002E
+	.4byte 0x0001002B
+	.4byte 0x00000031
+	.4byte 0x0001002B
+	.4byte 0x00000032
+	.4byte 0x0001002B
+	.4byte 0x00000036
+	.4byte 0x00020032
+	.4byte 0xFE363C8E
+	.4byte 0x0000001D
+	.4byte 0x0000002E
+	.4byte 0x0000002A
+	.4byte 0x00020032
+	.4byte 0xFE363C8E
+	.4byte 0x00000027
+	.4byte 0x00000031
+	.4byte 0x0004005B
+	.4byte btlevtcmd_AnimeChangePoseType
+	.4byte 0xFE363C8A
+	.4byte 0xFE363C8B
+	.4byte 0xFE363C8E
+	.4byte 0x0000006E
+	.4byte 0x0003005B
+	.4byte btlevtcmd_RunDataEventChild
+	.4byte 0xFE363C8A
+	.4byte 0x0000000A
+	.4byte 0x00000070
+	.4byte 0x0003005B
+	.4byte btlevtcmd_SetFallAccel
+	.4byte 0xFE363C8A
+	.4byte 0xF24A7E80
+	.4byte 0x0005005B
+	.4byte btlevtcmd_GetPos
+	.4byte 0xFE363C8A
+	.4byte 0xFE363C82
+	.4byte 0xFE363C83
+	.4byte 0xFE363C84
+	.4byte 0x0004005B
+	.4byte btlevtcmd_FaceDirectionSub
+	.4byte 0xFE363C8A
+	.4byte 0xFE363C82
+	.4byte 0x00000019
+	.4byte 0x00020035
+	.4byte 0xFE363C83
+	.4byte 0x00000019
+	.4byte 0x000A005B
+	.4byte btlevtcmd_DivePosition
+	.4byte 0xFE363C8A
+	.4byte 0xFE363C82
+	.4byte 0xFE363C83
+	.4byte 0xFE363C84
+	.4byte 0x00000005
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0xFFFFFFFF
+	.4byte 0x00010009
+	.4byte 0x0000001E
+	.4byte 0x0003005B
+	.4byte btlevtcmd_SetFallAccel
+	.4byte 0xFE363C8A
+	.4byte 0xF24A7E80
+	.4byte 0x0005005B
+	.4byte btlevtcmd_GetHomePos
+	.4byte 0xFE363C8A
+	.4byte 0xFE363C82
+	.4byte 0xFE363C83
+	.4byte 0xFE363C84
+	.4byte 0x0004005B
+	.4byte btlevtcmd_TransStageFloorPosition
+	.4byte 0xFE363C82
+	.4byte 0xFE363C83
+	.4byte 0xFE363C84
+	.4byte 0x0007005B
+	.4byte btlevtcmd_JumpPosition
+	.4byte 0xFE363C8A
+	.4byte 0xFE363C82
+	.4byte 0xFE363C83
+	.4byte 0xFE363C84
+	.4byte 0x00000014
+	.4byte 0xFFFFFFFF
+	.4byte 0x0007005B
+	.4byte btlevtcmd_JumpPosition
+	.4byte 0xFE363C8A
+	.4byte 0xFE363C82
+	.4byte 0xFE363C83
+	.4byte 0xFE363C84
+	.4byte 0x0000000A
+	.4byte 0xFFFFFFFF
+	.4byte 0x00010009
+	.4byte 0x0000001E
+	.4byte 0x0003005B
+	.4byte evt_btl_camera_set_mode
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000002
+	.4byte 0x00000001
+.endobj cortez_weapon_counter_damage_event_19_data_29CD8
+
+# .data:0x1A44 | 0x29E9C | size: 0x8
+.obj dead_event, local
+	.4byte 0x00000002
+	.4byte 0x00000001
+.endobj dead_event
+
+# .data:0x1A4C | 0x29EA4 | size: 0x190
+.obj cortez_weapon_dead_event_19_data_29EA4, global
+	.4byte 0x0005005B
+	.4byte btlevtcmd_SetRotateOffset
+	.4byte 0xFFFFFFFE
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x0005005B
+	.4byte btlevtcmd_GetPos
+	.4byte 0xFFFFFFFE
+	.4byte 0xFE363C80
+	.4byte 0xFE363C81
+	.4byte 0xFE363C82
+	.4byte 0x0004005B
+	.4byte btlevtcmd_TransStageFloorPosition
+	.4byte 0xFE363C80
+	.4byte 0xFE363C81
+	.4byte 0xFE363C82
+	.4byte 0x00020035
+	.4byte 0xFE363C81
+	.4byte 0x00000001
+	.4byte 0x0003005B
+	.4byte btlevtcmd_SetFallAccel
+	.4byte 0xFFFFFFFE
+	.4byte 0xF24A7C19
+	.4byte 0x0006005B
+	.4byte btlevtcmd_FallPosition
+	.4byte 0xFFFFFFFE
+	.4byte 0xFE363C80
+	.4byte 0xFE363C81
+	.4byte 0xFE363C82
+	.4byte 0x0000001E
+	.4byte 0x0006005B
+	.4byte btlevtcmd_snd_se
+	.4byte 0xFFFFFFFE
+	.4byte str_SFX_BOSS_KOR_SWORD_F_muj_00012c2c
+	.4byte 0xF1194D80
+	.4byte 0x00000000
+	.4byte 0xF1194D80
+	.4byte 0x0000006E
+	.4byte 0x0005005B
+	.4byte evt_sub_intpl_init
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0xFFFFFFA6
+	.4byte 0x0000000F
+	.4byte 0x0001005B
+	.4byte evt_sub_intpl_get_value
+	.4byte 0x00010005
+	.4byte 0x0000000F
+	.4byte 0x0001005B
+	.4byte evt_sub_intpl_get_value
+	.4byte 0x0005005B
+	.4byte btlevtcmd_SetRotate
+	.4byte 0xFFFFFFFE
+	.4byte 0xFE363C80
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00010009
+	.4byte 0x00000001
+	.4byte 0x00000006
+	.4byte 0x00000070
+	.4byte 0x0007005B
+	.4byte btlevtcmd_JumpPosition
+	.4byte 0xFFFFFFFE
+	.4byte 0xFE363C80
+	.4byte 0xFE363C81
+	.4byte 0xFE363C82
+	.4byte 0x0000000F
+	.4byte 0xFFFFFFFF
+	.4byte 0x0005005B
+	.4byte btlevtcmd_SetHomePos
+	.4byte 0xFFFFFFFE
+	.4byte 0xFE363C80
+	.4byte 0xFE363C81
+	.4byte 0xFE363C82
+	.4byte 0x0004005B
+	.4byte btlevtcmd_SetUnitWork
+	.4byte 0xFFFFFFFE
+	.4byte 0x00000001
+	.4byte 0x00000002
+	.4byte 0x0004005B
+	.4byte btlevtcmd_OnPartsAttribute
+	.4byte 0xFFFFFFFE
+	.4byte 0x00000001
+	.4byte 0x00010000
+	.4byte 0x0004005B
+	.4byte btlevtcmd_AnimeSetPoseTable
+	.4byte 0xFFFFFFFE
+	.4byte 0x00000001
+	.4byte pose_table_break
+	.4byte 0x0003005B
+	.4byte btlevtcmd_OnAttribute
+	.4byte 0xFFFFFFFE
+	.4byte 0x02000000
+	.4byte 0x0003005B
+	.4byte btlevtcmd_KillUnit
+	.4byte 0xFFFFFFFE
+	.4byte 0x00000001
+	.4byte 0x00000002
+	.4byte 0x00000001
+.endobj cortez_weapon_dead_event_19_data_29EA4
+
+# .data:0x1BDC | 0x2A034 | size: 0x160
+.obj cortez_weapon_break_event_19_data_2A034, global
+	.4byte 0x0004005B
+	.4byte btlevtcmd_GetUnitWork
+	.4byte 0xFFFFFFFE
+	.4byte 0x00000000
+	.4byte 0xFE363C80
+	.4byte 0x00020019
+	.4byte 0xFE363C80
+	.4byte 0xFFFFFFFF
+	.4byte 0x0004005B
+	.4byte btlevtcmd_GetUnitWork
+	.4byte 0xFFFFFFFE
+	.4byte 0x00000002
+	.4byte 0xFE363C81
+	.4byte 0x00010022
+	.4byte 0xFE363C81
+	.4byte 0x00010024
+	.4byte 0x00000000
+	.4byte 0x0004005B
+	.4byte btlevtcmd_SetUnitWork
+	.4byte 0xFE363C80
+	.4byte 0x00000001
+	.4byte 0xFFFFFFFF
+	.4byte 0x00010024
+	.4byte 0x00000001
+	.4byte 0x0004005B
+	.4byte btlevtcmd_SetUnitWork
+	.4byte 0xFE363C80
+	.4byte 0x00000002
+	.4byte 0xFFFFFFFF
+	.4byte 0x00010024
+	.4byte 0x00000002
+	.4byte 0x0004005B
+	.4byte btlevtcmd_SetUnitWork
+	.4byte 0xFE363C80
+	.4byte 0x00000003
+	.4byte 0xFFFFFFFF
+	.4byte 0x00010024
+	.4byte 0x00000003
+	.4byte 0x0004005B
+	.4byte btlevtcmd_SetUnitWork
+	.4byte 0xFE363C80
+	.4byte 0x00000004
+	.4byte 0xFFFFFFFF
+	.4byte 0x00000031
+	.4byte 0x00000021
+	.4byte 0x0004005B
+	.4byte btlevtcmd_OnPartsAttribute
+	.4byte 0xFFFFFFFE
+	.4byte 0x00000001
+	.4byte 0x03000000
+	.4byte 0x0006005B
+	.4byte btlevtcmd_snd_se
+	.4byte 0xFFFFFFFE
+	.4byte str_SFX_BTL_ENEMY_DIE1_2_muj_00012c48
+	.4byte 0xF1194D80
+	.4byte 0x00000000
+	.4byte 0xF1194D80
+	.4byte 0x0005005B
+	.4byte btlevtcmd_GetPos
+	.4byte 0xFFFFFFFE
+	.4byte 0xFE363C80
+	.4byte 0xFE363C81
+	.4byte 0xFE363C82
+	.4byte 0x00020035
+	.4byte 0xFE363C82
+	.4byte 0x0000000A
+	.4byte 0x000F005B
+	.4byte evt_eff
+	.4byte 0x00000000
+	.4byte str_kemuri_test_muj_00012c60
+	.4byte 0x00000004
+	.4byte 0xFE363C80
+	.4byte 0xFE363C81
+	.4byte 0xFE363C82
+	.4byte 0xF24A7E80
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x0003005B
+	.4byte btlevtcmd_KillUnit
+	.4byte 0xFFFFFFFE
+	.4byte 0x00000001
+	.4byte 0x00000002
+	.4byte 0x00000001
+.endobj cortez_weapon_break_event_19_data_2A034
+
+# .data:0x1D3C | 0x2A194 | size: 0x1E4
+.obj cortez_weapon_blow_dead_event_19_data_2A194, global
+	.4byte 0x0003005B
+	.4byte evt_snd_sfxon
+	.4byte str_SFX_BTL_CLAUD_BREATH_muj_00012c6c
+	.4byte 0x00000000
+	.4byte 0x0003005B
+	.4byte btlevtcmd_GetBodyId
+	.4byte 0xFFFFFFFE
+	.4byte 0xFE363C80
+	.4byte 0x0004005B
+	.4byte btlevtcmd_AnimeChangePoseType
+	.4byte 0xFFFFFFFE
+	.4byte 0xFE363C80
+	.4byte 0x00000027
+	.4byte 0x0000006E
+	.4byte 0x00010003
+	.4byte 0x00000000
+	.4byte 0x0005005B
+	.4byte btlevtcmd_AddRotate
+	.4byte 0xFFFFFFFE
+	.4byte 0x00000000
+	.4byte 0x00000014
+	.4byte 0x00000000
+	.4byte 0x00010009
+	.4byte 0x00000001
+	.4byte 0x00010004
+	.4byte 0x00000000
+	.4byte 0x00000070
+	.4byte 0x0003005B
+	.4byte btlevtcmd_SetMoveSpeed
+	.4byte 0xFFFFFFFE
+	.4byte 0xF24A8280
+	.4byte 0x0005005B
+	.4byte btlevtcmd_GetPos
+	.4byte 0xFFFFFFFE
+	.4byte 0xFE363C80
+	.4byte 0xFE363C81
+	.4byte 0xFE363C82
+	.4byte 0x0004005B
+	.4byte btlevtcmd_GetStageSize
+	.4byte 0xFE363C80
+	.4byte 0xF1194D80
+	.4byte 0xF1194D80
+	.4byte 0x00020035
+	.4byte 0xFE363C81
+	.4byte 0x00000028
+	.4byte 0x000A005B
+	.4byte btlevtcmd_DivePosition
+	.4byte 0xFFFFFFFE
+	.4byte 0xFE363C80
+	.4byte 0xFE363C81
+	.4byte 0xFE363C82
+	.4byte 0x00000000
+	.4byte 0xFFFFFFF6
+	.4byte 0x00000002
+	.4byte 0x00000000
+	.4byte 0xFFFFFFFF
+	.4byte 0x0003005B
+	.4byte btlevtcmd_GetCoin
+	.4byte 0xFE363C8A
+	.4byte 0xFE363C80
+	.4byte 0x0002005B
+	.4byte btlevtcmd_StoreCoin
+	.4byte 0xFE363C80
+	.4byte 0x0003005B
+	.4byte btlevtcmd_GetExp
+	.4byte 0xFE363C8A
+	.4byte 0xFE363C80
+	.4byte 0x0002005B
+	.4byte btlevtcmd_StoreExp
+	.4byte 0xFE363C80
+	.4byte 0x0004005B
+	.4byte btlevtcmd_GetUnitWork
+	.4byte 0xFFFFFFFE
+	.4byte 0x00000000
+	.4byte 0xFE363C80
+	.4byte 0x00020019
+	.4byte 0xFE363C80
+	.4byte 0xFFFFFFFF
+	.4byte 0x0004005B
+	.4byte btlevtcmd_GetUnitWork
+	.4byte 0xFFFFFFFE
+	.4byte 0x00000002
+	.4byte 0xFE363C81
+	.4byte 0x00010022
+	.4byte 0xFE363C81
+	.4byte 0x00010024
+	.4byte 0x00000000
+	.4byte 0x0004005B
+	.4byte btlevtcmd_SetUnitWork
+	.4byte 0xFE363C80
+	.4byte 0x00000001
+	.4byte 0xFFFFFFFF
+	.4byte 0x00010024
+	.4byte 0x00000001
+	.4byte 0x0004005B
+	.4byte btlevtcmd_SetUnitWork
+	.4byte 0xFE363C80
+	.4byte 0x00000002
+	.4byte 0xFFFFFFFF
+	.4byte 0x00010024
+	.4byte 0x00000002
+	.4byte 0x0004005B
+	.4byte btlevtcmd_SetUnitWork
+	.4byte 0xFE363C80
+	.4byte 0x00000003
+	.4byte 0xFFFFFFFF
+	.4byte 0x00010024
+	.4byte 0x00000003
+	.4byte 0x0004005B
+	.4byte btlevtcmd_SetUnitWork
+	.4byte 0xFE363C80
+	.4byte 0x00000004
+	.4byte 0xFFFFFFFF
+	.4byte 0x00000031
+	.4byte 0x00000021
+	.4byte 0x0003005B
+	.4byte btlevtcmd_KillUnit
+	.4byte 0xFFFFFFFE
+	.4byte 0x00000000
+	.4byte 0x00000002
+	.4byte 0x00000001
+.endobj cortez_weapon_blow_dead_event_19_data_2A194

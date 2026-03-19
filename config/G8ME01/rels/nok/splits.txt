@@ -6,47 +6,47 @@ Sections:
 	.data       type:data align:8
 	.bss        type:bss align:8
 
-nok.o:
+REL/nok/nok.s:
 	.text       start:0x00000000 end:0x00000228
 	.rodata     start:0x00000000 end:0x00000030
 	.data       start:0x00000000 end:0x000001E8
 
-nok_00.o:
+REL/nok/nok_00.s:
 	.text       start:0x00000228 end:0x000003C4
 	.rodata     start:0x00000030 end:0x00000BA8
 	.data       start:0x000001E8 end:0x00003158
 	.bss        start:0x00000000 end:0x00000004
 
-nok_01.o:
+REL/nok/nok_01.s:
 	.text       start:0x000003C4 end:0x000006EC
 	.rodata     start:0x00000BA8 end:0x00001818
 	.data       start:0x00003158 end:0x000072B8
 
-unit_act_atmic_teresa.o:
+REL/nok/unit_act_atmic_teresa.s:
 	.rodata     start:0x00001818 end:0x000018B8
 	.data       start:0x000072B8 end:0x000074D8
 
-unit_act_clauda.o:
+REL/nok/unit_act_clauda.s:
 	.rodata     start:0x000018B8 end:0x00001940
 	.data       start:0x000074D8 end:0x000076C0
 
-unit_act_kinopiko.o:
+REL/nok/unit_act_kinopiko.s:
 	.rodata     start:0x00001940 end:0x000019F0
 	.data       start:0x000076C0 end:0x000078E0
 
-unit_act_kinopio.o:
+REL/nok/unit_act_kinopio.s:
 	.rodata     start:0x000019F0 end:0x00001AA0
 	.data       start:0x000078E0 end:0x00007B00
 
-unit_act_mario.o:
+REL/nok/unit_act_mario.s:
 	.text       start:0x000006EC end:0x00000994
 	.rodata     start:0x00001AA0 end:0x00001BE0
 	.data       start:0x00007B00 end:0x00009830
 
-unit_act_teresa.o:
+REL/nok/unit_act_teresa.s:
 	.rodata     start:0x00001BE0 end:0x00001C80
 	.data       start:0x00009830 end:0x00009A50
 
-battle_database_nok.o:
+REL/nok/battle_database_nok.s:
 	.rodata     start:0x00001C80 end:0x00001D18
 	.data       start:0x00009A50 end:0x00009E44

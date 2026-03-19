@@ -5,39 +5,39 @@ Sections:
 	.rodata     type:rodata align:8
 	.data       type:data align:8
 
-pik.o:
+REL/pik/pik.s:
 	.text       start:0x00000000 end:0x0000011C
 	.rodata     start:0x00000000 end:0x00000030
 	.data       start:0x00000000 end:0x00000060
 
-pik_00.o:
+REL/pik/pik_00.s:
 	.text       start:0x0000011C end:0x0000055C
 	.rodata     start:0x00000030 end:0x00000C30
 	.data       start:0x00000060 end:0x00004800
 
-pik_01.o:
+REL/pik/pik_01.s:
 	.text       start:0x0000055C end:0x00000990
 	.rodata     start:0x00000C30 end:0x000016A0
 	.data       start:0x00004800 end:0x00008328
 
-pik_02.o:
+REL/pik/pik_02.s:
 	.text       start:0x00000990 end:0x000011A8
 	.rodata     start:0x000016A0 end:0x00001DE0
 	.data       start:0x00008328 end:0x0000AEA8
 
-pik_03.o:
+REL/pik/pik_03.s:
 	.rodata     start:0x00001DE0 end:0x00001E50
 	.data       start:0x0000AEA8 end:0x0000B330
 
-pik_04.o:
+REL/pik/pik_04.s:
 	.rodata     start:0x00001E50 end:0x00002558
 	.data       start:0x0000B330 end:0x0000DA48
 
-battle_database_pik.o:
+REL/pik/battle_database_pik.s:
 	.rodata     start:0x00002558 end:0x00002650
 	.data       start:0x0000DA48 end:0x0000E5F0
 
-unit_purple_teresa.o:
+REL/pik/unit_purple_teresa.s:
 	.text       start:0x000011A8 end:0x00001400
 	.rodata     start:0x00002650 end:0x00002779
 	.data       start:0x0000E5F0 end:0x0000FE70

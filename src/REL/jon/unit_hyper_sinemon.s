@@ -1,0 +1,1668 @@
+.include "macros.inc"
+.file "unit_hyper_sinemon.o"
+
+# 0x000030A8..0x00003270 | size: 0x1C8
+.rodata
+.balign 8
+
+# .rodata:0x0 | 0x30A8 | size: 0x15
+.obj str_btl_un_hyper_sinemon_jon_0000a0d8, local
+	.string "btl_un_hyper_sinemon"
+.endobj str_btl_un_hyper_sinemon_jon_0000a0d8
+
+# .rodata:0x15 | 0x30BD | size: 0x3
+.obj gap_03_000030BD_rodata, global
+.hidden gap_03_000030BD_rodata
+	.byte 0x00, 0x00, 0x00
+.endobj gap_03_000030BD_rodata
+
+# .rodata:0x18 | 0x30C0 | size: 0x16
+.obj str_SFX_ENM_EMON_DAMAGED_jon_0000a0f0, local
+	.string "SFX_ENM_EMON_DAMAGED1"
+.endobj str_SFX_ENM_EMON_DAMAGED_jon_0000a0f0
+
+# .rodata:0x2E | 0x30D6 | size: 0x2
+.obj gap_03_000030D6_rodata, global
+.hidden gap_03_000030D6_rodata
+	.2byte 0x0000
+.endobj gap_03_000030D6_rodata
+
+# .rodata:0x30 | 0x30D8 | size: 0x15
+.obj str_SFX_BTL_DAMAGE_FIRE1_jon_0000a108, local
+	.string "SFX_BTL_DAMAGE_FIRE1"
+.endobj str_SFX_BTL_DAMAGE_FIRE1_jon_0000a108
+
+# .rodata:0x45 | 0x30ED | size: 0x3
+.obj gap_03_000030ED_rodata, global
+.hidden gap_03_000030ED_rodata
+	.byte 0x00, 0x00, 0x00
+.endobj gap_03_000030ED_rodata
+
+# .rodata:0x48 | 0x30F0 | size: 0x14
+.obj str_SFX_BTL_DAMAGE_ICE1_jon_0000a120, local
+	.string "SFX_BTL_DAMAGE_ICE1"
+.endobj str_SFX_BTL_DAMAGE_ICE1_jon_0000a120
+
+# .rodata:0x5C | 0x3104 | size: 0x19
+.obj str_SFX_BTL_DAMAGE_BIRIB_jon_0000a134, local
+	.string "SFX_BTL_DAMAGE_BIRIBIRI1"
+.endobj str_SFX_BTL_DAMAGE_BIRIB_jon_0000a134
+
+# .rodata:0x75 | 0x311D | size: 0x3
+.obj gap_03_0000311D_rodata, global
+.hidden gap_03_0000311D_rodata
+	.byte 0x00, 0x00, 0x00
+.endobj gap_03_0000311D_rodata
+
+# .rodata:0x78 | 0x3120 | size: 0xC
+.obj str_c_sinemon_h_jon_0000a150, local
+	.string "c_sinemon_h"
+.endobj str_c_sinemon_h_jon_0000a150
+
+# .rodata:0x84 | 0x312C | size: 0x8
+.obj str_SIN_N_1_jon_0000a15c, local
+	.string "SIN_N_1"
+.endobj str_SIN_N_1_jon_0000a15c
+
+# .rodata:0x8C | 0x3134 | size: 0x8
+.obj str_SIN_Y_1_jon_0000a164, local
+	.string "SIN_Y_1"
+.endobj str_SIN_Y_1_jon_0000a164
+
+# .rodata:0x94 | 0x313C | size: 0x8
+.obj str_SIN_K_1_jon_0000a16c, local
+	.string "SIN_K_1"
+.endobj str_SIN_K_1_jon_0000a16c
+
+# .rodata:0x9C | 0x3144 | size: 0x8
+.obj str_SIN_I_1_jon_0000a174, local
+	.string "SIN_I_1"
+.endobj str_SIN_I_1_jon_0000a174
+
+# .rodata:0xA4 | 0x314C | size: 0x8
+.obj str_SIN_S_1_jon_0000a17c, local
+	.string "SIN_S_1"
+.endobj str_SIN_S_1_jon_0000a17c
+
+# .rodata:0xAC | 0x3154 | size: 0x8
+.obj str_SIN_Q_1_jon_0000a184, local
+	.string "SIN_Q_1"
+.endobj str_SIN_Q_1_jon_0000a184
+
+# .rodata:0xB4 | 0x315C | size: 0x9
+.obj str_SIN_A_1a_jon_0000a18c, local
+	.string "SIN_A_1a"
+.endobj str_SIN_A_1a_jon_0000a18c
+
+# .rodata:0xBD | 0x3165 | size: 0x3
+.obj gap_03_00003165_rodata, global
+.hidden gap_03_00003165_rodata
+	.byte 0x00, 0x00, 0x00
+.endobj gap_03_00003165_rodata
+
+# .rodata:0xC0 | 0x3168 | size: 0x8
+.obj str_SIN_D_1_jon_0000a198, local
+	.string "SIN_D_1"
+.endobj str_SIN_D_1_jon_0000a198
+
+# .rodata:0xC8 | 0x3170 | size: 0x8
+.obj str_SIN_W_1_jon_0000a1a0, local
+	.string "SIN_W_1"
+.endobj str_SIN_W_1_jon_0000a1a0
+
+# .rodata:0xD0 | 0x3178 | size: 0x8
+.obj str_SIN_R_1_jon_0000a1a8, local
+	.string "SIN_R_1"
+.endobj str_SIN_R_1_jon_0000a1a8
+
+# .rodata:0xD8 | 0x3180 | size: 0x8
+.obj str_SIN_T_1_jon_0000a1b0, local
+	.string "SIN_T_1"
+.endobj str_SIN_T_1_jon_0000a1b0
+
+# .rodata:0xE0 | 0x3188 | size: 0x8
+.obj str_SIN_N_2_jon_0000a1b8, local
+	.string "SIN_N_2"
+.endobj str_SIN_N_2_jon_0000a1b8
+
+# .rodata:0xE8 | 0x3190 | size: 0x8
+.obj str_SIN_Y_2_jon_0000a1c0, local
+	.string "SIN_Y_2"
+.endobj str_SIN_Y_2_jon_0000a1c0
+
+# .rodata:0xF0 | 0x3198 | size: 0x8
+.obj str_SIN_K_2_jon_0000a1c8, local
+	.string "SIN_K_2"
+.endobj str_SIN_K_2_jon_0000a1c8
+
+# .rodata:0xF8 | 0x31A0 | size: 0x8
+.obj str_SIN_D_2_jon_0000a1d0, local
+	.string "SIN_D_2"
+.endobj str_SIN_D_2_jon_0000a1d0
+
+# .rodata:0x100 | 0x31A8 | size: 0x13
+.obj str_SFX_ENM_EMON_MOVE1_jon_0000a1d8, local
+	.string "SFX_ENM_EMON_MOVE1"
+.endobj str_SFX_ENM_EMON_MOVE1_jon_0000a1d8
+
+# .rodata:0x113 | 0x31BB | size: 0x1
+.obj gap_03_000031BB_rodata, global
+.hidden gap_03_000031BB_rodata
+	.byte 0x00
+.endobj gap_03_000031BB_rodata
+
+# .rodata:0x114 | 0x31BC | size: 0x13
+.obj str_SFX_ENM_EMON_MOVE2_jon_0000a1ec, local
+	.string "SFX_ENM_EMON_MOVE2"
+.endobj str_SFX_ENM_EMON_MOVE2_jon_0000a1ec
+
+# .rodata:0x127 | 0x31CF | size: 0x1
+.obj gap_03_000031CF_rodata, global
+.hidden gap_03_000031CF_rodata
+	.byte 0x00
+.endobj gap_03_000031CF_rodata
+
+# .rodata:0x128 | 0x31D0 | size: 0x13
+.obj str_SFX_ENM_EMON_JUMP1_jon_0000a200, local
+	.string "SFX_ENM_EMON_JUMP1"
+.endobj str_SFX_ENM_EMON_JUMP1_jon_0000a200
+
+# .rodata:0x13B | 0x31E3 | size: 0x1
+.obj gap_03_000031E3_rodata, global
+.hidden gap_03_000031E3_rodata
+	.byte 0x00
+.endobj gap_03_000031E3_rodata
+
+# .rodata:0x13C | 0x31E4 | size: 0x16
+.obj str_SFX_ENM_EMON_LANDING_jon_0000a214, local
+	.string "SFX_ENM_EMON_LANDING1"
+.endobj str_SFX_ENM_EMON_LANDING_jon_0000a214
+
+# .rodata:0x152 | 0x31FA | size: 0x2
+.obj gap_03_000031FA_rodata, global
+.hidden gap_03_000031FA_rodata
+	.2byte 0x0000
+.endobj gap_03_000031FA_rodata
+
+# .rodata:0x154 | 0x31FC | size: 0x1
+.obj zero_jon_0000a22c, local
+	.byte 0x00
+.endobj zero_jon_0000a22c
+
+# .rodata:0x155 | 0x31FD | size: 0x3
+.obj gap_03_000031FD_rodata, global
+.hidden gap_03_000031FD_rodata
+	.byte 0x00, 0x00, 0x00
+.endobj gap_03_000031FD_rodata
+
+# .rodata:0x158 | 0x3200 | size: 0xB
+.obj str_toge_flush_jon_0000a230, local
+	.string "toge_flush"
+.endobj str_toge_flush_jon_0000a230
+
+# .rodata:0x163 | 0x320B | size: 0x1
+.obj gap_03_0000320B_rodata, global
+.hidden gap_03_0000320B_rodata
+	.byte 0x00
+.endobj gap_03_0000320B_rodata
+
+# .rodata:0x164 | 0x320C | size: 0x10
+.obj str_SFX_ENM_INSIDE1_jon_0000a23c, local
+	.string "SFX_ENM_INSIDE1"
+.endobj str_SFX_ENM_INSIDE1_jon_0000a23c
+
+# .rodata:0x174 | 0x321C | size: 0x10
+.obj str_SFX_ENM_INSIDE2_jon_0000a24c, local
+	.string "SFX_ENM_INSIDE2"
+.endobj str_SFX_ENM_INSIDE2_jon_0000a24c
+
+# .rodata:0x184 | 0x322C | size: 0x10
+.obj str_SFX_ENM_CHARGE1_jon_0000a25c, local
+	.string "SFX_ENM_CHARGE1"
+.endobj str_SFX_ENM_CHARGE1_jon_0000a25c
+
+# .rodata:0x194 | 0x323C | size: 0xC
+.obj str_crystal_n64_jon_0000a26c, local
+	.string "crystal_n64"
+.endobj str_crystal_n64_jon_0000a26c
+
+# .rodata:0x1A0 | 0x3248 | size: 0x13
+.obj str_SFX_ENM_EMON_MOVE3_jon_0000a278, local
+	.string "SFX_ENM_EMON_MOVE3"
+.endobj str_SFX_ENM_EMON_MOVE3_jon_0000a278
+
+# .rodata:0x1B3 | 0x325B | size: 0x1
+.obj gap_03_0000325B_rodata, global
+.hidden gap_03_0000325B_rodata
+	.byte 0x00
+.endobj gap_03_0000325B_rodata
+
+# .rodata:0x1B4 | 0x325C | size: 0x13
+.obj str_SFX_ENM_EMON_DASH1_jon_0000a28c, local
+	.string "SFX_ENM_EMON_DASH1"
+.endobj str_SFX_ENM_EMON_DASH1_jon_0000a28c
+
+# .rodata:0x1C7 | 0x326F | size: 0x1
+.obj gap_03_0000326F_rodata, global
+.hidden gap_03_0000326F_rodata
+	.byte 0x00
+.endobj gap_03_0000326F_rodata
+
+# 0x0002A6C8..0x0002BA48 | size: 0x1380
+.data
+.balign 8
+
+# .data:0x0 | 0x2A6C8 | size: 0x8
+.obj negone_one$374, local
+	.4byte 0xBF800000
+	.4byte 0x3F800000
+.endobj negone_one$374
+
+# .data:0x8 | 0x2A6D0 | size: 0x4
+.obj neg_one$382, local
+	.4byte 0xBF800000
+.endobj neg_one$382
+
+# .data:0xC | 0x2A6D4 | size: 0x4
+.obj __local_PI$383, local
+	.4byte 0x40490FDB
+.endobj __local_PI$383
+
+# .data:0x10 | 0x2A6D8 | size: 0x4
+.obj __local_3PIO2$385, local
+	.4byte 0x4096CBE4
+.endobj __local_3PIO2$385
+
+# .data:0x14 | 0x2A6DC | size: 0x4
+.obj gap_04_0002A6DC_data, global
+.hidden gap_04_0002A6DC_data
+	.4byte 0x00000000
+.endobj gap_04_0002A6DC_data
+
+# .data:0x18 | 0x2A6E0 | size: 0x8
+.obj one_negone$373, local
+	.4byte 0x3F800000
+	.4byte 0xBF800000
+.endobj one_negone$373
+
+# .data:0x20 | 0x2A6E8 | size: 0x4
+.obj __local_PIO2$384, local
+	.4byte 0x3FC90FDB
+.endobj __local_PIO2$384
+
+# .data:0x24 | 0x2A6EC | size: 0x4
+.obj one$381, local
+	.4byte 0x3F800000
+.endobj one$381
+
+# .data:0x28 | 0x2A6F0 | size: 0x8
+.obj negone_one$360, local
+	.4byte 0xBF800000
+	.4byte 0x3F800000
+.endobj negone_one$360
+
+# .data:0x30 | 0x2A6F8 | size: 0x4
+.obj neg_one$365, local
+	.4byte 0xBF800000
+.endobj neg_one$365
+
+# .data:0x34 | 0x2A6FC | size: 0x4
+.obj __local_PI$366, local
+	.4byte 0x40490FDB
+.endobj __local_PI$366
+
+# .data:0x38 | 0x2A700 | size: 0x4
+.obj __local_3PIO2$368, local
+	.4byte 0x4096CBE4
+.endobj __local_3PIO2$368
+
+# .data:0x3C | 0x2A704 | size: 0x4
+.obj gap_04_0002A704_data, global
+.hidden gap_04_0002A704_data
+	.4byte 0x00000000
+.endobj gap_04_0002A704_data
+
+# .data:0x40 | 0x2A708 | size: 0x8
+.obj one_negone$359, local
+	.4byte 0x3F800000
+	.4byte 0xBF800000
+.endobj one_negone$359
+
+# .data:0x48 | 0x2A710 | size: 0x4
+.obj __local_PIO2$367, local
+	.4byte 0x3FC90FDB
+.endobj __local_PIO2$367
+
+# .data:0x4C | 0x2A714 | size: 0x4
+.obj one$364, local
+	.4byte 0x3F800000
+.endobj one$364
+
+# .data:0x50 | 0x2A718 | size: 0xC4
+.obj unit_hyper_sinemon_14_data_2A718, global
+	.4byte 0x00000047
+	.4byte str_btl_un_hyper_sinemon_jon_0000a0d8
+	.4byte 0x00040000
+	.4byte 0x01011100
+	.4byte 0x03460146
+	.4byte 0x270F001A
+	.4byte 0x00200004
+	.4byte 0x00200000
+	.4byte 0x00000000
+	.4byte 0x41800000
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x41500000
+	.4byte 0x00000000
+	.4byte 0xC1200000
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x41500000
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x41200000
+	.4byte 0x41C00000
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x41800000
+	.4byte 0x00000000
+	.4byte 0x41D00000
+	.4byte 0x42000000
+	.4byte 0x00000002
+	.4byte 0x64140000
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte str_SFX_ENM_EMON_DAMAGED_jon_0000a0f0
+	.4byte str_SFX_BTL_DAMAGE_FIRE1_jon_0000a108
+	.4byte str_SFX_BTL_DAMAGE_ICE1_jon_0000a120
+	.4byte str_SFX_BTL_DAMAGE_BIRIB_jon_0000a134
+	.4byte 0x00040000
+	.4byte regist
+	.4byte 0x01000000
+	.4byte parts
+	.4byte init_event
+	.4byte data_table
+.endobj unit_hyper_sinemon_14_data_2A718
+
+# .data:0x114 | 0x2A7DC | size: 0x5
+.obj defence, local
+	.4byte 0x03630303
+	.byte 0x03
+.endobj defence
+
+# .data:0x119 | 0x2A7E1 | size: 0x3
+.obj gap_04_0002A7E1_data, global
+.hidden gap_04_0002A7E1_data
+	.byte 0x00, 0x00, 0x00
+.endobj gap_04_0002A7E1_data
+
+# .data:0x11C | 0x2A7E4 | size: 0x5
+.obj defence_turn, local
+	.4byte 0x00000000
+	.byte 0x00
+.endobj defence_turn
+
+# .data:0x121 | 0x2A7E9 | size: 0x3
+.obj gap_04_0002A7E9_data, global
+.hidden gap_04_0002A7E9_data
+	.byte 0x00, 0x00, 0x00
+.endobj gap_04_0002A7E9_data
+
+# .data:0x124 | 0x2A7EC | size: 0x5
+.obj defence_attr, local
+	.4byte 0x00020000
+	.byte 0x00
+.endobj defence_attr
+
+# .data:0x129 | 0x2A7F1 | size: 0x3
+.obj gap_04_0002A7F1_data, global
+.hidden gap_04_0002A7F1_data
+	.byte 0x00, 0x00, 0x00
+.endobj gap_04_0002A7F1_data
+
+# .data:0x12C | 0x2A7F4 | size: 0x16
+.obj regist, local
+	.4byte 0x285A2864
+	.4byte 0x2864003C
+	.4byte 0x64416441
+	.4byte 0x64643C28
+	.4byte 0x1E644664
+	.2byte 0x645F
+.endobj regist
+
+# .data:0x142 | 0x2A80A | size: 0x2
+.obj gap_04_0002A80A_data, global
+.hidden gap_04_0002A80A_data
+	.2byte 0x0000
+.endobj gap_04_0002A80A_data
+
+# .data:0x144 | 0x2A80C | size: 0x4C
+.obj parts, local
+	.4byte 0x00000001
+	.4byte str_btl_un_hyper_sinemon_jon_0000a0d8
+	.4byte str_c_sinemon_h_jon_0000a150
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x41C80000
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x41F00000
+	.4byte 0x00000000
+	.4byte 0x0014001E
+	.4byte 0x00FF0000
+	.4byte defence
+	.4byte defence_attr
+	.4byte 0x00002009
+	.4byte 0x00000001
+	.4byte pose_table
+.endobj parts
+
+# .data:0x190 | 0x2A858 | size: 0xC0
+.obj weapon_sinemon_attack, local
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x64000001
+	.4byte 0x3F800000
+	.4byte 0x01010101
+	.4byte weaponGetPowerDefault
+	.4byte 0x00000003
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x01101260
+	.4byte 0x21002000
+	.4byte 0x00000302
+	.4byte 0x00000000
+	.4byte 0x00000087
+	.4byte 0x0000001E
+	.4byte 0x00002004
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000064
+	.4byte 0x00000000
+	.4byte 0x00000000
+.endobj weapon_sinemon_attack
+
+# .data:0x250 | 0x2A918 | size: 0xC0
+.obj weapon_sinemon_charge, local
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x64000000
+	.4byte 0x3F800000
+	.4byte 0x01010101
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x01004020
+	.4byte 0x20000000
+	.4byte 0x00000302
+	.4byte 0x00000000
+	.4byte 0x00000108
+	.4byte 0x000007FF
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000006
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000064
+	.4byte 0x00000000
+	.4byte 0x00000000
+.endobj weapon_sinemon_charge
+
+# .data:0x310 | 0x2A9D8 | size: 0x90
+.obj pose_table, local
+	.4byte 0x00000001
+	.4byte str_SIN_N_1_jon_0000a15c
+	.4byte 0x00000002
+	.4byte str_SIN_Y_1_jon_0000a164
+	.4byte 0x00000009
+	.4byte str_SIN_Y_1_jon_0000a164
+	.4byte 0x00000005
+	.4byte str_SIN_K_1_jon_0000a16c
+	.4byte 0x00000004
+	.4byte str_SIN_I_1_jon_0000a174
+	.4byte 0x00000003
+	.4byte str_SIN_I_1_jon_0000a174
+	.4byte 0x0000001C
+	.4byte str_SIN_S_1_jon_0000a17c
+	.4byte 0x0000001D
+	.4byte str_SIN_Q_1_jon_0000a184
+	.4byte 0x0000001E
+	.4byte str_SIN_Q_1_jon_0000a184
+	.4byte 0x0000001F
+	.4byte str_SIN_A_1a_jon_0000a18c
+	.4byte 0x00000027
+	.4byte str_SIN_D_1_jon_0000a198
+	.4byte 0x00000032
+	.4byte str_SIN_A_1a_jon_0000a18c
+	.4byte 0x00000028
+	.4byte str_SIN_W_1_jon_0000a1a0
+	.4byte 0x0000002A
+	.4byte str_SIN_R_1_jon_0000a1a8
+	.4byte 0x00000038
+	.4byte str_SIN_I_1_jon_0000a174
+	.4byte 0x00000039
+	.4byte str_SIN_I_1_jon_0000a174
+	.4byte 0x00000041
+	.4byte str_SIN_T_1_jon_0000a1b0
+	.4byte 0x00000045
+	.4byte str_SIN_S_1_jon_0000a17c
+.endobj pose_table
+
+# .data:0x3A0 | 0x2AA68 | size: 0x78
+.obj pose_table_turn, local
+	.4byte 0x00000001
+	.4byte str_SIN_N_2_jon_0000a1b8
+	.4byte 0x00000002
+	.4byte str_SIN_Y_2_jon_0000a1c0
+	.4byte 0x00000009
+	.4byte str_SIN_Y_2_jon_0000a1c0
+	.4byte 0x00000005
+	.4byte str_SIN_K_2_jon_0000a1c8
+	.4byte 0x00000004
+	.4byte str_SIN_K_2_jon_0000a1c8
+	.4byte 0x00000003
+	.4byte str_SIN_K_2_jon_0000a1c8
+	.4byte 0x0000001C
+	.4byte str_SIN_D_2_jon_0000a1d0
+	.4byte 0x0000001D
+	.4byte str_SIN_D_2_jon_0000a1d0
+	.4byte 0x0000001E
+	.4byte str_SIN_D_2_jon_0000a1d0
+	.4byte 0x0000001F
+	.4byte str_SIN_D_2_jon_0000a1d0
+	.4byte 0x00000027
+	.4byte str_SIN_D_2_jon_0000a1d0
+	.4byte 0x00000038
+	.4byte str_SIN_K_2_jon_0000a1c8
+	.4byte 0x00000039
+	.4byte str_SIN_K_2_jon_0000a1c8
+	.4byte 0x00000041
+	.4byte str_SIN_D_2_jon_0000a1d0
+	.4byte 0x00000045
+	.4byte str_SIN_D_2_jon_0000a1d0
+.endobj pose_table_turn
+
+# .data:0x418 | 0x2AAE0 | size: 0x20
+.obj data_table, local
+	.4byte 0x0000000D
+	.4byte dmg_turn_event
+	.4byte 0x00000025
+	.4byte dmg_avoid_counter_thorn_head_event
+	.4byte 0x00000030
+	.4byte btldefaultevt_Dummy
+	.4byte 0x00000000
+	.4byte 0x00000000
+.endobj data_table
+
+# .data:0x438 | 0x2AB00 | size: 0xA8
+.obj init_event, local
+	.4byte 0x0003005B
+	.4byte btlevtcmd_SetEventWait
+	.4byte 0xFFFFFFFE
+	.4byte wait_event
+	.4byte 0x0003005B
+	.4byte btlevtcmd_SetEventAttack
+	.4byte 0xFFFFFFFE
+	.4byte attack_event
+	.4byte 0x0003005B
+	.4byte btlevtcmd_SetEventDamage
+	.4byte 0xFFFFFFFE
+	.4byte damage_event
+	.4byte 0x0003005B
+	.4byte btlevtcmd_SetEventConfusion
+	.4byte 0xFFFFFFFE
+	.4byte attack_event
+	.4byte 0x0007005B
+	.4byte btlevtcmd_SetWalkSound
+	.4byte 0xFFFFFFFE
+	.4byte str_SFX_ENM_EMON_MOVE1_jon_0000a1d8
+	.4byte str_SFX_ENM_EMON_MOVE2_jon_0000a1ec
+	.4byte 0x00000000
+	.4byte 0x0000000A
+	.4byte 0x0000000A
+	.4byte 0x0007005B
+	.4byte btlevtcmd_SetRunSound
+	.4byte 0xFFFFFFFE
+	.4byte str_SFX_ENM_EMON_MOVE1_jon_0000a1d8
+	.4byte str_SFX_ENM_EMON_MOVE2_jon_0000a1ec
+	.4byte 0x00000000
+	.4byte 0x00000007
+	.4byte 0x00000007
+	.4byte 0x0004005B
+	.4byte btlevtcmd_SetJumpSound
+	.4byte 0xFFFFFFFE
+	.4byte str_SFX_ENM_EMON_JUMP1_jon_0000a200
+	.4byte str_SFX_ENM_EMON_LANDING_jon_0000a214
+	.4byte 0x0002005B
+	.4byte btlevtcmd_StartWaitEvent
+	.4byte 0xFFFFFFFE
+	.4byte 0x00000002
+	.4byte 0x00000001
+.endobj init_event
+
+# .data:0x4E0 | 0x2ABA8 | size: 0x130
+.obj dmg_avoid_counter_thorn_head_event, local
+	.4byte 0x00010009
+	.4byte 0x0000001E
+	.4byte 0x0005005B
+	.4byte btlevtcmd_GetPos
+	.4byte 0xFFFFFFFE
+	.4byte 0xFE363C80
+	.4byte 0xFE363C81
+	.4byte 0xFE363C82
+	.4byte 0x0004005B
+	.4byte btlevtcmd_CheckStatus
+	.4byte 0xFFFFFFFE
+	.4byte 0x0000000A
+	.4byte 0xFE363C83
+	.4byte 0x00020019
+	.4byte 0xFE363C83
+	.4byte 0x00000000
+	.4byte 0x0004005B
+	.4byte btlevtcmd_FaceDirectionAdd
+	.4byte 0xFFFFFFFE
+	.4byte 0xFE363C80
+	.4byte 0x0000000F
+	.4byte 0x00020035
+	.4byte 0xFE363C81
+	.4byte 0x0000002D
+	.4byte 0x00010004
+	.4byte 0x0000005A
+	.4byte 0x00000021
+	.4byte 0x0004005B
+	.4byte btlevtcmd_CheckStatus
+	.4byte 0xFFFFFFFE
+	.4byte 0x0000000B
+	.4byte 0xFE363C83
+	.4byte 0x00020019
+	.4byte 0xFE363C83
+	.4byte 0x00000000
+	.4byte 0x0004005B
+	.4byte btlevtcmd_FaceDirectionAdd
+	.4byte 0xFFFFFFFE
+	.4byte 0xFE363C80
+	.4byte 0x00000007
+	.4byte 0x00020035
+	.4byte 0xFE363C81
+	.4byte 0x00000019
+	.4byte 0x00010004
+	.4byte 0x0000005A
+	.4byte 0x00000021
+	.4byte 0x0004005B
+	.4byte btlevtcmd_FaceDirectionAdd
+	.4byte 0xFFFFFFFE
+	.4byte 0xFE363C80
+	.4byte 0x0000000A
+	.4byte 0x00020035
+	.4byte 0xFE363C81
+	.4byte 0x00000023
+	.4byte 0x00010004
+	.4byte 0x0000005A
+	.4byte 0x00010003
+	.4byte 0x0000005A
+	.4byte 0x000F005B
+	.4byte evt_eff
+	.4byte zero_jon_0000a22c
+	.4byte str_toge_flush_jon_0000a230
+	.4byte 0x00000000
+	.4byte 0xFE363C80
+	.4byte 0xFE363C81
+	.4byte 0xFE363C82
+	.4byte 0x0000003C
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000002
+	.4byte 0x00000001
+.endobj dmg_avoid_counter_thorn_head_event
+
+# .data:0x610 | 0x2ACD8 | size: 0xE8
+.obj damage_event, local
+	.4byte 0x0003005B
+	.4byte btlevtcmd_GetDamage
+	.4byte 0xFFFFFFFE
+	.4byte 0xFE363C8F
+	.4byte 0x0002001D
+	.4byte 0xFE363C8F
+	.4byte 0x00000001
+	.4byte 0x0004005B
+	.4byte btlevtcmd_AnimeChangePose
+	.4byte 0xFFFFFFFE
+	.4byte 0x00000001
+	.4byte str_SIN_D_1_jon_0000a198
+	.4byte 0x00000021
+	.4byte 0x0003005B
+	.4byte btlevtcmd_GetOverTurnCount
+	.4byte 0xFFFFFFFE
+	.4byte 0xFE363C80
+	.4byte 0x0002001D
+	.4byte 0xFE363C80
+	.4byte 0x00000001
+	.4byte 0x0004005B
+	.4byte btlevtcmd_AnimeChangePose
+	.4byte 0xFFFFFFFE
+	.4byte 0x00000001
+	.4byte str_SIN_D_2_jon_0000a1d0
+	.4byte 0x0005005B
+	.4byte btlevtcmd_GetPos
+	.4byte 0xFFFFFFFE
+	.4byte 0xFE363C80
+	.4byte 0xFE363C81
+	.4byte 0xFE363C82
+	.4byte 0x0007005B
+	.4byte btlevtcmd_JumpPosition
+	.4byte 0xFFFFFFFE
+	.4byte 0xFE363C80
+	.4byte 0xFE363C81
+	.4byte 0xFE363C82
+	.4byte 0x0000000A
+	.4byte 0xFFFFFFFF
+	.4byte 0x0007005B
+	.4byte btlevtcmd_JumpPosition
+	.4byte 0xFFFFFFFE
+	.4byte 0xFE363C80
+	.4byte 0xFE363C81
+	.4byte 0xFE363C82
+	.4byte 0x00000005
+	.4byte 0xFFFFFFFF
+	.4byte 0x00000021
+	.4byte 0x00020032
+	.4byte 0xFE363C8A
+	.4byte 0xFFFFFFFE
+	.4byte 0x00020032
+	.4byte 0xFE363C8B
+	.4byte 0x00000001
+	.4byte 0x0001005E
+	.4byte btldefaultevt_Damage
+	.4byte 0x00000002
+	.4byte 0x00000001
+.endobj damage_event
+
+# .data:0x6F8 | 0x2ADC0 | size: 0x180
+.obj dmg_turn_event, local
+	.4byte 0x00020032
+	.4byte 0xFE363C8A
+	.4byte 0xFFFFFFFE
+	.4byte 0x00020032
+	.4byte 0xFE363C8B
+	.4byte 0x00000001
+	.4byte 0x0004005B
+	.4byte btlevtcmd_SetPartsDefenceTable
+	.4byte 0xFE363C8A
+	.4byte 0xFE363C8B
+	.4byte defence_turn
+	.4byte 0x0004005B
+	.4byte btlevtcmd_AnimeSetPoseTable
+	.4byte 0xFE363C8A
+	.4byte 0xFE363C8B
+	.4byte pose_table_turn
+	.4byte 0x0003005B
+	.4byte btlevtcmd_OnStatusFlag
+	.4byte 0xFE363C8A
+	.4byte 0x00000001
+	.4byte 0x0003005B
+	.4byte btlevtcmd_SetOverTurnCount
+	.4byte 0xFE363C8A
+	.4byte 0x00000002
+	.4byte 0x00010009
+	.4byte 0x00000002
+	.4byte 0x0006005B
+	.4byte btlevtcmd_snd_se
+	.4byte 0xFFFFFFFE
+	.4byte str_SFX_ENM_INSIDE1_jon_0000a23c
+	.4byte 0xF1194D80
+	.4byte 0x00000000
+	.4byte 0xF1194D80
+	.4byte 0x0004005B
+	.4byte btlevtcmd_AnimeChangePose
+	.4byte 0xFE363C8A
+	.4byte 0xFE363C8B
+	.4byte str_SIN_D_2_jon_0000a1d0
+	.4byte 0x0003005B
+	.4byte btlevtcmd_SetFallAccel
+	.4byte 0xFFFFFFFE
+	.4byte 0xF24A7D4C
+	.4byte 0x0005005B
+	.4byte btlevtcmd_GetPos
+	.4byte 0xFFFFFFFE
+	.4byte 0xFE363C80
+	.4byte 0xFE363C81
+	.4byte 0xFE363C82
+	.4byte 0x0007005B
+	.4byte btlevtcmd_JumpPosition
+	.4byte 0xFFFFFFFE
+	.4byte 0xFE363C80
+	.4byte 0xFE363C81
+	.4byte 0xFE363C82
+	.4byte 0x0000000F
+	.4byte 0xFFFFFFFF
+	.4byte 0x0007005B
+	.4byte btlevtcmd_JumpPosition
+	.4byte 0xFFFFFFFE
+	.4byte 0xFE363C80
+	.4byte 0xFE363C81
+	.4byte 0xFE363C82
+	.4byte 0x0000000A
+	.4byte 0xFFFFFFFF
+	.4byte 0x0005005B
+	.4byte btlevtcmd_GetPos
+	.4byte 0xFFFFFFFE
+	.4byte 0xFE363C80
+	.4byte 0xFE363C81
+	.4byte 0xFE363C82
+	.4byte 0x0005005B
+	.4byte btlevtcmd_SetPos
+	.4byte 0xFFFFFFFE
+	.4byte 0xFE363C80
+	.4byte 0x00000007
+	.4byte 0xFE363C82
+	.4byte 0x0005005B
+	.4byte btlevtcmd_SetHomePos
+	.4byte 0xFFFFFFFE
+	.4byte 0xFE363C80
+	.4byte 0x00000007
+	.4byte 0xFE363C82
+	.4byte 0x0006005B
+	.4byte btlevtcmd_SetHitOffset
+	.4byte 0xFE363C8A
+	.4byte 0xFE363C8B
+	.4byte 0x00000000
+	.4byte 0xFFFFFFF6
+	.4byte 0x00000000
+	.4byte 0x0004005B
+	.4byte btlevtcmd_OffPartsCounterAttribute
+	.4byte 0xFFFFFFFE
+	.4byte 0x00000001
+	.4byte 0x00000001
+	.4byte 0x00000002
+	.4byte 0x00000001
+.endobj dmg_turn_event
+
+# .data:0x878 | 0x2AF40 | size: 0x1A0
+.obj wakeup_event, local
+	.4byte 0x00020032
+	.4byte 0xFE363C8A
+	.4byte 0xFFFFFFFE
+	.4byte 0x00020032
+	.4byte 0xFE363C8B
+	.4byte 0x00000001
+	.4byte 0x0003005B
+	.4byte btlevtcmd_GetOverTurnCount
+	.4byte 0xFE363C8A
+	.4byte 0xFE363C80
+	.4byte 0x00020036
+	.4byte 0xFE363C80
+	.4byte 0x00000001
+	.4byte 0x0003005B
+	.4byte btlevtcmd_SetOverTurnCount
+	.4byte 0xFE363C8A
+	.4byte 0xFE363C80
+	.4byte 0x00020019
+	.4byte 0xFE363C80
+	.4byte 0x00000000
+	.4byte 0x0002005B
+	.4byte btlevtcmd_StartWaitEvent
+	.4byte 0xFFFFFFFE
+	.4byte 0x00000002
+	.4byte 0x00000021
+	.4byte 0x0004005B
+	.4byte btlevtcmd_SetPartsDefenceTable
+	.4byte 0xFE363C8A
+	.4byte 0xFE363C8B
+	.4byte defence
+	.4byte 0x0003005B
+	.4byte btlevtcmd_OffStatusFlag
+	.4byte 0xFE363C8A
+	.4byte 0x00000001
+	.4byte 0x0004005B
+	.4byte btlevtcmd_AnimeSetPoseTable
+	.4byte 0xFE363C8A
+	.4byte 0xFE363C8B
+	.4byte pose_table
+	.4byte 0x0004005B
+	.4byte btlevtcmd_AnimeChangePose
+	.4byte 0xFE363C8A
+	.4byte 0xFE363C8B
+	.4byte str_SIN_S_1_jon_0000a17c
+	.4byte 0x0005005B
+	.4byte btlevtcmd_GetPos
+	.4byte 0xFFFFFFFE
+	.4byte 0xFE363C80
+	.4byte 0xFE363C81
+	.4byte 0xFE363C82
+	.4byte 0x0005005B
+	.4byte btlevtcmd_SetPos
+	.4byte 0xFFFFFFFE
+	.4byte 0xFE363C80
+	.4byte 0x00000000
+	.4byte 0xFE363C82
+	.4byte 0x0005005B
+	.4byte btlevtcmd_SetHomePos
+	.4byte 0xFFFFFFFE
+	.4byte 0xFE363C80
+	.4byte 0x00000000
+	.4byte 0xFE363C82
+	.4byte 0x0006005B
+	.4byte btlevtcmd_SetHitOffset
+	.4byte 0xFE363C8A
+	.4byte 0xFE363C8B
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x0004005B
+	.4byte btlevtcmd_OnPartsCounterAttribute
+	.4byte 0xFFFFFFFE
+	.4byte 0x00000001
+	.4byte 0x00000001
+	.4byte 0x0006005B
+	.4byte btlevtcmd_snd_se
+	.4byte 0xFFFFFFFE
+	.4byte str_SFX_ENM_INSIDE2_jon_0000a24c
+	.4byte 0xF1194D80
+	.4byte 0x00000000
+	.4byte 0xF1194D80
+	.4byte 0x0003005B
+	.4byte btlevtcmd_SetFallAccel
+	.4byte 0xFFFFFFFE
+	.4byte 0xF24A7E80
+	.4byte 0x0005005B
+	.4byte btlevtcmd_GetPos
+	.4byte 0xFFFFFFFE
+	.4byte 0xFE363C80
+	.4byte 0xFE363C81
+	.4byte 0xFE363C82
+	.4byte 0x0007005B
+	.4byte btlevtcmd_JumpPosition
+	.4byte 0xFFFFFFFE
+	.4byte 0xFE363C80
+	.4byte 0xFE363C81
+	.4byte 0xFE363C82
+	.4byte 0x0000000C
+	.4byte 0xFFFFFFFF
+	.4byte 0x0002005B
+	.4byte btlevtcmd_StartWaitEvent
+	.4byte 0xFFFFFFFE
+	.4byte 0x00000002
+	.4byte 0x00000001
+.endobj wakeup_event
+
+# .data:0xA18 | 0x2B0E0 | size: 0x94C
+.obj attack_event, local
+	.4byte 0x0003005B
+	.4byte btlevtcmd_GetOverTurnCount
+	.4byte 0xFFFFFFFE
+	.4byte 0xFE363C80
+	.4byte 0x0002001D
+	.4byte 0xFE363C80
+	.4byte 0x00000001
+	.4byte 0x0001005E
+	.4byte wakeup_event
+	.4byte 0x00000002
+	.4byte 0x00000021
+	.4byte 0x0003005B
+	.4byte btlevtcmd_check_battleflag
+	.4byte 0xFE363C80
+	.4byte 0x00000002
+	.4byte 0x00020019
+	.4byte 0xFE363C80
+	.4byte 0x00000000
+	.4byte 0x0003005B
+	.4byte btlevtcmd_GetFirstAttackTarget
+	.4byte 0xFE363C83
+	.4byte 0xFE363C84
+	.4byte 0x0003005B
+	.4byte evt_btl_camera_set_mode
+	.4byte 0x00000000
+	.4byte 0x00000008
+	.4byte 0x0003005B
+	.4byte evt_btl_camera_set_moveSpeedLv
+	.4byte 0x00000000
+	.4byte 0x00000003
+	.4byte 0x0001000A
+	.4byte 0x00000320
+	.4byte 0x00000020
+	.4byte 0x0004005B
+	.4byte btlevtcmd_CheckStatus
+	.4byte 0xFFFFFFFE
+	.4byte 0x00000010
+	.4byte 0xFE363C80
+	.4byte 0x00020018
+	.4byte 0xFE363C80
+	.4byte 0x00000001
+	.4byte 0x00010004
+	.4byte 0x0000000A
+	.4byte 0x00000021
+	.4byte 0x0003005B
+	.4byte btlevtcmd_EnemyItemUseCheck
+	.4byte 0xFFFFFFFE
+	.4byte 0xFE363C80
+	.4byte 0x00020019
+	.4byte 0xFE363C80
+	.4byte 0x00000000
+	.4byte 0x0001005E
+	.4byte 0xFE363C80
+	.4byte 0x0002005B
+	.4byte btlevtcmd_StartWaitEvent
+	.4byte 0xFFFFFFFE
+	.4byte 0x00000002
+	.4byte 0x00000021
+	.4byte 0x0002005B
+	.4byte btlevtcmd_get_turn
+	.4byte 0xFE363C80
+	.4byte 0x0002001C
+	.4byte 0xFE363C80
+	.4byte 0x00000001
+	.4byte 0x0005005B
+	.4byte btlevtcmd_DrawLots
+	.4byte 0xFE363C80
+	.4byte 0x00000002
+	.4byte 0x00000019
+	.4byte 0x0000004B
+	.4byte 0x00000020
+	.4byte 0x0005005B
+	.4byte btlevtcmd_DrawLots
+	.4byte 0xFE363C80
+	.4byte 0x00000002
+	.4byte 0x00000019
+	.4byte 0x00000019
+	.4byte 0x00000021
+	.4byte 0x00020018
+	.4byte 0xFE363C80
+	.4byte 0x00000001
+	.4byte 0x00020032
+	.4byte 0xFE363C89
+	.4byte weapon_sinemon_charge
+	.4byte 0x0003005B
+	.4byte btlevtcmd_PayWeaponCost
+	.4byte 0xFFFFFFFE
+	.4byte 0xFE363C89
+	.4byte 0x0003005B
+	.4byte evt_btl_camera_set_mode
+	.4byte 0x00000000
+	.4byte 0x00000007
+	.4byte 0x0004005B
+	.4byte evt_btl_camera_set_homing_unit
+	.4byte 0x00000000
+	.4byte 0xFFFFFFFE
+	.4byte 0xFFFFFFFF
+	.4byte 0x0003005B
+	.4byte evt_btl_camera_set_moveSpeedLv
+	.4byte 0x00000000
+	.4byte 0x00000002
+	.4byte 0x0003005B
+	.4byte evt_btl_camera_set_zoom
+	.4byte 0x00000000
+	.4byte 0x0000012C
+	.4byte 0x00010009
+	.4byte 0x00000028
+	.4byte 0x0005005B
+	.4byte btlevtcmd_GetPos
+	.4byte 0xFFFFFFFE
+	.4byte 0xFE363C80
+	.4byte 0xFE363C81
+	.4byte 0xFE363C82
+	.4byte 0x00020035
+	.4byte 0xFE363C81
+	.4byte 0x0000000F
+	.4byte 0x00020035
+	.4byte 0xFE363C82
+	.4byte 0x0000000A
+	.4byte 0x0006005B
+	.4byte btlevtcmd_snd_se
+	.4byte 0xFFFFFFFE
+	.4byte str_SFX_ENM_CHARGE1_jon_0000a25c
+	.4byte 0xF1194D80
+	.4byte 0x00000000
+	.4byte 0xF1194D80
+	.4byte 0x000F005B
+	.4byte evt_eff64
+	.4byte zero_jon_0000a22c
+	.4byte str_crystal_n64_jon_0000a26c
+	.4byte 0x00000007
+	.4byte 0xFE363C80
+	.4byte 0xFE363C81
+	.4byte 0xFE363C82
+	.4byte 0xF24A8080
+	.4byte 0x0000003C
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x0001000A
+	.4byte 0x000003E8
+	.4byte 0x0000006B
+	.4byte 0x0003005B
+	.4byte evt_btl_camera_set_mode
+	.4byte 0x00000000
+	.4byte 0x00000003
+	.4byte 0x0005005B
+	.4byte btlevtcmd_GetPos
+	.4byte 0xFFFFFFFE
+	.4byte 0xFE363C80
+	.4byte 0xFE363C81
+	.4byte 0xFE363C82
+	.4byte 0x0005005B
+	.4byte btlevtcmd_JumpSetting
+	.4byte 0xFFFFFFFE
+	.4byte 0x00000014
+	.4byte 0x00000000
+	.4byte 0xF24A7E80
+	.4byte 0x0007005B
+	.4byte btlevtcmd_JumpPosition
+	.4byte 0xFFFFFFFE
+	.4byte 0xFE363C80
+	.4byte 0xFE363C81
+	.4byte 0xFE363C82
+	.4byte 0x00000014
+	.4byte 0xFFFFFFFF
+	.4byte 0x0001000A
+	.4byte 0x000001F4
+	.4byte 0x0003005B
+	.4byte evt_btl_camera_set_mode
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x0000006D
+	.4byte 0x0007005B
+	.4byte btlevtcmd_CheckDamage
+	.4byte 0xFFFFFFFE
+	.4byte 0xFFFFFFFE
+	.4byte 0x00000001
+	.4byte 0xFE363C89
+	.4byte 0x00000100
+	.4byte 0xFE363C85
+	.4byte 0x00000002
+	.4byte 0x00000021
+	.4byte 0x00010003
+	.4byte 0x0000000A
+	.4byte 0x0003005B
+	.4byte btlevtcmd_GetEnemyBelong
+	.4byte 0xFFFFFFFE
+	.4byte 0xFE363C80
+	.4byte 0x0004005B
+	.4byte btlevtcmd_SamplingEnemy
+	.4byte 0xFFFFFFFE
+	.4byte 0xFE363C80
+	.4byte weapon_sinemon_attack
+	.4byte 0x0004005B
+	.4byte btlevtcmd_ChoiceSamplingEnemy
+	.4byte weapon_sinemon_attack
+	.4byte 0xFE363C83
+	.4byte 0xFE363C84
+	.4byte 0x00000021
+	.4byte 0x00020018
+	.4byte 0xFE363C83
+	.4byte 0xFFFFFFFF
+	.4byte 0x0004005B
+	.4byte btlevtcmd_CheckToken
+	.4byte 0xFFFFFFFE
+	.4byte 0x00000010
+	.4byte 0xFE363C80
+	.4byte 0x00020019
+	.4byte 0xFE363C80
+	.4byte 0x00000000
+	.4byte 0x0001005E
+	.4byte subsetevt_confuse_flustered
+	.4byte 0x00000002
+	.4byte 0x00000021
+	.4byte 0x00010004
+	.4byte 0x00000063
+	.4byte 0x00000021
+	.4byte 0x0003005B
+	.4byte evt_btl_camera_set_mode
+	.4byte 0x00000000
+	.4byte 0x00000008
+	.4byte 0x0004005B
+	.4byte evt_btl_camera_set_homing_unit
+	.4byte 0x00000000
+	.4byte 0xFFFFFFFE
+	.4byte 0xFE363C83
+	.4byte 0x0003005B
+	.4byte evt_btl_camera_set_moveSpeedLv
+	.4byte 0x00000000
+	.4byte 0x00000001
+	.4byte 0x0003005B
+	.4byte evt_btl_camera_set_zoom
+	.4byte 0x00000000
+	.4byte 0x000000FA
+	.4byte 0x0002005B
+	.4byte btlevtcmd_WeaponAftereffect
+	.4byte weapon_sinemon_attack
+	.4byte 0x0004005B
+	.4byte btlevtcmd_AttackDeclare
+	.4byte 0xFFFFFFFE
+	.4byte 0xFE363C83
+	.4byte 0xFE363C84
+	.4byte 0x0001005B
+	.4byte btlevtcmd_WaitGuardMove
+	.4byte 0x0003005B
+	.4byte btlevtcmd_PayWeaponCost
+	.4byte 0xFFFFFFFE
+	.4byte weapon_sinemon_attack
+	.4byte 0x0004005B
+	.4byte btlevtcmd_AnimeChangePoseType
+	.4byte 0xFFFFFFFE
+	.4byte 0x00000001
+	.4byte 0x00000028
+	.4byte 0x0005005B
+	.4byte btlevtcmd_GetPos
+	.4byte 0xFE363C83
+	.4byte 0xFE363C80
+	.4byte 0xFE363C81
+	.4byte 0xFE363C82
+	.4byte 0x0004005B
+	.4byte btlevtcmd_FaceDirectionAdd
+	.4byte 0xFE363C83
+	.4byte 0xFE363C80
+	.4byte 0x00000064
+	.4byte 0x0007005B
+	.4byte btlevtcmd_CalculateFaceDirection
+	.4byte 0xFFFFFFFE
+	.4byte 0xFFFFFFFF
+	.4byte 0xFE363C80
+	.4byte 0xFE363C82
+	.4byte 0x00000001
+	.4byte 0xFE363C8F
+	.4byte 0x0003005B
+	.4byte btlevtcmd_ChangeFaceDirection
+	.4byte 0xFFFFFFFE
+	.4byte 0xFE363C8F
+	.4byte 0x0003005B
+	.4byte btlevtcmd_SetMoveSpeed
+	.4byte 0xFFFFFFFE
+	.4byte 0xF24A8A80
+	.4byte 0x0008005B
+	.4byte btlevtcmd_MovePosition
+	.4byte 0xFFFFFFFE
+	.4byte 0xFE363C80
+	.4byte 0x00000000
+	.4byte 0xFE363C82
+	.4byte 0x00000000
+	.4byte 0xFFFFFFFF
+	.4byte 0x00000001
+	.4byte 0x0007005B
+	.4byte btlevtcmd_CalculateFaceDirection
+	.4byte 0xFFFFFFFE
+	.4byte 0xFFFFFFFF
+	.4byte 0xFE363C83
+	.4byte 0xFE363C84
+	.4byte 0x00000010
+	.4byte 0xFE363C8F
+	.4byte 0x0003005B
+	.4byte btlevtcmd_ChangeFaceDirection
+	.4byte 0xFFFFFFFE
+	.4byte 0xFE363C8F
+	.4byte 0x0001006F
+	.4byte 0xFE363C8F
+	.4byte 0x00010005
+	.4byte 0x00000000
+	.4byte 0x0006005B
+	.4byte btlevtcmd_snd_se
+	.4byte 0xFFFFFFFE
+	.4byte str_SFX_ENM_EMON_MOVE1_jon_0000a1d8
+	.4byte 0xF1194D80
+	.4byte 0x00000000
+	.4byte 0xF1194D80
+	.4byte 0x00010009
+	.4byte 0x00000007
+	.4byte 0x0006005B
+	.4byte btlevtcmd_snd_se
+	.4byte 0xFFFFFFFE
+	.4byte str_SFX_ENM_EMON_MOVE2_jon_0000a1ec
+	.4byte 0xF1194D80
+	.4byte 0x00000000
+	.4byte 0xF1194D80
+	.4byte 0x00010009
+	.4byte 0x00000007
+	.4byte 0x00000006
+	.4byte 0x00000070
+	.4byte 0x0006005B
+	.4byte btlevtcmd_snd_se
+	.4byte 0xFFFFFFFE
+	.4byte str_SFX_ENM_EMON_MOVE3_jon_0000a278
+	.4byte 0xF1194D80
+	.4byte 0x00000000
+	.4byte 0xF1194D80
+	.4byte 0x0004005B
+	.4byte btlevtcmd_AnimeChangePoseType
+	.4byte 0xFFFFFFFE
+	.4byte 0x00000001
+	.4byte 0x00000032
+	.4byte 0x0003005B
+	.4byte evt_btl_camera_set_moveSpeedLv
+	.4byte 0x00000000
+	.4byte 0x00000002
+	.4byte 0x0003005B
+	.4byte evt_btl_camera_set_zoom
+	.4byte 0x00000000
+	.4byte 0x000000C8
+	.4byte 0x0001000A
+	.4byte 0x000002EE
+	.4byte 0x0003005B
+	.4byte evt_btl_camera_set_mode
+	.4byte 0x00000000
+	.4byte 0x00000003
+	.4byte 0x0006005B
+	.4byte btlevtcmd_snd_se
+	.4byte 0xFFFFFFFE
+	.4byte str_SFX_ENM_EMON_DASH1_jon_0000a28c
+	.4byte 0xF1194D80
+	.4byte 0x00000000
+	.4byte 0xF1194D80
+	.4byte 0x0003005B
+	.4byte btlevtcmd_SetMoveSpeed
+	.4byte 0xFFFFFFFE
+	.4byte 0xF24A8E80
+	.4byte 0x0006005B
+	.4byte btlevtcmd_GetHitPos
+	.4byte 0xFE363C83
+	.4byte 0xFE363C84
+	.4byte 0xFE363C80
+	.4byte 0xFE363C81
+	.4byte 0xFE363C82
+	.4byte 0x0005005B
+	.4byte btlevtcmd_GetPos
+	.4byte 0xFFFFFFFE
+	.4byte 0xF1194D80
+	.4byte 0xFE363C85
+	.4byte 0xF1194D80
+	.4byte 0x0008005B
+	.4byte btlevtcmd_MovePosition
+	.4byte 0xFFFFFFFE
+	.4byte 0xFE363C80
+	.4byte 0xFE363C85
+	.4byte 0xFE363C82
+	.4byte 0x00000000
+	.4byte 0xFFFFFFFF
+	.4byte 0x00000000
+	.4byte 0x0001005F
+	.4byte 0xFE363C8F
+	.4byte 0x0007005B
+	.4byte btlevtcmd_PreCheckDamage
+	.4byte 0xFFFFFFFE
+	.4byte 0xFE363C83
+	.4byte 0xFE363C84
+	.4byte weapon_sinemon_attack
+	.4byte 0x00000100
+	.4byte 0xFE363C85
+	.4byte 0x00010022
+	.4byte 0xFE363C85
+	.4byte 0x0001002B
+	.4byte 0x00000004
+	.4byte 0x00010004
+	.4byte 0x0000005A
+	.4byte 0x0000002E
+	.4byte 0x00010024
+	.4byte 0x00000003
+	.4byte 0x0003005B
+	.4byte btlevtcmd_StartAvoid
+	.4byte 0xFE363C83
+	.4byte 0x00000026
+	.4byte 0x00010004
+	.4byte 0x0000005A
+	.4byte 0x0000002E
+	.4byte 0x00010024
+	.4byte 0x00000006
+	.4byte 0x0003005B
+	.4byte btlevtcmd_StartAvoid
+	.4byte 0xFE363C83
+	.4byte 0x00000027
+	.4byte 0x00010004
+	.4byte 0x0000005A
+	.4byte 0x00010024
+	.4byte 0x00000002
+	.4byte 0x0003005B
+	.4byte btlevtcmd_StartAvoid
+	.4byte 0xFE363C83
+	.4byte 0x00000028
+	.4byte 0x00010004
+	.4byte 0x0000005A
+	.4byte 0x00010024
+	.4byte 0x00000001
+	.4byte 0x00010004
+	.4byte 0x0000005B
+	.4byte 0x0000002E
+	.4byte 0x0000002A
+	.4byte 0x00010004
+	.4byte 0x00000062
+	.4byte 0x0000002E
+	.4byte 0x00000031
+	.4byte 0x00010003
+	.4byte 0x0000005A
+	.4byte 0x0004005B
+	.4byte btlevtcmd_FaceDirectionAdd
+	.4byte 0xFFFFFFFE
+	.4byte 0xFE363C80
+	.4byte 0x00000032
+	.4byte 0x0008005B
+	.4byte btlevtcmd_MovePosition
+	.4byte 0xFFFFFFFE
+	.4byte 0xFE363C80
+	.4byte 0x00000000
+	.4byte 0xFE363C82
+	.4byte 0x00000000
+	.4byte 0xFFFFFFFF
+	.4byte 0x00000000
+	.4byte 0x0001000A
+	.4byte 0x000001F4
+	.4byte 0x00010004
+	.4byte 0x00000062
+	.4byte 0x00010003
+	.4byte 0x0000005B
+	.4byte 0x0006005B
+	.4byte evt_btl_camera_shake_h
+	.4byte 0x00000000
+	.4byte 0x00000001
+	.4byte 0x00000001
+	.4byte 0x00000008
+	.4byte 0x00000000
+	.4byte 0x0003005B
+	.4byte evt_btl_camera_set_moveSpeedLv
+	.4byte 0x00000000
+	.4byte 0x00000002
+	.4byte 0x0003005B
+	.4byte evt_btl_camera_add_zoom
+	.4byte 0x00000000
+	.4byte 0xFFFFFFCE
+	.4byte 0x0003005B
+	.4byte btlevtcmd_ResultACDefence
+	.4byte 0xFE363C83
+	.4byte weapon_sinemon_attack
+	.4byte 0x0007005B
+	.4byte btlevtcmd_CheckDamage
+	.4byte 0xFFFFFFFE
+	.4byte 0xFE363C83
+	.4byte 0xFE363C84
+	.4byte weapon_sinemon_attack
+	.4byte 0x00000100
+	.4byte 0xFE363C85
+	.4byte 0x0005005B
+	.4byte btlevtcmd_JumpSetting
+	.4byte 0xFFFFFFFE
+	.4byte 0x00000014
+	.4byte 0xF24A7E80
+	.4byte 0xF24A7B4C
+	.4byte 0x0005005B
+	.4byte btlevtcmd_GetPos
+	.4byte 0xFE363C83
+	.4byte 0xFE363C80
+	.4byte 0xFE363C81
+	.4byte 0xFE363C82
+	.4byte 0x0004005B
+	.4byte btlevtcmd_FaceDirectionSub
+	.4byte 0xFFFFFFFE
+	.4byte 0xFE363C80
+	.4byte 0x0000004B
+	.4byte 0x0007005B
+	.4byte btlevtcmd_JumpPosition
+	.4byte 0xFFFFFFFE
+	.4byte 0xFE363C80
+	.4byte 0x00000000
+	.4byte 0xFE363C82
+	.4byte 0x00000014
+	.4byte 0xFFFFFFFF
+	.4byte 0x0006005B
+	.4byte btlevtcmd_snd_se
+	.4byte 0xFFFFFFFE
+	.4byte str_SFX_ENM_EMON_MOVE1_jon_0000a1d8
+	.4byte 0xF1194D80
+	.4byte 0x00000000
+	.4byte 0xF1194D80
+	.4byte 0x0005005B
+	.4byte btlevtcmd_JumpSetting
+	.4byte 0xFFFFFFFE
+	.4byte 0x00000014
+	.4byte 0xF24A7C80
+	.4byte 0xF24A7B4C
+	.4byte 0x0005005B
+	.4byte btlevtcmd_GetPos
+	.4byte 0xFE363C83
+	.4byte 0xFE363C80
+	.4byte 0xFE363C81
+	.4byte 0xFE363C82
+	.4byte 0x0004005B
+	.4byte btlevtcmd_FaceDirectionSub
+	.4byte 0xFFFFFFFE
+	.4byte 0xFE363C80
+	.4byte 0x00000064
+	.4byte 0x0007005B
+	.4byte btlevtcmd_JumpPosition
+	.4byte 0xFFFFFFFE
+	.4byte 0xFE363C80
+	.4byte 0x00000000
+	.4byte 0xFE363C82
+	.4byte 0x00000014
+	.4byte 0xFFFFFFFF
+	.4byte 0x0006005B
+	.4byte btlevtcmd_snd_se
+	.4byte 0xFFFFFFFE
+	.4byte str_SFX_ENM_EMON_MOVE2_jon_0000a1ec
+	.4byte 0xF1194D80
+	.4byte 0x00000000
+	.4byte 0xF1194D80
+	.4byte 0x00010004
+	.4byte 0x00000062
+	.4byte 0x00010003
+	.4byte 0x00000062
+	.4byte 0x0003005B
+	.4byte evt_btl_camera_set_mode
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x0004005B
+	.4byte btlevtcmd_AnimeChangePoseType
+	.4byte 0xFFFFFFFE
+	.4byte 0x00000001
+	.4byte 0x0000002A
+	.4byte 0x0003005B
+	.4byte btlevtcmd_SetMoveSpeed
+	.4byte 0xFFFFFFFE
+	.4byte 0xF24A8A80
+	.4byte 0x0005005B
+	.4byte btlevtcmd_GetHomePos
+	.4byte 0xFFFFFFFE
+	.4byte 0xFE363C80
+	.4byte 0xFE363C81
+	.4byte 0xFE363C82
+	.4byte 0x0008005B
+	.4byte btlevtcmd_MovePosition
+	.4byte 0xFFFFFFFE
+	.4byte 0xFE363C80
+	.4byte 0xFE363C81
+	.4byte 0xFE363C82
+	.4byte 0x00000000
+	.4byte 0xFFFFFFFF
+	.4byte 0x00000000
+	.4byte 0x00010003
+	.4byte 0x00000063
+	.4byte 0x0002005B
+	.4byte btlevtcmd_ResetFaceDirection
+	.4byte 0xFFFFFFFE
+	.4byte 0x0002005B
+	.4byte btlevtcmd_StartWaitEvent
+	.4byte 0xFFFFFFFE
+	.4byte 0x00000002
+	.4byte 0x00000001
+.endobj attack_event
+
+# .data:0x1364 | 0x2BA2C | size: 0x18
+.obj wait_event, local
+	.4byte 0x0003005B
+	.4byte btlevtcmd_AnimeChangePoseFromTable
+	.4byte 0xFFFFFFFE
+	.4byte 0x00000001
+	.4byte 0x00000002
+	.4byte 0x00000001
+.endobj wait_event
+
+# .data:0x137C | 0x2BA44 | size: 0x4
+.obj gap_04_0002BA44_data, global
+.hidden gap_04_0002BA44_data
+	.4byte 0x00000000
+.endobj gap_04_0002BA44_data
