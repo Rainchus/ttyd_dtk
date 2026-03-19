@@ -302,7 +302,7 @@ config.libs = [
         objects = [
             Object(Matching, "REL/aaa/aaa.s"),
             Object(Matching, "REL/aaa/aaa_00.s"),
-            #Object(Matching, "REL/aaa/test.c"),
+            Object(Matching, "REL/aaa/test.c"),
         ]
     ),
     Rel('aji',

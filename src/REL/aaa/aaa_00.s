@@ -1644,6 +1644,7 @@
 .endobj door_1
 
 # .data:0x2E0 | 0x340 | size: 0xB24
+/*
 .obj evt_prologue, local
 	.4byte 0x0000006B
 	.4byte 0x0001000A
@@ -2359,7 +2360,7 @@
 	.4byte 0x00000002
 	.4byte 0x00000001
 .endobj evt_prologue
-
+*/
 # .data:0xE04 | 0xE64 | size: 0x310
 .obj evt_prologue2, local
 	.4byte 0x0002005B
@@ -3602,7 +3603,7 @@
 	.4byte 0xFE363C80
 	.4byte str_prologue_aaa_00000610
 	.4byte 0x0001005C
-	.4byte evt_prologue
+	.4byte evt_prologue_new
 	.4byte 0x00010009
 	.4byte 0x00000001
 	.4byte 0x00000002

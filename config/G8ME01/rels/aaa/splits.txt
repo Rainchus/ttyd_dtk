@@ -18,4 +18,3 @@ REL/aaa/aaa_00.s:
 	.bss        start:0x00000000 end:0x00000004
 
 REL/aaa/test.c:
-	.text
