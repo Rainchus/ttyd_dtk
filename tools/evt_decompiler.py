@@ -186,8 +186,8 @@ def format_value(token: str) -> str:
     if not (token.startswith("0x") or token.startswith("-") or token.lstrip("-").isdigit()):
         if token.startswith("str_"):
             c_sym = _sym_rename.get(token, sanitize_sym(token))
-            return f"(Bytecode)(const void*){c_sym}"
-        return token  # symbol reference
+            return f"PTR({c_sym})"  # was: (Bytecode)(const void*){c_sym}
+        return token
 
     try:
         raw = int(token, 16) if token.startswith("0x") else int(token, 0)
@@ -417,7 +417,7 @@ def decompile_script(name: str, tokens: list) -> str:
         if opcode in INDENT_CLOSE:
             indent = max(0, indent - 1)
 
-        pad = "   " * indent
+        pad = "    " * indent
 
         # Build the line
         if macro_name == "CALL":

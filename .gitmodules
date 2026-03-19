@@ -1,0 +1,3 @@
+[submodule "tools/pyisotools"]
+	path = tools/pyisotools
+	url = https://github.com/JoshuaMKW/pyisotools

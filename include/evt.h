@@ -6,7 +6,7 @@ typedef Bytecode EvtScript[];
 typedef long s32;
 typedef s32 ApiStatus;
 
-#define Ref(sym) ((Bytecode) &(sym))
+#define PTR(sym) ((Bytecode)(void*)(sym))
 #define EVT_BEGIN(name) __declspec(section ".data") EvtScript name =
 #define API_CALLABLE(name) ApiStatus name(EvtScript* script, s32 isInitialCall)
 

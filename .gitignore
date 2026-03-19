@@ -9,6 +9,8 @@ build.ninja
 objdiff.json
 orig/*/*
 !orig/*/.gitkeep
+mod/*/*
+!mod/*/.gitkeep
 /*.txt
 ctx.c
 data

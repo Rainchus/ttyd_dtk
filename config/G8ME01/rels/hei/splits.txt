@@ -6,137 +6,137 @@ Sections:
 	.data       type:data align:8
 	.bss        type:bss align:8
 
-hei.o:
+REL/hei/hei.s:
 	.text       start:0x00000000 end:0x000001E4
 	.rodata     start:0x00000000 end:0x00000080
 	.data       start:0x00000000 end:0x00000060
 
-hei_00.o:
+REL/hei/hei_00.s:
 	.text       start:0x000001E4 end:0x00000DC0
 	.rodata     start:0x00000080 end:0x00000578
 	.data       start:0x00000060 end:0x00002E90
 
-hei_01.o:
+REL/hei/hei_01.s:
 	.text       start:0x00000DC0 end:0x00000E44
 	.rodata     start:0x00000578 end:0x00000C08
 	.data       start:0x00002E90 end:0x00005458
 
-hei_02.o:
+REL/hei/hei_02.s:
 	.rodata     start:0x00000C08 end:0x00000EB0
 	.data       start:0x00005458 end:0x000059C0
 
-hei_03.o:
+REL/hei/hei_03.s:
 	.rodata     start:0x00000EB0 end:0x00000FE0
 	.data       start:0x000059C0 end:0x00006400
 
-hei_04.o:
+REL/hei/hei_04.s:
 	.rodata     start:0x00000FE0 end:0x000011A8
 	.data       start:0x00006400 end:0x000067B8
 
-hei_05.o:
+REL/hei/hei_05.s:
 	.rodata     start:0x000011A8 end:0x000012C0
 	.data       start:0x000067B8 end:0x00007170
 
-hei_06.o:
+REL/hei/hei_06.s:
 	.rodata     start:0x000012C0 end:0x00001488
 	.data       start:0x00007170 end:0x000074D8
 
-hei_07.o:
+REL/hei/hei_07.s:
 	.text       start:0x00000E44 end:0x00001184
 	.rodata     start:0x00001488 end:0x00001A40
 	.data       start:0x000074D8 end:0x000094F0
 
-hei_08.o:
+REL/hei/hei_08.s:
 	.text       start:0x00001184 end:0x000011F4
 	.rodata     start:0x00001A40 end:0x00001AE8
 	.data       start:0x000094F0 end:0x00009978
 
-hei_09.o:
+REL/hei/hei_09.s:
 	.text       start:0x000011F4 end:0x00001214
 	.rodata     start:0x00001AE8 end:0x00001B38
 	.data       start:0x00009978 end:0x00009B30
 
-hei_10.o:
+REL/hei/hei_10.s:
 	.text       start:0x00001214 end:0x0000290C
 	.rodata     start:0x00001B38 end:0x00001D78
 	.data       start:0x00009B30 end:0x0000A4B8
 	.bss        start:0x00000000 end:0x00000008
 
-hei_11.o:
+REL/hei/hei_11.s:
 	.rodata     start:0x00001D78 end:0x00001DC8
 	.data       start:0x0000A4B8 end:0x0000A670
 
-hei_12.o:
+REL/hei/hei_12.s:
 	.text       start:0x0000290C end:0x0000297C
 	.rodata     start:0x00001DC8 end:0x00001E68
 	.data       start:0x0000A670 end:0x0000AAE0
 
-hei_13.o:
+REL/hei/hei_13.s:
 	.rodata     start:0x00001E68 end:0x00001F28
 	.data       start:0x0000AAE0 end:0x0000AF30
 
-hei_bt00.o:
+REL/hei/hei_bt00.s:
 	.data       start:0x0000AF30 end:0x0000AF88
 
-battle_database_hei.o:
+REL/hei/battle_database_hei.s:
 	.rodata     start:0x00001F28 end:0x00002448
 	.data       start:0x0000AF88 end:0x0000E9A0
 
-unit_chorobon.o:
+REL/hei/unit_chorobon.s:
 	.rodata     start:0x00002448 end:0x00002608
 	.data       start:0x0000E9A0 end:0x0000FFD8
 
-unit_chorobon_gundan.o:
+REL/hei/unit_chorobon_gundan.s:
 	.text       start:0x0000297C end:0x000042A0
 	.rodata     start:0x00002608 end:0x000028A8
 	.data       start:0x0000FFD8 end:0x000109E8
 	.bss        start:0x00000008 end:0x00000010
 
-unit_gold_chorobon.o:
+REL/hei/unit_gold_chorobon.s:
 	.text       start:0x000042A0 end:0x00004334
 	.rodata     start:0x000028A8 end:0x00002A20
 	.data       start:0x000109E8 end:0x00011CF0
 
-unit_kuriboo.o:
+REL/hei/unit_kuriboo.s:
 	.text       start:0x00004334 end:0x0000444C
 	.rodata     start:0x00002A20 end:0x00002B78
 	.data       start:0x00011CF0 end:0x00012888
 
-unit_nokonoko.o:
+REL/hei/unit_nokonoko.s:
 	.rodata     start:0x00002B78 end:0x00002D20
 	.data       start:0x00012888 end:0x00013CD0
 
-unit_patakuri.o:
+REL/hei/unit_patakuri.s:
 	.text       start:0x0000444C end:0x00004564
 	.rodata     start:0x00002D20 end:0x00002F58
 	.data       start:0x00013CD0 end:0x00015388
 
-unit_patapata.o:
+REL/hei/unit_patapata.s:
 	.rodata     start:0x00002F58 end:0x000031F0
 	.data       start:0x00015388 end:0x00017668
 
-unit_togekuri.o:
+REL/hei/unit_togekuri.s:
 	.text       start:0x00004564 end:0x0000487C
 	.rodata     start:0x000031F0 end:0x000033B0
 	.data       start:0x00017668 end:0x00018708
 
-unit_sinemon.o:
+REL/hei/unit_sinemon.s:
 	.rodata     start:0x000033B0 end:0x00003558
 	.data       start:0x00018708 end:0x00019790
 
-unit_sinnosuke.o:
+REL/hei/unit_sinnosuke.s:
 	.rodata     start:0x00003558 end:0x000036F0
 	.data       start:0x00019790 end:0x0001A788
 
-unit_togedaruma.o:
+REL/hei/unit_togedaruma.s:
 	.rodata     start:0x000036F0 end:0x000038E8
 	.data       start:0x0001A788 end:0x0001B9C0
 
-unit_monochrome_sinemon.o:
+REL/hei/unit_monochrome_sinemon.s:
 	.rodata     start:0x000038E8 end:0x00003A98
 	.data       start:0x0001B9C0 end:0x0001CA48
 
-evt_lect_hei.o:
+REL/hei/evt_lect_hei.s:
 	.text       start:0x0000487C end:0x00005E10
 	.rodata     start:0x00003A98 end:0x00003D20
 	.data       start:0x0001CA48 end:0x0001D738

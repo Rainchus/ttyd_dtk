@@ -6,115 +6,115 @@ Sections:
 	.data       type:data align:8
 	.bss        type:bss align:8
 
-dou.o:
+REL/dou/dou.s:
 	.text       start:0x00000000 end:0x0000023C
 	.rodata     start:0x00000000 end:0x00000088
 	.data       start:0x00000000 end:0x00000278
 
-dou_00.o:
+REL/dou/dou_00.s:
 	.text       start:0x0000023C end:0x0000025C
 	.rodata     start:0x00000088 end:0x00000108
 	.data       start:0x00000278 end:0x000005E0
 
-dou_01.o:
+REL/dou/dou_01.s:
 	.rodata     start:0x00000108 end:0x000001B8
 	.data       start:0x000005E0 end:0x000008D0
 
-dou_02.o:
+REL/dou/dou_02.s:
 	.rodata     start:0x000001B8 end:0x00000348
 	.data       start:0x000008D0 end:0x00001260
 
-dou_03.o:
+REL/dou/dou_03.s:
 	.rodata     start:0x00000348 end:0x000005F0
 	.data       start:0x00001260 end:0x000021F0
 
-dou_04.o:
+REL/dou/dou_04.s:
 	.text       start:0x0000025C end:0x0000055C
 	.rodata     start:0x000005F0 end:0x00000900
 	.data       start:0x000021F0 end:0x00003EE8
 
-dou_05.o:
+REL/dou/dou_05.s:
 	.text       start:0x0000055C end:0x000006F0
 	.rodata     start:0x00000900 end:0x00000AE8
 	.data       start:0x00003EE8 end:0x00004800
 	.bss        start:0x00000000 end:0x00000008
 
-dou_06.o:
+REL/dou/dou_06.s:
 	.rodata     start:0x00000AE8 end:0x00000B70
 	.data       start:0x00004800 end:0x000049A8
 
-dou_07.o:
+REL/dou/dou_07.s:
 	.text       start:0x000006F0 end:0x000007D4
 	.rodata     start:0x00000B70 end:0x00000E20
 	.data       start:0x000049A8 end:0x00005890
 
-dou_08.o:
+REL/dou/dou_08.s:
 	.rodata     start:0x00000E20 end:0x00000F38
 	.data       start:0x00005890 end:0x00005D60
 
-dou_09.o:
+REL/dou/dou_09.s:
 	.rodata     start:0x00000F38 end:0x000010F0
 	.data       start:0x00005D60 end:0x00006C78
 
-dou_10.o:
+REL/dou/dou_10.s:
 	.text       start:0x000007D4 end:0x000010AC
 	.rodata     start:0x000010F0 end:0x000013F8
 	.data       start:0x00006C78 end:0x00007FE0
 
-dou_11.o:
+REL/dou/dou_11.s:
 	.text       start:0x000010AC end:0x0000181C
 	.rodata     start:0x000013F8 end:0x00001B18
 	.data       start:0x00007FE0 end:0x0000E888
 
-battle_database_dou.o:
+REL/dou/battle_database_dou.s:
 	.text       start:0x0000181C end:0x000019B4
 	.rodata     start:0x00001B18 end:0x00001EE8
 	.data       start:0x0000E888 end:0x000110A8
 
-unit_kuriboo.o:
+REL/dou/unit_kuriboo.s:
 	.text       start:0x000019B4 end:0x00001ACC
 	.rodata     start:0x00001EE8 end:0x00002040
 	.data       start:0x000110A8 end:0x00011C40
 
-unit_bubble.o:
+REL/dou/unit_bubble.s:
 	.text       start:0x00001ACC end:0x00001F9C
 	.rodata     start:0x00002040 end:0x00002230
 	.data       start:0x00011C40 end:0x000136D8
 	.bss        start:0x00000008 end:0x00000060
 
-unit_killer.o:
+REL/dou/unit_killer.s:
 	.rodata     start:0x00002230 end:0x00002378
 	.data       start:0x000136D8 end:0x00014160
 
-unit_killer_cannon.o:
+REL/dou/unit_killer_cannon.s:
 	.text       start:0x00001F9C end:0x0000210C
 	.rodata     start:0x00002378 end:0x00002520
 	.data       start:0x00014160 end:0x000159C8
 
-unit_heavy_bom.o:
+REL/dou/unit_heavy_bom.s:
 	.text       start:0x0000210C end:0x0000226C
 	.rodata     start:0x00002520 end:0x00002788
 	.data       start:0x000159C8 end:0x000170F0
 
-unit_hermos.o:
+REL/dou/unit_hermos.s:
 	.text       start:0x0000226C end:0x0000273C
 	.rodata     start:0x00002788 end:0x00002970
 	.data       start:0x000170F0 end:0x00018C98
 	.bss        start:0x00000060 end:0x000000B8
 
-dou_13.o:
+REL/dou/dou_13.s:
 	.rodata     start:0x00002970 end:0x00002A00
 	.data       start:0x00018C98 end:0x00018E50
 
-dou_12.o:
+REL/dou/dou_12.s:
 	.rodata     start:0x00002A00 end:0x00002AB0
 	.data       start:0x00018E50 end:0x000190D8
 
-unit_patamet.o:
+REL/dou/unit_patamet.s:
 	.rodata     start:0x00002AB0 end:0x00002DC0
 	.data       start:0x000190D8 end:0x0001BA10
 
-evt_lect_dou.o:
+REL/dou/evt_lect_dou.s:
 	.text       start:0x0000273C end:0x00003BC4
 	.rodata     start:0x00002DC0 end:0x00002F70
 	.data       start:0x0001BA10 end:0x0001C93C

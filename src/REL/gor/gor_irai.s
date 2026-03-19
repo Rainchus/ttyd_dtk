@@ -1,0 +1,4202 @@
+.include "macros.inc"
+.file "gor_irai.o"
+
+# 0x0000F594..0x00010ABC | size: 0x1528
+.text
+.balign 4
+
+# .text:0x0 | 0xF594 | size: 0x8CC
+.fn irai_window_disp, local
+/* 0000F594 0000F660  94 21 FE 20 */	stwu r1, -0x1e0(r1)
+/* 0000F598 0000F664  7C 08 02 A6 */	mflr r0
+/* 0000F59C 0000F668  90 01 01 E4 */	stw r0, 0x1e4(r1)
+/* 0000F5A0 0000F66C  DB E1 01 D0 */	stfd f31, 0x1d0(r1)
+/* 0000F5A4 0000F670  F3 E1 01 D8 */	psq_st f31, 0x1d8(r1), 0, qr0
+/* 0000F5A8 0000F674  DB C1 01 C0 */	stfd f30, 0x1c0(r1)
+/* 0000F5AC 0000F678  F3 C1 01 C8 */	psq_st f30, 0x1c8(r1), 0, qr0
+/* 0000F5B0 0000F67C  DB A1 01 B0 */	stfd f29, 0x1b0(r1)
+/* 0000F5B4 0000F680  F3 A1 01 B8 */	psq_st f29, 0x1b8(r1), 0, qr0
+/* 0000F5B8 0000F684  DB 81 01 A0 */	stfd f28, 0x1a0(r1)
+/* 0000F5BC 0000F688  F3 81 01 A8 */	psq_st f28, 0x1a8(r1), 0, qr0
+/* 0000F5C0 0000F68C  DB 61 01 90 */	stfd f27, 0x190(r1)
+/* 0000F5C4 0000F690  F3 61 01 98 */	psq_st f27, 0x198(r1), 0, qr0
+/* 0000F5C8 0000F694  BE 81 01 60 */	stmw r20, 0x160(r1)
+/* 0000F5CC 0000F698  3C 60 00 00 */	lis r3, zero_gor_0001f188@ha
+/* 0000F5D0 0000F69C  3C A0 00 00 */	lis r5, dat_gor_0001f144@ha
+/* 0000F5D4 0000F6A0  C0 23 00 00 */	lfs f1, zero_gor_0001f188@l(r3)
+/* 0000F5D8 0000F6A4  7C 9F 23 78 */	mr r31, r4
+/* 0000F5DC 0000F6A8  80 05 00 00 */	lwz r0, dat_gor_0001f144@l(r5)
+/* 0000F5E0 0000F6AC  38 81 00 30 */	addi r4, r1, 0x30
+/* 0000F5E4 0000F6B0  FC 40 08 90 */	fmr f2, f1
+/* 0000F5E8 0000F6B4  38 60 00 00 */	li r3, 0x0
+/* 0000F5EC 0000F6B8  FC 60 08 90 */	fmr f3, f1
+/* 0000F5F0 0000F6BC  90 01 00 30 */	stw r0, 0x30(r1)
+/* 0000F5F4 0000F6C0  FC 80 08 90 */	fmr f4, f1
+/* 0000F5F8 0000F6C4  4B FF 0E AD */	bl GXSetFog
+/* 0000F5FC 0000F6C8  3C 60 00 00 */	lis r3, dat_gor_0001f148@ha
+/* 0000F600 0000F6CC  3C E0 00 00 */	lis r7, float_neg280_gor_0001f18c@ha
+/* 0000F604 0000F6D0  80 03 00 00 */	lwz r0, dat_gor_0001f148@l(r3)
+/* 0000F608 0000F6D4  3C C0 00 00 */	lis r6, float_170_gor_0001f190@ha
+/* 0000F60C 0000F6D8  39 27 00 00 */	addi r9, r7, float_neg280_gor_0001f18c@l
+/* 0000F610 0000F6DC  3C A0 00 00 */	lis r5, float_135_gor_0001f194@ha
+/* 0000F614 0000F6E0  39 06 00 00 */	addi r8, r6, float_170_gor_0001f190@l
+/* 0000F618 0000F6E4  3C 80 00 00 */	lis r4, float_90_gor_0001f198@ha
+/* 0000F61C 0000F6E8  38 C4 00 00 */	addi r6, r4, float_90_gor_0001f198@l
+/* 0000F620 0000F6EC  38 E5 00 00 */	addi r7, r5, float_135_gor_0001f194@l
+/* 0000F624 0000F6F0  3C 60 00 00 */	lis r3, float_12_gor_0001f19c@ha
+/* 0000F628 0000F6F4  90 01 00 2C */	stw r0, 0x2c(r1)
+/* 0000F62C 0000F6F8  38 A3 00 00 */	addi r5, r3, float_12_gor_0001f19c@l
+/* 0000F630 0000F6FC  C0 29 00 00 */	lfs f1, 0x0(r9)
+/* 0000F634 0000F700  C0 48 00 00 */	lfs f2, 0x0(r8)
+/* 0000F638 0000F704  38 81 00 2C */	addi r4, r1, 0x2c
+/* 0000F63C 0000F708  C0 67 00 00 */	lfs f3, 0x0(r7)
+/* 0000F640 0000F70C  38 60 00 00 */	li r3, 0x0
+/* 0000F644 0000F710  C0 86 00 00 */	lfs f4, 0x0(r6)
+/* 0000F648 0000F714  C0 A5 00 00 */	lfs f5, 0x0(r5)
+/* 0000F64C 0000F718  4B FF 0E 59 */	bl windowDispGX_Waku_col
+/* 0000F650 0000F71C  4B FF 0E 55 */	bl FontDrawStart
+/* 0000F654 0000F720  3C 80 00 00 */	lis r4, dat_gor_0001f14c@ha
+/* 0000F658 0000F724  38 61 00 28 */	addi r3, r1, 0x28
+/* 0000F65C 0000F728  80 04 00 00 */	lwz r0, dat_gor_0001f14c@l(r4)
+/* 0000F660 0000F72C  90 01 00 28 */	stw r0, 0x28(r1)
+/* 0000F664 0000F730  4B FF 0E 41 */	bl FontDrawColor
+/* 0000F668 0000F734  3C 60 00 00 */	lis r3, float_0p85_gor_0001f1a0@ha
+/* 0000F66C 0000F738  C0 23 00 00 */	lfs f1, float_0p85_gor_0001f1a0@l(r3)
+/* 0000F670 0000F73C  4B FF 0E 35 */	bl FontDrawScale
+/* 0000F674 0000F740  3C 60 00 00 */	lis r3, str_irai_name1_win_gor_0001f1a4@ha
+/* 0000F678 0000F744  38 63 00 00 */	addi r3, r3, str_irai_name1_win_gor_0001f1a4@l
+/* 0000F67C 0000F748  4B FF 0E 29 */	bl msgSearch
+/* 0000F680 0000F74C  7C 78 1B 78 */	mr r24, r3
+/* 0000F684 0000F750  4B FF 0E 21 */	bl FontDrawEdge
+/* 0000F688 0000F754  7F 03 C3 78 */	mr r3, r24
+/* 0000F68C 0000F758  4B FF 0E 19 */	bl FontGetMessageWidth
+/* 0000F690 0000F75C  54 64 04 3E */	clrlwi r4, r3, 16
+/* 0000F694 0000F760  3C 00 43 30 */	lis r0, 0x4330
+/* 0000F698 0000F764  3C 60 00 00 */	lis r3, double_to_int_mask_gor_0001f230@ha
+/* 0000F69C 0000F768  90 81 01 3C */	stw r4, 0x13c(r1)
+/* 0000F6A0 0000F76C  38 83 00 00 */	addi r4, r3, double_to_int_mask_gor_0001f230@l
+/* 0000F6A4 0000F770  90 01 01 38 */	stw r0, 0x138(r1)
+/* 0000F6A8 0000F774  3C 60 00 00 */	lis r3, float_115_gor_0001f1b4@ha
+/* 0000F6AC 0000F778  C8 44 00 00 */	lfd f2, 0x0(r4)
+/* 0000F6B0 0000F77C  C8 21 01 38 */	lfd f1, 0x138(r1)
+/* 0000F6B4 0000F780  C0 03 00 00 */	lfs f0, float_115_gor_0001f1b4@l(r3)
+/* 0000F6B8 0000F784  EF 61 10 28 */	fsubs f27, f1, f2
+/* 0000F6BC 0000F788  FC 1B 00 40 */	fcmpo cr0, f27, f0
+/* 0000F6C0 0000F78C  40 81 00 2C */	ble .L_0000F6EC
+/* 0000F6C4 0000F790  EC 20 D8 24 */	fdivs f1, f0, f27
+/* 0000F6C8 0000F794  3C 60 00 00 */	lis r3, float_1_gor_0001f1b8@ha
+/* 0000F6CC 0000F798  38 83 00 00 */	addi r4, r3, float_1_gor_0001f1b8@l
+/* 0000F6D0 0000F79C  38 61 00 D4 */	addi r3, r1, 0xd4
+/* 0000F6D4 0000F7A0  C0 44 00 00 */	lfs f2, 0x0(r4)
+/* 0000F6D8 0000F7A4  FC 60 10 90 */	fmr f3, f2
+/* 0000F6DC 0000F7A8  4B FF 0D C9 */	bl PSMTXScale
+/* 0000F6E0 0000F7AC  3C 60 00 00 */	lis r3, float_115_gor_0001f1b4@ha
+/* 0000F6E4 0000F7B0  C3 63 00 00 */	lfs f27, float_115_gor_0001f1b4@l(r3)
+/* 0000F6E8 0000F7B4  48 00 00 1C */	b .L_0000F704
+.L_0000F6EC:
+/* 0000F6EC 0000F7B8  3C 80 00 00 */	lis r4, float_1_gor_0001f1b8@ha
+/* 0000F6F0 0000F7BC  38 61 00 D4 */	addi r3, r1, 0xd4
+/* 0000F6F4 0000F7C0  C0 24 00 00 */	lfs f1, float_1_gor_0001f1b8@l(r4)
+/* 0000F6F8 0000F7C4  FC 40 08 90 */	fmr f2, f1
+/* 0000F6FC 0000F7C8  FC 60 08 90 */	fmr f3, f1
+/* 0000F700 0000F7CC  4B FF 0D A5 */	bl PSMTXScale
+.L_0000F704:
+/* 0000F704 0000F7D0  3C 60 00 00 */	lis r3, float_135_gor_0001f194@ha
+/* 0000F708 0000F7D4  3C 80 00 00 */	lis r4, float_0p5_gor_0001f1bc@ha
+/* 0000F70C 0000F7D8  38 A3 00 00 */	addi r5, r3, float_135_gor_0001f194@l
+/* 0000F710 0000F7DC  C0 05 00 00 */	lfs f0, 0x0(r5)
+/* 0000F714 0000F7E0  38 C4 00 00 */	addi r6, r4, float_0p5_gor_0001f1bc@l
+/* 0000F718 0000F7E4  3C 60 00 00 */	lis r3, float_neg280_gor_0001f18c@ha
+/* 0000F71C 0000F7E8  C0 26 00 00 */	lfs f1, 0x0(r6)
+/* 0000F720 0000F7EC  38 A3 00 00 */	addi r5, r3, float_neg280_gor_0001f18c@l
+/* 0000F724 0000F7F0  EC 40 D8 28 */	fsubs f2, f0, f27
+/* 0000F728 0000F7F4  C0 05 00 00 */	lfs f0, 0x0(r5)
+/* 0000F72C 0000F7F8  3C 60 00 00 */	lis r3, zero_gor_0001f188@ha
+/* 0000F730 0000F7FC  C0 63 00 00 */	lfs f3, zero_gor_0001f188@l(r3)
+/* 0000F734 0000F800  3C 80 00 00 */	lis r4, float_152_gor_0001f1c0@ha
+/* 0000F738 0000F804  EC 22 00 7A */	fmadds f1, f2, f1, f0
+/* 0000F73C 0000F808  C0 44 00 00 */	lfs f2, float_152_gor_0001f1c0@l(r4)
+/* 0000F740 0000F80C  38 61 01 04 */	addi r3, r1, 0x104
+/* 0000F744 0000F810  4B FF 0D 61 */	bl PSMTXTrans
+/* 0000F748 0000F814  38 61 01 04 */	addi r3, r1, 0x104
+/* 0000F74C 0000F818  38 81 00 D4 */	addi r4, r1, 0xd4
+/* 0000F750 0000F81C  7C 65 1B 78 */	mr r5, r3
+/* 0000F754 0000F820  4B FF 0D 51 */	bl PSMTXConcat
+/* 0000F758 0000F824  7F 04 C3 78 */	mr r4, r24
+/* 0000F75C 0000F828  38 61 01 04 */	addi r3, r1, 0x104
+/* 0000F760 0000F82C  4B FF 0D 45 */	bl FontDrawStringMtx
+/* 0000F764 0000F830  3C 60 00 00 */	lis r3, str_irai_name2_win_gor_0001f1c4@ha
+/* 0000F768 0000F834  38 63 00 00 */	addi r3, r3, str_irai_name2_win_gor_0001f1c4@l
+/* 0000F76C 0000F838  4B FF 0D 39 */	bl msgSearch
+/* 0000F770 0000F83C  7C 79 1B 78 */	mr r25, r3
+/* 0000F774 0000F840  4B FF 0D 31 */	bl FontGetMessageWidth
+/* 0000F778 0000F844  54 64 04 3E */	clrlwi r4, r3, 16
+/* 0000F77C 0000F848  3C 00 43 30 */	lis r0, 0x4330
+/* 0000F780 0000F84C  3C 60 00 00 */	lis r3, double_to_int_mask_gor_0001f230@ha
+/* 0000F784 0000F850  90 81 01 3C */	stw r4, 0x13c(r1)
+/* 0000F788 0000F854  38 83 00 00 */	addi r4, r3, double_to_int_mask_gor_0001f230@l
+/* 0000F78C 0000F858  90 01 01 38 */	stw r0, 0x138(r1)
+/* 0000F790 0000F85C  3C 60 00 00 */	lis r3, float_115_gor_0001f1b4@ha
+/* 0000F794 0000F860  C8 44 00 00 */	lfd f2, 0x0(r4)
+/* 0000F798 0000F864  C8 21 01 38 */	lfd f1, 0x138(r1)
+/* 0000F79C 0000F868  C0 03 00 00 */	lfs f0, float_115_gor_0001f1b4@l(r3)
+/* 0000F7A0 0000F86C  EF 81 10 28 */	fsubs f28, f1, f2
+/* 0000F7A4 0000F870  FC 1C 00 40 */	fcmpo cr0, f28, f0
+/* 0000F7A8 0000F874  40 81 00 2C */	ble .L_0000F7D4
+/* 0000F7AC 0000F878  EC 20 E0 24 */	fdivs f1, f0, f28
+/* 0000F7B0 0000F87C  3C 60 00 00 */	lis r3, float_1_gor_0001f1b8@ha
+/* 0000F7B4 0000F880  38 83 00 00 */	addi r4, r3, float_1_gor_0001f1b8@l
+/* 0000F7B8 0000F884  38 61 00 D4 */	addi r3, r1, 0xd4
+/* 0000F7BC 0000F888  C0 44 00 00 */	lfs f2, 0x0(r4)
+/* 0000F7C0 0000F88C  FC 60 10 90 */	fmr f3, f2
+/* 0000F7C4 0000F890  4B FF 0C E1 */	bl PSMTXScale
+/* 0000F7C8 0000F894  3C 60 00 00 */	lis r3, float_115_gor_0001f1b4@ha
+/* 0000F7CC 0000F898  C3 83 00 00 */	lfs f28, float_115_gor_0001f1b4@l(r3)
+/* 0000F7D0 0000F89C  48 00 00 1C */	b .L_0000F7EC
+.L_0000F7D4:
+/* 0000F7D4 0000F8A0  3C 80 00 00 */	lis r4, float_1_gor_0001f1b8@ha
+/* 0000F7D8 0000F8A4  38 61 00 D4 */	addi r3, r1, 0xd4
+/* 0000F7DC 0000F8A8  C0 24 00 00 */	lfs f1, float_1_gor_0001f1b8@l(r4)
+/* 0000F7E0 0000F8AC  FC 40 08 90 */	fmr f2, f1
+/* 0000F7E4 0000F8B0  FC 60 08 90 */	fmr f3, f1
+/* 0000F7E8 0000F8B4  4B FF 0C BD */	bl PSMTXScale
+.L_0000F7EC:
+/* 0000F7EC 0000F8B8  3C 60 00 00 */	lis r3, float_135_gor_0001f194@ha
+/* 0000F7F0 0000F8BC  3C 80 00 00 */	lis r4, float_0p5_gor_0001f1bc@ha
+/* 0000F7F4 0000F8C0  38 A3 00 00 */	addi r5, r3, float_135_gor_0001f194@l
+/* 0000F7F8 0000F8C4  C0 05 00 00 */	lfs f0, 0x0(r5)
+/* 0000F7FC 0000F8C8  38 C4 00 00 */	addi r6, r4, float_0p5_gor_0001f1bc@l
+/* 0000F800 0000F8CC  3C 60 00 00 */	lis r3, float_neg280_gor_0001f18c@ha
+/* 0000F804 0000F8D0  C0 26 00 00 */	lfs f1, 0x0(r6)
+/* 0000F808 0000F8D4  38 A3 00 00 */	addi r5, r3, float_neg280_gor_0001f18c@l
+/* 0000F80C 0000F8D8  EC 40 E0 28 */	fsubs f2, f0, f28
+/* 0000F810 0000F8DC  C0 05 00 00 */	lfs f0, 0x0(r5)
+/* 0000F814 0000F8E0  3C 60 00 00 */	lis r3, zero_gor_0001f188@ha
+/* 0000F818 0000F8E4  C0 63 00 00 */	lfs f3, zero_gor_0001f188@l(r3)
+/* 0000F81C 0000F8E8  3C 80 00 00 */	lis r4, float_127_gor_0001f1d4@ha
+/* 0000F820 0000F8EC  EC 22 00 7A */	fmadds f1, f2, f1, f0
+/* 0000F824 0000F8F0  C0 44 00 00 */	lfs f2, float_127_gor_0001f1d4@l(r4)
+/* 0000F828 0000F8F4  38 61 01 04 */	addi r3, r1, 0x104
+/* 0000F82C 0000F8F8  4B FF 0C 79 */	bl PSMTXTrans
+/* 0000F830 0000F8FC  38 61 01 04 */	addi r3, r1, 0x104
+/* 0000F834 0000F900  38 81 00 D4 */	addi r4, r1, 0xd4
+/* 0000F838 0000F904  7C 65 1B 78 */	mr r5, r3
+/* 0000F83C 0000F908  4B FF 0C 69 */	bl PSMTXConcat
+/* 0000F840 0000F90C  7F 24 CB 78 */	mr r4, r25
+/* 0000F844 0000F910  38 61 01 04 */	addi r3, r1, 0x104
+/* 0000F848 0000F914  4B FF 0C 5D */	bl FontDrawStringMtx
+/* 0000F84C 0000F918  4B FF 0C 59 */	bl FontDrawEdgeOff
+/* 0000F850 0000F91C  3C 60 00 00 */	lis r3, dat_gor_0001f150@ha
+/* 0000F854 0000F920  3C E0 00 00 */	lis r7, float_neg129_gor_0001f1d8@ha
+/* 0000F858 0000F924  80 03 00 00 */	lwz r0, dat_gor_0001f150@l(r3)
+/* 0000F85C 0000F928  3C C0 00 00 */	lis r6, float_170_gor_0001f190@ha
+/* 0000F860 0000F92C  39 27 00 00 */	addi r9, r7, float_neg129_gor_0001f1d8@l
+/* 0000F864 0000F930  3C A0 00 00 */	lis r5, float_410_gor_0001f1dc@ha
+/* 0000F868 0000F934  39 06 00 00 */	addi r8, r6, float_170_gor_0001f190@l
+/* 0000F86C 0000F938  3C 80 00 00 */	lis r4, float_340_gor_0001f1e0@ha
+/* 0000F870 0000F93C  38 C4 00 00 */	addi r6, r4, float_340_gor_0001f1e0@l
+/* 0000F874 0000F940  38 E5 00 00 */	addi r7, r5, float_410_gor_0001f1dc@l
+/* 0000F878 0000F944  3C 60 00 00 */	lis r3, float_12_gor_0001f19c@ha
+/* 0000F87C 0000F948  90 01 00 24 */	stw r0, 0x24(r1)
+/* 0000F880 0000F94C  38 A3 00 00 */	addi r5, r3, float_12_gor_0001f19c@l
+/* 0000F884 0000F950  C0 29 00 00 */	lfs f1, 0x0(r9)
+/* 0000F888 0000F954  C0 48 00 00 */	lfs f2, 0x0(r8)
+/* 0000F88C 0000F958  38 81 00 24 */	addi r4, r1, 0x24
+/* 0000F890 0000F95C  C0 67 00 00 */	lfs f3, 0x0(r7)
+/* 0000F894 0000F960  38 60 00 00 */	li r3, 0x0
+/* 0000F898 0000F964  C0 86 00 00 */	lfs f4, 0x0(r6)
+/* 0000F89C 0000F968  C0 A5 00 00 */	lfs f5, 0x0(r5)
+/* 0000F8A0 0000F96C  4B FF 0C 05 */	bl windowDispGX_Waku_col
+/* 0000F8A4 0000F970  3C 60 00 00 */	lis r3, dat_gor_0001f154@ha
+/* 0000F8A8 0000F974  3C E0 00 00 */	lis r7, float_neg103_gor_0001f1e4@ha
+/* 0000F8AC 0000F978  80 03 00 00 */	lwz r0, dat_gor_0001f154@l(r3)
+/* 0000F8B0 0000F97C  3C C0 00 00 */	lis r6, float_190_gor_0001f1e8@ha
+/* 0000F8B4 0000F980  39 27 00 00 */	addi r9, r7, float_neg103_gor_0001f1e4@l
+/* 0000F8B8 0000F984  3C A0 00 00 */	lis r5, float_120_gor_0001f1ec@ha
+/* 0000F8BC 0000F988  39 06 00 00 */	addi r8, r6, float_190_gor_0001f1e8@l
+/* 0000F8C0 0000F98C  3C 80 00 00 */	lis r4, float_40_gor_0001f1f0@ha
+/* 0000F8C4 0000F990  38 C4 00 00 */	addi r6, r4, float_40_gor_0001f1f0@l
+/* 0000F8C8 0000F994  38 E5 00 00 */	addi r7, r5, float_120_gor_0001f1ec@l
+/* 0000F8CC 0000F998  3C 60 00 00 */	lis r3, float_12_gor_0001f19c@ha
+/* 0000F8D0 0000F99C  90 01 00 20 */	stw r0, 0x20(r1)
+/* 0000F8D4 0000F9A0  38 A3 00 00 */	addi r5, r3, float_12_gor_0001f19c@l
+/* 0000F8D8 0000F9A4  C0 29 00 00 */	lfs f1, 0x0(r9)
+/* 0000F8DC 0000F9A8  C0 48 00 00 */	lfs f2, 0x0(r8)
+/* 0000F8E0 0000F9AC  38 81 00 20 */	addi r4, r1, 0x20
+/* 0000F8E4 0000F9B0  C0 67 00 00 */	lfs f3, 0x0(r7)
+/* 0000F8E8 0000F9B4  38 60 00 00 */	li r3, 0x0
+/* 0000F8EC 0000F9B8  C0 86 00 00 */	lfs f4, 0x0(r6)
+/* 0000F8F0 0000F9BC  C0 A5 00 00 */	lfs f5, 0x0(r5)
+/* 0000F8F4 0000F9C0  4B FF 0B B1 */	bl windowDispGX_Waku_col
+/* 0000F8F8 0000F9C4  3C 60 00 00 */	lis r3, dat_gor_0001f158@ha
+/* 0000F8FC 0000F9C8  3C E0 00 00 */	lis r7, float_91_gor_0001f1f4@ha
+/* 0000F900 0000F9CC  80 03 00 00 */	lwz r0, dat_gor_0001f158@l(r3)
+/* 0000F904 0000F9D0  3C C0 00 00 */	lis r6, float_190_gor_0001f1e8@ha
+/* 0000F908 0000F9D4  39 27 00 00 */	addi r9, r7, float_91_gor_0001f1f4@l
+/* 0000F90C 0000F9D8  3C A0 00 00 */	lis r5, float_120_gor_0001f1ec@ha
+/* 0000F910 0000F9DC  39 06 00 00 */	addi r8, r6, float_190_gor_0001f1e8@l
+/* 0000F914 0000F9E0  3C 80 00 00 */	lis r4, float_40_gor_0001f1f0@ha
+/* 0000F918 0000F9E4  38 C4 00 00 */	addi r6, r4, float_40_gor_0001f1f0@l
+/* 0000F91C 0000F9E8  38 E5 00 00 */	addi r7, r5, float_120_gor_0001f1ec@l
+/* 0000F920 0000F9EC  3C 60 00 00 */	lis r3, float_12_gor_0001f19c@ha
+/* 0000F924 0000F9F0  90 01 00 1C */	stw r0, 0x1c(r1)
+/* 0000F928 0000F9F4  38 A3 00 00 */	addi r5, r3, float_12_gor_0001f19c@l
+/* 0000F92C 0000F9F8  C0 29 00 00 */	lfs f1, 0x0(r9)
+/* 0000F930 0000F9FC  C0 48 00 00 */	lfs f2, 0x0(r8)
+/* 0000F934 0000FA00  38 81 00 1C */	addi r4, r1, 0x1c
+/* 0000F938 0000FA04  C0 67 00 00 */	lfs f3, 0x0(r7)
+/* 0000F93C 0000FA08  38 60 00 00 */	li r3, 0x0
+/* 0000F940 0000FA0C  C0 86 00 00 */	lfs f4, 0x0(r6)
+/* 0000F944 0000FA10  C0 A5 00 00 */	lfs f5, 0x0(r5)
+/* 0000F948 0000FA14  4B FF 0B 5D */	bl windowDispGX_Waku_col
+/* 0000F94C 0000FA18  4B FF 0B 59 */	bl FontDrawStart
+/* 0000F950 0000FA1C  3C 80 00 00 */	lis r4, dat_gor_0001f15c@ha
+/* 0000F954 0000FA20  38 61 00 18 */	addi r3, r1, 0x18
+/* 0000F958 0000FA24  80 04 00 00 */	lwz r0, dat_gor_0001f15c@l(r4)
+/* 0000F95C 0000FA28  90 01 00 18 */	stw r0, 0x18(r1)
+/* 0000F960 0000FA2C  4B FF 0B 45 */	bl FontDrawColor
+/* 0000F964 0000FA30  3C 60 00 00 */	lis r3, float_0p85_gor_0001f1a0@ha
+/* 0000F968 0000FA34  C0 23 00 00 */	lfs f1, float_0p85_gor_0001f1a0@l(r3)
+/* 0000F96C 0000FA38  4B FF 0B 39 */	bl FontDrawScale
+/* 0000F970 0000FA3C  3C 60 00 00 */	lis r3, str_irai_client_win_gor_0001f1f8@ha
+/* 0000F974 0000FA40  38 63 00 00 */	addi r3, r3, str_irai_client_win_gor_0001f1f8@l
+/* 0000F978 0000FA44  4B FF 0B 2D */	bl msgSearch
+/* 0000F97C 0000FA48  7C 79 1B 78 */	mr r25, r3
+/* 0000F980 0000FA4C  4B FF 0B 25 */	bl FontDrawEdge
+/* 0000F984 0000FA50  7F 23 CB 78 */	mr r3, r25
+/* 0000F988 0000FA54  4B FF 0B 1D */	bl FontGetMessageWidth
+/* 0000F98C 0000FA58  54 64 04 3E */	clrlwi r4, r3, 16
+/* 0000F990 0000FA5C  3C 00 43 30 */	lis r0, 0x4330
+/* 0000F994 0000FA60  3C 60 00 00 */	lis r3, double_to_int_mask_gor_0001f230@ha
+/* 0000F998 0000FA64  90 81 01 3C */	stw r4, 0x13c(r1)
+/* 0000F99C 0000FA68  38 83 00 00 */	addi r4, r3, double_to_int_mask_gor_0001f230@l
+/* 0000F9A0 0000FA6C  90 01 01 38 */	stw r0, 0x138(r1)
+/* 0000F9A4 0000FA70  3C 60 00 00 */	lis r3, float_100_gor_0001f208@ha
+/* 0000F9A8 0000FA74  C8 44 00 00 */	lfd f2, 0x0(r4)
+/* 0000F9AC 0000FA78  C8 21 01 38 */	lfd f1, 0x138(r1)
+/* 0000F9B0 0000FA7C  C0 03 00 00 */	lfs f0, float_100_gor_0001f208@l(r3)
+/* 0000F9B4 0000FA80  EF 61 10 28 */	fsubs f27, f1, f2
+/* 0000F9B8 0000FA84  FC 1B 00 40 */	fcmpo cr0, f27, f0
+/* 0000F9BC 0000FA88  40 81 00 2C */	ble .L_0000F9E8
+/* 0000F9C0 0000FA8C  EC 20 D8 24 */	fdivs f1, f0, f27
+/* 0000F9C4 0000FA90  3C 60 00 00 */	lis r3, float_1_gor_0001f1b8@ha
+/* 0000F9C8 0000FA94  38 83 00 00 */	addi r4, r3, float_1_gor_0001f1b8@l
+/* 0000F9CC 0000FA98  38 61 00 74 */	addi r3, r1, 0x74
+/* 0000F9D0 0000FA9C  C0 44 00 00 */	lfs f2, 0x0(r4)
+/* 0000F9D4 0000FAA0  FC 60 10 90 */	fmr f3, f2
+/* 0000F9D8 0000FAA4  4B FF 0A CD */	bl PSMTXScale
+/* 0000F9DC 0000FAA8  3C 60 00 00 */	lis r3, float_100_gor_0001f208@ha
+/* 0000F9E0 0000FAAC  C3 63 00 00 */	lfs f27, float_100_gor_0001f208@l(r3)
+/* 0000F9E4 0000FAB0  48 00 00 1C */	b .L_0000FA00
+.L_0000F9E8:
+/* 0000F9E8 0000FAB4  3C 80 00 00 */	lis r4, float_1_gor_0001f1b8@ha
+/* 0000F9EC 0000FAB8  38 61 00 74 */	addi r3, r1, 0x74
+/* 0000F9F0 0000FABC  C0 24 00 00 */	lfs f1, float_1_gor_0001f1b8@l(r4)
+/* 0000F9F4 0000FAC0  FC 40 08 90 */	fmr f2, f1
+/* 0000F9F8 0000FAC4  FC 60 08 90 */	fmr f3, f1
+/* 0000F9FC 0000FAC8  4B FF 0A A9 */	bl PSMTXScale
+.L_0000FA00:
+/* 0000FA00 0000FACC  3C 60 00 00 */	lis r3, float_120_gor_0001f1ec@ha
+/* 0000FA04 0000FAD0  3C 80 00 00 */	lis r4, float_0p5_gor_0001f1bc@ha
+/* 0000FA08 0000FAD4  38 A3 00 00 */	addi r5, r3, float_120_gor_0001f1ec@l
+/* 0000FA0C 0000FAD8  C0 05 00 00 */	lfs f0, 0x0(r5)
+/* 0000FA10 0000FADC  38 C4 00 00 */	addi r6, r4, float_0p5_gor_0001f1bc@l
+/* 0000FA14 0000FAE0  3C 60 00 00 */	lis r3, float_neg103_gor_0001f1e4@ha
+/* 0000FA18 0000FAE4  C0 26 00 00 */	lfs f1, 0x0(r6)
+/* 0000FA1C 0000FAE8  38 A3 00 00 */	addi r5, r3, float_neg103_gor_0001f1e4@l
+/* 0000FA20 0000FAEC  EC 40 D8 28 */	fsubs f2, f0, f27
+/* 0000FA24 0000FAF0  C0 05 00 00 */	lfs f0, 0x0(r5)
+/* 0000FA28 0000FAF4  3C 60 00 00 */	lis r3, zero_gor_0001f188@ha
+/* 0000FA2C 0000FAF8  C0 63 00 00 */	lfs f3, zero_gor_0001f188@l(r3)
+/* 0000FA30 0000FAFC  3C 80 00 00 */	lis r4, float_180_gor_0001f20c@ha
+/* 0000FA34 0000FB00  EC 22 00 7A */	fmadds f1, f2, f1, f0
+/* 0000FA38 0000FB04  C0 44 00 00 */	lfs f2, float_180_gor_0001f20c@l(r4)
+/* 0000FA3C 0000FB08  38 61 00 A4 */	addi r3, r1, 0xa4
+/* 0000FA40 0000FB0C  4B FF 0A 65 */	bl PSMTXTrans
+/* 0000FA44 0000FB10  38 61 00 A4 */	addi r3, r1, 0xa4
+/* 0000FA48 0000FB14  38 81 00 74 */	addi r4, r1, 0x74
+/* 0000FA4C 0000FB18  7C 65 1B 78 */	mr r5, r3
+/* 0000FA50 0000FB1C  4B FF 0A 55 */	bl PSMTXConcat
+/* 0000FA54 0000FB20  7F 24 CB 78 */	mr r4, r25
+/* 0000FA58 0000FB24  38 61 00 A4 */	addi r3, r1, 0xa4
+/* 0000FA5C 0000FB28  4B FF 0A 49 */	bl FontDrawStringMtx
+/* 0000FA60 0000FB2C  4B FF 0A 45 */	bl FontDrawEdgeOff
+/* 0000FA64 0000FB30  3C 60 00 00 */	lis r3, str_irai_contents_win_gor_0001f210@ha
+/* 0000FA68 0000FB34  38 63 00 00 */	addi r3, r3, str_irai_contents_win_gor_0001f210@l
+/* 0000FA6C 0000FB38  4B FF 0A 39 */	bl msgSearch
+/* 0000FA70 0000FB3C  7C 79 1B 78 */	mr r25, r3
+/* 0000FA74 0000FB40  4B FF 0A 31 */	bl FontDrawEdge
+/* 0000FA78 0000FB44  7F 23 CB 78 */	mr r3, r25
+/* 0000FA7C 0000FB48  4B FF 0A 29 */	bl FontGetMessageWidth
+/* 0000FA80 0000FB4C  54 64 04 3E */	clrlwi r4, r3, 16
+/* 0000FA84 0000FB50  3C 00 43 30 */	lis r0, 0x4330
+/* 0000FA88 0000FB54  3C 60 00 00 */	lis r3, double_to_int_mask_gor_0001f230@ha
+/* 0000FA8C 0000FB58  90 81 01 3C */	stw r4, 0x13c(r1)
+/* 0000FA90 0000FB5C  38 83 00 00 */	addi r4, r3, double_to_int_mask_gor_0001f230@l
+/* 0000FA94 0000FB60  90 01 01 38 */	stw r0, 0x138(r1)
+/* 0000FA98 0000FB64  3C 60 00 00 */	lis r3, float_100_gor_0001f208@ha
+/* 0000FA9C 0000FB68  C8 44 00 00 */	lfd f2, 0x0(r4)
+/* 0000FAA0 0000FB6C  C8 21 01 38 */	lfd f1, 0x138(r1)
+/* 0000FAA4 0000FB70  C0 03 00 00 */	lfs f0, float_100_gor_0001f208@l(r3)
+/* 0000FAA8 0000FB74  EF 61 10 28 */	fsubs f27, f1, f2
+/* 0000FAAC 0000FB78  FC 1B 00 40 */	fcmpo cr0, f27, f0
+/* 0000FAB0 0000FB7C  40 81 00 2C */	ble .L_0000FADC
+/* 0000FAB4 0000FB80  EC 20 D8 24 */	fdivs f1, f0, f27
+/* 0000FAB8 0000FB84  3C 60 00 00 */	lis r3, float_1_gor_0001f1b8@ha
+/* 0000FABC 0000FB88  38 83 00 00 */	addi r4, r3, float_1_gor_0001f1b8@l
+/* 0000FAC0 0000FB8C  38 61 00 74 */	addi r3, r1, 0x74
+/* 0000FAC4 0000FB90  C0 44 00 00 */	lfs f2, 0x0(r4)
+/* 0000FAC8 0000FB94  FC 60 10 90 */	fmr f3, f2
+/* 0000FACC 0000FB98  4B FF 09 D9 */	bl PSMTXScale
+/* 0000FAD0 0000FB9C  3C 60 00 00 */	lis r3, float_100_gor_0001f208@ha
+/* 0000FAD4 0000FBA0  C3 63 00 00 */	lfs f27, float_100_gor_0001f208@l(r3)
+/* 0000FAD8 0000FBA4  48 00 00 1C */	b .L_0000FAF4
+.L_0000FADC:
+/* 0000FADC 0000FBA8  3C 80 00 00 */	lis r4, float_1_gor_0001f1b8@ha
+/* 0000FAE0 0000FBAC  38 61 00 74 */	addi r3, r1, 0x74
+/* 0000FAE4 0000FBB0  C0 24 00 00 */	lfs f1, float_1_gor_0001f1b8@l(r4)
+/* 0000FAE8 0000FBB4  FC 40 08 90 */	fmr f2, f1
+/* 0000FAEC 0000FBB8  FC 60 08 90 */	fmr f3, f1
+/* 0000FAF0 0000FBBC  4B FF 09 B5 */	bl PSMTXScale
+.L_0000FAF4:
+/* 0000FAF4 0000FBC0  3C 60 00 00 */	lis r3, float_120_gor_0001f1ec@ha
+/* 0000FAF8 0000FBC4  3C 80 00 00 */	lis r4, float_0p5_gor_0001f1bc@ha
+/* 0000FAFC 0000FBC8  38 A3 00 00 */	addi r5, r3, float_120_gor_0001f1ec@l
+/* 0000FB00 0000FBCC  C0 05 00 00 */	lfs f0, 0x0(r5)
+/* 0000FB04 0000FBD0  38 C4 00 00 */	addi r6, r4, float_0p5_gor_0001f1bc@l
+/* 0000FB08 0000FBD4  3C 60 00 00 */	lis r3, float_91_gor_0001f1f4@ha
+/* 0000FB0C 0000FBD8  C0 26 00 00 */	lfs f1, 0x0(r6)
+/* 0000FB10 0000FBDC  38 A3 00 00 */	addi r5, r3, float_91_gor_0001f1f4@l
+/* 0000FB14 0000FBE0  EC 40 D8 28 */	fsubs f2, f0, f27
+/* 0000FB18 0000FBE4  C0 05 00 00 */	lfs f0, 0x0(r5)
+/* 0000FB1C 0000FBE8  3C 60 00 00 */	lis r3, zero_gor_0001f188@ha
+/* 0000FB20 0000FBEC  C0 63 00 00 */	lfs f3, zero_gor_0001f188@l(r3)
+/* 0000FB24 0000FBF0  3C 80 00 00 */	lis r4, float_180_gor_0001f20c@ha
+/* 0000FB28 0000FBF4  EC 22 00 7A */	fmadds f1, f2, f1, f0
+/* 0000FB2C 0000FBF8  C0 44 00 00 */	lfs f2, float_180_gor_0001f20c@l(r4)
+/* 0000FB30 0000FBFC  38 61 00 A4 */	addi r3, r1, 0xa4
+/* 0000FB34 0000FC00  4B FF 09 71 */	bl PSMTXTrans
+/* 0000FB38 0000FC04  38 61 00 A4 */	addi r3, r1, 0xa4
+/* 0000FB3C 0000FC08  38 81 00 74 */	addi r4, r1, 0x74
+/* 0000FB40 0000FC0C  7C 65 1B 78 */	mr r5, r3
+/* 0000FB44 0000FC10  4B FF 09 61 */	bl PSMTXConcat
+/* 0000FB48 0000FC14  7F 24 CB 78 */	mr r4, r25
+/* 0000FB4C 0000FC18  38 61 00 A4 */	addi r3, r1, 0xa4
+/* 0000FB50 0000FC1C  4B FF 09 55 */	bl FontDrawStringMtx
+/* 0000FB54 0000FC20  4B FF 09 51 */	bl FontDrawEdgeOff
+/* 0000FB58 0000FC24  38 61 00 40 */	addi r3, r1, 0x40
+/* 0000FB5C 0000FC28  38 81 00 3C */	addi r4, r1, 0x3c
+/* 0000FB60 0000FC2C  38 A1 00 38 */	addi r5, r1, 0x38
+/* 0000FB64 0000FC30  38 C1 00 34 */	addi r6, r1, 0x34
+/* 0000FB68 0000FC34  4B FF 09 3D */	bl GXGetScissor
+/* 0000FB6C 0000FC38  38 60 00 AF */	li r3, 0xaf
+/* 0000FB70 0000FC3C  38 80 00 62 */	li r4, 0x62
+/* 0000FB74 0000FC40  38 A0 01 9A */	li r5, 0x19a
+/* 0000FB78 0000FC44  38 C0 01 30 */	li r6, 0x130
+/* 0000FB7C 0000FC48  4B FF 09 29 */	bl GXSetScissor
+/* 0000FB80 0000FC4C  4B FF 09 25 */	bl FontDrawStart
+/* 0000FB84 0000FC50  3C 80 00 00 */	lis r4, dat_gor_0001f160@ha
+/* 0000FB88 0000FC54  38 61 00 14 */	addi r3, r1, 0x14
+/* 0000FB8C 0000FC58  80 04 00 00 */	lwz r0, dat_gor_0001f160@l(r4)
+/* 0000FB90 0000FC5C  90 01 00 14 */	stw r0, 0x14(r1)
+/* 0000FB94 0000FC60  4B FF 09 11 */	bl FontDrawColor
+/* 0000FB98 0000FC64  3C 60 00 00 */	lis r3, float_0p85_gor_0001f1a0@ha
+/* 0000FB9C 0000FC68  C0 23 00 00 */	lfs f1, float_0p85_gor_0001f1a0@l(r3)
+/* 0000FBA0 0000FC6C  4B FF 09 05 */	bl FontDrawScale
+/* 0000FBA4 0000FC70  3C C0 00 00 */	lis r6, double_to_int_gor_0001f238@ha
+/* 0000FBA8 0000FC74  3C A0 00 00 */	lis r5, double_to_int_mask_gor_0001f230@ha
+/* 0000FBAC 0000FC78  3C 80 00 00 */	lis r4, float_180_gor_0001f20c@ha
+/* 0000FBB0 0000FC7C  3C 60 00 00 */	lis r3, float_260_gor_0001f228@ha
+/* 0000FBB4 0000FC80  39 46 00 00 */	addi r10, r6, double_to_int_gor_0001f238@l
+/* 0000FBB8 0000FC84  39 25 00 00 */	addi r9, r5, double_to_int_mask_gor_0001f230@l
+/* 0000FBBC 0000FC88  38 E4 00 00 */	addi r7, r4, float_180_gor_0001f20c@l
+/* 0000FBC0 0000FC8C  38 83 00 00 */	addi r4, r3, float_260_gor_0001f228@l
+/* 0000FBC4 0000FC90  3D 00 00 00 */	lis r8, vec3_gor_0001f170@ha
+/* 0000FBC8 0000FC94  3C C0 00 00 */	lis r6, float_neg119_gor_0001f224@ha
+/* 0000FBCC 0000FC98  3C A0 00 00 */	lis r5, vec3_gor_0001f17c@ha
+/* 0000FBD0 0000FC9C  3C 60 00 00 */	lis r3, float_51_gor_0001f22c@ha
+/* 0000FBD4 0000FCA0  CB EA 00 00 */	lfd f31, 0x0(r10)
+/* 0000FBD8 0000FCA4  3B 88 00 00 */	addi r28, r8, vec3_gor_0001f170@l
+/* 0000FBDC 0000FCA8  CB 89 00 00 */	lfd f28, 0x0(r9)
+/* 0000FBE0 0000FCAC  3B A6 00 00 */	addi r29, r6, float_neg119_gor_0001f224@l
+/* 0000FBE4 0000FCB0  C3 A7 00 00 */	lfs f29, 0x0(r7)
+/* 0000FBE8 0000FCB4  3B C5 00 00 */	addi r30, r5, vec3_gor_0001f17c@l
+/* 0000FBEC 0000FCB8  C3 C4 00 00 */	lfs f30, 0x0(r4)
+/* 0000FBF0 0000FCBC  3A 83 00 00 */	addi r20, r3, float_51_gor_0001f22c@l
+/* 0000FBF4 0000FCC0  3B 00 00 00 */	li r24, 0x0
+/* 0000FBF8 0000FCC4  3A C0 00 00 */	li r22, 0x0
+/* 0000FBFC 0000FCC8  3A A0 00 00 */	li r21, 0x0
+/* 0000FC00 0000FCCC  3F 60 43 30 */	lis r27, 0x4330
+/* 0000FC04 0000FCD0  48 00 02 00 */	b .L_0000FE04
+.L_0000FC08:
+/* 0000FC08 0000FCD4  3B 55 00 08 */	addi r26, r21, 0x8
+/* 0000FC0C 0000FCD8  7C 7F D0 2E */	lwzx r3, r31, r26
+/* 0000FC10 0000FCDC  38 63 14 FE */	addi r3, r3, 0x14fe
+/* 0000FC14 0000FCE0  4B FF 08 91 */	bl swGet
+/* 0000FC18 0000FCE4  2C 03 00 00 */	cmpwi r3, 0x0
+/* 0000FC1C 0000FCE8  41 82 00 1C */	beq .L_0000FC38
+/* 0000FC20 0000FCEC  3C 80 00 00 */	lis r4, dat_gor_0001f164@ha
+/* 0000FC24 0000FCF0  38 61 00 10 */	addi r3, r1, 0x10
+/* 0000FC28 0000FCF4  80 04 00 00 */	lwz r0, dat_gor_0001f164@l(r4)
+/* 0000FC2C 0000FCF8  90 01 00 10 */	stw r0, 0x10(r1)
+/* 0000FC30 0000FCFC  4B FF 08 75 */	bl FontDrawColor
+/* 0000FC34 0000FD00  48 00 00 18 */	b .L_0000FC4C
+.L_0000FC38:
+/* 0000FC38 0000FD04  3C 80 00 00 */	lis r4, dat_gor_0001f168@ha
+/* 0000FC3C 0000FD08  38 61 00 0C */	addi r3, r1, 0xc
+/* 0000FC40 0000FD0C  80 04 00 00 */	lwz r0, dat_gor_0001f168@l(r4)
+/* 0000FC44 0000FD10  90 01 00 0C */	stw r0, 0xc(r1)
+/* 0000FC48 0000FD14  4B FF 08 5D */	bl FontDrawColor
+.L_0000FC4C:
+/* 0000FC4C 0000FD18  38 60 05 8C */	li r3, 0x58c
+/* 0000FC50 0000FD1C  4B FF 08 55 */	bl swByteGet
+/* 0000FC54 0000FD20  7C 1F D0 2E */	lwzx r0, r31, r26
+/* 0000FC58 0000FD24  7C 00 18 00 */	cmpw r0, r3
+/* 0000FC5C 0000FD28  40 82 00 18 */	bne .L_0000FC74
+/* 0000FC60 0000FD2C  3C 80 00 00 */	lis r4, dat_gor_0001f16c@ha
+/* 0000FC64 0000FD30  38 61 00 08 */	addi r3, r1, 0x8
+/* 0000FC68 0000FD34  80 04 00 00 */	lwz r0, dat_gor_0001f16c@l(r4)
+/* 0000FC6C 0000FD38  90 01 00 08 */	stw r0, 0x8(r1)
+/* 0000FC70 0000FD3C  4B FF 08 35 */	bl FontDrawColor
+.L_0000FC74:
+/* 0000FC74 0000FD40  23 36 00 8C */	subfic r25, r22, 0x8c
+/* 0000FC78 0000FD44  7C 7F D0 2E */	lwzx r3, r31, r26
+/* 0000FC7C 0000FD48  6F 20 80 00 */	xoris r0, r25, 0x8000
+/* 0000FC80 0000FD4C  93 61 01 38 */	stw r27, 0x138(r1)
+/* 0000FC84 0000FD50  3A E3 FF FF */	subi r23, r3, 0x1
+/* 0000FC88 0000FD54  C0 3F 00 98 */	lfs f1, 0x98(r31)
+/* 0000FC8C 0000FD58  90 01 01 3C */	stw r0, 0x13c(r1)
+/* 0000FC90 0000FD5C  1C 77 00 15 */	mulli r3, r23, 0x15
+/* 0000FC94 0000FD60  C8 01 01 38 */	lfd f0, 0x138(r1)
+/* 0000FC98 0000FD64  3B 43 00 9C */	addi r26, r3, 0x9c
+/* 0000FC9C 0000FD68  EC 00 F8 28 */	fsubs f0, f0, f31
+/* 0000FCA0 0000FD6C  7F 5F D2 14 */	add r26, r31, r26
+/* 0000FCA4 0000FD70  7F 43 D3 78 */	mr r3, r26
+/* 0000FCA8 0000FD74  EF 61 00 2A */	fadds f27, f1, f0
+/* 0000FCAC 0000FD78  4B FF 07 F9 */	bl FontGetMessageWidth
+/* 0000FCB0 0000FD7C  54 60 04 3E */	clrlwi r0, r3, 16
+/* 0000FCB4 0000FD80  80 9C 00 00 */	lwz r4, 0x0(r28)
+/* 0000FCB8 0000FD84  90 01 01 44 */	stw r0, 0x144(r1)
+/* 0000FCBC 0000FD88  80 7C 00 04 */	lwz r3, 0x4(r28)
+/* 0000FCC0 0000FD8C  93 61 01 40 */	stw r27, 0x140(r1)
+/* 0000FCC4 0000FD90  80 1C 00 08 */	lwz r0, 0x8(r28)
+/* 0000FCC8 0000FD94  C8 01 01 40 */	lfd f0, 0x140(r1)
+/* 0000FCCC 0000FD98  90 81 00 5C */	stw r4, 0x5c(r1)
+/* 0000FCD0 0000FD9C  EC 40 E0 28 */	fsubs f2, f0, f28
+/* 0000FCD4 0000FDA0  90 61 00 60 */	stw r3, 0x60(r1)
+/* 0000FCD8 0000FDA4  FC 02 E8 40 */	fcmpo cr0, f2, f29
+/* 0000FCDC 0000FDA8  90 01 00 64 */	stw r0, 0x64(r1)
+/* 0000FCE0 0000FDAC  40 81 00 20 */	ble .L_0000FD00
+/* 0000FCE4 0000FDB0  3C 60 00 00 */	lis r3, float_180_gor_0001f20c@ha
+/* 0000FCE8 0000FDB4  3C 80 00 00 */	lis r4, float_0p85_gor_0001f1a0@ha
+/* 0000FCEC 0000FDB8  C0 03 00 00 */	lfs f0, float_180_gor_0001f20c@l(r3)
+/* 0000FCF0 0000FDBC  C0 24 00 00 */	lfs f1, float_0p85_gor_0001f1a0@l(r4)
+/* 0000FCF4 0000FDC0  EC 00 10 24 */	fdivs f0, f0, f2
+/* 0000FCF8 0000FDC4  EC 01 00 32 */	fmuls f0, f1, f0
+/* 0000FCFC 0000FDC8  48 00 00 0C */	b .L_0000FD08
+.L_0000FD00:
+/* 0000FD00 0000FDCC  3C 60 00 00 */	lis r3, float_0p85_gor_0001f1a0@ha
+/* 0000FD04 0000FDD0  C0 03 00 00 */	lfs f0, float_0p85_gor_0001f1a0@l(r3)
+.L_0000FD08:
+/* 0000FD08 0000FDD4  D0 01 00 5C */	stfs f0, 0x5c(r1)
+/* 0000FD0C 0000FDD8  38 61 00 68 */	addi r3, r1, 0x68
+/* 0000FD10 0000FDDC  80 81 00 60 */	lwz r4, 0x60(r1)
+/* 0000FD14 0000FDE0  80 A1 00 5C */	lwz r5, 0x5c(r1)
+/* 0000FD18 0000FDE4  80 01 00 64 */	lwz r0, 0x64(r1)
+/* 0000FD1C 0000FDE8  90 A1 00 68 */	stw r5, 0x68(r1)
+/* 0000FD20 0000FDEC  90 81 00 6C */	stw r4, 0x6c(r1)
+/* 0000FD24 0000FDF0  90 01 00 70 */	stw r0, 0x70(r1)
+/* 0000FD28 0000FDF4  4B FF 07 7D */	bl FontDrawScaleVec
+/* 0000FD2C 0000FDF8  FC 40 D8 90 */	fmr f2, f27
+/* 0000FD30 0000FDFC  C0 3D 00 00 */	lfs f1, 0x0(r29)
+/* 0000FD34 0000FE00  7F 43 D3 78 */	mr r3, r26
+/* 0000FD38 0000FE04  4B FF 07 6D */	bl FontDrawString
+/* 0000FD3C 0000FE08  6F 20 80 00 */	xoris r0, r25, 0x8000
+/* 0000FD40 0000FE0C  93 61 01 48 */	stw r27, 0x148(r1)
+/* 0000FD44 0000FE10  1C 77 00 1F */	mulli r3, r23, 0x1f
+/* 0000FD48 0000FE14  C0 3F 00 98 */	lfs f1, 0x98(r31)
+/* 0000FD4C 0000FE18  90 01 01 4C */	stw r0, 0x14c(r1)
+/* 0000FD50 0000FE1C  C8 01 01 48 */	lfd f0, 0x148(r1)
+/* 0000FD54 0000FE20  3B 23 03 12 */	addi r25, r3, 0x312
+/* 0000FD58 0000FE24  7F 3F CA 14 */	add r25, r31, r25
+/* 0000FD5C 0000FE28  EC 00 F8 28 */	fsubs f0, f0, f31
+/* 0000FD60 0000FE2C  7F 23 CB 78 */	mr r3, r25
+/* 0000FD64 0000FE30  EF 61 00 2A */	fadds f27, f1, f0
+/* 0000FD68 0000FE34  4B FF 07 3D */	bl FontGetMessageWidth
+/* 0000FD6C 0000FE38  54 60 04 3E */	clrlwi r0, r3, 16
+/* 0000FD70 0000FE3C  80 9E 00 00 */	lwz r4, 0x0(r30)
+/* 0000FD74 0000FE40  90 01 01 54 */	stw r0, 0x154(r1)
+/* 0000FD78 0000FE44  80 7E 00 04 */	lwz r3, 0x4(r30)
+/* 0000FD7C 0000FE48  93 61 01 50 */	stw r27, 0x150(r1)
+/* 0000FD80 0000FE4C  80 1E 00 08 */	lwz r0, 0x8(r30)
+/* 0000FD84 0000FE50  C8 01 01 50 */	lfd f0, 0x150(r1)
+/* 0000FD88 0000FE54  90 81 00 44 */	stw r4, 0x44(r1)
+/* 0000FD8C 0000FE58  EC 40 E0 28 */	fsubs f2, f0, f28
+/* 0000FD90 0000FE5C  90 61 00 48 */	stw r3, 0x48(r1)
+/* 0000FD94 0000FE60  FC 02 F0 40 */	fcmpo cr0, f2, f30
+/* 0000FD98 0000FE64  90 01 00 4C */	stw r0, 0x4c(r1)
+/* 0000FD9C 0000FE68  40 81 00 20 */	ble .L_0000FDBC
+/* 0000FDA0 0000FE6C  3C 60 00 00 */	lis r3, float_260_gor_0001f228@ha
+/* 0000FDA4 0000FE70  3C 80 00 00 */	lis r4, float_0p85_gor_0001f1a0@ha
+/* 0000FDA8 0000FE74  C0 03 00 00 */	lfs f0, float_260_gor_0001f228@l(r3)
+/* 0000FDAC 0000FE78  C0 24 00 00 */	lfs f1, float_0p85_gor_0001f1a0@l(r4)
+/* 0000FDB0 0000FE7C  EC 00 10 24 */	fdivs f0, f0, f2
+/* 0000FDB4 0000FE80  EC 01 00 32 */	fmuls f0, f1, f0
+/* 0000FDB8 0000FE84  48 00 00 0C */	b .L_0000FDC4
+.L_0000FDBC:
+/* 0000FDBC 0000FE88  3C 60 00 00 */	lis r3, float_0p85_gor_0001f1a0@ha
+/* 0000FDC0 0000FE8C  C0 03 00 00 */	lfs f0, float_0p85_gor_0001f1a0@l(r3)
+.L_0000FDC4:
+/* 0000FDC4 0000FE90  D0 01 00 44 */	stfs f0, 0x44(r1)
+/* 0000FDC8 0000FE94  38 61 00 50 */	addi r3, r1, 0x50
+/* 0000FDCC 0000FE98  80 81 00 48 */	lwz r4, 0x48(r1)
+/* 0000FDD0 0000FE9C  80 A1 00 44 */	lwz r5, 0x44(r1)
+/* 0000FDD4 0000FEA0  80 01 00 4C */	lwz r0, 0x4c(r1)
+/* 0000FDD8 0000FEA4  90 A1 00 50 */	stw r5, 0x50(r1)
+/* 0000FDDC 0000FEA8  90 81 00 54 */	stw r4, 0x54(r1)
+/* 0000FDE0 0000FEAC  90 01 00 58 */	stw r0, 0x58(r1)
+/* 0000FDE4 0000FEB0  4B FF 06 C1 */	bl FontDrawScaleVec
+/* 0000FDE8 0000FEB4  FC 40 D8 90 */	fmr f2, f27
+/* 0000FDEC 0000FEB8  C0 34 00 00 */	lfs f1, 0x0(r20)
+/* 0000FDF0 0000FEBC  7F 23 CB 78 */	mr r3, r25
+/* 0000FDF4 0000FEC0  4B FF 06 B1 */	bl FontDrawString
+/* 0000FDF8 0000FEC4  3B 18 00 01 */	addi r24, r24, 0x1
+/* 0000FDFC 0000FEC8  3A D6 00 1E */	addi r22, r22, 0x1e
+/* 0000FE00 0000FECC  3A B5 00 04 */	addi r21, r21, 0x4
+.L_0000FE04:
+/* 0000FE04 0000FED0  80 1F 00 04 */	lwz r0, 0x4(r31)
+/* 0000FE08 0000FED4  7C 18 00 00 */	cmpw r24, r0
+/* 0000FE0C 0000FED8  41 80 FD FC */	blt .L_0000FC08
+/* 0000FE10 0000FEDC  80 61 00 40 */	lwz r3, 0x40(r1)
+/* 0000FE14 0000FEE0  80 81 00 3C */	lwz r4, 0x3c(r1)
+/* 0000FE18 0000FEE4  80 A1 00 38 */	lwz r5, 0x38(r1)
+/* 0000FE1C 0000FEE8  80 C1 00 34 */	lwz r6, 0x34(r1)
+/* 0000FE20 0000FEEC  4B FF 06 85 */	bl GXSetScissor
+/* 0000FE24 0000FEF0  E3 E1 01 D8 */	psq_l f31, 0x1d8(r1), 0, qr0
+/* 0000FE28 0000FEF4  CB E1 01 D0 */	lfd f31, 0x1d0(r1)
+/* 0000FE2C 0000FEF8  E3 C1 01 C8 */	psq_l f30, 0x1c8(r1), 0, qr0
+/* 0000FE30 0000FEFC  CB C1 01 C0 */	lfd f30, 0x1c0(r1)
+/* 0000FE34 0000FF00  E3 A1 01 B8 */	psq_l f29, 0x1b8(r1), 0, qr0
+/* 0000FE38 0000FF04  CB A1 01 B0 */	lfd f29, 0x1b0(r1)
+/* 0000FE3C 0000FF08  E3 81 01 A8 */	psq_l f28, 0x1a8(r1), 0, qr0
+/* 0000FE40 0000FF0C  CB 81 01 A0 */	lfd f28, 0x1a0(r1)
+/* 0000FE44 0000FF10  E3 61 01 98 */	psq_l f27, 0x198(r1), 0, qr0
+/* 0000FE48 0000FF14  CB 61 01 90 */	lfd f27, 0x190(r1)
+/* 0000FE4C 0000FF18  BA 81 01 60 */	lmw r20, 0x160(r1)
+/* 0000FE50 0000FF1C  80 01 01 E4 */	lwz r0, 0x1e4(r1)
+/* 0000FE54 0000FF20  7C 08 03 A6 */	mtlr r0
+/* 0000FE58 0000FF24  38 21 01 E0 */	addi r1, r1, 0x1e0
+/* 0000FE5C 0000FF28  4E 80 00 20 */	blr
+.endfn irai_window_disp
+
+# .text:0x8CC | 0xFE60 | size: 0x34
+.fn irai_end_func, local
+/* 0000FE60 0000FF2C  94 21 FF F0 */	stwu r1, -0x10(r1)
+/* 0000FE64 0000FF30  7C 08 02 A6 */	mflr r0
+/* 0000FE68 0000FF34  3C 80 00 00 */	lis r4, mapalloc_base_ptr@ha
+/* 0000FE6C 0000FF38  90 01 00 14 */	stw r0, 0x14(r1)
+/* 0000FE70 0000FF3C  38 A4 00 00 */	addi r5, r4, mapalloc_base_ptr@l
+/* 0000FE74 0000FF40  80 83 00 C4 */	lwz r4, 0xc4(r3)
+/* 0000FE78 0000FF44  80 65 00 00 */	lwz r3, 0x0(r5)
+/* 0000FE7C 0000FF48  4B FF 06 29 */	bl _mapFree
+/* 0000FE80 0000FF4C  80 01 00 14 */	lwz r0, 0x14(r1)
+/* 0000FE84 0000FF50  38 60 00 02 */	li r3, 0x2
+/* 0000FE88 0000FF54  7C 08 03 A6 */	mtlr r0
+/* 0000FE8C 0000FF58  38 21 00 10 */	addi r1, r1, 0x10
+/* 0000FE90 0000FF5C  4E 80 00 20 */	blr
+.endfn irai_end_func
+
+# .text:0x900 | 0xFE94 | size: 0x48
+.fn irai_check_func, local
+/* 0000FE94 0000FF60  80 03 00 9C */	lwz r0, 0x9c(r3)
+/* 0000FE98 0000FF64  2C 00 FF FF */	cmpwi r0, -0x1
+/* 0000FE9C 0000FF68  41 82 00 28 */	beq .L_0000FEC4
+/* 0000FEA0 0000FF6C  3C 80 00 00 */	lis r4, irai_msg_kakunin@ha
+/* 0000FEA4 0000FF70  54 00 10 3A */	slwi r0, r0, 2
+/* 0000FEA8 0000FF74  38 84 00 00 */	addi r4, r4, irai_msg_kakunin@l
+/* 0000FEAC 0000FF78  7C 84 02 14 */	add r4, r4, r0
+/* 0000FEB0 0000FF7C  80 04 FF FC */	lwz r0, -0x4(r4)
+/* 0000FEB4 0000FF80  90 03 00 CC */	stw r0, 0xcc(r3)
+/* 0000FEB8 0000FF84  80 03 00 9C */	lwz r0, 0x9c(r3)
+/* 0000FEBC 0000FF88  90 03 00 C8 */	stw r0, 0xc8(r3)
+/* 0000FEC0 0000FF8C  48 00 00 14 */	b .L_0000FED4
+.L_0000FEC4:
+/* 0000FEC4 0000FF90  38 80 00 00 */	li r4, 0x0
+/* 0000FEC8 0000FF94  38 00 FF FF */	li r0, -0x1
+/* 0000FECC 0000FF98  90 83 00 CC */	stw r4, 0xcc(r3)
+/* 0000FED0 0000FF9C  90 03 00 C8 */	stw r0, 0xc8(r3)
+.L_0000FED4:
+/* 0000FED4 0000FFA0  38 60 00 02 */	li r3, 0x2
+/* 0000FED8 0000FFA4  4E 80 00 20 */	blr
+.endfn irai_check_func
+
+# .text:0x948 | 0xFEDC | size: 0x724
+.fn irai_main_func, local
+/* 0000FEDC 0000FFA8  94 21 FF D0 */	stwu r1, -0x30(r1)
+/* 0000FEE0 0000FFAC  7C 08 02 A6 */	mflr r0
+/* 0000FEE4 0000FFB0  90 01 00 34 */	stw r0, 0x34(r1)
+/* 0000FEE8 0000FFB4  BF C1 00 28 */	stmw r30, 0x28(r1)
+/* 0000FEEC 0000FFB8  83 E3 00 C4 */	lwz r31, 0xc4(r3)
+/* 0000FEF0 0000FFBC  80 1F 00 00 */	lwz r0, 0x0(r31)
+/* 0000FEF4 0000FFC0  2C 00 00 64 */	cmpwi r0, 0x64
+/* 0000FEF8 0000FFC4  41 82 06 08 */	beq .L_00010500
+/* 0000FEFC 0000FFC8  40 80 00 1C */	bge .L_0000FF18
+/* 0000FF00 0000FFCC  2C 00 00 01 */	cmpwi r0, 0x1
+/* 0000FF04 0000FFD0  41 82 01 24 */	beq .L_00010028
+/* 0000FF08 0000FFD4  40 80 06 C0 */	bge .L_000105C8
+/* 0000FF0C 0000FFD8  2C 00 00 00 */	cmpwi r0, 0x0
+/* 0000FF10 0000FFDC  40 80 00 14 */	bge .L_0000FF24
+/* 0000FF14 0000FFE0  48 00 06 B4 */	b .L_000105C8
+.L_0000FF18:
+/* 0000FF18 0000FFE4  2C 00 00 66 */	cmpwi r0, 0x66
+/* 0000FF1C 0000FFE8  40 80 06 AC */	bge .L_000105C8
+/* 0000FF20 0000FFEC  48 00 06 4C */	b .L_0001056C
+.L_0000FF24:
+/* 0000FF24 0000FFF0  3C 60 00 00 */	lis r3, str_iraiYubi_gor_0001f240@ha
+/* 0000FF28 0000FFF4  38 80 01 F8 */	li r4, 0x1f8
+/* 0000FF2C 0000FFF8  38 63 00 00 */	addi r3, r3, str_iraiYubi_gor_0001f240@l
+/* 0000FF30 0000FFFC  4B FF 05 75 */	bl iconEntry2D
+/* 0000FF34 00010000  3C 60 00 00 */	lis r3, str_iraiYubi_gor_0001f240@ha
+/* 0000FF38 00010004  38 80 00 04 */	li r4, 0x4
+/* 0000FF3C 00010008  38 63 00 00 */	addi r3, r3, str_iraiYubi_gor_0001f240@l
+/* 0000FF40 0001000C  4B FF 05 65 */	bl iconFlagOn
+/* 0000FF44 00010010  3C 60 00 00 */	lis r3, str_iraiArrowUp_gor_0001f24c@ha
+/* 0000FF48 00010014  38 80 02 0C */	li r4, 0x20c
+/* 0000FF4C 00010018  38 63 00 00 */	addi r3, r3, str_iraiArrowUp_gor_0001f24c@l
+/* 0000FF50 0001001C  4B FF 05 55 */	bl iconEntry2D
+/* 0000FF54 00010020  3C 60 00 00 */	lis r3, str_iraiArrowUp_gor_0001f24c@ha
+/* 0000FF58 00010024  38 80 00 08 */	li r4, 0x8
+/* 0000FF5C 00010028  38 63 00 00 */	addi r3, r3, str_iraiArrowUp_gor_0001f24c@l
+/* 0000FF60 0001002C  4B FF 05 45 */	bl iconFlagOn
+/* 0000FF64 00010030  3C 60 00 00 */	lis r3, str_iraiArrowDown_gor_0001f258@ha
+/* 0000FF68 00010034  38 80 02 0C */	li r4, 0x20c
+/* 0000FF6C 00010038  38 63 00 00 */	addi r3, r3, str_iraiArrowDown_gor_0001f258@l
+/* 0000FF70 0001003C  4B FF 05 35 */	bl iconEntry2D
+/* 0000FF74 00010040  3C 60 00 00 */	lis r3, str_iraiLButton_gor_0001f268@ha
+/* 0000FF78 00010044  38 80 00 86 */	li r4, 0x86
+/* 0000FF7C 00010048  38 63 00 00 */	addi r3, r3, str_iraiLButton_gor_0001f268@l
+/* 0000FF80 0001004C  4B FF 05 25 */	bl iconEntry2D
+/* 0000FF84 00010050  3C 60 00 00 */	lis r3, float_0p8_gor_0001f274@ha
+/* 0000FF88 00010054  3C A0 00 00 */	lis r5, str_iraiLButton_gor_0001f268@ha
+/* 0000FF8C 00010058  38 83 00 00 */	addi r4, r3, float_0p8_gor_0001f274@l
+/* 0000FF90 0001005C  C0 24 00 00 */	lfs f1, 0x0(r4)
+/* 0000FF94 00010060  38 65 00 00 */	addi r3, r5, str_iraiLButton_gor_0001f268@l
+/* 0000FF98 00010064  4B FF 05 0D */	bl iconSetScale
+/* 0000FF9C 00010068  3C 60 00 00 */	lis r3, str_iraiRButton_gor_0001f278@ha
+/* 0000FFA0 0001006C  38 80 00 88 */	li r4, 0x88
+/* 0000FFA4 00010070  38 63 00 00 */	addi r3, r3, str_iraiRButton_gor_0001f278@l
+/* 0000FFA8 00010074  4B FF 04 FD */	bl iconEntry2D
+/* 0000FFAC 00010078  3C 60 00 00 */	lis r3, float_0p8_gor_0001f274@ha
+/* 0000FFB0 0001007C  3C A0 00 00 */	lis r5, str_iraiRButton_gor_0001f278@ha
+/* 0000FFB4 00010080  38 83 00 00 */	addi r4, r3, float_0p8_gor_0001f274@l
+/* 0000FFB8 00010084  C0 24 00 00 */	lfs f1, 0x0(r4)
+/* 0000FFBC 00010088  38 65 00 00 */	addi r3, r5, str_iraiRButton_gor_0001f278@l
+/* 0000FFC0 0001008C  4B FF 04 E5 */	bl iconSetScale
+/* 0000FFC4 00010090  3C 60 00 00 */	lis r3, str_iraiYubi_gor_0001f240@ha
+/* 0000FFC8 00010094  38 80 00 02 */	li r4, 0x2
+/* 0000FFCC 00010098  38 63 00 00 */	addi r3, r3, str_iraiYubi_gor_0001f240@l
+/* 0000FFD0 0001009C  4B FF 04 D5 */	bl iconFlagOn
+/* 0000FFD4 000100A0  3C 60 00 00 */	lis r3, str_iraiArrowUp_gor_0001f24c@ha
+/* 0000FFD8 000100A4  38 80 00 02 */	li r4, 0x2
+/* 0000FFDC 000100A8  38 63 00 00 */	addi r3, r3, str_iraiArrowUp_gor_0001f24c@l
+/* 0000FFE0 000100AC  4B FF 04 C5 */	bl iconFlagOn
+/* 0000FFE4 000100B0  3C 60 00 00 */	lis r3, str_iraiArrowDown_gor_0001f258@ha
+/* 0000FFE8 000100B4  38 80 00 02 */	li r4, 0x2
+/* 0000FFEC 000100B8  38 63 00 00 */	addi r3, r3, str_iraiArrowDown_gor_0001f258@l
+/* 0000FFF0 000100BC  4B FF 04 B5 */	bl iconFlagOn
+/* 0000FFF4 000100C0  3C 60 00 00 */	lis r3, str_iraiLButton_gor_0001f268@ha
+/* 0000FFF8 000100C4  38 80 00 02 */	li r4, 0x2
+/* 0000FFFC 000100C8  38 63 00 00 */	addi r3, r3, str_iraiLButton_gor_0001f268@l
+/* 00010000 000100CC  4B FF 04 A5 */	bl iconFlagOn
+/* 00010004 000100D0  3C 60 00 00 */	lis r3, str_iraiRButton_gor_0001f278@ha
+/* 00010008 000100D4  38 80 00 02 */	li r4, 0x2
+/* 0001000C 000100D8  38 63 00 00 */	addi r3, r3, str_iraiRButton_gor_0001f278@l
+/* 00010010 000100DC  4B FF 04 95 */	bl iconFlagOn
+/* 00010014 000100E0  38 00 00 01 */	li r0, 0x1
+/* 00010018 000100E4  38 60 00 2A */	li r3, 0x2a
+/* 0001001C 000100E8  90 1F 00 00 */	stw r0, 0x0(r31)
+/* 00010020 000100EC  4B FF 04 85 */	bl psndSFXOn
+/* 00010024 000100F0  48 00 05 A4 */	b .L_000105C8
+.L_00010028:
+/* 00010028 000100F4  38 60 00 00 */	li r3, 0x0
+/* 0001002C 000100F8  4B FF 04 79 */	bl keyGetButtonTrg
+/* 00010030 000100FC  54 60 05 EF */	rlwinm. r0, r3, 0, 23, 23
+/* 00010034 00010100  41 82 00 48 */	beq .L_0001007C
+/* 00010038 00010104  38 60 05 8C */	li r3, 0x58c
+/* 0001003C 00010108  4B FF 04 69 */	bl swByteGet
+/* 00010040 0001010C  2C 03 00 00 */	cmpwi r3, 0x0
+/* 00010044 00010110  40 82 00 38 */	bne .L_0001007C
+/* 00010048 00010114  80 1F 00 80 */	lwz r0, 0x80(r31)
+/* 0001004C 00010118  54 00 10 3A */	slwi r0, r0, 2
+/* 00010050 0001011C  7C 7F 02 14 */	add r3, r31, r0
+/* 00010054 00010120  80 63 00 08 */	lwz r3, 0x8(r3)
+/* 00010058 00010124  38 63 14 FE */	addi r3, r3, 0x14fe
+/* 0001005C 00010128  4B FF 04 49 */	bl swGet
+/* 00010060 0001012C  2C 03 00 00 */	cmpwi r3, 0x0
+/* 00010064 00010130  40 82 00 18 */	bne .L_0001007C
+/* 00010068 00010134  38 60 00 12 */	li r3, 0x12
+/* 0001006C 00010138  4B FF 04 39 */	bl psndSFXOn
+/* 00010070 0001013C  38 00 00 64 */	li r0, 0x64
+/* 00010074 00010140  90 1F 00 00 */	stw r0, 0x0(r31)
+/* 00010078 00010144  48 00 05 50 */	b .L_000105C8
+.L_0001007C:
+/* 0001007C 00010148  38 60 00 00 */	li r3, 0x0
+/* 00010080 0001014C  4B FF 04 25 */	bl keyGetButtonTrg
+/* 00010084 00010150  54 60 05 AD */	rlwinm. r0, r3, 0, 22, 22
+/* 00010088 00010154  41 82 00 18 */	beq .L_000100A0
+/* 0001008C 00010158  38 60 00 13 */	li r3, 0x13
+/* 00010090 0001015C  4B FF 04 15 */	bl psndSFXOn
+/* 00010094 00010160  38 00 00 65 */	li r0, 0x65
+/* 00010098 00010164  90 1F 00 00 */	stw r0, 0x0(r31)
+/* 0001009C 00010168  48 00 05 2C */	b .L_000105C8
+.L_000100A0:
+/* 000100A0 0001016C  83 DF 00 80 */	lwz r30, 0x80(r31)
+/* 000100A4 00010170  38 60 00 00 */	li r3, 0x0
+/* 000100A8 00010174  4B FF 03 FD */	bl keyGetDirRep
+/* 000100AC 00010178  54 60 04 A5 */	rlwinm. r0, r3, 0, 18, 18
+/* 000100B0 0001017C  41 82 00 54 */	beq .L_00010104
+/* 000100B4 00010180  80 7F 00 04 */	lwz r3, 0x4(r31)
+/* 000100B8 00010184  80 1F 00 80 */	lwz r0, 0x80(r31)
+/* 000100BC 00010188  38 63 FF FF */	subi r3, r3, 0x1
+/* 000100C0 0001018C  7C 03 00 00 */	cmpw r3, r0
+/* 000100C4 00010190  41 81 00 2C */	bgt .L_000100F0
+/* 000100C8 00010194  38 60 00 00 */	li r3, 0x0
+/* 000100CC 00010198  4B FF 03 D9 */	bl keyGetDirTrg
+/* 000100D0 0001019C  54 60 04 A5 */	rlwinm. r0, r3, 0, 18, 18
+/* 000100D4 000101A0  41 82 00 30 */	beq .L_00010104
+/* 000100D8 000101A4  38 60 00 05 */	li r3, 0x5
+/* 000100DC 000101A8  4B FF 03 C9 */	bl psndSFXOn
+/* 000100E0 000101AC  80 7F 00 80 */	lwz r3, 0x80(r31)
+/* 000100E4 000101B0  38 03 00 01 */	addi r0, r3, 0x1
+/* 000100E8 000101B4  90 1F 00 80 */	stw r0, 0x80(r31)
+/* 000100EC 000101B8  48 00 00 18 */	b .L_00010104
+.L_000100F0:
+/* 000100F0 000101BC  38 60 00 05 */	li r3, 0x5
+/* 000100F4 000101C0  4B FF 03 B1 */	bl psndSFXOn
+/* 000100F8 000101C4  80 7F 00 80 */	lwz r3, 0x80(r31)
+/* 000100FC 000101C8  38 03 00 01 */	addi r0, r3, 0x1
+/* 00010100 000101CC  90 1F 00 80 */	stw r0, 0x80(r31)
+.L_00010104:
+/* 00010104 000101D0  38 60 00 00 */	li r3, 0x0
+/* 00010108 000101D4  4B FF 03 9D */	bl keyGetDirRep
+/* 0001010C 000101D8  54 60 04 E7 */	rlwinm. r0, r3, 0, 19, 19
+/* 00010110 000101DC  41 82 00 4C */	beq .L_0001015C
+/* 00010114 000101E0  80 1F 00 80 */	lwz r0, 0x80(r31)
+/* 00010118 000101E4  2C 00 00 00 */	cmpwi r0, 0x0
+/* 0001011C 000101E8  41 81 00 2C */	bgt .L_00010148
+/* 00010120 000101EC  38 60 00 00 */	li r3, 0x0
+/* 00010124 000101F0  4B FF 03 81 */	bl keyGetDirTrg
+/* 00010128 000101F4  54 60 04 E7 */	rlwinm. r0, r3, 0, 19, 19
+/* 0001012C 000101F8  41 82 00 30 */	beq .L_0001015C
+/* 00010130 000101FC  38 60 00 05 */	li r3, 0x5
+/* 00010134 00010200  4B FF 03 71 */	bl psndSFXOn
+/* 00010138 00010204  80 7F 00 80 */	lwz r3, 0x80(r31)
+/* 0001013C 00010208  38 03 FF FF */	subi r0, r3, 0x1
+/* 00010140 0001020C  90 1F 00 80 */	stw r0, 0x80(r31)
+/* 00010144 00010210  48 00 00 18 */	b .L_0001015C
+.L_00010148:
+/* 00010148 00010214  38 60 00 05 */	li r3, 0x5
+/* 0001014C 00010218  4B FF 03 59 */	bl psndSFXOn
+/* 00010150 0001021C  80 7F 00 80 */	lwz r3, 0x80(r31)
+/* 00010154 00010220  38 03 FF FF */	subi r0, r3, 0x1
+/* 00010158 00010224  90 1F 00 80 */	stw r0, 0x80(r31)
+.L_0001015C:
+/* 0001015C 00010228  80 7F 00 80 */	lwz r3, 0x80(r31)
+/* 00010160 0001022C  80 1F 00 04 */	lwz r0, 0x4(r31)
+/* 00010164 00010230  7C 03 00 00 */	cmpw r3, r0
+/* 00010168 00010234  41 80 00 10 */	blt .L_00010178
+/* 0001016C 00010238  38 00 00 00 */	li r0, 0x0
+/* 00010170 0001023C  90 1F 00 80 */	stw r0, 0x80(r31)
+/* 00010174 00010240  90 1F 00 88 */	stw r0, 0x88(r31)
+.L_00010178:
+/* 00010178 00010244  80 1F 00 80 */	lwz r0, 0x80(r31)
+/* 0001017C 00010248  2C 00 00 00 */	cmpwi r0, 0x0
+/* 00010180 0001024C  40 80 00 20 */	bge .L_000101A0
+/* 00010184 00010250  80 7F 00 04 */	lwz r3, 0x4(r31)
+/* 00010188 00010254  38 03 FF FF */	subi r0, r3, 0x1
+/* 0001018C 00010258  90 1F 00 80 */	stw r0, 0x80(r31)
+/* 00010190 0001025C  80 7F 00 04 */	lwz r3, 0x4(r31)
+/* 00010194 00010260  34 03 FF F6 */	subic. r0, r3, 0xa
+/* 00010198 00010264  40 81 00 08 */	ble .L_000101A0
+/* 0001019C 00010268  90 1F 00 88 */	stw r0, 0x88(r31)
+.L_000101A0:
+/* 000101A0 0001026C  80 1F 00 80 */	lwz r0, 0x80(r31)
+/* 000101A4 00010270  7C 1E 00 00 */	cmpw r30, r0
+/* 000101A8 00010274  40 80 00 30 */	bge .L_000101D8
+/* 000101AC 00010278  80 9F 00 88 */	lwz r4, 0x88(r31)
+/* 000101B0 0001027C  7C 04 00 50 */	subf r0, r4, r0
+/* 000101B4 00010280  2C 00 00 07 */	cmpwi r0, 0x7
+/* 000101B8 00010284  40 81 00 44 */	ble .L_000101FC
+/* 000101BC 00010288  80 7F 00 04 */	lwz r3, 0x4(r31)
+/* 000101C0 0001028C  38 03 FF F6 */	subi r0, r3, 0xa
+/* 000101C4 00010290  7C 04 00 00 */	cmpw r4, r0
+/* 000101C8 00010294  40 80 00 34 */	bge .L_000101FC
+/* 000101CC 00010298  38 04 00 01 */	addi r0, r4, 0x1
+/* 000101D0 0001029C  90 1F 00 88 */	stw r0, 0x88(r31)
+/* 000101D4 000102A0  48 00 00 28 */	b .L_000101FC
+.L_000101D8:
+/* 000101D8 000102A4  40 81 00 24 */	ble .L_000101FC
+/* 000101DC 000102A8  80 7F 00 88 */	lwz r3, 0x88(r31)
+/* 000101E0 000102AC  7C 03 00 50 */	subf r0, r3, r0
+/* 000101E4 000102B0  2C 00 00 03 */	cmpwi r0, 0x3
+/* 000101E8 000102B4  40 80 00 14 */	bge .L_000101FC
+/* 000101EC 000102B8  2C 03 00 00 */	cmpwi r3, 0x0
+/* 000101F0 000102BC  40 81 00 0C */	ble .L_000101FC
+/* 000101F4 000102C0  38 03 FF FF */	subi r0, r3, 0x1
+/* 000101F8 000102C4  90 1F 00 88 */	stw r0, 0x88(r31)
+.L_000101FC:
+/* 000101FC 000102C8  80 1F 00 88 */	lwz r0, 0x88(r31)
+/* 00010200 000102CC  2C 00 00 00 */	cmpwi r0, 0x0
+/* 00010204 000102D0  40 81 00 48 */	ble .L_0001024C
+/* 00010208 000102D4  38 60 00 00 */	li r3, 0x0
+/* 0001020C 000102D8  4B FF 02 99 */	bl keyGetButtonTrg
+/* 00010210 000102DC  54 60 06 73 */	rlwinm. r0, r3, 0, 25, 25
+/* 00010214 000102E0  41 82 00 38 */	beq .L_0001024C
+/* 00010218 000102E4  80 1F 00 88 */	lwz r0, 0x88(r31)
+/* 0001021C 000102E8  38 80 00 0A */	li r4, 0xa
+/* 00010220 000102EC  2C 00 00 0A */	cmpwi r0, 0xa
+/* 00010224 000102F0  40 80 00 08 */	bge .L_0001022C
+/* 00010228 000102F4  7C 04 03 78 */	mr r4, r0
+.L_0001022C:
+/* 0001022C 000102F8  80 1F 00 88 */	lwz r0, 0x88(r31)
+/* 00010230 000102FC  38 60 00 05 */	li r3, 0x5
+/* 00010234 00010300  7C 04 00 50 */	subf r0, r4, r0
+/* 00010238 00010304  90 1F 00 88 */	stw r0, 0x88(r31)
+/* 0001023C 00010308  80 1F 00 80 */	lwz r0, 0x80(r31)
+/* 00010240 0001030C  7C 04 00 50 */	subf r0, r4, r0
+/* 00010244 00010310  90 1F 00 80 */	stw r0, 0x80(r31)
+/* 00010248 00010314  4B FF 02 5D */	bl psndSFXOn
+.L_0001024C:
+/* 0001024C 00010318  80 7F 00 04 */	lwz r3, 0x4(r31)
+/* 00010250 0001031C  80 9F 00 88 */	lwz r4, 0x88(r31)
+/* 00010254 00010320  38 03 FF F6 */	subi r0, r3, 0xa
+/* 00010258 00010324  7C 04 00 00 */	cmpw r4, r0
+/* 0001025C 00010328  40 80 00 54 */	bge .L_000102B0
+/* 00010260 0001032C  38 60 00 00 */	li r3, 0x0
+/* 00010264 00010330  4B FF 02 41 */	bl keyGetButtonTrg
+/* 00010268 00010334  54 60 06 B5 */	rlwinm. r0, r3, 0, 26, 26
+/* 0001026C 00010338  41 82 00 44 */	beq .L_000102B0
+/* 00010270 0001033C  80 7F 00 04 */	lwz r3, 0x4(r31)
+/* 00010274 00010340  38 A0 00 0A */	li r5, 0xa
+/* 00010278 00010344  80 9F 00 88 */	lwz r4, 0x88(r31)
+/* 0001027C 00010348  38 03 FF F6 */	subi r0, r3, 0xa
+/* 00010280 0001034C  7C 04 00 50 */	subf r0, r4, r0
+/* 00010284 00010350  2C 00 00 0A */	cmpwi r0, 0xa
+/* 00010288 00010354  40 80 00 08 */	bge .L_00010290
+/* 0001028C 00010358  7C 05 03 78 */	mr r5, r0
+.L_00010290:
+/* 00010290 0001035C  80 1F 00 88 */	lwz r0, 0x88(r31)
+/* 00010294 00010360  38 60 00 05 */	li r3, 0x5
+/* 00010298 00010364  7C 00 2A 14 */	add r0, r0, r5
+/* 0001029C 00010368  90 1F 00 88 */	stw r0, 0x88(r31)
+/* 000102A0 0001036C  80 1F 00 80 */	lwz r0, 0x80(r31)
+/* 000102A4 00010370  7C 00 2A 14 */	add r0, r0, r5
+/* 000102A8 00010374  90 1F 00 80 */	stw r0, 0x80(r31)
+/* 000102AC 00010378  4B FF 01 F9 */	bl psndSFXOn
+.L_000102B0:
+/* 000102B0 0001037C  80 7F 00 80 */	lwz r3, 0x80(r31)
+/* 000102B4 00010380  80 1F 00 84 */	lwz r0, 0x84(r31)
+/* 000102B8 00010384  7C 03 00 00 */	cmpw r3, r0
+/* 000102BC 00010388  41 82 00 0C */	beq .L_000102C8
+/* 000102C0 0001038C  38 00 00 00 */	li r0, 0x0
+/* 000102C4 00010390  90 1F 00 94 */	stw r0, 0x94(r31)
+.L_000102C8:
+/* 000102C8 00010394  80 1F 00 80 */	lwz r0, 0x80(r31)
+/* 000102CC 00010398  3C C0 43 30 */	lis r6, 0x4330
+/* 000102D0 0001039C  3C 60 00 00 */	lis r3, float_6_gor_0001f284@ha
+/* 000102D4 000103A0  3C 80 00 00 */	lis r4, double_to_int_gor_0001f238@ha
+/* 000102D8 000103A4  90 1F 00 84 */	stw r0, 0x84(r31)
+/* 000102DC 000103A8  38 A3 00 00 */	addi r5, r3, float_6_gor_0001f284@l
+/* 000102E0 000103AC  38 E4 00 00 */	addi r7, r4, double_to_int_gor_0001f238@l
+/* 000102E4 000103B0  3C 60 00 00 */	lis r3, zero_gor_0001f188@ha
+/* 000102E8 000103B4  80 1F 00 88 */	lwz r0, 0x88(r31)
+/* 000102EC 000103B8  38 83 00 00 */	addi r4, r3, zero_gor_0001f188@l
+/* 000102F0 000103BC  3C 60 00 00 */	lis r3, str_iraiYubi_gor_0001f240@ha
+/* 000102F4 000103C0  C0 05 00 00 */	lfs f0, 0x0(r5)
+/* 000102F8 000103C4  1D 00 00 1E */	mulli r8, r0, 0x1e
+/* 000102FC 000103C8  90 C1 00 08 */	stw r6, 0x8(r1)
+/* 00010300 000103CC  C8 47 00 00 */	lfd f2, 0x0(r7)
+/* 00010304 000103D0  38 00 FF 7F */	li r0, -0x81
+/* 00010308 000103D4  C0 9F 00 98 */	lfs f4, 0x98(r31)
+/* 0001030C 000103D8  38 63 00 00 */	addi r3, r3, str_iraiYubi_gor_0001f240@l
+/* 00010310 000103DC  6D 05 80 00 */	xoris r5, r8, 0x8000
+/* 00010314 000103E0  C0 64 00 00 */	lfs f3, 0x0(r4)
+/* 00010318 000103E4  90 A1 00 0C */	stw r5, 0xc(r1)
+/* 0001031C 000103E8  C8 21 00 08 */	lfd f1, 0x8(r1)
+/* 00010320 000103EC  90 C1 00 10 */	stw r6, 0x10(r1)
+/* 00010324 000103F0  EC 21 10 28 */	fsubs f1, f1, f2
+/* 00010328 000103F4  90 C1 00 18 */	stw r6, 0x18(r1)
+/* 0001032C 000103F8  EC 21 20 28 */	fsubs f1, f1, f4
+/* 00010330 000103FC  EC 01 00 24 */	fdivs f0, f1, f0
+/* 00010334 00010400  EC 04 00 2A */	fadds f0, f4, f0
+/* 00010338 00010404  D0 1F 00 98 */	stfs f0, 0x98(r31)
+/* 0001033C 00010408  90 1F 00 8C */	stw r0, 0x8c(r31)
+/* 00010340 0001040C  80 9F 00 88 */	lwz r4, 0x88(r31)
+/* 00010344 00010410  80 1F 00 80 */	lwz r0, 0x80(r31)
+/* 00010348 00010414  7C 04 00 50 */	subf r0, r4, r0
+/* 0001034C 00010418  1C 00 00 1E */	mulli r0, r0, 0x1e
+/* 00010350 0001041C  20 00 00 78 */	subfic r0, r0, 0x78
+/* 00010354 00010420  90 1F 00 90 */	stw r0, 0x90(r31)
+/* 00010358 00010424  80 9F 00 8C */	lwz r4, 0x8c(r31)
+/* 0001035C 00010428  80 1F 00 90 */	lwz r0, 0x90(r31)
+/* 00010360 0001042C  6C 84 80 00 */	xoris r4, r4, 0x8000
+/* 00010364 00010430  6C 00 80 00 */	xoris r0, r0, 0x8000
+/* 00010368 00010434  90 81 00 14 */	stw r4, 0x14(r1)
+/* 0001036C 00010438  90 01 00 1C */	stw r0, 0x1c(r1)
+/* 00010370 0001043C  C8 21 00 10 */	lfd f1, 0x10(r1)
+/* 00010374 00010440  C8 01 00 18 */	lfd f0, 0x18(r1)
+/* 00010378 00010444  EC 21 10 28 */	fsubs f1, f1, f2
+/* 0001037C 00010448  EC 40 10 28 */	fsubs f2, f0, f2
+/* 00010380 0001044C  4B FF 01 25 */	bl iconSetPos
+/* 00010384 00010450  3C 60 00 00 */	lis r3, str_iraiYubi_gor_0001f240@ha
+/* 00010388 00010454  38 80 00 02 */	li r4, 0x2
+/* 0001038C 00010458  38 63 00 00 */	addi r3, r3, str_iraiYubi_gor_0001f240@l
+/* 00010390 0001045C  4B FF 01 15 */	bl iconFlagOff
+/* 00010394 00010460  3C A0 00 00 */	lis r5, float_231_gor_0001f288@ha
+/* 00010398 00010464  3C 80 00 00 */	lis r4, float_178_gor_0001f28c@ha
+/* 0001039C 00010468  38 C5 00 00 */	addi r6, r5, float_231_gor_0001f288@l
+/* 000103A0 0001046C  3C 60 00 00 */	lis r3, zero_gor_0001f188@ha
+/* 000103A4 00010470  38 A4 00 00 */	addi r5, r4, float_178_gor_0001f28c@l
+/* 000103A8 00010474  3C E0 00 00 */	lis r7, str_iraiArrowUp_gor_0001f24c@ha
+/* 000103AC 00010478  38 83 00 00 */	addi r4, r3, zero_gor_0001f188@l
+/* 000103B0 0001047C  C0 26 00 00 */	lfs f1, 0x0(r6)
+/* 000103B4 00010480  C0 45 00 00 */	lfs f2, 0x0(r5)
+/* 000103B8 00010484  38 67 00 00 */	addi r3, r7, str_iraiArrowUp_gor_0001f24c@l
+/* 000103BC 00010488  C0 64 00 00 */	lfs f3, 0x0(r4)
+/* 000103C0 0001048C  4B FF 00 E5 */	bl iconSetPos
+/* 000103C4 00010490  3C A0 00 00 */	lis r5, float_231_gor_0001f288@ha
+/* 000103C8 00010494  3C 80 00 00 */	lis r4, float_neg190_gor_0001f290@ha
+/* 000103CC 00010498  38 C5 00 00 */	addi r6, r5, float_231_gor_0001f288@l
+/* 000103D0 0001049C  3C 60 00 00 */	lis r3, zero_gor_0001f188@ha
+/* 000103D4 000104A0  38 A4 00 00 */	addi r5, r4, float_neg190_gor_0001f290@l
+/* 000103D8 000104A4  3C E0 00 00 */	lis r7, str_iraiArrowDown_gor_0001f258@ha
+/* 000103DC 000104A8  38 83 00 00 */	addi r4, r3, zero_gor_0001f188@l
+/* 000103E0 000104AC  C0 26 00 00 */	lfs f1, 0x0(r6)
+/* 000103E4 000104B0  C0 45 00 00 */	lfs f2, 0x0(r5)
+/* 000103E8 000104B4  38 67 00 00 */	addi r3, r7, str_iraiArrowDown_gor_0001f258@l
+/* 000103EC 000104B8  C0 64 00 00 */	lfs f3, 0x0(r4)
+/* 000103F0 000104BC  4B FF 00 B5 */	bl iconSetPos
+/* 000103F4 000104C0  3C A0 00 00 */	lis r5, float_261_gor_0001f294@ha
+/* 000103F8 000104C4  3C 80 00 00 */	lis r4, float_146_gor_0001f298@ha
+/* 000103FC 000104C8  38 C5 00 00 */	addi r6, r5, float_261_gor_0001f294@l
+/* 00010400 000104CC  3C 60 00 00 */	lis r3, zero_gor_0001f188@ha
+/* 00010404 000104D0  38 A4 00 00 */	addi r5, r4, float_146_gor_0001f298@l
+/* 00010408 000104D4  3C E0 00 00 */	lis r7, str_iraiLButton_gor_0001f268@ha
+/* 0001040C 000104D8  38 83 00 00 */	addi r4, r3, zero_gor_0001f188@l
+/* 00010410 000104DC  C0 26 00 00 */	lfs f1, 0x0(r6)
+/* 00010414 000104E0  C0 45 00 00 */	lfs f2, 0x0(r5)
+/* 00010418 000104E4  38 67 00 00 */	addi r3, r7, str_iraiLButton_gor_0001f268@l
+/* 0001041C 000104E8  C0 64 00 00 */	lfs f3, 0x0(r4)
+/* 00010420 000104EC  4B FF 00 85 */	bl iconSetPos
+/* 00010424 000104F0  3C A0 00 00 */	lis r5, float_261_gor_0001f294@ha
+/* 00010428 000104F4  3C 80 00 00 */	lis r4, float_neg190_gor_0001f290@ha
+/* 0001042C 000104F8  38 C5 00 00 */	addi r6, r5, float_261_gor_0001f294@l
+/* 00010430 000104FC  3C 60 00 00 */	lis r3, zero_gor_0001f188@ha
+/* 00010434 00010500  38 A4 00 00 */	addi r5, r4, float_neg190_gor_0001f290@l
+/* 00010438 00010504  3C E0 00 00 */	lis r7, str_iraiRButton_gor_0001f278@ha
+/* 0001043C 00010508  38 83 00 00 */	addi r4, r3, zero_gor_0001f188@l
+/* 00010440 0001050C  C0 26 00 00 */	lfs f1, 0x0(r6)
+/* 00010444 00010510  C0 45 00 00 */	lfs f2, 0x0(r5)
+/* 00010448 00010514  38 67 00 00 */	addi r3, r7, str_iraiRButton_gor_0001f278@l
+/* 0001044C 00010518  C0 64 00 00 */	lfs f3, 0x0(r4)
+/* 00010450 0001051C  4B FF 00 55 */	bl iconSetPos
+/* 00010454 00010520  80 1F 00 88 */	lwz r0, 0x88(r31)
+/* 00010458 00010524  2C 00 00 00 */	cmpwi r0, 0x0
+/* 0001045C 00010528  40 82 00 28 */	bne .L_00010484
+/* 00010460 0001052C  3C 60 00 00 */	lis r3, str_iraiArrowUp_gor_0001f24c@ha
+/* 00010464 00010530  38 80 00 02 */	li r4, 0x2
+/* 00010468 00010534  38 63 00 00 */	addi r3, r3, str_iraiArrowUp_gor_0001f24c@l
+/* 0001046C 00010538  4B FF 00 39 */	bl iconFlagOn
+/* 00010470 0001053C  3C 60 00 00 */	lis r3, str_iraiLButton_gor_0001f268@ha
+/* 00010474 00010540  38 80 00 02 */	li r4, 0x2
+/* 00010478 00010544  38 63 00 00 */	addi r3, r3, str_iraiLButton_gor_0001f268@l
+/* 0001047C 00010548  4B FF 00 29 */	bl iconFlagOn
+/* 00010480 0001054C  48 00 00 24 */	b .L_000104A4
+.L_00010484:
+/* 00010484 00010550  3C 60 00 00 */	lis r3, str_iraiArrowUp_gor_0001f24c@ha
+/* 00010488 00010554  38 80 00 02 */	li r4, 0x2
+/* 0001048C 00010558  38 63 00 00 */	addi r3, r3, str_iraiArrowUp_gor_0001f24c@l
+/* 00010490 0001055C  4B FF 00 15 */	bl iconFlagOff
+/* 00010494 00010560  3C 60 00 00 */	lis r3, str_iraiLButton_gor_0001f268@ha
+/* 00010498 00010564  38 80 00 02 */	li r4, 0x2
+/* 0001049C 00010568  38 63 00 00 */	addi r3, r3, str_iraiLButton_gor_0001f268@l
+/* 000104A0 0001056C  4B FF 00 05 */	bl iconFlagOff
+.L_000104A4:
+/* 000104A4 00010570  80 7F 00 04 */	lwz r3, 0x4(r31)
+/* 000104A8 00010574  80 9F 00 88 */	lwz r4, 0x88(r31)
+/* 000104AC 00010578  38 03 FF F6 */	subi r0, r3, 0xa
+/* 000104B0 0001057C  7C 04 00 00 */	cmpw r4, r0
+/* 000104B4 00010580  41 80 00 28 */	blt .L_000104DC
+/* 000104B8 00010584  3C 60 00 00 */	lis r3, str_iraiArrowDown_gor_0001f258@ha
+/* 000104BC 00010588  38 80 00 02 */	li r4, 0x2
+/* 000104C0 0001058C  38 63 00 00 */	addi r3, r3, str_iraiArrowDown_gor_0001f258@l
+/* 000104C4 00010590  4B FE FF E1 */	bl iconFlagOn
+/* 000104C8 00010594  3C 60 00 00 */	lis r3, str_iraiRButton_gor_0001f278@ha
+/* 000104CC 00010598  38 80 00 02 */	li r4, 0x2
+/* 000104D0 0001059C  38 63 00 00 */	addi r3, r3, str_iraiRButton_gor_0001f278@l
+/* 000104D4 000105A0  4B FE FF D1 */	bl iconFlagOn
+/* 000104D8 000105A4  48 00 00 F0 */	b .L_000105C8
+.L_000104DC:
+/* 000104DC 000105A8  3C 60 00 00 */	lis r3, str_iraiArrowDown_gor_0001f258@ha
+/* 000104E0 000105AC  38 80 00 02 */	li r4, 0x2
+/* 000104E4 000105B0  38 63 00 00 */	addi r3, r3, str_iraiArrowDown_gor_0001f258@l
+/* 000104E8 000105B4  4B FE FF BD */	bl iconFlagOff
+/* 000104EC 000105B8  3C 60 00 00 */	lis r3, str_iraiRButton_gor_0001f278@ha
+/* 000104F0 000105BC  38 80 00 02 */	li r4, 0x2
+/* 000104F4 000105C0  38 63 00 00 */	addi r3, r3, str_iraiRButton_gor_0001f278@l
+/* 000104F8 000105C4  4B FE FF AD */	bl iconFlagOff
+/* 000104FC 000105C8  48 00 00 CC */	b .L_000105C8
+.L_00010500:
+/* 00010500 000105CC  80 1F 00 80 */	lwz r0, 0x80(r31)
+/* 00010504 000105D0  3C 80 00 00 */	lis r4, str_iraiYubi_gor_0001f240@ha
+/* 00010508 000105D4  38 A0 00 00 */	li r5, 0x0
+/* 0001050C 000105D8  54 06 10 3A */	slwi r6, r0, 2
+/* 00010510 000105DC  38 04 00 00 */	addi r0, r4, str_iraiYubi_gor_0001f240@l
+/* 00010514 000105E0  7C 9F 32 14 */	add r4, r31, r6
+/* 00010518 000105E4  80 84 00 08 */	lwz r4, 0x8(r4)
+/* 0001051C 000105E8  90 83 00 9C */	stw r4, 0x9c(r3)
+/* 00010520 000105EC  7C 03 03 78 */	mr r3, r0
+/* 00010524 000105F0  90 BF 00 00 */	stw r5, 0x0(r31)
+/* 00010528 000105F4  4B FE FF 7D */	bl iconDelete
+/* 0001052C 000105F8  3C 60 00 00 */	lis r3, str_iraiArrowUp_gor_0001f24c@ha
+/* 00010530 000105FC  38 63 00 00 */	addi r3, r3, str_iraiArrowUp_gor_0001f24c@l
+/* 00010534 00010600  4B FE FF 71 */	bl iconDelete
+/* 00010538 00010604  3C 60 00 00 */	lis r3, str_iraiArrowDown_gor_0001f258@ha
+/* 0001053C 00010608  38 63 00 00 */	addi r3, r3, str_iraiArrowDown_gor_0001f258@l
+/* 00010540 0001060C  4B FE FF 65 */	bl iconDelete
+/* 00010544 00010610  3C 60 00 00 */	lis r3, str_iraiLButton_gor_0001f268@ha
+/* 00010548 00010614  38 63 00 00 */	addi r3, r3, str_iraiLButton_gor_0001f268@l
+/* 0001054C 00010618  4B FE FF 59 */	bl iconDelete
+/* 00010550 0001061C  3C 60 00 00 */	lis r3, str_iraiRButton_gor_0001f278@ha
+/* 00010554 00010620  38 63 00 00 */	addi r3, r3, str_iraiRButton_gor_0001f278@l
+/* 00010558 00010624  4B FE FF 4D */	bl iconDelete
+/* 0001055C 00010628  38 60 00 2B */	li r3, 0x2b
+/* 00010560 0001062C  4B FE FF 45 */	bl psndSFXOn
+/* 00010564 00010630  38 60 00 02 */	li r3, 0x2
+/* 00010568 00010634  48 00 00 84 */	b .L_000105EC
+.L_0001056C:
+/* 0001056C 00010638  38 00 FF FF */	li r0, -0x1
+/* 00010570 0001063C  3C 80 00 00 */	lis r4, str_iraiYubi_gor_0001f240@ha
+/* 00010574 00010640  90 03 00 9C */	stw r0, 0x9c(r3)
+/* 00010578 00010644  38 00 00 00 */	li r0, 0x0
+/* 0001057C 00010648  38 64 00 00 */	addi r3, r4, str_iraiYubi_gor_0001f240@l
+/* 00010580 0001064C  90 1F 00 00 */	stw r0, 0x0(r31)
+/* 00010584 00010650  4B FE FF 21 */	bl iconDelete
+/* 00010588 00010654  3C 60 00 00 */	lis r3, str_iraiArrowUp_gor_0001f24c@ha
+/* 0001058C 00010658  38 63 00 00 */	addi r3, r3, str_iraiArrowUp_gor_0001f24c@l
+/* 00010590 0001065C  4B FE FF 15 */	bl iconDelete
+/* 00010594 00010660  3C 60 00 00 */	lis r3, str_iraiArrowDown_gor_0001f258@ha
+/* 00010598 00010664  38 63 00 00 */	addi r3, r3, str_iraiArrowDown_gor_0001f258@l
+/* 0001059C 00010668  4B FE FF 09 */	bl iconDelete
+/* 000105A0 0001066C  3C 60 00 00 */	lis r3, str_iraiLButton_gor_0001f268@ha
+/* 000105A4 00010670  38 63 00 00 */	addi r3, r3, str_iraiLButton_gor_0001f268@l
+/* 000105A8 00010674  4B FE FE FD */	bl iconDelete
+/* 000105AC 00010678  3C 60 00 00 */	lis r3, str_iraiRButton_gor_0001f278@ha
+/* 000105B0 0001067C  38 63 00 00 */	addi r3, r3, str_iraiRButton_gor_0001f278@l
+/* 000105B4 00010680  4B FE FE F1 */	bl iconDelete
+/* 000105B8 00010684  38 60 00 2B */	li r3, 0x2b
+/* 000105BC 00010688  4B FE FE E9 */	bl psndSFXOn
+/* 000105C0 0001068C  38 60 00 02 */	li r3, 0x2
+/* 000105C4 00010690  48 00 00 28 */	b .L_000105EC
+.L_000105C8:
+/* 000105C8 00010694  3C 80 00 00 */	lis r4, float_300_gor_0001f29c@ha
+/* 000105CC 00010698  3C 60 00 00 */	lis r3, irai_window_disp@ha
+/* 000105D0 0001069C  C0 24 00 00 */	lfs f1, float_300_gor_0001f29c@l(r4)
+/* 000105D4 000106A0  38 A3 00 00 */	addi r5, r3, irai_window_disp@l
+/* 000105D8 000106A4  7F E6 FB 78 */	mr r6, r31
+/* 000105DC 000106A8  38 60 00 08 */	li r3, 0x8
+/* 000105E0 000106AC  38 80 00 00 */	li r4, 0x0
+/* 000105E4 000106B0  4B FE FE C1 */	bl dispEntry
+/* 000105E8 000106B4  38 60 00 00 */	li r3, 0x0
+.L_000105EC:
+/* 000105EC 000106B8  BB C1 00 28 */	lmw r30, 0x28(r1)
+/* 000105F0 000106BC  80 01 00 34 */	lwz r0, 0x34(r1)
+/* 000105F4 000106C0  7C 08 03 A6 */	mtlr r0
+/* 000105F8 000106C4  38 21 00 30 */	addi r1, r1, 0x30
+/* 000105FC 000106C8  4E 80 00 20 */	blr
+.endfn irai_main_func
+
+# .text:0x106C | 0x10600 | size: 0x2B0
+.fn irai_init_func, local
+/* 00010600 000106CC  94 21 FF D0 */	stwu r1, -0x30(r1)
+/* 00010604 000106D0  7C 08 02 A6 */	mflr r0
+/* 00010608 000106D4  3C 80 F8 40 */	lis r4, 0xf840
+/* 0001060C 000106D8  90 01 00 34 */	stw r0, 0x34(r1)
+/* 00010610 000106DC  BF 01 00 10 */	stmw r24, 0x10(r1)
+/* 00010614 000106E0  7C 7E 1B 78 */	mr r30, r3
+/* 00010618 000106E4  38 64 70 AD */	addi r3, r4, 0x70ad
+/* 0001061C 000106E8  38 84 70 9D */	addi r4, r4, 0x709d
+/* 00010620 000106EC  38 03 00 01 */	addi r0, r3, 0x1
+/* 00010624 000106F0  7C 04 00 50 */	subf r0, r4, r0
+/* 00010628 000106F4  7C 09 03 A6 */	mtctr r0
+/* 0001062C 000106F8  7C 04 18 00 */	cmpw r4, r3
+/* 00010630 000106FC  41 81 00 08 */	bgt .L_00010638
+.L_00010634:
+/* 00010634 00010700  42 00 00 00 */	bdnz .L_00010634
+.L_00010638:
+/* 00010638 00010704  3C 80 F5 DE */	lis r4, 0xf5de
+/* 0001063C 00010708  38 64 07 42 */	addi r3, r4, 0x742
+/* 00010640 0001070C  38 84 07 3D */	addi r4, r4, 0x73d
+/* 00010644 00010710  38 03 00 01 */	addi r0, r3, 0x1
+/* 00010648 00010714  7C 04 00 50 */	subf r0, r4, r0
+/* 0001064C 00010718  7C 09 03 A6 */	mtctr r0
+/* 00010650 0001071C  7C 04 18 00 */	cmpw r4, r3
+/* 00010654 00010720  41 81 00 08 */	bgt .L_0001065C
+.L_00010658:
+/* 00010658 00010724  42 00 00 00 */	bdnz .L_00010658
+.L_0001065C:
+/* 0001065C 00010728  3C 60 00 00 */	lis r3, mapalloc_base_ptr@ha
+/* 00010660 0001072C  38 80 41 6C */	li r4, 0x416c
+/* 00010664 00010730  38 63 00 00 */	addi r3, r3, mapalloc_base_ptr@l
+/* 00010668 00010734  80 63 00 00 */	lwz r3, 0x0(r3)
+/* 0001066C 00010738  4B FE FE 39 */	bl _mapAlloc
+/* 00010670 0001073C  7C 7F 1B 78 */	mr r31, r3
+/* 00010674 00010740  38 80 00 00 */	li r4, 0x0
+/* 00010678 00010744  38 A0 41 6C */	li r5, 0x416c
+/* 0001067C 00010748  4B FE FE 29 */	bl memset
+/* 00010680 0001074C  38 00 00 00 */	li r0, 0x0
+/* 00010684 00010750  38 60 00 00 */	li r3, 0x0
+/* 00010688 00010754  90 1F 00 00 */	stw r0, 0x0(r31)
+/* 0001068C 00010758  4B FE FE 19 */	bl swByteGet
+/* 00010690 0001075C  38 80 00 01 */	li r4, 0x1
+/* 00010694 00010760  38 00 00 02 */	li r0, 0x2
+/* 00010698 00010764  90 9F 00 08 */	stw r4, 0x8(r31)
+/* 0001069C 00010768  38 C0 00 03 */	li r6, 0x3
+/* 000106A0 0001076C  38 A0 00 04 */	li r5, 0x4
+/* 000106A4 00010770  38 80 00 05 */	li r4, 0x5
+/* 000106A8 00010774  90 1F 00 0C */	stw r0, 0xc(r31)
+/* 000106AC 00010778  2C 03 00 38 */	cmpwi r3, 0x38
+/* 000106B0 0001077C  38 00 00 06 */	li r0, 0x6
+/* 000106B4 00010780  90 DF 00 10 */	stw r6, 0x10(r31)
+/* 000106B8 00010784  90 BF 00 14 */	stw r5, 0x14(r31)
+/* 000106BC 00010788  90 9F 00 18 */	stw r4, 0x18(r31)
+/* 000106C0 0001078C  90 1F 00 1C */	stw r0, 0x1c(r31)
+/* 000106C4 00010790  41 80 00 1C */	blt .L_000106E0
+/* 000106C8 00010794  38 00 00 07 */	li r0, 0x7
+/* 000106CC 00010798  38 80 00 08 */	li r4, 0x8
+/* 000106D0 0001079C  90 1F 00 20 */	stw r0, 0x20(r31)
+/* 000106D4 000107A0  38 00 00 09 */	li r0, 0x9
+/* 000106D8 000107A4  90 9F 00 24 */	stw r4, 0x24(r31)
+/* 000106DC 000107A8  90 1F 00 28 */	stw r0, 0x28(r31)
+.L_000106E0:
+/* 000106E0 000107AC  2C 03 00 70 */	cmpwi r3, 0x70
+/* 000106E4 000107B0  41 80 00 1C */	blt .L_00010700
+/* 000106E8 000107B4  38 00 00 0A */	li r0, 0xa
+/* 000106EC 000107B8  38 80 00 0B */	li r4, 0xb
+/* 000106F0 000107BC  90 1F 00 2C */	stw r0, 0x2c(r31)
+/* 000106F4 000107C0  38 00 00 0C */	li r0, 0xc
+/* 000106F8 000107C4  90 9F 00 30 */	stw r4, 0x30(r31)
+/* 000106FC 000107C8  90 1F 00 34 */	stw r0, 0x34(r31)
+.L_00010700:
+/* 00010700 000107CC  2C 03 00 A4 */	cmpwi r3, 0xa4
+/* 00010704 000107D0  41 80 00 1C */	blt .L_00010720
+/* 00010708 000107D4  38 00 00 0D */	li r0, 0xd
+/* 0001070C 000107D8  38 80 00 0E */	li r4, 0xe
+/* 00010710 000107DC  90 1F 00 38 */	stw r0, 0x38(r31)
+/* 00010714 000107E0  38 00 00 0F */	li r0, 0xf
+/* 00010718 000107E4  90 9F 00 3C */	stw r4, 0x3c(r31)
+/* 0001071C 000107E8  90 1F 00 40 */	stw r0, 0x40(r31)
+.L_00010720:
+/* 00010720 000107EC  2C 03 00 D7 */	cmpwi r3, 0xd7
+/* 00010724 000107F0  41 80 00 1C */	blt .L_00010740
+/* 00010728 000107F4  38 00 00 10 */	li r0, 0x10
+/* 0001072C 000107F8  38 80 00 11 */	li r4, 0x11
+/* 00010730 000107FC  90 1F 00 44 */	stw r0, 0x44(r31)
+/* 00010734 00010800  38 00 00 12 */	li r0, 0x12
+/* 00010738 00010804  90 9F 00 48 */	stw r4, 0x48(r31)
+/* 0001073C 00010808  90 1F 00 4C */	stw r0, 0x4c(r31)
+.L_00010740:
+/* 00010740 0001080C  2C 03 01 05 */	cmpwi r3, 0x105
+/* 00010744 00010810  41 80 00 14 */	blt .L_00010758
+/* 00010748 00010814  38 80 00 14 */	li r4, 0x14
+/* 0001074C 00010818  38 00 00 15 */	li r0, 0x15
+/* 00010750 0001081C  90 9F 00 50 */	stw r4, 0x50(r31)
+/* 00010754 00010820  90 1F 00 54 */	stw r0, 0x54(r31)
+.L_00010758:
+/* 00010758 00010824  2C 03 01 19 */	cmpwi r3, 0x119
+/* 0001075C 00010828  41 80 00 0C */	blt .L_00010768
+/* 00010760 0001082C  38 00 00 13 */	li r0, 0x13
+/* 00010764 00010830  90 1F 00 58 */	stw r0, 0x58(r31)
+.L_00010768:
+/* 00010768 00010834  2C 03 01 53 */	cmpwi r3, 0x153
+/* 0001076C 00010838  41 80 00 1C */	blt .L_00010788
+/* 00010770 0001083C  38 00 00 16 */	li r0, 0x16
+/* 00010774 00010840  38 80 00 17 */	li r4, 0x17
+/* 00010778 00010844  90 1F 00 5C */	stw r0, 0x5c(r31)
+/* 0001077C 00010848  38 00 00 18 */	li r0, 0x18
+/* 00010780 0001084C  90 9F 00 60 */	stw r4, 0x60(r31)
+/* 00010784 00010850  90 1F 00 64 */	stw r0, 0x64(r31)
+.L_00010788:
+/* 00010788 00010854  2C 03 01 75 */	cmpwi r3, 0x175
+/* 0001078C 00010858  41 80 00 1C */	blt .L_000107A8
+/* 00010790 0001085C  38 00 00 19 */	li r0, 0x19
+/* 00010794 00010860  38 80 00 1A */	li r4, 0x1a
+/* 00010798 00010864  90 1F 00 68 */	stw r0, 0x68(r31)
+/* 0001079C 00010868  38 00 00 1B */	li r0, 0x1b
+/* 000107A0 0001086C  90 9F 00 6C */	stw r4, 0x6c(r31)
+/* 000107A4 00010870  90 1F 00 70 */	stw r0, 0x70(r31)
+.L_000107A8:
+/* 000107A8 00010874  2C 03 01 91 */	cmpwi r3, 0x191
+/* 000107AC 00010878  41 80 00 1C */	blt .L_000107C8
+/* 000107B0 0001087C  38 00 00 1C */	li r0, 0x1c
+/* 000107B4 00010880  38 60 00 1D */	li r3, 0x1d
+/* 000107B8 00010884  90 1F 00 74 */	stw r0, 0x74(r31)
+/* 000107BC 00010888  38 00 00 1E */	li r0, 0x1e
+/* 000107C0 0001088C  90 7F 00 78 */	stw r3, 0x78(r31)
+/* 000107C4 00010890  90 1F 00 7C */	stw r0, 0x7c(r31)
+.L_000107C8:
+/* 000107C8 00010894  38 00 00 1E */	li r0, 0x1e
+/* 000107CC 00010898  38 80 00 00 */	li r4, 0x0
+/* 000107D0 0001089C  38 60 00 00 */	li r3, 0x0
+/* 000107D4 000108A0  7C 09 03 A6 */	mtctr r0
+.L_000107D8:
+/* 000107D8 000108A4  38 03 00 08 */	addi r0, r3, 0x8
+/* 000107DC 000108A8  7C 1F 00 2E */	lwzx r0, r31, r0
+/* 000107E0 000108AC  2C 00 00 00 */	cmpwi r0, 0x0
+/* 000107E4 000108B0  41 82 00 08 */	beq .L_000107EC
+/* 000107E8 000108B4  38 84 00 01 */	addi r4, r4, 0x1
+.L_000107EC:
+/* 000107EC 000108B8  38 63 00 04 */	addi r3, r3, 0x4
+/* 000107F0 000108BC  42 00 FF E8 */	bdnz .L_000107D8
+/* 000107F4 000108C0  38 00 00 1E */	li r0, 0x1e
+/* 000107F8 000108C4  90 9F 00 04 */	stw r4, 0x4(r31)
+/* 000107FC 000108C8  7C 09 03 A6 */	mtctr r0
+.L_00010800:
+/* 00010800 000108CC  42 00 00 00 */	bdnz .L_00010800
+/* 00010804 000108D0  3C 80 00 00 */	lis r4, irai_msg_client@ha
+/* 00010808 000108D4  3C 60 00 00 */	lis r3, irai_msg_contents@ha
+/* 0001080C 000108D8  3B 24 00 00 */	addi r25, r4, irai_msg_client@l
+/* 00010810 000108DC  3B 00 00 00 */	li r24, 0x0
+/* 00010814 000108E0  3B 43 00 00 */	addi r26, r3, irai_msg_contents@l
+/* 00010818 000108E4  3B A0 00 00 */	li r29, 0x0
+/* 0001081C 000108E8  3B 80 00 00 */	li r28, 0x0
+/* 00010820 000108EC  3B 60 00 00 */	li r27, 0x0
+.L_00010824:
+/* 00010824 000108F0  7C 79 D8 2E */	lwzx r3, r25, r27
+/* 00010828 000108F4  4B FE FC 7D */	bl msgSearch
+/* 0001082C 000108F8  7C 60 1B 78 */	mr r0, r3
+/* 00010830 000108FC  38 7C 00 9C */	addi r3, r28, 0x9c
+/* 00010834 00010900  7C 04 03 78 */	mr r4, r0
+/* 00010838 00010904  7C 7F 1A 14 */	add r3, r31, r3
+/* 0001083C 00010908  4B FE FC 69 */	bl strcpy
+/* 00010840 0001090C  7C 7A D8 2E */	lwzx r3, r26, r27
+/* 00010844 00010910  4B FE FC 61 */	bl msgSearch
+/* 00010848 00010914  7C 64 1B 78 */	mr r4, r3
+/* 0001084C 00010918  38 7D 03 12 */	addi r3, r29, 0x312
+/* 00010850 0001091C  7C 7F 1A 14 */	add r3, r31, r3
+/* 00010854 00010920  4B FE FC 51 */	bl strcpy
+/* 00010858 00010924  3B 18 00 01 */	addi r24, r24, 0x1
+/* 0001085C 00010928  3B 9C 00 15 */	addi r28, r28, 0x15
+/* 00010860 0001092C  2C 18 00 1E */	cmpwi r24, 0x1e
+/* 00010864 00010930  3B 7B 00 04 */	addi r27, r27, 0x4
+/* 00010868 00010934  3B BD 00 1F */	addi r29, r29, 0x1f
+/* 0001086C 00010938  41 80 FF B8 */	blt .L_00010824
+/* 00010870 0001093C  38 80 00 00 */	li r4, 0x0
+/* 00010874 00010940  3C 60 00 00 */	lis r3, zero_gor_0001f188@ha
+/* 00010878 00010944  90 9F 00 80 */	stw r4, 0x80(r31)
+/* 0001087C 00010948  C0 03 00 00 */	lfs f0, zero_gor_0001f188@l(r3)
+/* 00010880 0001094C  38 60 00 02 */	li r3, 0x2
+/* 00010884 00010950  80 1F 00 80 */	lwz r0, 0x80(r31)
+/* 00010888 00010954  90 1F 00 84 */	stw r0, 0x84(r31)
+/* 0001088C 00010958  90 9F 00 88 */	stw r4, 0x88(r31)
+/* 00010890 0001095C  90 9F 00 94 */	stw r4, 0x94(r31)
+/* 00010894 00010960  D0 1F 00 98 */	stfs f0, 0x98(r31)
+/* 00010898 00010964  93 FE 00 C4 */	stw r31, 0xc4(r30)
+/* 0001089C 00010968  BB 01 00 10 */	lmw r24, 0x10(r1)
+/* 000108A0 0001096C  80 01 00 34 */	lwz r0, 0x34(r1)
+/* 000108A4 00010970  7C 08 03 A6 */	mtlr r0
+/* 000108A8 00010974  38 21 00 30 */	addi r1, r1, 0x30
+/* 000108AC 00010978  4E 80 00 20 */	blr
+.endfn irai_init_func
+
+# .text:0x131C | 0x108B0 | size: 0xCC
+.fn irai_cancel_func, local
+/* 000108B0 0001097C  94 21 FF E0 */	stwu r1, -0x20(r1)
+/* 000108B4 00010980  7C 08 02 A6 */	mflr r0
+/* 000108B8 00010984  90 01 00 24 */	stw r0, 0x24(r1)
+/* 000108BC 00010988  BF A1 00 14 */	stmw r29, 0x14(r1)
+/* 000108C0 0001098C  80 83 00 18 */	lwz r4, 0x18(r3)
+/* 000108C4 00010990  80 84 00 00 */	lwz r4, 0x0(r4)
+/* 000108C8 00010994  4B FE FB DD */	bl evtGetValue
+/* 000108CC 00010998  3C 80 F8 40 */	lis r4, 0xf840
+/* 000108D0 0001099C  3B A3 FF FF */	subi r29, r3, 0x1
+/* 000108D4 000109A0  3B C4 70 9D */	addi r30, r4, 0x709d
+/* 000108D8 000109A4  3B E4 70 AD */	addi r31, r4, 0x70ad
+/* 000108DC 000109A8  48 00 00 14 */	b .L_000108F0
+.L_000108E0:
+/* 000108E0 000109AC  3C 7E 07 C0 */	addis r3, r30, 0x7c0
+/* 000108E4 000109B0  38 63 A4 80 */	subi r3, r3, 0x5b80
+/* 000108E8 000109B4  4B FE FB BD */	bl swClear
+/* 000108EC 000109B8  3B DE 00 01 */	addi r30, r30, 0x1
+.L_000108F0:
+/* 000108F0 000109BC  7C 1E F8 00 */	cmpw r30, r31
+/* 000108F4 000109C0  40 81 FF EC */	ble .L_000108E0
+/* 000108F8 000109C4  3C 60 F5 DE */	lis r3, 0xf5de
+/* 000108FC 000109C8  3B C3 07 3D */	addi r30, r3, 0x73d
+/* 00010900 000109CC  3B E3 07 42 */	addi r31, r3, 0x742
+/* 00010904 000109D0  48 00 00 18 */	b .L_0001091C
+.L_00010908:
+/* 00010908 000109D4  3C 7E 0A 22 */	addis r3, r30, 0xa22
+/* 0001090C 000109D8  38 80 00 00 */	li r4, 0x0
+/* 00010910 000109DC  38 63 FE 80 */	subi r3, r3, 0x180
+/* 00010914 000109E0  4B FE FB 91 */	bl swByteSet
+/* 00010918 000109E4  3B DE 00 01 */	addi r30, r30, 0x1
+.L_0001091C:
+/* 0001091C 000109E8  7C 1E F8 00 */	cmpw r30, r31
+/* 00010920 000109EC  40 81 FF E8 */	ble .L_00010908
+/* 00010924 000109F0  3C 60 00 00 */	lis r3, irai_item_table@ha
+/* 00010928 000109F4  57 A0 10 3A */	slwi r0, r29, 2
+/* 0001092C 000109F8  38 63 00 00 */	addi r3, r3, irai_item_table@l
+/* 00010930 000109FC  7F C3 00 2E */	lwzx r30, r3, r0
+.L_00010934:
+/* 00010934 00010A00  83 BE 00 00 */	lwz r29, 0x0(r30)
+/* 00010938 00010A04  2C 1D FF FF */	cmpwi r29, -0x1
+/* 0001093C 00010A08  41 82 00 28 */	beq .L_00010964
+.L_00010940:
+/* 00010940 00010A0C  7F A3 EB 78 */	mr r3, r29
+/* 00010944 00010A10  4B FE FB 61 */	bl pouchCheckItem
+/* 00010948 00010A14  2C 03 00 00 */	cmpwi r3, 0x0
+/* 0001094C 00010A18  40 81 00 10 */	ble .L_0001095C
+/* 00010950 00010A1C  7F A3 EB 78 */	mr r3, r29
+/* 00010954 00010A20  4B FE FB 51 */	bl pouchRemoveItem
+/* 00010958 00010A24  4B FF FF E8 */	b .L_00010940
+.L_0001095C:
+/* 0001095C 00010A28  3B DE 00 04 */	addi r30, r30, 0x4
+/* 00010960 00010A2C  4B FF FF D4 */	b .L_00010934
+.L_00010964:
+/* 00010964 00010A30  BB A1 00 14 */	lmw r29, 0x14(r1)
+/* 00010968 00010A34  38 60 00 02 */	li r3, 0x2
+/* 0001096C 00010A38  80 01 00 24 */	lwz r0, 0x24(r1)
+/* 00010970 00010A3C  7C 08 03 A6 */	mtlr r0
+/* 00010974 00010A40  38 21 00 20 */	addi r1, r1, 0x20
+/* 00010978 00010A44  4E 80 00 20 */	blr
+.endfn irai_cancel_func
+
+# .text:0x13E8 | 0x1097C | size: 0x7C
+.fn irai_start_func, local
+/* 0001097C 00010A48  94 21 FF F0 */	stwu r1, -0x10(r1)
+/* 00010980 00010A4C  7C 08 02 A6 */	mflr r0
+/* 00010984 00010A50  3C 60 F8 40 */	lis r3, 0xf840
+/* 00010988 00010A54  90 01 00 14 */	stw r0, 0x14(r1)
+/* 0001098C 00010A58  BF C1 00 08 */	stmw r30, 0x8(r1)
+/* 00010990 00010A5C  3B C3 70 9D */	addi r30, r3, 0x709d
+/* 00010994 00010A60  3B E3 70 AD */	addi r31, r3, 0x70ad
+/* 00010998 00010A64  48 00 00 14 */	b .L_000109AC
+.L_0001099C:
+/* 0001099C 00010A68  3C 7E 07 C0 */	addis r3, r30, 0x7c0
+/* 000109A0 00010A6C  38 63 A4 80 */	subi r3, r3, 0x5b80
+/* 000109A4 00010A70  4B FE FB 01 */	bl swClear
+/* 000109A8 00010A74  3B DE 00 01 */	addi r30, r30, 0x1
+.L_000109AC:
+/* 000109AC 00010A78  7C 1E F8 00 */	cmpw r30, r31
+/* 000109B0 00010A7C  40 81 FF EC */	ble .L_0001099C
+/* 000109B4 00010A80  3C 60 F5 DE */	lis r3, 0xf5de
+/* 000109B8 00010A84  3B C3 07 3D */	addi r30, r3, 0x73d
+/* 000109BC 00010A88  3B E3 07 42 */	addi r31, r3, 0x742
+/* 000109C0 00010A8C  48 00 00 18 */	b .L_000109D8
+.L_000109C4:
+/* 000109C4 00010A90  3C 7E 0A 22 */	addis r3, r30, 0xa22
+/* 000109C8 00010A94  38 80 00 00 */	li r4, 0x0
+/* 000109CC 00010A98  38 63 FE 80 */	subi r3, r3, 0x180
+/* 000109D0 00010A9C  4B FE FA D5 */	bl swByteSet
+/* 000109D4 00010AA0  3B DE 00 01 */	addi r30, r30, 0x1
+.L_000109D8:
+/* 000109D8 00010AA4  7C 1E F8 00 */	cmpw r30, r31
+/* 000109DC 00010AA8  40 81 FF E8 */	ble .L_000109C4
+/* 000109E0 00010AAC  BB C1 00 08 */	lmw r30, 0x8(r1)
+/* 000109E4 00010AB0  38 60 00 02 */	li r3, 0x2
+/* 000109E8 00010AB4  80 01 00 14 */	lwz r0, 0x14(r1)
+/* 000109EC 00010AB8  7C 08 03 A6 */	mtlr r0
+/* 000109F0 00010ABC  38 21 00 10 */	addi r1, r1, 0x10
+/* 000109F4 00010AC0  4E 80 00 20 */	blr
+.endfn irai_start_func
+
+# .text:0x1464 | 0x109F8 | size: 0x4C
+.fn irai_flag_disp, local
+/* 000109F8 00010AC4  3C 80 F8 40 */	lis r4, 0xf840
+/* 000109FC 00010AC8  38 64 70 AD */	addi r3, r4, 0x70ad
+/* 00010A00 00010ACC  38 84 70 9D */	addi r4, r4, 0x709d
+/* 00010A04 00010AD0  38 03 00 01 */	addi r0, r3, 0x1
+/* 00010A08 00010AD4  7C 04 00 50 */	subf r0, r4, r0
+/* 00010A0C 00010AD8  7C 09 03 A6 */	mtctr r0
+/* 00010A10 00010ADC  7C 04 18 00 */	cmpw r4, r3
+/* 00010A14 00010AE0  41 81 00 08 */	bgt .L_00010A1C
+.L_00010A18:
+/* 00010A18 00010AE4  42 00 00 00 */	bdnz .L_00010A18
+.L_00010A1C:
+/* 00010A1C 00010AE8  3C 80 F5 DE */	lis r4, 0xf5de
+/* 00010A20 00010AEC  38 64 07 42 */	addi r3, r4, 0x742
+/* 00010A24 00010AF0  38 84 07 3D */	addi r4, r4, 0x73d
+/* 00010A28 00010AF4  38 03 00 01 */	addi r0, r3, 0x1
+/* 00010A2C 00010AF8  7C 04 00 50 */	subf r0, r4, r0
+/* 00010A30 00010AFC  7C 09 03 A6 */	mtctr r0
+/* 00010A34 00010B00  7C 04 18 00 */	cmpw r4, r3
+/* 00010A38 00010B04  4D 81 00 20 */	bgtlr
+.L_00010A3C:
+/* 00010A3C 00010B08  42 00 00 00 */	bdnz .L_00010A3C
+/* 00010A40 00010B0C  4E 80 00 20 */	blr
+.endfn irai_flag_disp
+
+# .text:0x14B0 | 0x10A44 | size: 0x78
+.fn irai_flag_clear, local
+/* 00010A44 00010B10  94 21 FF F0 */	stwu r1, -0x10(r1)
+/* 00010A48 00010B14  7C 08 02 A6 */	mflr r0
+/* 00010A4C 00010B18  3C 60 F8 40 */	lis r3, 0xf840
+/* 00010A50 00010B1C  90 01 00 14 */	stw r0, 0x14(r1)
+/* 00010A54 00010B20  BF C1 00 08 */	stmw r30, 0x8(r1)
+/* 00010A58 00010B24  3B C3 70 9D */	addi r30, r3, 0x709d
+/* 00010A5C 00010B28  3B E3 70 AD */	addi r31, r3, 0x70ad
+/* 00010A60 00010B2C  48 00 00 14 */	b .L_00010A74
+.L_00010A64:
+/* 00010A64 00010B30  3C 7E 07 C0 */	addis r3, r30, 0x7c0
+/* 00010A68 00010B34  38 63 A4 80 */	subi r3, r3, 0x5b80
+/* 00010A6C 00010B38  4B FE FA 39 */	bl swClear
+/* 00010A70 00010B3C  3B DE 00 01 */	addi r30, r30, 0x1
+.L_00010A74:
+/* 00010A74 00010B40  7C 1E F8 00 */	cmpw r30, r31
+/* 00010A78 00010B44  40 81 FF EC */	ble .L_00010A64
+/* 00010A7C 00010B48  3C 60 F5 DE */	lis r3, 0xf5de
+/* 00010A80 00010B4C  3B C3 07 3D */	addi r30, r3, 0x73d
+/* 00010A84 00010B50  3B E3 07 42 */	addi r31, r3, 0x742
+/* 00010A88 00010B54  48 00 00 18 */	b .L_00010AA0
+.L_00010A8C:
+/* 00010A8C 00010B58  3C 7E 0A 22 */	addis r3, r30, 0xa22
+/* 00010A90 00010B5C  38 80 00 00 */	li r4, 0x0
+/* 00010A94 00010B60  38 63 FE 80 */	subi r3, r3, 0x180
+/* 00010A98 00010B64  4B FE FA 0D */	bl swByteSet
+/* 00010A9C 00010B68  3B DE 00 01 */	addi r30, r30, 0x1
+.L_00010AA0:
+/* 00010AA0 00010B6C  7C 1E F8 00 */	cmpw r30, r31
+/* 00010AA4 00010B70  40 81 FF E8 */	ble .L_00010A8C
+/* 00010AA8 00010B74  BB C1 00 08 */	lmw r30, 0x8(r1)
+/* 00010AAC 00010B78  80 01 00 14 */	lwz r0, 0x14(r1)
+/* 00010AB0 00010B7C  7C 08 03 A6 */	mtlr r0
+/* 00010AB4 00010B80  38 21 00 10 */	addi r1, r1, 0x10
+/* 00010AB8 00010B84  4E 80 00 20 */	blr
+.endfn irai_flag_clear
+
+# 0x0000AD70..0x0000B7A0 | size: 0xA30
+.rodata
+.balign 8
+
+# .rodata:0x0 | 0xAD70 | size: 0xF
+.obj str_irai_client_01_gor_0001e870, local
+	.string "irai_client_01"
+.endobj str_irai_client_01_gor_0001e870
+
+# .rodata:0xF | 0xAD7F | size: 0x1
+.obj gap_03_0000AD7F_rodata, global
+.hidden gap_03_0000AD7F_rodata
+	.byte 0x00
+.endobj gap_03_0000AD7F_rodata
+
+# .rodata:0x10 | 0xAD80 | size: 0xF
+.obj str_irai_client_02_gor_0001e880, local
+	.string "irai_client_02"
+.endobj str_irai_client_02_gor_0001e880
+
+# .rodata:0x1F | 0xAD8F | size: 0x1
+.obj gap_03_0000AD8F_rodata, global
+.hidden gap_03_0000AD8F_rodata
+	.byte 0x00
+.endobj gap_03_0000AD8F_rodata
+
+# .rodata:0x20 | 0xAD90 | size: 0xF
+.obj str_irai_client_03_gor_0001e890, local
+	.string "irai_client_03"
+.endobj str_irai_client_03_gor_0001e890
+
+# .rodata:0x2F | 0xAD9F | size: 0x1
+.obj gap_03_0000AD9F_rodata, global
+.hidden gap_03_0000AD9F_rodata
+	.byte 0x00
+.endobj gap_03_0000AD9F_rodata
+
+# .rodata:0x30 | 0xADA0 | size: 0xF
+.obj str_irai_client_04_gor_0001e8a0, local
+	.string "irai_client_04"
+.endobj str_irai_client_04_gor_0001e8a0
+
+# .rodata:0x3F | 0xADAF | size: 0x1
+.obj gap_03_0000ADAF_rodata, global
+.hidden gap_03_0000ADAF_rodata
+	.byte 0x00
+.endobj gap_03_0000ADAF_rodata
+
+# .rodata:0x40 | 0xADB0 | size: 0xF
+.obj str_irai_client_05_gor_0001e8b0, local
+	.string "irai_client_05"
+.endobj str_irai_client_05_gor_0001e8b0
+
+# .rodata:0x4F | 0xADBF | size: 0x1
+.obj gap_03_0000ADBF_rodata, global
+.hidden gap_03_0000ADBF_rodata
+	.byte 0x00
+.endobj gap_03_0000ADBF_rodata
+
+# .rodata:0x50 | 0xADC0 | size: 0xF
+.obj str_irai_client_06_gor_0001e8c0, local
+	.string "irai_client_06"
+.endobj str_irai_client_06_gor_0001e8c0
+
+# .rodata:0x5F | 0xADCF | size: 0x1
+.obj gap_03_0000ADCF_rodata, global
+.hidden gap_03_0000ADCF_rodata
+	.byte 0x00
+.endobj gap_03_0000ADCF_rodata
+
+# .rodata:0x60 | 0xADD0 | size: 0xF
+.obj str_irai_client_07_gor_0001e8d0, local
+	.string "irai_client_07"
+.endobj str_irai_client_07_gor_0001e8d0
+
+# .rodata:0x6F | 0xADDF | size: 0x1
+.obj gap_03_0000ADDF_rodata, global
+.hidden gap_03_0000ADDF_rodata
+	.byte 0x00
+.endobj gap_03_0000ADDF_rodata
+
+# .rodata:0x70 | 0xADE0 | size: 0xF
+.obj str_irai_client_08_gor_0001e8e0, local
+	.string "irai_client_08"
+.endobj str_irai_client_08_gor_0001e8e0
+
+# .rodata:0x7F | 0xADEF | size: 0x1
+.obj gap_03_0000ADEF_rodata, global
+.hidden gap_03_0000ADEF_rodata
+	.byte 0x00
+.endobj gap_03_0000ADEF_rodata
+
+# .rodata:0x80 | 0xADF0 | size: 0xF
+.obj str_irai_client_09_gor_0001e8f0, local
+	.string "irai_client_09"
+.endobj str_irai_client_09_gor_0001e8f0
+
+# .rodata:0x8F | 0xADFF | size: 0x1
+.obj gap_03_0000ADFF_rodata, global
+.hidden gap_03_0000ADFF_rodata
+	.byte 0x00
+.endobj gap_03_0000ADFF_rodata
+
+# .rodata:0x90 | 0xAE00 | size: 0xF
+.obj str_irai_client_10_gor_0001e900, local
+	.string "irai_client_10"
+.endobj str_irai_client_10_gor_0001e900
+
+# .rodata:0x9F | 0xAE0F | size: 0x1
+.obj gap_03_0000AE0F_rodata, global
+.hidden gap_03_0000AE0F_rodata
+	.byte 0x00
+.endobj gap_03_0000AE0F_rodata
+
+# .rodata:0xA0 | 0xAE10 | size: 0xF
+.obj str_irai_client_11_gor_0001e910, local
+	.string "irai_client_11"
+.endobj str_irai_client_11_gor_0001e910
+
+# .rodata:0xAF | 0xAE1F | size: 0x1
+.obj gap_03_0000AE1F_rodata, global
+.hidden gap_03_0000AE1F_rodata
+	.byte 0x00
+.endobj gap_03_0000AE1F_rodata
+
+# .rodata:0xB0 | 0xAE20 | size: 0xF
+.obj str_irai_client_12_gor_0001e920, local
+	.string "irai_client_12"
+.endobj str_irai_client_12_gor_0001e920
+
+# .rodata:0xBF | 0xAE2F | size: 0x1
+.obj gap_03_0000AE2F_rodata, global
+.hidden gap_03_0000AE2F_rodata
+	.byte 0x00
+.endobj gap_03_0000AE2F_rodata
+
+# .rodata:0xC0 | 0xAE30 | size: 0xF
+.obj str_irai_client_13_gor_0001e930, local
+	.string "irai_client_13"
+.endobj str_irai_client_13_gor_0001e930
+
+# .rodata:0xCF | 0xAE3F | size: 0x1
+.obj gap_03_0000AE3F_rodata, global
+.hidden gap_03_0000AE3F_rodata
+	.byte 0x00
+.endobj gap_03_0000AE3F_rodata
+
+# .rodata:0xD0 | 0xAE40 | size: 0xF
+.obj str_irai_client_14_gor_0001e940, local
+	.string "irai_client_14"
+.endobj str_irai_client_14_gor_0001e940
+
+# .rodata:0xDF | 0xAE4F | size: 0x1
+.obj gap_03_0000AE4F_rodata, global
+.hidden gap_03_0000AE4F_rodata
+	.byte 0x00
+.endobj gap_03_0000AE4F_rodata
+
+# .rodata:0xE0 | 0xAE50 | size: 0xF
+.obj str_irai_client_15_gor_0001e950, local
+	.string "irai_client_15"
+.endobj str_irai_client_15_gor_0001e950
+
+# .rodata:0xEF | 0xAE5F | size: 0x1
+.obj gap_03_0000AE5F_rodata, global
+.hidden gap_03_0000AE5F_rodata
+	.byte 0x00
+.endobj gap_03_0000AE5F_rodata
+
+# .rodata:0xF0 | 0xAE60 | size: 0xF
+.obj str_irai_client_16_gor_0001e960, local
+	.string "irai_client_16"
+.endobj str_irai_client_16_gor_0001e960
+
+# .rodata:0xFF | 0xAE6F | size: 0x1
+.obj gap_03_0000AE6F_rodata, global
+.hidden gap_03_0000AE6F_rodata
+	.byte 0x00
+.endobj gap_03_0000AE6F_rodata
+
+# .rodata:0x100 | 0xAE70 | size: 0xF
+.obj str_irai_client_17_gor_0001e970, local
+	.string "irai_client_17"
+.endobj str_irai_client_17_gor_0001e970
+
+# .rodata:0x10F | 0xAE7F | size: 0x1
+.obj gap_03_0000AE7F_rodata, global
+.hidden gap_03_0000AE7F_rodata
+	.byte 0x00
+.endobj gap_03_0000AE7F_rodata
+
+# .rodata:0x110 | 0xAE80 | size: 0xF
+.obj str_irai_client_18_gor_0001e980, local
+	.string "irai_client_18"
+.endobj str_irai_client_18_gor_0001e980
+
+# .rodata:0x11F | 0xAE8F | size: 0x1
+.obj gap_03_0000AE8F_rodata, global
+.hidden gap_03_0000AE8F_rodata
+	.byte 0x00
+.endobj gap_03_0000AE8F_rodata
+
+# .rodata:0x120 | 0xAE90 | size: 0xF
+.obj str_irai_client_19_gor_0001e990, local
+	.string "irai_client_19"
+.endobj str_irai_client_19_gor_0001e990
+
+# .rodata:0x12F | 0xAE9F | size: 0x1
+.obj gap_03_0000AE9F_rodata, global
+.hidden gap_03_0000AE9F_rodata
+	.byte 0x00
+.endobj gap_03_0000AE9F_rodata
+
+# .rodata:0x130 | 0xAEA0 | size: 0xF
+.obj str_irai_client_20_gor_0001e9a0, local
+	.string "irai_client_20"
+.endobj str_irai_client_20_gor_0001e9a0
+
+# .rodata:0x13F | 0xAEAF | size: 0x1
+.obj gap_03_0000AEAF_rodata, global
+.hidden gap_03_0000AEAF_rodata
+	.byte 0x00
+.endobj gap_03_0000AEAF_rodata
+
+# .rodata:0x140 | 0xAEB0 | size: 0xF
+.obj str_irai_client_21_gor_0001e9b0, local
+	.string "irai_client_21"
+.endobj str_irai_client_21_gor_0001e9b0
+
+# .rodata:0x14F | 0xAEBF | size: 0x1
+.obj gap_03_0000AEBF_rodata, global
+.hidden gap_03_0000AEBF_rodata
+	.byte 0x00
+.endobj gap_03_0000AEBF_rodata
+
+# .rodata:0x150 | 0xAEC0 | size: 0xF
+.obj str_irai_client_22_gor_0001e9c0, local
+	.string "irai_client_22"
+.endobj str_irai_client_22_gor_0001e9c0
+
+# .rodata:0x15F | 0xAECF | size: 0x1
+.obj gap_03_0000AECF_rodata, global
+.hidden gap_03_0000AECF_rodata
+	.byte 0x00
+.endobj gap_03_0000AECF_rodata
+
+# .rodata:0x160 | 0xAED0 | size: 0xF
+.obj str_irai_client_23_gor_0001e9d0, local
+	.string "irai_client_23"
+.endobj str_irai_client_23_gor_0001e9d0
+
+# .rodata:0x16F | 0xAEDF | size: 0x1
+.obj gap_03_0000AEDF_rodata, global
+.hidden gap_03_0000AEDF_rodata
+	.byte 0x00
+.endobj gap_03_0000AEDF_rodata
+
+# .rodata:0x170 | 0xAEE0 | size: 0xF
+.obj str_irai_client_24_gor_0001e9e0, local
+	.string "irai_client_24"
+.endobj str_irai_client_24_gor_0001e9e0
+
+# .rodata:0x17F | 0xAEEF | size: 0x1
+.obj gap_03_0000AEEF_rodata, global
+.hidden gap_03_0000AEEF_rodata
+	.byte 0x00
+.endobj gap_03_0000AEEF_rodata
+
+# .rodata:0x180 | 0xAEF0 | size: 0xF
+.obj str_irai_client_25_gor_0001e9f0, local
+	.string "irai_client_25"
+.endobj str_irai_client_25_gor_0001e9f0
+
+# .rodata:0x18F | 0xAEFF | size: 0x1
+.obj gap_03_0000AEFF_rodata, global
+.hidden gap_03_0000AEFF_rodata
+	.byte 0x00
+.endobj gap_03_0000AEFF_rodata
+
+# .rodata:0x190 | 0xAF00 | size: 0xF
+.obj str_irai_client_26_gor_0001ea00, local
+	.string "irai_client_26"
+.endobj str_irai_client_26_gor_0001ea00
+
+# .rodata:0x19F | 0xAF0F | size: 0x1
+.obj gap_03_0000AF0F_rodata, global
+.hidden gap_03_0000AF0F_rodata
+	.byte 0x00
+.endobj gap_03_0000AF0F_rodata
+
+# .rodata:0x1A0 | 0xAF10 | size: 0xF
+.obj str_irai_client_27_gor_0001ea10, local
+	.string "irai_client_27"
+.endobj str_irai_client_27_gor_0001ea10
+
+# .rodata:0x1AF | 0xAF1F | size: 0x1
+.obj gap_03_0000AF1F_rodata, global
+.hidden gap_03_0000AF1F_rodata
+	.byte 0x00
+.endobj gap_03_0000AF1F_rodata
+
+# .rodata:0x1B0 | 0xAF20 | size: 0xF
+.obj str_irai_client_28_gor_0001ea20, local
+	.string "irai_client_28"
+.endobj str_irai_client_28_gor_0001ea20
+
+# .rodata:0x1BF | 0xAF2F | size: 0x1
+.obj gap_03_0000AF2F_rodata, global
+.hidden gap_03_0000AF2F_rodata
+	.byte 0x00
+.endobj gap_03_0000AF2F_rodata
+
+# .rodata:0x1C0 | 0xAF30 | size: 0xF
+.obj str_irai_client_29_gor_0001ea30, local
+	.string "irai_client_29"
+.endobj str_irai_client_29_gor_0001ea30
+
+# .rodata:0x1CF | 0xAF3F | size: 0x1
+.obj gap_03_0000AF3F_rodata, global
+.hidden gap_03_0000AF3F_rodata
+	.byte 0x00
+.endobj gap_03_0000AF3F_rodata
+
+# .rodata:0x1D0 | 0xAF40 | size: 0xF
+.obj str_irai_client_30_gor_0001ea40, local
+	.string "irai_client_30"
+.endobj str_irai_client_30_gor_0001ea40
+
+# .rodata:0x1DF | 0xAF4F | size: 0x1
+.obj gap_03_0000AF4F_rodata, global
+.hidden gap_03_0000AF4F_rodata
+	.byte 0x00
+.endobj gap_03_0000AF4F_rodata
+
+# .rodata:0x1E0 | 0xAF50 | size: 0x11
+.obj str_irai_contents_01_gor_0001ea50, local
+	.string "irai_contents_01"
+.endobj str_irai_contents_01_gor_0001ea50
+
+# .rodata:0x1F1 | 0xAF61 | size: 0x3
+.obj gap_03_0000AF61_rodata, global
+.hidden gap_03_0000AF61_rodata
+	.byte 0x00, 0x00, 0x00
+.endobj gap_03_0000AF61_rodata
+
+# .rodata:0x1F4 | 0xAF64 | size: 0x11
+.obj str_irai_contents_02_gor_0001ea64, local
+	.string "irai_contents_02"
+.endobj str_irai_contents_02_gor_0001ea64
+
+# .rodata:0x205 | 0xAF75 | size: 0x3
+.obj gap_03_0000AF75_rodata, global
+.hidden gap_03_0000AF75_rodata
+	.byte 0x00, 0x00, 0x00
+.endobj gap_03_0000AF75_rodata
+
+# .rodata:0x208 | 0xAF78 | size: 0x11
+.obj str_irai_contents_03_gor_0001ea78, local
+	.string "irai_contents_03"
+.endobj str_irai_contents_03_gor_0001ea78
+
+# .rodata:0x219 | 0xAF89 | size: 0x3
+.obj gap_03_0000AF89_rodata, global
+.hidden gap_03_0000AF89_rodata
+	.byte 0x00, 0x00, 0x00
+.endobj gap_03_0000AF89_rodata
+
+# .rodata:0x21C | 0xAF8C | size: 0x11
+.obj str_irai_contents_04_gor_0001ea8c, local
+	.string "irai_contents_04"
+.endobj str_irai_contents_04_gor_0001ea8c
+
+# .rodata:0x22D | 0xAF9D | size: 0x3
+.obj gap_03_0000AF9D_rodata, global
+.hidden gap_03_0000AF9D_rodata
+	.byte 0x00, 0x00, 0x00
+.endobj gap_03_0000AF9D_rodata
+
+# .rodata:0x230 | 0xAFA0 | size: 0x11
+.obj str_irai_contents_05_gor_0001eaa0, local
+	.string "irai_contents_05"
+.endobj str_irai_contents_05_gor_0001eaa0
+
+# .rodata:0x241 | 0xAFB1 | size: 0x3
+.obj gap_03_0000AFB1_rodata, global
+.hidden gap_03_0000AFB1_rodata
+	.byte 0x00, 0x00, 0x00
+.endobj gap_03_0000AFB1_rodata
+
+# .rodata:0x244 | 0xAFB4 | size: 0x11
+.obj str_irai_contents_06_gor_0001eab4, local
+	.string "irai_contents_06"
+.endobj str_irai_contents_06_gor_0001eab4
+
+# .rodata:0x255 | 0xAFC5 | size: 0x3
+.obj gap_03_0000AFC5_rodata, global
+.hidden gap_03_0000AFC5_rodata
+	.byte 0x00, 0x00, 0x00
+.endobj gap_03_0000AFC5_rodata
+
+# .rodata:0x258 | 0xAFC8 | size: 0x11
+.obj str_irai_contents_07_gor_0001eac8, local
+	.string "irai_contents_07"
+.endobj str_irai_contents_07_gor_0001eac8
+
+# .rodata:0x269 | 0xAFD9 | size: 0x3
+.obj gap_03_0000AFD9_rodata, global
+.hidden gap_03_0000AFD9_rodata
+	.byte 0x00, 0x00, 0x00
+.endobj gap_03_0000AFD9_rodata
+
+# .rodata:0x26C | 0xAFDC | size: 0x11
+.obj str_irai_contents_08_gor_0001eadc, local
+	.string "irai_contents_08"
+.endobj str_irai_contents_08_gor_0001eadc
+
+# .rodata:0x27D | 0xAFED | size: 0x3
+.obj gap_03_0000AFED_rodata, global
+.hidden gap_03_0000AFED_rodata
+	.byte 0x00, 0x00, 0x00
+.endobj gap_03_0000AFED_rodata
+
+# .rodata:0x280 | 0xAFF0 | size: 0x11
+.obj str_irai_contents_09_gor_0001eaf0, local
+	.string "irai_contents_09"
+.endobj str_irai_contents_09_gor_0001eaf0
+
+# .rodata:0x291 | 0xB001 | size: 0x3
+.obj gap_03_0000B001_rodata, global
+.hidden gap_03_0000B001_rodata
+	.byte 0x00, 0x00, 0x00
+.endobj gap_03_0000B001_rodata
+
+# .rodata:0x294 | 0xB004 | size: 0x11
+.obj str_irai_contents_10_gor_0001eb04, local
+	.string "irai_contents_10"
+.endobj str_irai_contents_10_gor_0001eb04
+
+# .rodata:0x2A5 | 0xB015 | size: 0x3
+.obj gap_03_0000B015_rodata, global
+.hidden gap_03_0000B015_rodata
+	.byte 0x00, 0x00, 0x00
+.endobj gap_03_0000B015_rodata
+
+# .rodata:0x2A8 | 0xB018 | size: 0x11
+.obj str_irai_contents_11_gor_0001eb18, local
+	.string "irai_contents_11"
+.endobj str_irai_contents_11_gor_0001eb18
+
+# .rodata:0x2B9 | 0xB029 | size: 0x3
+.obj gap_03_0000B029_rodata, global
+.hidden gap_03_0000B029_rodata
+	.byte 0x00, 0x00, 0x00
+.endobj gap_03_0000B029_rodata
+
+# .rodata:0x2BC | 0xB02C | size: 0x11
+.obj str_irai_contents_12_gor_0001eb2c, local
+	.string "irai_contents_12"
+.endobj str_irai_contents_12_gor_0001eb2c
+
+# .rodata:0x2CD | 0xB03D | size: 0x3
+.obj gap_03_0000B03D_rodata, global
+.hidden gap_03_0000B03D_rodata
+	.byte 0x00, 0x00, 0x00
+.endobj gap_03_0000B03D_rodata
+
+# .rodata:0x2D0 | 0xB040 | size: 0x11
+.obj str_irai_contents_13_gor_0001eb40, local
+	.string "irai_contents_13"
+.endobj str_irai_contents_13_gor_0001eb40
+
+# .rodata:0x2E1 | 0xB051 | size: 0x3
+.obj gap_03_0000B051_rodata, global
+.hidden gap_03_0000B051_rodata
+	.byte 0x00, 0x00, 0x00
+.endobj gap_03_0000B051_rodata
+
+# .rodata:0x2E4 | 0xB054 | size: 0x11
+.obj str_irai_contents_14_gor_0001eb54, local
+	.string "irai_contents_14"
+.endobj str_irai_contents_14_gor_0001eb54
+
+# .rodata:0x2F5 | 0xB065 | size: 0x3
+.obj gap_03_0000B065_rodata, global
+.hidden gap_03_0000B065_rodata
+	.byte 0x00, 0x00, 0x00
+.endobj gap_03_0000B065_rodata
+
+# .rodata:0x2F8 | 0xB068 | size: 0x11
+.obj str_irai_contents_15_gor_0001eb68, local
+	.string "irai_contents_15"
+.endobj str_irai_contents_15_gor_0001eb68
+
+# .rodata:0x309 | 0xB079 | size: 0x3
+.obj gap_03_0000B079_rodata, global
+.hidden gap_03_0000B079_rodata
+	.byte 0x00, 0x00, 0x00
+.endobj gap_03_0000B079_rodata
+
+# .rodata:0x30C | 0xB07C | size: 0x11
+.obj str_irai_contents_16_gor_0001eb7c, local
+	.string "irai_contents_16"
+.endobj str_irai_contents_16_gor_0001eb7c
+
+# .rodata:0x31D | 0xB08D | size: 0x3
+.obj gap_03_0000B08D_rodata, global
+.hidden gap_03_0000B08D_rodata
+	.byte 0x00, 0x00, 0x00
+.endobj gap_03_0000B08D_rodata
+
+# .rodata:0x320 | 0xB090 | size: 0x11
+.obj str_irai_contents_17_gor_0001eb90, local
+	.string "irai_contents_17"
+.endobj str_irai_contents_17_gor_0001eb90
+
+# .rodata:0x331 | 0xB0A1 | size: 0x3
+.obj gap_03_0000B0A1_rodata, global
+.hidden gap_03_0000B0A1_rodata
+	.byte 0x00, 0x00, 0x00
+.endobj gap_03_0000B0A1_rodata
+
+# .rodata:0x334 | 0xB0A4 | size: 0x11
+.obj str_irai_contents_18_gor_0001eba4, local
+	.string "irai_contents_18"
+.endobj str_irai_contents_18_gor_0001eba4
+
+# .rodata:0x345 | 0xB0B5 | size: 0x3
+.obj gap_03_0000B0B5_rodata, global
+.hidden gap_03_0000B0B5_rodata
+	.byte 0x00, 0x00, 0x00
+.endobj gap_03_0000B0B5_rodata
+
+# .rodata:0x348 | 0xB0B8 | size: 0x11
+.obj str_irai_contents_19_gor_0001ebb8, local
+	.string "irai_contents_19"
+.endobj str_irai_contents_19_gor_0001ebb8
+
+# .rodata:0x359 | 0xB0C9 | size: 0x3
+.obj gap_03_0000B0C9_rodata, global
+.hidden gap_03_0000B0C9_rodata
+	.byte 0x00, 0x00, 0x00
+.endobj gap_03_0000B0C9_rodata
+
+# .rodata:0x35C | 0xB0CC | size: 0x11
+.obj str_irai_contents_20_gor_0001ebcc, local
+	.string "irai_contents_20"
+.endobj str_irai_contents_20_gor_0001ebcc
+
+# .rodata:0x36D | 0xB0DD | size: 0x3
+.obj gap_03_0000B0DD_rodata, global
+.hidden gap_03_0000B0DD_rodata
+	.byte 0x00, 0x00, 0x00
+.endobj gap_03_0000B0DD_rodata
+
+# .rodata:0x370 | 0xB0E0 | size: 0x11
+.obj str_irai_contents_21_gor_0001ebe0, local
+	.string "irai_contents_21"
+.endobj str_irai_contents_21_gor_0001ebe0
+
+# .rodata:0x381 | 0xB0F1 | size: 0x3
+.obj gap_03_0000B0F1_rodata, global
+.hidden gap_03_0000B0F1_rodata
+	.byte 0x00, 0x00, 0x00
+.endobj gap_03_0000B0F1_rodata
+
+# .rodata:0x384 | 0xB0F4 | size: 0x11
+.obj str_irai_contents_22_gor_0001ebf4, local
+	.string "irai_contents_22"
+.endobj str_irai_contents_22_gor_0001ebf4
+
+# .rodata:0x395 | 0xB105 | size: 0x3
+.obj gap_03_0000B105_rodata, global
+.hidden gap_03_0000B105_rodata
+	.byte 0x00, 0x00, 0x00
+.endobj gap_03_0000B105_rodata
+
+# .rodata:0x398 | 0xB108 | size: 0x11
+.obj str_irai_contents_23_gor_0001ec08, local
+	.string "irai_contents_23"
+.endobj str_irai_contents_23_gor_0001ec08
+
+# .rodata:0x3A9 | 0xB119 | size: 0x3
+.obj gap_03_0000B119_rodata, global
+.hidden gap_03_0000B119_rodata
+	.byte 0x00, 0x00, 0x00
+.endobj gap_03_0000B119_rodata
+
+# .rodata:0x3AC | 0xB11C | size: 0x11
+.obj str_irai_contents_24_gor_0001ec1c, local
+	.string "irai_contents_24"
+.endobj str_irai_contents_24_gor_0001ec1c
+
+# .rodata:0x3BD | 0xB12D | size: 0x3
+.obj gap_03_0000B12D_rodata, global
+.hidden gap_03_0000B12D_rodata
+	.byte 0x00, 0x00, 0x00
+.endobj gap_03_0000B12D_rodata
+
+# .rodata:0x3C0 | 0xB130 | size: 0x11
+.obj str_irai_contents_25_gor_0001ec30, local
+	.string "irai_contents_25"
+.endobj str_irai_contents_25_gor_0001ec30
+
+# .rodata:0x3D1 | 0xB141 | size: 0x3
+.obj gap_03_0000B141_rodata, global
+.hidden gap_03_0000B141_rodata
+	.byte 0x00, 0x00, 0x00
+.endobj gap_03_0000B141_rodata
+
+# .rodata:0x3D4 | 0xB144 | size: 0x11
+.obj str_irai_contents_26_gor_0001ec44, local
+	.string "irai_contents_26"
+.endobj str_irai_contents_26_gor_0001ec44
+
+# .rodata:0x3E5 | 0xB155 | size: 0x3
+.obj gap_03_0000B155_rodata, global
+.hidden gap_03_0000B155_rodata
+	.byte 0x00, 0x00, 0x00
+.endobj gap_03_0000B155_rodata
+
+# .rodata:0x3E8 | 0xB158 | size: 0x11
+.obj str_irai_contents_27_gor_0001ec58, local
+	.string "irai_contents_27"
+.endobj str_irai_contents_27_gor_0001ec58
+
+# .rodata:0x3F9 | 0xB169 | size: 0x3
+.obj gap_03_0000B169_rodata, global
+.hidden gap_03_0000B169_rodata
+	.byte 0x00, 0x00, 0x00
+.endobj gap_03_0000B169_rodata
+
+# .rodata:0x3FC | 0xB16C | size: 0x11
+.obj str_irai_contents_28_gor_0001ec6c, local
+	.string "irai_contents_28"
+.endobj str_irai_contents_28_gor_0001ec6c
+
+# .rodata:0x40D | 0xB17D | size: 0x3
+.obj gap_03_0000B17D_rodata, global
+.hidden gap_03_0000B17D_rodata
+	.byte 0x00, 0x00, 0x00
+.endobj gap_03_0000B17D_rodata
+
+# .rodata:0x410 | 0xB180 | size: 0x11
+.obj str_irai_contents_29_gor_0001ec80, local
+	.string "irai_contents_29"
+.endobj str_irai_contents_29_gor_0001ec80
+
+# .rodata:0x421 | 0xB191 | size: 0x3
+.obj gap_03_0000B191_rodata, global
+.hidden gap_03_0000B191_rodata
+	.byte 0x00, 0x00, 0x00
+.endobj gap_03_0000B191_rodata
+
+# .rodata:0x424 | 0xB194 | size: 0x11
+.obj str_irai_contents_30_gor_0001ec94, local
+	.string "irai_contents_30"
+.endobj str_irai_contents_30_gor_0001ec94
+
+# .rodata:0x435 | 0xB1A5 | size: 0x3
+.obj gap_03_0000B1A5_rodata, global
+.hidden gap_03_0000B1A5_rodata
+	.byte 0x00, 0x00, 0x00
+.endobj gap_03_0000B1A5_rodata
+
+# .rodata:0x438 | 0xB1A8 | size: 0xD
+.obj str_irai_help_01_gor_0001eca8, local
+	.string "irai_help_01"
+.endobj str_irai_help_01_gor_0001eca8
+
+# .rodata:0x445 | 0xB1B5 | size: 0x3
+.obj gap_03_0000B1B5_rodata, global
+.hidden gap_03_0000B1B5_rodata
+	.byte 0x00, 0x00, 0x00
+.endobj gap_03_0000B1B5_rodata
+
+# .rodata:0x448 | 0xB1B8 | size: 0xD
+.obj str_irai_help_02_gor_0001ecb8, local
+	.string "irai_help_02"
+.endobj str_irai_help_02_gor_0001ecb8
+
+# .rodata:0x455 | 0xB1C5 | size: 0x3
+.obj gap_03_0000B1C5_rodata, global
+.hidden gap_03_0000B1C5_rodata
+	.byte 0x00, 0x00, 0x00
+.endobj gap_03_0000B1C5_rodata
+
+# .rodata:0x458 | 0xB1C8 | size: 0xD
+.obj str_irai_help_03_gor_0001ecc8, local
+	.string "irai_help_03"
+.endobj str_irai_help_03_gor_0001ecc8
+
+# .rodata:0x465 | 0xB1D5 | size: 0x3
+.obj gap_03_0000B1D5_rodata, global
+.hidden gap_03_0000B1D5_rodata
+	.byte 0x00, 0x00, 0x00
+.endobj gap_03_0000B1D5_rodata
+
+# .rodata:0x468 | 0xB1D8 | size: 0xD
+.obj str_irai_help_04_gor_0001ecd8, local
+	.string "irai_help_04"
+.endobj str_irai_help_04_gor_0001ecd8
+
+# .rodata:0x475 | 0xB1E5 | size: 0x3
+.obj gap_03_0000B1E5_rodata, global
+.hidden gap_03_0000B1E5_rodata
+	.byte 0x00, 0x00, 0x00
+.endobj gap_03_0000B1E5_rodata
+
+# .rodata:0x478 | 0xB1E8 | size: 0xD
+.obj str_irai_help_05_gor_0001ece8, local
+	.string "irai_help_05"
+.endobj str_irai_help_05_gor_0001ece8
+
+# .rodata:0x485 | 0xB1F5 | size: 0x3
+.obj gap_03_0000B1F5_rodata, global
+.hidden gap_03_0000B1F5_rodata
+	.byte 0x00, 0x00, 0x00
+.endobj gap_03_0000B1F5_rodata
+
+# .rodata:0x488 | 0xB1F8 | size: 0xD
+.obj str_irai_help_06_gor_0001ecf8, local
+	.string "irai_help_06"
+.endobj str_irai_help_06_gor_0001ecf8
+
+# .rodata:0x495 | 0xB205 | size: 0x3
+.obj gap_03_0000B205_rodata, global
+.hidden gap_03_0000B205_rodata
+	.byte 0x00, 0x00, 0x00
+.endobj gap_03_0000B205_rodata
+
+# .rodata:0x498 | 0xB208 | size: 0xD
+.obj str_irai_help_07_gor_0001ed08, local
+	.string "irai_help_07"
+.endobj str_irai_help_07_gor_0001ed08
+
+# .rodata:0x4A5 | 0xB215 | size: 0x3
+.obj gap_03_0000B215_rodata, global
+.hidden gap_03_0000B215_rodata
+	.byte 0x00, 0x00, 0x00
+.endobj gap_03_0000B215_rodata
+
+# .rodata:0x4A8 | 0xB218 | size: 0xD
+.obj str_irai_help_08_gor_0001ed18, local
+	.string "irai_help_08"
+.endobj str_irai_help_08_gor_0001ed18
+
+# .rodata:0x4B5 | 0xB225 | size: 0x3
+.obj gap_03_0000B225_rodata, global
+.hidden gap_03_0000B225_rodata
+	.byte 0x00, 0x00, 0x00
+.endobj gap_03_0000B225_rodata
+
+# .rodata:0x4B8 | 0xB228 | size: 0xD
+.obj str_irai_help_09_gor_0001ed28, local
+	.string "irai_help_09"
+.endobj str_irai_help_09_gor_0001ed28
+
+# .rodata:0x4C5 | 0xB235 | size: 0x3
+.obj gap_03_0000B235_rodata, global
+.hidden gap_03_0000B235_rodata
+	.byte 0x00, 0x00, 0x00
+.endobj gap_03_0000B235_rodata
+
+# .rodata:0x4C8 | 0xB238 | size: 0xD
+.obj str_irai_help_10_gor_0001ed38, local
+	.string "irai_help_10"
+.endobj str_irai_help_10_gor_0001ed38
+
+# .rodata:0x4D5 | 0xB245 | size: 0x3
+.obj gap_03_0000B245_rodata, global
+.hidden gap_03_0000B245_rodata
+	.byte 0x00, 0x00, 0x00
+.endobj gap_03_0000B245_rodata
+
+# .rodata:0x4D8 | 0xB248 | size: 0xD
+.obj str_irai_help_11_gor_0001ed48, local
+	.string "irai_help_11"
+.endobj str_irai_help_11_gor_0001ed48
+
+# .rodata:0x4E5 | 0xB255 | size: 0x3
+.obj gap_03_0000B255_rodata, global
+.hidden gap_03_0000B255_rodata
+	.byte 0x00, 0x00, 0x00
+.endobj gap_03_0000B255_rodata
+
+# .rodata:0x4E8 | 0xB258 | size: 0xD
+.obj str_irai_help_12_gor_0001ed58, local
+	.string "irai_help_12"
+.endobj str_irai_help_12_gor_0001ed58
+
+# .rodata:0x4F5 | 0xB265 | size: 0x3
+.obj gap_03_0000B265_rodata, global
+.hidden gap_03_0000B265_rodata
+	.byte 0x00, 0x00, 0x00
+.endobj gap_03_0000B265_rodata
+
+# .rodata:0x4F8 | 0xB268 | size: 0xD
+.obj str_irai_help_13_gor_0001ed68, local
+	.string "irai_help_13"
+.endobj str_irai_help_13_gor_0001ed68
+
+# .rodata:0x505 | 0xB275 | size: 0x3
+.obj gap_03_0000B275_rodata, global
+.hidden gap_03_0000B275_rodata
+	.byte 0x00, 0x00, 0x00
+.endobj gap_03_0000B275_rodata
+
+# .rodata:0x508 | 0xB278 | size: 0xD
+.obj str_irai_help_14_gor_0001ed78, local
+	.string "irai_help_14"
+.endobj str_irai_help_14_gor_0001ed78
+
+# .rodata:0x515 | 0xB285 | size: 0x3
+.obj gap_03_0000B285_rodata, global
+.hidden gap_03_0000B285_rodata
+	.byte 0x00, 0x00, 0x00
+.endobj gap_03_0000B285_rodata
+
+# .rodata:0x518 | 0xB288 | size: 0xD
+.obj str_irai_help_15_gor_0001ed88, local
+	.string "irai_help_15"
+.endobj str_irai_help_15_gor_0001ed88
+
+# .rodata:0x525 | 0xB295 | size: 0x3
+.obj gap_03_0000B295_rodata, global
+.hidden gap_03_0000B295_rodata
+	.byte 0x00, 0x00, 0x00
+.endobj gap_03_0000B295_rodata
+
+# .rodata:0x528 | 0xB298 | size: 0xD
+.obj str_irai_help_16_gor_0001ed98, local
+	.string "irai_help_16"
+.endobj str_irai_help_16_gor_0001ed98
+
+# .rodata:0x535 | 0xB2A5 | size: 0x3
+.obj gap_03_0000B2A5_rodata, global
+.hidden gap_03_0000B2A5_rodata
+	.byte 0x00, 0x00, 0x00
+.endobj gap_03_0000B2A5_rodata
+
+# .rodata:0x538 | 0xB2A8 | size: 0xD
+.obj str_irai_help_17_gor_0001eda8, local
+	.string "irai_help_17"
+.endobj str_irai_help_17_gor_0001eda8
+
+# .rodata:0x545 | 0xB2B5 | size: 0x3
+.obj gap_03_0000B2B5_rodata, global
+.hidden gap_03_0000B2B5_rodata
+	.byte 0x00, 0x00, 0x00
+.endobj gap_03_0000B2B5_rodata
+
+# .rodata:0x548 | 0xB2B8 | size: 0xD
+.obj str_irai_help_18_gor_0001edb8, local
+	.string "irai_help_18"
+.endobj str_irai_help_18_gor_0001edb8
+
+# .rodata:0x555 | 0xB2C5 | size: 0x3
+.obj gap_03_0000B2C5_rodata, global
+.hidden gap_03_0000B2C5_rodata
+	.byte 0x00, 0x00, 0x00
+.endobj gap_03_0000B2C5_rodata
+
+# .rodata:0x558 | 0xB2C8 | size: 0xD
+.obj str_irai_help_19_gor_0001edc8, local
+	.string "irai_help_19"
+.endobj str_irai_help_19_gor_0001edc8
+
+# .rodata:0x565 | 0xB2D5 | size: 0x3
+.obj gap_03_0000B2D5_rodata, global
+.hidden gap_03_0000B2D5_rodata
+	.byte 0x00, 0x00, 0x00
+.endobj gap_03_0000B2D5_rodata
+
+# .rodata:0x568 | 0xB2D8 | size: 0xD
+.obj str_irai_help_20_gor_0001edd8, local
+	.string "irai_help_20"
+.endobj str_irai_help_20_gor_0001edd8
+
+# .rodata:0x575 | 0xB2E5 | size: 0x3
+.obj gap_03_0000B2E5_rodata, global
+.hidden gap_03_0000B2E5_rodata
+	.byte 0x00, 0x00, 0x00
+.endobj gap_03_0000B2E5_rodata
+
+# .rodata:0x578 | 0xB2E8 | size: 0xD
+.obj str_irai_help_21_gor_0001ede8, local
+	.string "irai_help_21"
+.endobj str_irai_help_21_gor_0001ede8
+
+# .rodata:0x585 | 0xB2F5 | size: 0x3
+.obj gap_03_0000B2F5_rodata, global
+.hidden gap_03_0000B2F5_rodata
+	.byte 0x00, 0x00, 0x00
+.endobj gap_03_0000B2F5_rodata
+
+# .rodata:0x588 | 0xB2F8 | size: 0xD
+.obj str_irai_help_22_gor_0001edf8, local
+	.string "irai_help_22"
+.endobj str_irai_help_22_gor_0001edf8
+
+# .rodata:0x595 | 0xB305 | size: 0x3
+.obj gap_03_0000B305_rodata, global
+.hidden gap_03_0000B305_rodata
+	.byte 0x00, 0x00, 0x00
+.endobj gap_03_0000B305_rodata
+
+# .rodata:0x598 | 0xB308 | size: 0xD
+.obj str_irai_help_23_gor_0001ee08, local
+	.string "irai_help_23"
+.endobj str_irai_help_23_gor_0001ee08
+
+# .rodata:0x5A5 | 0xB315 | size: 0x3
+.obj gap_03_0000B315_rodata, global
+.hidden gap_03_0000B315_rodata
+	.byte 0x00, 0x00, 0x00
+.endobj gap_03_0000B315_rodata
+
+# .rodata:0x5A8 | 0xB318 | size: 0xD
+.obj str_irai_help_24_gor_0001ee18, local
+	.string "irai_help_24"
+.endobj str_irai_help_24_gor_0001ee18
+
+# .rodata:0x5B5 | 0xB325 | size: 0x3
+.obj gap_03_0000B325_rodata, global
+.hidden gap_03_0000B325_rodata
+	.byte 0x00, 0x00, 0x00
+.endobj gap_03_0000B325_rodata
+
+# .rodata:0x5B8 | 0xB328 | size: 0xD
+.obj str_irai_help_25_gor_0001ee28, local
+	.string "irai_help_25"
+.endobj str_irai_help_25_gor_0001ee28
+
+# .rodata:0x5C5 | 0xB335 | size: 0x3
+.obj gap_03_0000B335_rodata, global
+.hidden gap_03_0000B335_rodata
+	.byte 0x00, 0x00, 0x00
+.endobj gap_03_0000B335_rodata
+
+# .rodata:0x5C8 | 0xB338 | size: 0xD
+.obj str_irai_help_26_gor_0001ee38, local
+	.string "irai_help_26"
+.endobj str_irai_help_26_gor_0001ee38
+
+# .rodata:0x5D5 | 0xB345 | size: 0x3
+.obj gap_03_0000B345_rodata, global
+.hidden gap_03_0000B345_rodata
+	.byte 0x00, 0x00, 0x00
+.endobj gap_03_0000B345_rodata
+
+# .rodata:0x5D8 | 0xB348 | size: 0xD
+.obj str_irai_help_27_gor_0001ee48, local
+	.string "irai_help_27"
+.endobj str_irai_help_27_gor_0001ee48
+
+# .rodata:0x5E5 | 0xB355 | size: 0x3
+.obj gap_03_0000B355_rodata, global
+.hidden gap_03_0000B355_rodata
+	.byte 0x00, 0x00, 0x00
+.endobj gap_03_0000B355_rodata
+
+# .rodata:0x5E8 | 0xB358 | size: 0xD
+.obj str_irai_help_28_gor_0001ee58, local
+	.string "irai_help_28"
+.endobj str_irai_help_28_gor_0001ee58
+
+# .rodata:0x5F5 | 0xB365 | size: 0x3
+.obj gap_03_0000B365_rodata, global
+.hidden gap_03_0000B365_rodata
+	.byte 0x00, 0x00, 0x00
+.endobj gap_03_0000B365_rodata
+
+# .rodata:0x5F8 | 0xB368 | size: 0xD
+.obj str_irai_help_29_gor_0001ee68, local
+	.string "irai_help_29"
+.endobj str_irai_help_29_gor_0001ee68
+
+# .rodata:0x605 | 0xB375 | size: 0x3
+.obj gap_03_0000B375_rodata, global
+.hidden gap_03_0000B375_rodata
+	.byte 0x00, 0x00, 0x00
+.endobj gap_03_0000B375_rodata
+
+# .rodata:0x608 | 0xB378 | size: 0xD
+.obj str_irai_help_30_gor_0001ee78, local
+	.string "irai_help_30"
+.endobj str_irai_help_30_gor_0001ee78
+
+# .rodata:0x615 | 0xB385 | size: 0x3
+.obj gap_03_0000B385_rodata, global
+.hidden gap_03_0000B385_rodata
+	.byte 0x00, 0x00, 0x00
+.endobj gap_03_0000B385_rodata
+
+# .rodata:0x618 | 0xB388 | size: 0x8
+.obj str_irai_43_gor_0001ee88, local
+	.string "irai_43"
+.endobj str_irai_43_gor_0001ee88
+
+# .rodata:0x620 | 0xB390 | size: 0x8
+.obj str_irai_44_gor_0001ee90, local
+	.string "irai_44"
+.endobj str_irai_44_gor_0001ee90
+
+# .rodata:0x628 | 0xB398 | size: 0x8
+.obj str_irai_45_gor_0001ee98, local
+	.string "irai_45"
+.endobj str_irai_45_gor_0001ee98
+
+# .rodata:0x630 | 0xB3A0 | size: 0x8
+.obj str_irai_46_gor_0001eea0, local
+	.string "irai_46"
+.endobj str_irai_46_gor_0001eea0
+
+# .rodata:0x638 | 0xB3A8 | size: 0x8
+.obj str_irai_47_gor_0001eea8, local
+	.string "irai_47"
+.endobj str_irai_47_gor_0001eea8
+
+# .rodata:0x640 | 0xB3B0 | size: 0x8
+.obj str_irai_48_gor_0001eeb0, local
+	.string "irai_48"
+.endobj str_irai_48_gor_0001eeb0
+
+# .rodata:0x648 | 0xB3B8 | size: 0x8
+.obj str_irai_49_gor_0001eeb8, local
+	.string "irai_49"
+.endobj str_irai_49_gor_0001eeb8
+
+# .rodata:0x650 | 0xB3C0 | size: 0x8
+.obj str_irai_50_gor_0001eec0, local
+	.string "irai_50"
+.endobj str_irai_50_gor_0001eec0
+
+# .rodata:0x658 | 0xB3C8 | size: 0x8
+.obj str_irai_51_gor_0001eec8, local
+	.string "irai_51"
+.endobj str_irai_51_gor_0001eec8
+
+# .rodata:0x660 | 0xB3D0 | size: 0x8
+.obj str_irai_52_gor_0001eed0, local
+	.string "irai_52"
+.endobj str_irai_52_gor_0001eed0
+
+# .rodata:0x668 | 0xB3D8 | size: 0x8
+.obj str_irai_53_gor_0001eed8, local
+	.string "irai_53"
+.endobj str_irai_53_gor_0001eed8
+
+# .rodata:0x670 | 0xB3E0 | size: 0x8
+.obj str_irai_54_gor_0001eee0, local
+	.string "irai_54"
+.endobj str_irai_54_gor_0001eee0
+
+# .rodata:0x678 | 0xB3E8 | size: 0x8
+.obj str_irai_55_gor_0001eee8, local
+	.string "irai_55"
+.endobj str_irai_55_gor_0001eee8
+
+# .rodata:0x680 | 0xB3F0 | size: 0x8
+.obj str_irai_56_gor_0001eef0, local
+	.string "irai_56"
+.endobj str_irai_56_gor_0001eef0
+
+# .rodata:0x688 | 0xB3F8 | size: 0x8
+.obj str_irai_57_gor_0001eef8, local
+	.string "irai_57"
+.endobj str_irai_57_gor_0001eef8
+
+# .rodata:0x690 | 0xB400 | size: 0x8
+.obj str_irai_58_gor_0001ef00, local
+	.string "irai_58"
+.endobj str_irai_58_gor_0001ef00
+
+# .rodata:0x698 | 0xB408 | size: 0x8
+.obj str_irai_59_gor_0001ef08, local
+	.string "irai_59"
+.endobj str_irai_59_gor_0001ef08
+
+# .rodata:0x6A0 | 0xB410 | size: 0x8
+.obj str_irai_60_gor_0001ef10, local
+	.string "irai_60"
+.endobj str_irai_60_gor_0001ef10
+
+# .rodata:0x6A8 | 0xB418 | size: 0x8
+.obj str_irai_61_gor_0001ef18, local
+	.string "irai_61"
+.endobj str_irai_61_gor_0001ef18
+
+# .rodata:0x6B0 | 0xB420 | size: 0x8
+.obj str_irai_62_gor_0001ef20, local
+	.string "irai_62"
+.endobj str_irai_62_gor_0001ef20
+
+# .rodata:0x6B8 | 0xB428 | size: 0x8
+.obj str_irai_63_gor_0001ef28, local
+	.string "irai_63"
+.endobj str_irai_63_gor_0001ef28
+
+# .rodata:0x6C0 | 0xB430 | size: 0x8
+.obj str_irai_64_gor_0001ef30, local
+	.string "irai_64"
+.endobj str_irai_64_gor_0001ef30
+
+# .rodata:0x6C8 | 0xB438 | size: 0x8
+.obj str_irai_65_gor_0001ef38, local
+	.string "irai_65"
+.endobj str_irai_65_gor_0001ef38
+
+# .rodata:0x6D0 | 0xB440 | size: 0x8
+.obj str_irai_66_gor_0001ef40, local
+	.string "irai_66"
+.endobj str_irai_66_gor_0001ef40
+
+# .rodata:0x6D8 | 0xB448 | size: 0x8
+.obj str_irai_67_gor_0001ef48, local
+	.string "irai_67"
+.endobj str_irai_67_gor_0001ef48
+
+# .rodata:0x6E0 | 0xB450 | size: 0x8
+.obj str_irai_68_gor_0001ef50, local
+	.string "irai_68"
+.endobj str_irai_68_gor_0001ef50
+
+# .rodata:0x6E8 | 0xB458 | size: 0x8
+.obj str_irai_69_gor_0001ef58, local
+	.string "irai_69"
+.endobj str_irai_69_gor_0001ef58
+
+# .rodata:0x6F0 | 0xB460 | size: 0x8
+.obj str_irai_70_gor_0001ef60, local
+	.string "irai_70"
+.endobj str_irai_70_gor_0001ef60
+
+# .rodata:0x6F8 | 0xB468 | size: 0x8
+.obj str_irai_71_gor_0001ef68, local
+	.string "irai_71"
+.endobj str_irai_71_gor_0001ef68
+
+# .rodata:0x700 | 0xB470 | size: 0x8
+.obj str_irai_72_gor_0001ef70, local
+	.string "irai_72"
+.endobj str_irai_72_gor_0001ef70
+
+# .rodata:0x708 | 0xB478 | size: 0x8
+.obj str_irai_13_gor_0001ef78, local
+	.string "irai_13"
+.endobj str_irai_13_gor_0001ef78
+
+# .rodata:0x710 | 0xB480 | size: 0x8
+.obj str_irai_14_gor_0001ef80, local
+	.string "irai_14"
+.endobj str_irai_14_gor_0001ef80
+
+# .rodata:0x718 | 0xB488 | size: 0x8
+.obj str_irai_15_gor_0001ef88, local
+	.string "irai_15"
+.endobj str_irai_15_gor_0001ef88
+
+# .rodata:0x720 | 0xB490 | size: 0x8
+.obj str_irai_16_gor_0001ef90, local
+	.string "irai_16"
+.endobj str_irai_16_gor_0001ef90
+
+# .rodata:0x728 | 0xB498 | size: 0x8
+.obj str_irai_17_gor_0001ef98, local
+	.string "irai_17"
+.endobj str_irai_17_gor_0001ef98
+
+# .rodata:0x730 | 0xB4A0 | size: 0x8
+.obj str_irai_18_gor_0001efa0, local
+	.string "irai_18"
+.endobj str_irai_18_gor_0001efa0
+
+# .rodata:0x738 | 0xB4A8 | size: 0x8
+.obj str_irai_19_gor_0001efa8, local
+	.string "irai_19"
+.endobj str_irai_19_gor_0001efa8
+
+# .rodata:0x740 | 0xB4B0 | size: 0x8
+.obj str_irai_20_gor_0001efb0, local
+	.string "irai_20"
+.endobj str_irai_20_gor_0001efb0
+
+# .rodata:0x748 | 0xB4B8 | size: 0x8
+.obj str_irai_21_gor_0001efb8, local
+	.string "irai_21"
+.endobj str_irai_21_gor_0001efb8
+
+# .rodata:0x750 | 0xB4C0 | size: 0x8
+.obj str_irai_22_gor_0001efc0, local
+	.string "irai_22"
+.endobj str_irai_22_gor_0001efc0
+
+# .rodata:0x758 | 0xB4C8 | size: 0x8
+.obj str_irai_23_gor_0001efc8, local
+	.string "irai_23"
+.endobj str_irai_23_gor_0001efc8
+
+# .rodata:0x760 | 0xB4D0 | size: 0x8
+.obj str_irai_24_gor_0001efd0, local
+	.string "irai_24"
+.endobj str_irai_24_gor_0001efd0
+
+# .rodata:0x768 | 0xB4D8 | size: 0x8
+.obj str_irai_25_gor_0001efd8, local
+	.string "irai_25"
+.endobj str_irai_25_gor_0001efd8
+
+# .rodata:0x770 | 0xB4E0 | size: 0x8
+.obj str_irai_26_gor_0001efe0, local
+	.string "irai_26"
+.endobj str_irai_26_gor_0001efe0
+
+# .rodata:0x778 | 0xB4E8 | size: 0x8
+.obj str_irai_27_gor_0001efe8, local
+	.string "irai_27"
+.endobj str_irai_27_gor_0001efe8
+
+# .rodata:0x780 | 0xB4F0 | size: 0x8
+.obj str_irai_28_gor_0001eff0, local
+	.string "irai_28"
+.endobj str_irai_28_gor_0001eff0
+
+# .rodata:0x788 | 0xB4F8 | size: 0x8
+.obj str_irai_29_gor_0001eff8, local
+	.string "irai_29"
+.endobj str_irai_29_gor_0001eff8
+
+# .rodata:0x790 | 0xB500 | size: 0x8
+.obj str_irai_30_gor_0001f000, local
+	.string "irai_30"
+.endobj str_irai_30_gor_0001f000
+
+# .rodata:0x798 | 0xB508 | size: 0x8
+.obj str_irai_31_gor_0001f008, local
+	.string "irai_31"
+.endobj str_irai_31_gor_0001f008
+
+# .rodata:0x7A0 | 0xB510 | size: 0x8
+.obj str_irai_32_gor_0001f010, local
+	.string "irai_32"
+.endobj str_irai_32_gor_0001f010
+
+# .rodata:0x7A8 | 0xB518 | size: 0x8
+.obj str_irai_33_gor_0001f018, local
+	.string "irai_33"
+.endobj str_irai_33_gor_0001f018
+
+# .rodata:0x7B0 | 0xB520 | size: 0x8
+.obj str_irai_34_gor_0001f020, local
+	.string "irai_34"
+.endobj str_irai_34_gor_0001f020
+
+# .rodata:0x7B8 | 0xB528 | size: 0x8
+.obj str_irai_35_gor_0001f028, local
+	.string "irai_35"
+.endobj str_irai_35_gor_0001f028
+
+# .rodata:0x7C0 | 0xB530 | size: 0x8
+.obj str_irai_36_gor_0001f030, local
+	.string "irai_36"
+.endobj str_irai_36_gor_0001f030
+
+# .rodata:0x7C8 | 0xB538 | size: 0x8
+.obj str_irai_37_gor_0001f038, local
+	.string "irai_37"
+.endobj str_irai_37_gor_0001f038
+
+# .rodata:0x7D0 | 0xB540 | size: 0x8
+.obj str_irai_38_gor_0001f040, local
+	.string "irai_38"
+.endobj str_irai_38_gor_0001f040
+
+# .rodata:0x7D8 | 0xB548 | size: 0x8
+.obj str_irai_39_gor_0001f048, local
+	.string "irai_39"
+.endobj str_irai_39_gor_0001f048
+
+# .rodata:0x7E0 | 0xB550 | size: 0x8
+.obj str_irai_40_gor_0001f050, local
+	.string "irai_40"
+.endobj str_irai_40_gor_0001f050
+
+# .rodata:0x7E8 | 0xB558 | size: 0x8
+.obj str_irai_41_gor_0001f058, local
+	.string "irai_41"
+.endobj str_irai_41_gor_0001f058
+
+# .rodata:0x7F0 | 0xB560 | size: 0x8
+.obj str_irai_42_gor_0001f060, local
+	.string "irai_42"
+.endobj str_irai_42_gor_0001f060
+
+# .rodata:0x7F8 | 0xB568 | size: 0x9
+.obj str_盗賊団２_gor_0001f068, local
+	.4byte 0x939091AF
+	.4byte 0x92638251
+	.byte 0x00
+.endobj str_盗賊団２_gor_0001f068
+
+# .rodata:0x801 | 0xB571 | size: 0x3
+.obj gap_03_0000B571_rodata, global
+.hidden gap_03_0000B571_rodata
+	.byte 0x00, 0x00, 0x00
+.endobj gap_03_0000B571_rodata
+
+# .rodata:0x804 | 0xB574 | size: 0xB
+.obj str_ボロドー２_gor_0001f074, local
+	.4byte 0x837B838D
+	.4byte 0x8368815B
+	.byte 0x82, 0x51, 0x00
+.endobj str_ボロドー２_gor_0001f074
+
+# .rodata:0x80F | 0xB57F | size: 0x1
+.obj gap_03_0000B57F_rodata, global
+.hidden gap_03_0000B57F_rodata
+	.byte 0x00
+.endobj gap_03_0000B57F_rodata
+
+# .rodata:0x810 | 0xB580 | size: 0x19
+.obj str_ピートンの依頼キャンセル_gor_0001f080, local
+	.4byte 0x8373815B
+	.4byte 0x83678393
+	.4byte 0x82CC88CB
+	.4byte 0x978A834C
+	.4byte 0x83838393
+	.4byte 0x835A838B
+	.byte 0x00
+.endobj str_ピートンの依頼キャンセル_gor_0001f080
+
+# .rodata:0x829 | 0xB599 | size: 0x3
+.obj gap_03_0000B599_rodata, global
+.hidden gap_03_0000B599_rodata
+	.byte 0x00, 0x00, 0x00
+.endobj gap_03_0000B599_rodata
+
+# .rodata:0x82C | 0xB59C | size: 0x3
+.obj str_wr_gor_0001f09c, local
+	.string "wr"
+.endobj str_wr_gor_0001f09c
+
+# .rodata:0x82F | 0xB59F | size: 0x1
+.obj gap_03_0000B59F_rodata, global
+.hidden gap_03_0000B59F_rodata
+	.byte 0x00
+.endobj gap_03_0000B59F_rodata
+
+# .rodata:0x830 | 0xB5A0 | size: 0xC
+.obj str_A_i04_keizi_gor_0001f0a0, local
+	.string "A_i04_keizi"
+.endobj str_A_i04_keizi_gor_0001f0a0
+
+# .rodata:0x83C | 0xB5AC | size: 0xD
+.obj str_A_i04_kunter_gor_0001f0ac, local
+	.string "A_i04_kunter"
+.endobj str_A_i04_kunter_gor_0001f0ac
+
+# .rodata:0x849 | 0xB5B9 | size: 0x3
+.obj gap_03_0000B5B9_rodata, global
+.hidden gap_03_0000B5B9_rodata
+	.byte 0x00, 0x00, 0x00
+.endobj gap_03_0000B5B9_rodata
+
+# .rodata:0x84C | 0xB5BC | size: 0x8
+.obj str_irai_00_gor_0001f0bc, local
+	.string "irai_00"
+.endobj str_irai_00_gor_0001f0bc
+
+# .rodata:0x854 | 0xB5C4 | size: 0x8
+.obj str_irai_01_gor_0001f0c4, local
+	.string "irai_01"
+.endobj str_irai_01_gor_0001f0c4
+
+# .rodata:0x85C | 0xB5CC | size: 0x8
+.obj str_irai_03_gor_0001f0cc, local
+	.string "irai_03"
+.endobj str_irai_03_gor_0001f0cc
+
+# .rodata:0x864 | 0xB5D4 | size: 0x8
+.obj str_irai_02_gor_0001f0d4, local
+	.string "irai_02"
+.endobj str_irai_02_gor_0001f0d4
+
+# .rodata:0x86C | 0xB5DC | size: 0x8
+.obj str_irai_73_gor_0001f0dc, local
+	.string "irai_73"
+.endobj str_irai_73_gor_0001f0dc
+
+# .rodata:0x874 | 0xB5E4 | size: 0x8
+.obj str_irai_74_gor_0001f0e4, local
+	.string "irai_74"
+.endobj str_irai_74_gor_0001f0e4
+
+# .rodata:0x87C | 0xB5EC | size: 0x8
+.obj str_irai_06_gor_0001f0ec, local
+	.string "irai_06"
+.endobj str_irai_06_gor_0001f0ec
+
+# .rodata:0x884 | 0xB5F4 | size: 0x8
+.obj str_irai_07_gor_0001f0f4, local
+	.string "irai_07"
+.endobj str_irai_07_gor_0001f0f4
+
+# .rodata:0x88C | 0xB5FC | size: 0x8
+.obj str_irai_08_gor_0001f0fc, local
+	.string "irai_08"
+.endobj str_irai_08_gor_0001f0fc
+
+# .rodata:0x894 | 0xB604 | size: 0x17
+.obj str_依頼メニューキャンセル_gor_0001f104, local
+	.4byte 0x88CB978A
+	.4byte 0x8381836A
+	.4byte 0x8385815B
+	.4byte 0x834C8383
+	.4byte 0x8393835A
+	.byte 0x83, 0x8B, 0x00
+.endobj str_依頼メニューキャンセル_gor_0001f104
+
+# .rodata:0x8AB | 0xB61B | size: 0x1
+.obj gap_03_0000B61B_rodata, global
+.hidden gap_03_0000B61B_rodata
+	.byte 0x00
+.endobj gap_03_0000B61B_rodata
+
+# .rodata:0x8AC | 0xB61C | size: 0x8
+.obj str_irai_09_gor_0001f11c, local
+	.string "irai_09"
+.endobj str_irai_09_gor_0001f11c
+
+# .rodata:0x8B4 | 0xB624 | size: 0x8
+.obj str_irai_10_gor_0001f124, local
+	.string "irai_10"
+.endobj str_irai_10_gor_0001f124
+
+# .rodata:0x8BC | 0xB62C | size: 0x8
+.obj str_irai_11_gor_0001f12c, local
+	.string "irai_11"
+.endobj str_irai_11_gor_0001f12c
+
+# .rodata:0x8C4 | 0xB634 | size: 0x8
+.obj str_irai_12_gor_0001f134, local
+	.string "irai_12"
+.endobj str_irai_12_gor_0001f134
+
+# .rodata:0x8CC | 0xB63C | size: 0x8
+.obj str_irai_04_gor_0001f13c, local
+	.string "irai_04"
+.endobj str_irai_04_gor_0001f13c
+
+# .rodata:0x8D4 | 0xB644 | size: 0x4
+.obj dat_gor_0001f144, local
+	.4byte 0xFFFFFFFF
+.endobj dat_gor_0001f144
+
+# .rodata:0x8D8 | 0xB648 | size: 0x4
+.obj dat_gor_0001f148, local
+	.4byte 0x2BA3FFFF
+.endobj dat_gor_0001f148
+
+# .rodata:0x8DC | 0xB64C | size: 0x4
+.obj dat_gor_0001f14c, local
+	.4byte 0xFFFFFFFF
+.endobj dat_gor_0001f14c
+
+# .rodata:0x8E0 | 0xB650 | size: 0x4
+.obj dat_gor_0001f150, local
+	.4byte 0xFFFFFFFF
+.endobj dat_gor_0001f150
+
+# .rodata:0x8E4 | 0xB654 | size: 0x4
+.obj dat_gor_0001f154, local
+	.4byte 0x2BA3FFFF
+.endobj dat_gor_0001f154
+
+# .rodata:0x8E8 | 0xB658 | size: 0x4
+.obj dat_gor_0001f158, local
+	.4byte 0x2BA3FFFF
+.endobj dat_gor_0001f158
+
+# .rodata:0x8EC | 0xB65C | size: 0x4
+.obj dat_gor_0001f15c, local
+	.4byte 0xFFFFFFFF
+.endobj dat_gor_0001f15c
+
+# .rodata:0x8F0 | 0xB660 | size: 0x4
+.obj dat_gor_0001f160, local
+	.4byte 0x000000FF
+.endobj dat_gor_0001f160
+
+# .rodata:0x8F4 | 0xB664 | size: 0x4
+.obj dat_gor_0001f164, local
+	.4byte 0x808080FF
+.endobj dat_gor_0001f164
+
+# .rodata:0x8F8 | 0xB668 | size: 0x4
+.obj dat_gor_0001f168, local
+	.4byte 0x000000FF
+.endobj dat_gor_0001f168
+
+# .rodata:0x8FC | 0xB66C | size: 0x4
+.obj dat_gor_0001f16c, local
+	.4byte 0xFF0000FF
+.endobj dat_gor_0001f16c
+
+# .rodata:0x900 | 0xB670 | size: 0xC
+.obj vec3_gor_0001f170, local
+	.4byte 0x00000000
+	.4byte 0x3F59999A
+	.4byte 0x3F59999A
+.endobj vec3_gor_0001f170
+
+# .rodata:0x90C | 0xB67C | size: 0xC
+.obj vec3_gor_0001f17c, local
+	.4byte 0x00000000
+	.4byte 0x3F59999A
+	.4byte 0x3F59999A
+.endobj vec3_gor_0001f17c
+
+# .rodata:0x918 | 0xB688 | size: 0x4
+.obj zero_gor_0001f188, local
+	.float 0
+.endobj zero_gor_0001f188
+
+# .rodata:0x91C | 0xB68C | size: 0x4
+.obj float_neg280_gor_0001f18c, local
+	.float -280
+.endobj float_neg280_gor_0001f18c
+
+# .rodata:0x920 | 0xB690 | size: 0x4
+.obj float_170_gor_0001f190, local
+	.float 170
+.endobj float_170_gor_0001f190
+
+# .rodata:0x924 | 0xB694 | size: 0x4
+.obj float_135_gor_0001f194, local
+	.float 135
+.endobj float_135_gor_0001f194
+
+# .rodata:0x928 | 0xB698 | size: 0x4
+.obj float_90_gor_0001f198, local
+	.float 90
+.endobj float_90_gor_0001f198
+
+# .rodata:0x92C | 0xB69C | size: 0x4
+.obj float_12_gor_0001f19c, local
+	.float 12
+.endobj float_12_gor_0001f19c
+
+# .rodata:0x930 | 0xB6A0 | size: 0x4
+.obj float_0p85_gor_0001f1a0, local
+	.float 0.85
+.endobj float_0p85_gor_0001f1a0
+
+# .rodata:0x934 | 0xB6A4 | size: 0xF
+.obj str_irai_name1_win_gor_0001f1a4, local
+	.string "irai_name1_win"
+.endobj str_irai_name1_win_gor_0001f1a4
+	.byte 0x00
+
+# .rodata:0x944 | 0xB6B4 | size: 0x4
+.obj float_115_gor_0001f1b4, local
+	.float 115
+.endobj float_115_gor_0001f1b4
+
+# .rodata:0x948 | 0xB6B8 | size: 0x4
+.obj float_1_gor_0001f1b8, local
+	.float 1
+.endobj float_1_gor_0001f1b8
+
+# .rodata:0x94C | 0xB6BC | size: 0x4
+.obj float_0p5_gor_0001f1bc, local
+	.float 0.5
+.endobj float_0p5_gor_0001f1bc
+
+# .rodata:0x950 | 0xB6C0 | size: 0x4
+.obj float_152_gor_0001f1c0, local
+	.float 152
+.endobj float_152_gor_0001f1c0
+
+# .rodata:0x954 | 0xB6C4 | size: 0xF
+.obj str_irai_name2_win_gor_0001f1c4, local
+	.string "irai_name2_win"
+.endobj str_irai_name2_win_gor_0001f1c4
+	.byte 0x00
+
+# .rodata:0x964 | 0xB6D4 | size: 0x4
+.obj float_127_gor_0001f1d4, local
+	.float 127
+.endobj float_127_gor_0001f1d4
+
+# .rodata:0x968 | 0xB6D8 | size: 0x4
+.obj float_neg129_gor_0001f1d8, local
+	.float -129
+.endobj float_neg129_gor_0001f1d8
+
+# .rodata:0x96C | 0xB6DC | size: 0x4
+.obj float_410_gor_0001f1dc, local
+	.float 410
+.endobj float_410_gor_0001f1dc
+
+# .rodata:0x970 | 0xB6E0 | size: 0x4
+.obj float_340_gor_0001f1e0, local
+	.float 340
+.endobj float_340_gor_0001f1e0
+
+# .rodata:0x974 | 0xB6E4 | size: 0x4
+.obj float_neg103_gor_0001f1e4, local
+	.float -103
+.endobj float_neg103_gor_0001f1e4
+
+# .rodata:0x978 | 0xB6E8 | size: 0x4
+.obj float_190_gor_0001f1e8, local
+	.float 190
+.endobj float_190_gor_0001f1e8
+
+# .rodata:0x97C | 0xB6EC | size: 0x4
+.obj float_120_gor_0001f1ec, local
+	.float 120
+.endobj float_120_gor_0001f1ec
+
+# .rodata:0x980 | 0xB6F0 | size: 0x4
+.obj float_40_gor_0001f1f0, local
+	.float 40
+.endobj float_40_gor_0001f1f0
+
+# .rodata:0x984 | 0xB6F4 | size: 0x4
+.obj float_91_gor_0001f1f4, local
+	.float 91
+.endobj float_91_gor_0001f1f4
+
+# .rodata:0x988 | 0xB6F8 | size: 0x10
+.obj str_irai_client_win_gor_0001f1f8, local
+	.string "irai_client_win"
+.endobj str_irai_client_win_gor_0001f1f8
+
+# .rodata:0x998 | 0xB708 | size: 0x4
+.obj float_100_gor_0001f208, local
+	.float 100
+.endobj float_100_gor_0001f208
+
+# .rodata:0x99C | 0xB70C | size: 0x4
+.obj float_180_gor_0001f20c, local
+	.float 180
+.endobj float_180_gor_0001f20c
+
+# .rodata:0x9A0 | 0xB710 | size: 0x12
+.obj str_irai_contents_win_gor_0001f210, local
+	.string "irai_contents_win"
+.endobj str_irai_contents_win_gor_0001f210
+	.2byte 0x0000
+
+# .rodata:0x9B4 | 0xB724 | size: 0x4
+.obj float_neg119_gor_0001f224, local
+	.float -119
+.endobj float_neg119_gor_0001f224
+
+# .rodata:0x9B8 | 0xB728 | size: 0x4
+.obj float_260_gor_0001f228, local
+	.float 260
+.endobj float_260_gor_0001f228
+
+# .rodata:0x9BC | 0xB72C | size: 0x4
+.obj float_51_gor_0001f22c, local
+	.float 51
+.endobj float_51_gor_0001f22c
+
+# .rodata:0x9C0 | 0xB730 | size: 0x8
+.obj double_to_int_mask_gor_0001f230, local
+	.double 4503599627370496
+.endobj double_to_int_mask_gor_0001f230
+
+# .rodata:0x9C8 | 0xB738 | size: 0x8
+.obj double_to_int_gor_0001f238, local
+	.double 4503601774854144
+.endobj double_to_int_gor_0001f238
+
+# .rodata:0x9D0 | 0xB740 | size: 0x9
+.obj str_iraiYubi_gor_0001f240, local
+	.string "iraiYubi"
+.endobj str_iraiYubi_gor_0001f240
+
+# .rodata:0x9D9 | 0xB749 | size: 0x3
+.obj gap_03_0000B749_rodata, global
+.hidden gap_03_0000B749_rodata
+	.byte 0x00, 0x00, 0x00
+.endobj gap_03_0000B749_rodata
+
+# .rodata:0x9DC | 0xB74C | size: 0xC
+.obj str_iraiArrowUp_gor_0001f24c, local
+	.string "iraiArrowUp"
+.endobj str_iraiArrowUp_gor_0001f24c
+
+# .rodata:0x9E8 | 0xB758 | size: 0xE
+.obj str_iraiArrowDown_gor_0001f258, local
+	.string "iraiArrowDown"
+.endobj str_iraiArrowDown_gor_0001f258
+
+# .rodata:0x9F6 | 0xB766 | size: 0x2
+.obj gap_03_0000B766_rodata, global
+.hidden gap_03_0000B766_rodata
+	.2byte 0x0000
+.endobj gap_03_0000B766_rodata
+
+# .rodata:0x9F8 | 0xB768 | size: 0xC
+.obj str_iraiLButton_gor_0001f268, local
+	.string "iraiLButton"
+.endobj str_iraiLButton_gor_0001f268
+
+# .rodata:0xA04 | 0xB774 | size: 0x4
+.obj float_0p8_gor_0001f274, local
+	.float 0.8
+.endobj float_0p8_gor_0001f274
+
+# .rodata:0xA08 | 0xB778 | size: 0xC
+.obj str_iraiRButton_gor_0001f278, local
+	.string "iraiRButton"
+.endobj str_iraiRButton_gor_0001f278
+
+# .rodata:0xA14 | 0xB784 | size: 0x4
+.obj float_6_gor_0001f284, local
+	.float 6
+.endobj float_6_gor_0001f284
+
+# .rodata:0xA18 | 0xB788 | size: 0x4
+.obj float_231_gor_0001f288, local
+	.float 231
+.endobj float_231_gor_0001f288
+
+# .rodata:0xA1C | 0xB78C | size: 0x4
+.obj float_178_gor_0001f28c, local
+	.float 178
+.endobj float_178_gor_0001f28c
+
+# .rodata:0xA20 | 0xB790 | size: 0x4
+.obj float_neg190_gor_0001f290, local
+	.float -190
+.endobj float_neg190_gor_0001f290
+
+# .rodata:0xA24 | 0xB794 | size: 0x4
+.obj float_261_gor_0001f294, local
+	.float 261
+.endobj float_261_gor_0001f294
+
+# .rodata:0xA28 | 0xB798 | size: 0x4
+.obj float_146_gor_0001f298, local
+	.float 146
+.endobj float_146_gor_0001f298
+
+# .rodata:0xA2C | 0xB79C | size: 0x4
+.obj float_300_gor_0001f29c, local
+	.float 300
+.endobj float_300_gor_0001f29c
+
+# 0x000459E0..0x00046628 | size: 0xC48
+.data
+.balign 8
+
+# .data:0x0 | 0x459E0 | size: 0x8
+.obj negone_one$374, local
+	.4byte 0xBF800000
+	.4byte 0x3F800000
+.endobj negone_one$374
+
+# .data:0x8 | 0x459E8 | size: 0x4
+.obj neg_one$382, local
+	.4byte 0xBF800000
+.endobj neg_one$382
+
+# .data:0xC | 0x459EC | size: 0x4
+.obj __local_PI$383, local
+	.4byte 0x40490FDB
+.endobj __local_PI$383
+
+# .data:0x10 | 0x459F0 | size: 0x4
+.obj __local_3PIO2$385, local
+	.4byte 0x4096CBE4
+.endobj __local_3PIO2$385
+
+# .data:0x14 | 0x459F4 | size: 0x4
+.obj gap_04_000459F4_data, global
+.hidden gap_04_000459F4_data
+	.4byte 0x00000000
+.endobj gap_04_000459F4_data
+
+# .data:0x18 | 0x459F8 | size: 0x8
+.obj one_negone$373, local
+	.4byte 0x3F800000
+	.4byte 0xBF800000
+.endobj one_negone$373
+
+# .data:0x20 | 0x45A00 | size: 0x4
+.obj __local_PIO2$384, local
+	.4byte 0x3FC90FDB
+.endobj __local_PIO2$384
+
+# .data:0x24 | 0x45A04 | size: 0x4
+.obj one$381, local
+	.4byte 0x3F800000
+.endobj one$381
+
+# .data:0x28 | 0x45A08 | size: 0x8
+.obj negone_one$360, local
+	.4byte 0xBF800000
+	.4byte 0x3F800000
+.endobj negone_one$360
+
+# .data:0x30 | 0x45A10 | size: 0x4
+.obj neg_one$365, local
+	.4byte 0xBF800000
+.endobj neg_one$365
+
+# .data:0x34 | 0x45A14 | size: 0x4
+.obj __local_PI$366, local
+	.4byte 0x40490FDB
+.endobj __local_PI$366
+
+# .data:0x38 | 0x45A18 | size: 0x4
+.obj __local_3PIO2$368, local
+	.4byte 0x4096CBE4
+.endobj __local_3PIO2$368
+
+# .data:0x3C | 0x45A1C | size: 0x4
+.obj gap_04_00045A1C_data, global
+.hidden gap_04_00045A1C_data
+	.4byte 0x00000000
+.endobj gap_04_00045A1C_data
+
+# .data:0x40 | 0x45A20 | size: 0x8
+.obj one_negone$359, local
+	.4byte 0x3F800000
+	.4byte 0xBF800000
+.endobj one_negone$359
+
+# .data:0x48 | 0x45A28 | size: 0x4
+.obj __local_PIO2$367, local
+	.4byte 0x3FC90FDB
+.endobj __local_PIO2$367
+
+# .data:0x4C | 0x45A2C | size: 0x4
+.obj one$364, local
+	.4byte 0x3F800000
+.endobj one$364
+
+# .data:0x50 | 0x45A30 | size: 0x78
+.obj irai_msg_client, local
+	.4byte str_irai_client_01_gor_0001e870
+	.4byte str_irai_client_02_gor_0001e880
+	.4byte str_irai_client_03_gor_0001e890
+	.4byte str_irai_client_04_gor_0001e8a0
+	.4byte str_irai_client_05_gor_0001e8b0
+	.4byte str_irai_client_06_gor_0001e8c0
+	.4byte str_irai_client_07_gor_0001e8d0
+	.4byte str_irai_client_08_gor_0001e8e0
+	.4byte str_irai_client_09_gor_0001e8f0
+	.4byte str_irai_client_10_gor_0001e900
+	.4byte str_irai_client_11_gor_0001e910
+	.4byte str_irai_client_12_gor_0001e920
+	.4byte str_irai_client_13_gor_0001e930
+	.4byte str_irai_client_14_gor_0001e940
+	.4byte str_irai_client_15_gor_0001e950
+	.4byte str_irai_client_16_gor_0001e960
+	.4byte str_irai_client_17_gor_0001e970
+	.4byte str_irai_client_18_gor_0001e980
+	.4byte str_irai_client_19_gor_0001e990
+	.4byte str_irai_client_20_gor_0001e9a0
+	.4byte str_irai_client_21_gor_0001e9b0
+	.4byte str_irai_client_22_gor_0001e9c0
+	.4byte str_irai_client_23_gor_0001e9d0
+	.4byte str_irai_client_24_gor_0001e9e0
+	.4byte str_irai_client_25_gor_0001e9f0
+	.4byte str_irai_client_26_gor_0001ea00
+	.4byte str_irai_client_27_gor_0001ea10
+	.4byte str_irai_client_28_gor_0001ea20
+	.4byte str_irai_client_29_gor_0001ea30
+	.4byte str_irai_client_30_gor_0001ea40
+.endobj irai_msg_client
+
+# .data:0xC8 | 0x45AA8 | size: 0x78
+.obj irai_msg_contents, local
+	.4byte str_irai_contents_01_gor_0001ea50
+	.4byte str_irai_contents_02_gor_0001ea64
+	.4byte str_irai_contents_03_gor_0001ea78
+	.4byte str_irai_contents_04_gor_0001ea8c
+	.4byte str_irai_contents_05_gor_0001eaa0
+	.4byte str_irai_contents_06_gor_0001eab4
+	.4byte str_irai_contents_07_gor_0001eac8
+	.4byte str_irai_contents_08_gor_0001eadc
+	.4byte str_irai_contents_09_gor_0001eaf0
+	.4byte str_irai_contents_10_gor_0001eb04
+	.4byte str_irai_contents_11_gor_0001eb18
+	.4byte str_irai_contents_12_gor_0001eb2c
+	.4byte str_irai_contents_13_gor_0001eb40
+	.4byte str_irai_contents_14_gor_0001eb54
+	.4byte str_irai_contents_15_gor_0001eb68
+	.4byte str_irai_contents_16_gor_0001eb7c
+	.4byte str_irai_contents_17_gor_0001eb90
+	.4byte str_irai_contents_18_gor_0001eba4
+	.4byte str_irai_contents_19_gor_0001ebb8
+	.4byte str_irai_contents_20_gor_0001ebcc
+	.4byte str_irai_contents_21_gor_0001ebe0
+	.4byte str_irai_contents_22_gor_0001ebf4
+	.4byte str_irai_contents_23_gor_0001ec08
+	.4byte str_irai_contents_24_gor_0001ec1c
+	.4byte str_irai_contents_25_gor_0001ec30
+	.4byte str_irai_contents_26_gor_0001ec44
+	.4byte str_irai_contents_27_gor_0001ec58
+	.4byte str_irai_contents_28_gor_0001ec6c
+	.4byte str_irai_contents_29_gor_0001ec80
+	.4byte str_irai_contents_30_gor_0001ec94
+.endobj irai_msg_contents
+
+# .data:0x140 | 0x45B20 | size: 0x78
+.obj irai_msg_exposition, local
+	.4byte str_irai_help_01_gor_0001eca8
+	.4byte str_irai_help_02_gor_0001ecb8
+	.4byte str_irai_help_03_gor_0001ecc8
+	.4byte str_irai_help_04_gor_0001ecd8
+	.4byte str_irai_help_05_gor_0001ece8
+	.4byte str_irai_help_06_gor_0001ecf8
+	.4byte str_irai_help_07_gor_0001ed08
+	.4byte str_irai_help_08_gor_0001ed18
+	.4byte str_irai_help_09_gor_0001ed28
+	.4byte str_irai_help_10_gor_0001ed38
+	.4byte str_irai_help_11_gor_0001ed48
+	.4byte str_irai_help_12_gor_0001ed58
+	.4byte str_irai_help_13_gor_0001ed68
+	.4byte str_irai_help_14_gor_0001ed78
+	.4byte str_irai_help_15_gor_0001ed88
+	.4byte str_irai_help_16_gor_0001ed98
+	.4byte str_irai_help_17_gor_0001eda8
+	.4byte str_irai_help_18_gor_0001edb8
+	.4byte str_irai_help_19_gor_0001edc8
+	.4byte str_irai_help_20_gor_0001edd8
+	.4byte str_irai_help_21_gor_0001ede8
+	.4byte str_irai_help_22_gor_0001edf8
+	.4byte str_irai_help_23_gor_0001ee08
+	.4byte str_irai_help_24_gor_0001ee18
+	.4byte str_irai_help_25_gor_0001ee28
+	.4byte str_irai_help_26_gor_0001ee38
+	.4byte str_irai_help_27_gor_0001ee48
+	.4byte str_irai_help_28_gor_0001ee58
+	.4byte str_irai_help_29_gor_0001ee68
+	.4byte str_irai_help_30_gor_0001ee78
+.endobj irai_msg_exposition
+
+# .data:0x1B8 | 0x45B98 | size: 0x78
+.obj irai_msg_kakunin, local
+	.4byte str_irai_43_gor_0001ee88
+	.4byte str_irai_44_gor_0001ee90
+	.4byte str_irai_45_gor_0001ee98
+	.4byte str_irai_46_gor_0001eea0
+	.4byte str_irai_47_gor_0001eea8
+	.4byte str_irai_48_gor_0001eeb0
+	.4byte str_irai_49_gor_0001eeb8
+	.4byte str_irai_50_gor_0001eec0
+	.4byte str_irai_51_gor_0001eec8
+	.4byte str_irai_52_gor_0001eed0
+	.4byte str_irai_53_gor_0001eed8
+	.4byte str_irai_54_gor_0001eee0
+	.4byte str_irai_55_gor_0001eee8
+	.4byte str_irai_56_gor_0001eef0
+	.4byte str_irai_57_gor_0001eef8
+	.4byte str_irai_58_gor_0001ef00
+	.4byte str_irai_59_gor_0001ef08
+	.4byte str_irai_60_gor_0001ef10
+	.4byte str_irai_61_gor_0001ef18
+	.4byte str_irai_62_gor_0001ef20
+	.4byte str_irai_63_gor_0001ef28
+	.4byte str_irai_64_gor_0001ef30
+	.4byte str_irai_65_gor_0001ef38
+	.4byte str_irai_66_gor_0001ef40
+	.4byte str_irai_67_gor_0001ef48
+	.4byte str_irai_68_gor_0001ef50
+	.4byte str_irai_69_gor_0001ef58
+	.4byte str_irai_70_gor_0001ef60
+	.4byte str_irai_71_gor_0001ef68
+	.4byte str_irai_72_gor_0001ef70
+.endobj irai_msg_kakunin
+
+# .data:0x230 | 0x45C10 | size: 0x78
+.obj irai_msg_hikiukechu, local
+	.4byte str_irai_13_gor_0001ef78
+	.4byte str_irai_14_gor_0001ef80
+	.4byte str_irai_15_gor_0001ef88
+	.4byte str_irai_16_gor_0001ef90
+	.4byte str_irai_17_gor_0001ef98
+	.4byte str_irai_18_gor_0001efa0
+	.4byte str_irai_19_gor_0001efa8
+	.4byte str_irai_20_gor_0001efb0
+	.4byte str_irai_21_gor_0001efb8
+	.4byte str_irai_22_gor_0001efc0
+	.4byte str_irai_23_gor_0001efc8
+	.4byte str_irai_24_gor_0001efd0
+	.4byte str_irai_25_gor_0001efd8
+	.4byte str_irai_26_gor_0001efe0
+	.4byte str_irai_27_gor_0001efe8
+	.4byte str_irai_28_gor_0001eff0
+	.4byte str_irai_29_gor_0001eff8
+	.4byte str_irai_30_gor_0001f000
+	.4byte str_irai_31_gor_0001f008
+	.4byte str_irai_32_gor_0001f010
+	.4byte str_irai_33_gor_0001f018
+	.4byte str_irai_34_gor_0001f020
+	.4byte str_irai_35_gor_0001f028
+	.4byte str_irai_36_gor_0001f030
+	.4byte str_irai_37_gor_0001f038
+	.4byte str_irai_38_gor_0001f040
+	.4byte str_irai_39_gor_0001f048
+	.4byte str_irai_40_gor_0001f050
+	.4byte str_irai_41_gor_0001f058
+	.4byte str_irai_42_gor_0001f060
+.endobj irai_msg_hikiukechu
+
+# .data:0x2A8 | 0x45C88 | size: 0x8
+.obj irai_item_data01, local
+	.4byte 0x00000031
+	.4byte 0xFFFFFFFF
+.endobj irai_item_data01
+
+# .data:0x2B0 | 0x45C90 | size: 0x8
+.obj irai_item_data02, local
+	.4byte 0x0000005F
+	.4byte 0xFFFFFFFF
+.endobj irai_item_data02
+
+# .data:0x2B8 | 0x45C98 | size: 0x8
+.obj irai_item_data13, local
+	.4byte 0x0000006B
+	.4byte 0xFFFFFFFF
+.endobj irai_item_data13
+
+# .data:0x2C0 | 0x45CA0 | size: 0x8
+.obj irai_item_data16, local
+	.4byte 0x0000006E
+	.4byte 0xFFFFFFFF
+.endobj irai_item_data16
+
+# .data:0x2C8 | 0x45CA8 | size: 0x8
+.obj irai_item_data17, local
+	.4byte 0x00000062
+	.4byte 0xFFFFFFFF
+.endobj irai_item_data17
+
+# .data:0x2D0 | 0x45CB0 | size: 0x8
+.obj irai_item_data19, local
+	.4byte 0x00000049
+	.4byte 0xFFFFFFFF
+.endobj irai_item_data19
+
+# .data:0x2D8 | 0x45CB8 | size: 0x8
+.obj irai_item_data23, local
+	.4byte 0x00000063
+	.4byte 0xFFFFFFFF
+.endobj irai_item_data23
+
+# .data:0x2E0 | 0x45CC0 | size: 0x8
+.obj irai_item_data25, local
+	.4byte 0x0000006D
+	.4byte 0xFFFFFFFF
+.endobj irai_item_data25
+
+# .data:0x2E8 | 0x45CC8 | size: 0x8
+.obj irai_item_data29, local
+	.4byte 0x00000064
+	.4byte 0xFFFFFFFF
+.endobj irai_item_data29
+
+# .data:0x2F0 | 0x45CD0 | size: 0x4
+.obj irai_item_null, local
+	.4byte 0xFFFFFFFF
+.endobj irai_item_null
+
+# .data:0x2F4 | 0x45CD4 | size: 0x78
+.obj irai_item_table, local
+	.4byte irai_item_data01
+	.4byte irai_item_data02
+	.4byte irai_item_null
+	.4byte irai_item_null
+	.4byte irai_item_null
+	.4byte irai_item_null
+	.4byte irai_item_null
+	.4byte irai_item_null
+	.4byte irai_item_null
+	.4byte irai_item_null
+	.4byte irai_item_null
+	.4byte irai_item_null
+	.4byte irai_item_data13
+	.4byte irai_item_null
+	.4byte irai_item_null
+	.4byte irai_item_data16
+	.4byte irai_item_data17
+	.4byte irai_item_null
+	.4byte irai_item_data19
+	.4byte irai_item_null
+	.4byte irai_item_null
+	.4byte irai_item_null
+	.4byte irai_item_data23
+	.4byte irai_item_null
+	.4byte irai_item_data25
+	.4byte irai_item_null
+	.4byte irai_item_null
+	.4byte irai_item_null
+	.4byte irai_item_data29
+	.4byte irai_item_null
+.endobj irai_item_table
+
+# .data:0x36C | 0x45D4C | size: 0x8
+.obj irai_start_event_null, local
+	.4byte 0x00000002
+	.4byte 0x00000001
+.endobj irai_start_event_null
+
+# .data:0x374 | 0x45D54 | size: 0x34
+.obj irai_start_event01, local
+	.4byte 0x0005005B
+	.4byte evt_npc_set_position
+	.4byte str_盗賊団２_gor_0001f068
+	.4byte 0x000001BD
+	.4byte 0x00000000
+	.4byte 0x00000078
+	.4byte 0x0004005B
+	.4byte evt_door_set_param
+	.4byte 0xFD050F8B
+	.4byte 0x00000000
+	.4byte door_data_05_npc_01_9_data_26B74
+	.4byte 0x00000002
+	.4byte 0x00000001
+.endobj irai_start_event01
+
+# .data:0x3A8 | 0x45D88 | size: 0x20
+.obj irai_start_event04, local
+	.4byte 0x0005005B
+	.4byte evt_npc_set_position
+	.4byte str_ボロドー２_gor_0001f074
+	.4byte 0xFFFFFE25
+	.4byte 0x00000000
+	.4byte 0xFFFFFF4C
+	.4byte 0x00000002
+	.4byte 0x00000001
+.endobj irai_start_event04
+
+# .data:0x3C8 | 0x45DA8 | size: 0x78
+.obj irai_start_event, local
+	.4byte irai_start_event01
+	.4byte irai_start_event_null
+	.4byte irai_start_event_null
+	.4byte irai_start_event04
+	.4byte irai_start_event_null
+	.4byte irai_start_event_null
+	.4byte irai_start_event_null
+	.4byte irai_start_event_null
+	.4byte irai_start_event_null
+	.4byte irai_start_event_null
+	.4byte irai_start_event_null
+	.4byte irai_start_event_null
+	.4byte irai_start_event_null
+	.4byte irai_start_event_null
+	.4byte irai_start_event_null
+	.4byte irai_start_event_null
+	.4byte irai_start_event_null
+	.4byte irai_start_event_null
+	.4byte irai_start_event_null
+	.4byte irai_start_event_null
+	.4byte irai_start_event_null
+	.4byte irai_start_event_null
+	.4byte irai_start_event_null
+	.4byte irai_start_event_null
+	.4byte irai_start_event_null
+	.4byte irai_start_event_null
+	.4byte irai_start_event_null
+	.4byte irai_start_event_null
+	.4byte irai_start_event_null
+	.4byte irai_start_event_null
+.endobj irai_start_event
+
+# .data:0x440 | 0x45E20 | size: 0x8
+.obj irai_end_event_null, local
+	.4byte 0x00000002
+	.4byte 0x00000001
+.endobj irai_end_event_null
+
+# .data:0x448 | 0x45E28 | size: 0x34
+.obj irai_end_event01, local
+	.4byte 0x0005005B
+	.4byte evt_npc_set_position
+	.4byte str_盗賊団２_gor_0001f068
+	.4byte 0x0000000A
+	.4byte 0x00000000
+	.4byte 0xFFFFFE34
+	.4byte 0x0004005B
+	.4byte evt_door_set_param
+	.4byte 0xFD050F8B
+	.4byte 0x00000000
+	.4byte door_data_05_npc_9_data_26B64
+	.4byte 0x00000002
+	.4byte 0x00000001
+.endobj irai_end_event01
+
+# .data:0x47C | 0x45E5C | size: 0x20
+.obj irai_end_event04, local
+	.4byte 0x0005005B
+	.4byte evt_npc_set_position
+	.4byte str_ボロドー２_gor_0001f074
+	.4byte 0xFFFFFE25
+	.4byte 0x00000000
+	.4byte 0xFFFFFF4C
+	.4byte 0x00000002
+	.4byte 0x00000001
+.endobj irai_end_event04
+
+# .data:0x49C | 0x45E7C | size: 0x3C
+.obj unk_evt_gor_00065f04, local
+	.4byte 0x00010071
+	.4byte str_ピートンの依頼キャンセル_gor_0001f080
+	.4byte 0x0003005B
+	.4byte evt_item_delete_check
+	.4byte str_wr_gor_0001f09c
+	.4byte 0xFE363C80
+	.4byte 0x00020018
+	.4byte 0xFE363C80
+	.4byte 0x00000000
+	.4byte 0x0002005B
+	.4byte evt_item_delete
+	.4byte str_wr_gor_0001f09c
+	.4byte 0x00000021
+	.4byte 0x00000002
+	.4byte 0x00000001
+.endobj unk_evt_gor_00065f04
+
+# .data:0x4D8 | 0x45EB8 | size: 0x78
+.obj irai_end_event, local
+	.4byte irai_end_event01
+	.4byte irai_end_event_null
+	.4byte irai_end_event_null
+	.4byte irai_end_event04
+	.4byte irai_end_event_null
+	.4byte irai_end_event_null
+	.4byte irai_end_event_null
+	.4byte irai_end_event_null
+	.4byte irai_end_event_null
+	.4byte irai_end_event_null
+	.4byte irai_end_event_null
+	.4byte irai_end_event_null
+	.4byte irai_end_event_null
+	.4byte irai_end_event_null
+	.4byte irai_end_event_null
+	.4byte irai_end_event_null
+	.4byte irai_end_event_null
+	.4byte irai_end_event_null
+	.4byte unk_evt_gor_00065f04
+	.4byte irai_end_event_null
+	.4byte irai_end_event_null
+	.4byte irai_end_event_null
+	.4byte irai_end_event_null
+	.4byte irai_end_event_null
+	.4byte irai_end_event_null
+	.4byte irai_end_event_null
+	.4byte irai_end_event_null
+	.4byte irai_end_event_null
+	.4byte irai_end_event_null
+	.4byte irai_end_event_null
+.endobj irai_end_event
+
+# .data:0x550 | 0x45F30 | size: 0x48
+.obj gor_irai_init_9_data_45F30, global
+	.4byte 0x0007005B
+	.4byte evt_run_case_evt
+	.4byte 0x00000009
+	.4byte 0x00000001
+	.4byte str_A_i04_keizi_gor_0001f0a0
+	.4byte 0x00000000
+	.4byte gor_irai_main
+	.4byte 0x00000000
+	.4byte 0x0007005B
+	.4byte evt_run_case_evt
+	.4byte 0x00000009
+	.4byte 0x00000001
+	.4byte str_A_i04_kunter_gor_0001f0ac
+	.4byte 0x00000000
+	.4byte gor_irai_tenshu_main
+	.4byte 0x00000000
+	.4byte 0x00000002
+	.4byte 0x00000001
+.endobj gor_irai_init_9_data_45F30
+
+# .data:0x598 | 0x45F78 | size: 0xA0
+.obj gor_irai_lecture, local
+	.4byte 0x0002005B
+	.4byte evt_mario_key_onoff
+	.4byte 0x00000000
+	.4byte 0x0005005B
+	.4byte evt_msg_toge
+	.4byte 0x00000002
+	.4byte 0x00000096
+	.4byte 0x0000000C
+	.4byte 0xFFFFFF64
+	.4byte 0x0005005B
+	.4byte evt_msg_print
+	.4byte 0x00000000
+	.4byte str_irai_00_gor_0001f0bc
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x0003005B
+	.4byte evt_msg_select
+	.4byte 0x00000000
+	.4byte str_irai_01_gor_0001f0c4
+	.4byte 0x00020018
+	.4byte 0xFE363C80
+	.4byte 0x00000000
+	.4byte 0x0003005B
+	.4byte evt_msg_print_add
+	.4byte 0x00000000
+	.4byte str_irai_03_gor_0001f0cc
+	.4byte 0x00020032
+	.4byte 0xF840707E
+	.4byte 0x00000001
+	.4byte 0x00000020
+	.4byte 0x0003005B
+	.4byte evt_msg_print_add
+	.4byte 0x00000000
+	.4byte str_irai_02_gor_0001f0d4
+	.4byte 0x00000021
+	.4byte 0x0002005B
+	.4byte evt_mario_key_onoff
+	.4byte 0x00000001
+	.4byte 0x00000002
+	.4byte 0x00000001
+.endobj gor_irai_lecture
+
+# .data:0x638 | 0x46018 | size: 0x1F8
+.obj gor_irai_main, local
+	.4byte 0x00020018
+	.4byte 0xF840707E
+	.4byte 0x00000000
+	.4byte 0x0000006B
+	.4byte 0x0004005B
+	.4byte evt_mario_set_dir
+	.4byte 0x0000010E
+	.4byte 0x000000C8
+	.4byte 0x00000000
+	.4byte 0x0000006D
+	.4byte 0x0000006B
+	.4byte 0x0004005B
+	.4byte evt_party_set_dir
+	.4byte 0x00000000
+	.4byte 0x0000010E
+	.4byte 0x000000C8
+	.4byte 0x0000006D
+	.4byte 0x0000006B
+	.4byte 0x0004005B
+	.4byte evt_party_set_dir
+	.4byte 0x00000001
+	.4byte 0x0000010E
+	.4byte 0x000000C8
+	.4byte 0x0000006D
+	.4byte 0x0001005E
+	.4byte gor_irai_lecture
+	.4byte 0x00000002
+	.4byte 0x00000021
+	.4byte 0x0002005B
+	.4byte evt_mario_key_onoff
+	.4byte 0x00000000
+	.4byte 0x0001005B
+	.4byte irai_init_func
+	.4byte 0x00010003
+	.4byte 0x0000000A
+	.4byte 0x0001005B
+	.4byte irai_main_func
+	.4byte 0x0001005B
+	.4byte irai_check_func
+	.4byte 0x00020018
+	.4byte 0xFE363C80
+	.4byte 0xFFFFFFFF
+	.4byte 0x00010004
+	.4byte 0x00000064
+	.4byte 0x00000021
+	.4byte 0x0001003E
+	.4byte irai_msg_exposition
+	.4byte 0x00020032
+	.4byte 0xFE363C80
+	.4byte 0xFE363C8B
+	.4byte 0x00020035
+	.4byte 0xFE363C80
+	.4byte 0xFFFFFFFF
+	.4byte 0x00020043
+	.4byte 0xFE363C81
+	.4byte 0xFE363C80
+	.4byte 0x0005005B
+	.4byte evt_msg_toge
+	.4byte 0x00000001
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x0005005B
+	.4byte evt_msg_print
+	.4byte 0x00000000
+	.4byte 0xFE363C81
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x0005005B
+	.4byte evt_msg_toge
+	.4byte 0x00000001
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x0005005B
+	.4byte evt_msg_print
+	.4byte 0x00000000
+	.4byte 0xFE363C8C
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x0003005B
+	.4byte evt_msg_select
+	.4byte 0x00000000
+	.4byte str_irai_01_gor_0001f0c4
+	.4byte 0x00020018
+	.4byte 0xFE363C80
+	.4byte 0x00000000
+	.4byte 0x0003005B
+	.4byte evt_msg_print_add
+	.4byte 0x00000000
+	.4byte str_irai_73_gor_0001f0dc
+	.4byte 0x0001005B
+	.4byte irai_start_func
+	.4byte 0x0001003E
+	.4byte irai_start_event
+	.4byte 0x00020032
+	.4byte 0xFE363C80
+	.4byte 0xFE363C8B
+	.4byte 0x00020035
+	.4byte 0xFE363C80
+	.4byte 0xFFFFFFFF
+	.4byte 0x00020043
+	.4byte 0xFE363C81
+	.4byte 0xFE363C80
+	.4byte 0x0001005C
+	.4byte 0xFE363C81
+	.4byte 0x00020032
+	.4byte 0xF5DE070C
+	.4byte 0xFE363C8B
+	.4byte 0x00010073
+	.4byte 0xF5DE070C
+	.4byte 0x00000020
+	.4byte 0x0001005B
+	.4byte evt_msg_continue
+	.4byte 0x00010004
+	.4byte 0x0000000A
+	.4byte 0x00000021
+	.4byte 0x00010003
+	.4byte 0x00000064
+	.4byte 0x0001005B
+	.4byte irai_end_func
+	.4byte 0x0002005B
+	.4byte evt_mario_key_onoff
+	.4byte 0x00000001
+	.4byte 0x00000002
+	.4byte 0x00000001
+.endobj gor_irai_main
+
+# .data:0x830 | 0x46210 | size: 0x418
+.obj gor_irai_tenshu_main, local
+	.4byte 0x00020032
+	.4byte 0xFE363C80
+	.4byte 0xF840707F
+	.4byte 0x00020035
+	.4byte 0xFE363C80
+	.4byte 0xF8407080
+	.4byte 0x00020035
+	.4byte 0xFE363C80
+	.4byte 0xF8407081
+	.4byte 0x00020035
+	.4byte 0xFE363C80
+	.4byte 0xF8407082
+	.4byte 0x00020035
+	.4byte 0xFE363C80
+	.4byte 0xF8407083
+	.4byte 0x00020035
+	.4byte 0xFE363C80
+	.4byte 0xF8407084
+	.4byte 0x00020035
+	.4byte 0xFE363C80
+	.4byte 0xF8407085
+	.4byte 0x00020035
+	.4byte 0xFE363C80
+	.4byte 0xF8407086
+	.4byte 0x00020035
+	.4byte 0xFE363C80
+	.4byte 0xF8407087
+	.4byte 0x00020035
+	.4byte 0xFE363C80
+	.4byte 0xF8407088
+	.4byte 0x00020035
+	.4byte 0xFE363C80
+	.4byte 0xF8407089
+	.4byte 0x00020035
+	.4byte 0xFE363C80
+	.4byte 0xF840708A
+	.4byte 0x00020035
+	.4byte 0xFE363C80
+	.4byte 0xF840708B
+	.4byte 0x00020035
+	.4byte 0xFE363C80
+	.4byte 0xF840708C
+	.4byte 0x00020035
+	.4byte 0xFE363C80
+	.4byte 0xF840708D
+	.4byte 0x00020035
+	.4byte 0xFE363C80
+	.4byte 0xF840708E
+	.4byte 0x00020035
+	.4byte 0xFE363C80
+	.4byte 0xF840708F
+	.4byte 0x00020035
+	.4byte 0xFE363C80
+	.4byte 0xF8407090
+	.4byte 0x00020035
+	.4byte 0xFE363C80
+	.4byte 0xF8407091
+	.4byte 0x00020035
+	.4byte 0xFE363C80
+	.4byte 0xF8407092
+	.4byte 0x00020035
+	.4byte 0xFE363C80
+	.4byte 0xF8407093
+	.4byte 0x00020035
+	.4byte 0xFE363C80
+	.4byte 0xF8407094
+	.4byte 0x00020035
+	.4byte 0xFE363C80
+	.4byte 0xF8407095
+	.4byte 0x00020035
+	.4byte 0xFE363C80
+	.4byte 0xF8407096
+	.4byte 0x00020035
+	.4byte 0xFE363C80
+	.4byte 0xF8407097
+	.4byte 0x00020035
+	.4byte 0xFE363C80
+	.4byte 0xF8407098
+	.4byte 0x00020035
+	.4byte 0xFE363C80
+	.4byte 0xF8407099
+	.4byte 0x00020035
+	.4byte 0xFE363C80
+	.4byte 0xF840709A
+	.4byte 0x00020035
+	.4byte 0xFE363C80
+	.4byte 0xF840709B
+	.4byte 0x00020035
+	.4byte 0xFE363C80
+	.4byte 0xF840709C
+	.4byte 0x00020018
+	.4byte 0xFE363C80
+	.4byte 0x0000001E
+	.4byte 0x0002005B
+	.4byte evt_mario_key_onoff
+	.4byte 0x00000000
+	.4byte 0x0005005B
+	.4byte evt_msg_toge
+	.4byte 0x00000002
+	.4byte 0x00000096
+	.4byte 0x0000000C
+	.4byte 0xFFFFFF64
+	.4byte 0x0005005B
+	.4byte evt_msg_print
+	.4byte 0x00000000
+	.4byte str_irai_74_gor_0001f0e4
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x0002005B
+	.4byte evt_mario_key_onoff
+	.4byte 0x00000001
+	.4byte 0x00000002
+	.4byte 0x00000021
+	.4byte 0x00020018
+	.4byte 0xF840707E
+	.4byte 0x00000000
+	.4byte 0x0001005E
+	.4byte gor_irai_lecture
+	.4byte 0x00000002
+	.4byte 0x00000021
+	.4byte 0x0002005B
+	.4byte evt_mario_key_onoff
+	.4byte 0x00000000
+	.4byte 0x00020018
+	.4byte 0xF5DE070C
+	.4byte 0x00000000
+	.4byte 0x0005005B
+	.4byte evt_msg_toge
+	.4byte 0x00000002
+	.4byte 0x00000096
+	.4byte 0x0000000C
+	.4byte 0xFFFFFF64
+	.4byte 0x0005005B
+	.4byte evt_msg_print
+	.4byte 0x00000000
+	.4byte str_irai_06_gor_0001f0ec
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000020
+	.4byte 0x0005005B
+	.4byte evt_msg_toge
+	.4byte 0x00000002
+	.4byte 0x00000096
+	.4byte 0x0000000C
+	.4byte 0xFFFFFF64
+	.4byte 0x0005005B
+	.4byte evt_msg_print
+	.4byte 0x00000000
+	.4byte str_irai_07_gor_0001f0f4
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x0003005B
+	.4byte evt_msg_select
+	.4byte 0x00000000
+	.4byte str_irai_08_gor_0001f0fc
+	.4byte 0x00020018
+	.4byte 0xFE363C80
+	.4byte 0xFFFFFFFF
+	.4byte 0x0001005B
+	.4byte evt_msg_continue
+	.4byte 0x00010071
+	.4byte str_依頼メニューキャンセル_gor_0001f104
+	.4byte 0x00000021
+	.4byte 0x00020018
+	.4byte 0xFE363C80
+	.4byte 0x00000000
+	.4byte 0x00020032
+	.4byte 0xFE363C8A
+	.4byte 0xF5DE070C
+	.4byte 0x0001003E
+	.4byte irai_msg_hikiukechu
+	.4byte 0x00020035
+	.4byte 0xFE363C8A
+	.4byte 0xFFFFFFFF
+	.4byte 0x00020043
+	.4byte 0xFE363C8B
+	.4byte 0xFE363C8A
+	.4byte 0x0003005B
+	.4byte evt_msg_print_add
+	.4byte 0x00000000
+	.4byte 0xFE363C8B
+	.4byte 0x00000021
+	.4byte 0x00020018
+	.4byte 0xFE363C80
+	.4byte 0x00000001
+	.4byte 0x0003005B
+	.4byte evt_msg_print_add
+	.4byte 0x00000000
+	.4byte str_irai_09_gor_0001f11c
+	.4byte 0x0003005B
+	.4byte evt_msg_select
+	.4byte 0x00000000
+	.4byte str_irai_01_gor_0001f0c4
+	.4byte 0x00020018
+	.4byte 0xFE363C80
+	.4byte 0x00000000
+	.4byte 0x0002005B
+	.4byte evt_pouch_get_coin
+	.4byte 0xFE363C8A
+	.4byte 0x0002001D
+	.4byte 0xFE363C8A
+	.4byte 0x0000001E
+	.4byte 0x0003005B
+	.4byte evt_msg_print_add
+	.4byte 0x00000000
+	.4byte str_irai_10_gor_0001f124
+	.4byte 0x0002005B
+	.4byte evt_pouch_add_coin
+	.4byte 0xFFFFFFE2
+	.4byte 0x00020032
+	.4byte 0xFE363C8B
+	.4byte 0xF5DE070C
+	.4byte 0x0002005B
+	.4byte irai_cancel_func
+	.4byte 0xF5DE070C
+	.4byte 0x00020032
+	.4byte 0xF5DE070C
+	.4byte 0x00000000
+	.4byte 0x0001003E
+	.4byte irai_end_event
+	.4byte 0x00020032
+	.4byte 0xFE363C80
+	.4byte 0xFE363C8B
+	.4byte 0x00020035
+	.4byte 0xFE363C80
+	.4byte 0xFFFFFFFF
+	.4byte 0x00020043
+	.4byte 0xFE363C81
+	.4byte 0xFE363C80
+	.4byte 0x0001005C
+	.4byte 0xFE363C81
+	.4byte 0x00000020
+	.4byte 0x0003005B
+	.4byte evt_msg_print_add
+	.4byte 0x00000000
+	.4byte str_irai_11_gor_0001f12c
+	.4byte 0x00000021
+	.4byte 0x00000020
+	.4byte 0x0003005B
+	.4byte evt_msg_print_add
+	.4byte 0x00000000
+	.4byte str_irai_12_gor_0001f134
+	.4byte 0x00000021
+	.4byte 0x00020032
+	.4byte 0xFE363C80
+	.4byte 0x00000001
+	.4byte 0x00000021
+	.4byte 0x00020018
+	.4byte 0xFE363C80
+	.4byte 0x00000002
+	.4byte 0x0003005B
+	.4byte evt_msg_print_add
+	.4byte 0x00000000
+	.4byte str_irai_04_gor_0001f13c
+	.4byte 0x00000021
+	.4byte 0x00000021
+	.4byte 0x0002005B
+	.4byte evt_mario_key_onoff
+	.4byte 0x00000001
+	.4byte 0x00000002
+	.4byte 0x00000001
+	.4byte 0x00000000
+.endobj gor_irai_tenshu_main
