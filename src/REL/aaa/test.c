@@ -1,56 +1,6 @@
 #include "evt.h"
 
-// Forward declarations
-extern void evt_bero_mapchange(void);
-extern void evt_bg_set_color(void);
-extern void evt_cam3d_evt_set(void);
-extern void evt_cam_letter_box_camid(void);
-extern void evt_cam_letter_box_onoff(void);
-extern void evt_fade_end_wait(void);
-extern void evt_fade_set_mapchange_type(void);
-extern void evt_item_delete(void);
-extern void evt_item_entry(void);
-extern void evt_item_set_scale(void);
-extern void evt_map_blend_set_flag(void);
-extern void evt_mapobj_flag_onoff(void);
-extern void evt_mapobj_get_position(void);
-extern void evt_mapobj_rotate(void);
-extern void evt_mapobj_trans(void);
-extern void evt_mario_adjust_dir(void);
-extern void evt_mario_key_onoff(void);
-extern void evt_mario_mov_pos2(void);
-extern void evt_mario_set_dir(void);
-extern void evt_mario_set_pos(void);
-extern void evt_mario_set_pose(void);
-extern void evt_msg_print(void);
-extern void evt_npc_entry(void);
-extern void evt_npc_flag_onoff(void);
-extern void evt_npc_get_position(void);
-extern void evt_npc_glide_position(void);
-extern void evt_npc_move_position(void);
-extern void evt_npc_reverse_ry(void);
-extern void evt_npc_set_anim(void);
-extern void evt_npc_set_autotalkpose(void);
-extern void evt_npc_set_position(void);
-extern void evt_npc_set_ry(void);
-extern void evt_npc_set_tribe(void);
-extern void evt_npc_status_onoff(void);
-extern void evt_party_set_pos(void);
-extern void evt_party_stop(void);
-extern void evt_seq_wait(void);
-extern void evt_snd_bgm_scope(void);
-extern void evt_snd_bgmoff(void);
-extern void evt_snd_bgmoff_f(void);
-extern void evt_snd_bgmon(void);
-extern void evt_snd_env_lpf(void);
-extern void evt_snd_envoff(void);
-extern void evt_snd_envon(void);
-extern void evt_snd_sfxon_3d(void);
-extern void evt_sub_intpl_msec_get_value(void);
-extern void evt_sub_intpl_msec_init(void);
 extern void mapdraw(void);
-extern void evt_pouch_party_join(void);
-
 int testFunction(void) {
     short* temp = (short*)0x817FFFFE;
     *temp = 0xBEEF;

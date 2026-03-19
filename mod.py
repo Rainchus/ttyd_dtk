@@ -18,7 +18,7 @@ rel_dest = mod_root / "files" / "rel"
 # Configure
 print("Configuring...")
 subprocess.run(
-    [sys.executable, "configure.py", "--non-matching"],
+    [sys.executable, "configure.py", "--non-matching", "-v", "G8ME01"],
     cwd=project_root,
     check=True,
 )

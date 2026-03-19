@@ -11313,7 +11313,7 @@
 	.4byte 0x00000000
 	.4byte 0x0000004B
 	.4byte 0x0001005C
-	.4byte nancy_init_check
+	.4byte nancy_init_check_new
 	.4byte 0x00000020
 	.4byte 0x0003005B
 	.4byte evt_npc_set_ry
@@ -11502,7 +11502,7 @@
 .endobj item_tbl_nancy
 
 # .data:0x1668 | 0x10E58 | size: 0x2BC
-.obj nancy_talk, local
+.obj nancy_talk, global #hack, make this global
 	.4byte 0x00020018
 	.4byte 0xF8406024
 	.4byte 0x00000000

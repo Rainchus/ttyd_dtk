@@ -124,3 +124,5 @@ REL/gor/gor_12.s:
 REL/gor/gor_11.s:
 	.rodata     start:0x0000C558 end:0x0000C585
 	.data       start:0x0004D5F0 end:0x0004D7AC
+
+REL/gor/gor_01_extra.c:
