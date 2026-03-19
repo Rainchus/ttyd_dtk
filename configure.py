@@ -999,6 +999,20 @@ config.libs = [
             Object(NonMatching, "REL/win/evt_lect_win.s"),
         ]
     ),
+    Rel('yuu',
+        objects = [
+            Object(Matching, "REL/yuu/yuu_02.s"),
+            Object(Matching, "REL/yuu/yuu_03.s"),
+            Object(Matching, "REL/yuu/yuu.s"),
+            Object(Matching, "REL/yuu/yuu_00.s"),
+            Object(Matching, "REL/yuu/yuu_01.s"),
+            Object(Matching, "REL/yuu/evt_yuuranking.s"),
+            Object(Matching, "REL/yuu/evt_yuutitle.s"),
+            Object(Matching, "REL/yuu/evt_yuucounter.s"),
+            Object(Matching, "REL/yuu/evt_yuuminigame.s"),
+            Object(Matching, "REL/yuu/evt_yuunpc.s"),
+        ]
+    ),
 ]
 
 
