@@ -24,8 +24,6 @@ void FontDrawColor(u32*);
 void FontDrawMessageMtx(mtx34 matrix, const char *message);
 u16 FontGetMessageWidth(const char *message);
 
-static u8 initBool = 0;
-
 float getTextWidth(const char *text, float scale)
 {
     s32 textWidth;
@@ -170,9 +168,12 @@ void drawText2(const char *text, float posX, float posY, float scale, u32 color)
     FontDrawString(posX, posY, text);
 }
 
-const char message[] = "Hello World";
+
 
 void drawHelloWorld(u32 cameraId, void *user) {
+    //when this is too large, it shifts the memory card to an address where it fails to be read from
+    //aka, it's probably missing an align somewhere
+    const char message[] = "Test"; 
     (void)cameraId;
     (void)user;
     drawText2(message, -232.f, 120.f, 0.7f, getColorWhite(0xFF));
@@ -183,15 +184,18 @@ void drawOnDebugLayer(DispCallback func, float order)
     dispEntry(CAM_kDebug3d, 2, order, func, 0);
 }
 
+
+void makeKey(void);
+
+static u32 init = 0;
+
 void renderCustomText(void) {
-    if (initBool == 0) {
-        initBool = 1;
-        fontmgrTexSetup(); //set up text early for drawing
+    //calling these does work, but fontmgrTexSetup() must have been called elsewhere first
+    if (init == 0) {
+        init = 1;
+        fontmgrTexSetup();
         return;
     }
-    //makes game flicker, idk why
-    //drawTextInit(0xFF, 1);
-    //drawText(message, 0.f, 0.f, 0.7f, 1.0f, getColorWhite(0xFF), TEXT_ALIGNMENT_LEFT);
     drawOnDebugLayer((void*)drawHelloWorld, 0.f);
 }
 

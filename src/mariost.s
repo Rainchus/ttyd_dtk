@@ -818,7 +818,7 @@
 /* 8006F904 0006C904  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8006F908 0006C908  7C 08 02 A6 */	mflr r0
 /* 8006F90C 0006C90C  90 01 00 14 */	stw r0, 0x14(r1)
-										bl renderCustomText
+/* 8006F928 0006C928  4B F9 66 D1 */	bl renderCustomText
 /* 8006F910 0006C910  48 00 00 08 */	b .L_8006F918
 .L_8006F914:
 /* 8006F914 0006C914  48 22 D3 E1 */	bl OSYieldThread

@@ -1757,7 +1757,7 @@
 /* 8008746C 0008446C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80087470 00084470  7C 08 02 A6 */	mflr r0
 /* 80087474 00084474  90 01 00 14 */	stw r0, 0x14(r1)
-/* 80087478 00084478  4B FF 07 65 */	nop #bl fontmgrTexSetup #MOD: remove fontmgrTextSetup as it's called elsewhere
+/* 80087478 00084478  4B FF 07 65 */	nop #bl fontmgrTexSetup
 /* 8008747C 0008447C  4B FF 87 5D */	bl windowTexSetup
 /* 80087480 00084480  4B F8 C6 25 */	bl fadeTexSetup
 /* 80087484 00084484  4B F9 42 11 */	bl iconTexSetup
