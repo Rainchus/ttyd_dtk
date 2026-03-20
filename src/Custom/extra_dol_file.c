@@ -40,6 +40,10 @@ void drawText2(const char *text, float posX, float posY, float scale, u32 color)
 }
 
 static int flagID = 0;
+static int prevFlagID = -1;
+static float greenTimer = 0.0f;
+
+#define GREEN_DURATION 3.0f
 
 void drawHelloWorld(u32 cameraId, void *user) {
     //when this is too large, it shifts the memory card to an address where it fails to be read from
@@ -50,7 +54,11 @@ void drawHelloWorld(u32 cameraId, void *user) {
     (void)cameraId;
     (void)user;
     sprintf(buffer, "%d", flagID);
-    drawText2(buffer, -232.f, 120.f, 0.7f, getColorWhite(0xFF));
+    if (greenTimer > 0.0f) {
+        drawText2(buffer, -232.f, 120.f, 0.7f, getColorGreen(0xFF));
+    } else {
+        drawText2(buffer, -232.f, 120.f, 0.7f, getColorWhite(0xFF));
+    }
 }
 
 void drawOnDebugLayer(DispCallback func, float order) {
@@ -64,6 +72,14 @@ void renderCustomText(void) {
         fontmgrTexSetup();
         return;
     }
+
+    if (greenTimer > 0.0f) {
+        greenTimer -= 1.0f / 60.0f;
+        if (greenTimer < 0.0f) {
+            greenTimer = 0.0f;
+        }
+    }
+
     drawOnDebugLayer((void*)drawHelloWorld, 0.f);
 }
 
@@ -79,6 +95,7 @@ void swSetNew(s32 value) {
     s32 bit_index;
 
     flagID = value; //store last flag set for drawing
+    greenTimer = GREEN_DURATION;
 
     word_index = value / 32;
     bit_index  = value % 32;  /* compiler originally emitted the rotate form */
