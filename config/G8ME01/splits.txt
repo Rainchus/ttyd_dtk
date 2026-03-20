@@ -369,7 +369,7 @@ database.o:
 	.sbss       start:0x8041EA60 end:0x8041EA68
 	.sdata2     start:0x804207A8 end:0x804207C0
 
-swdrv.o:
+swdrv.s:
 	.text       start:0x80085744 end:0x800859F8
 
 seq_logo.s:

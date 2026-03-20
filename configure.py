@@ -311,6 +311,7 @@ config.libs = [
             #extra files added here
             Object(Matching, "mariost.s"),
             Object(Matching, "seq_logo.s"),
+            Object(Matching, "swdrv.s"),
         ]
     ),
     Rel('aaa',

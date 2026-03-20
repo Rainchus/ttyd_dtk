@@ -139,6 +139,7 @@ API_CALLABLE(setInitialFlags) {
     swSet(38); //read email
     swSet(233); //remove initial save block text
     swSet(234); //remove initial heart block text
+    swSet(1200); //remove goombella's suggestion to hit save block
     //swSet(1335); //stairs before plane curse
     swSet(1353); //initial plane curse text
     swSet(1492); //initial paper curse text
