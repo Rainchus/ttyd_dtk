@@ -298,6 +298,21 @@ config.libs = [
             Object(Matching, "Runtime.PPCEABI.H/__init_cpp_exceptions.cpp"),
         ],
     },
+    DolphinLib(
+        "Custom",
+        [
+            #extra files added here
+            Object(Matching, "Custom/extra_dol_file.c"),
+        ]
+    ),
+    DolphinLib(
+        "game",
+        [
+            #extra files added here
+            Object(Matching, "mariost.s"),
+            Object(Matching, "seq_logo.s"),
+        ]
+    ),
     Rel('aaa',
         objects = [
             Object(Matching, "REL/aaa/aaa.s"),

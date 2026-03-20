@@ -262,7 +262,7 @@ casedrv.o:
 	.sdata      start:0x80415FC8 end:0x80415FD0
 	.sbss       start:0x8041E930 end:0x8041E938
 
-mariost.o:
+mariost.s:
 	.text       start:0x8006EDBC end:0x8006FE84
 	.rodata     start:0x802C2A70 end:0x802C2A88
 	.data       start:0x8030C230 end:0x8030C360
@@ -372,7 +372,7 @@ database.o:
 swdrv.o:
 	.text       start:0x80085744 end:0x800859F8
 
-seq_logo.o:
+seq_logo.s:
 	.text       start:0x800859F8 end:0x8008763C
 	.rodata     start:0x802C3B38 end:0x802C3B78
 	.sdata      start:0x80416108 end:0x80416110
@@ -3580,3 +3580,5 @@ si/SISamplingRate.c:
 	.text       start:0x802BF018 end:0x802BF120
 	.data       start:0x803C52C8 end:0x803C535B
 	.sbss       start:0x8041F420 end:0x8041F424
+
+Custom/extra_dol_file.c:

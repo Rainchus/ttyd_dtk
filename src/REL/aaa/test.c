@@ -132,6 +132,21 @@ API_CALLABLE(evt_mario_set_party_pos);
 
 #define SET_STORY(val) SET(GSW(0), val)
 
+API_CALLABLE(swSetWrapper);
+
+API_CALLABLE(setInitialFlags) {
+    swSet(0); //remove shop explanation text
+    swSet(38); //read email
+    swSet(233); //remove initial save block text
+    swSet(234); //remove initial heart block text
+    //swSet(1335); //stairs before plane curse
+    swSet(1353); //initial plane curse text
+    swSet(1492); //initial paper curse text
+    swSet(1325); //spoke to dazzle for the first time
+    swSet(1805); //goombella explaining her field ability in petal meadows
+    return 2;
+}
+
 EVT_BEGIN(evt_prologue_new) {
     BEGIN_THREAD
         WAIT_MS(1500)
@@ -320,6 +335,7 @@ EVT_BEGIN(evt_prologue_new) {
     CALL(evt_mario_set_party_pos, 0, 1, 25, 0, 625) //somehow this also makes the partner follow you?
     SET_STORY(7) //set story to after goombella is obtained
     CALL(evt_party_run, 0) //?? idk what this does, do i even need this?
+    CALL(setInitialFlags)
     CALL(evt_cam_letter_box_camid, 10)
     CALL(evt_fade_set_mapchange_type, 1, 17, 800, 16, 800)
     CALL(evt_bero_mapchange, PTR("gor_01"), 0)
