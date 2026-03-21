@@ -62,8 +62,11 @@ void drawLastSetFlag(u32 cameraId, void *user) {
 }
 
 typedef struct MarioWork {
-    char unk_00[0x176];
-    s16 storySequence;
+/* 0x000 */ char unk_00[0x12C];
+/* 0x12C */ char curMap[16];
+/* 0x13C */ char curArea[16];
+/* 0x14C */ char unk_14C[0x2A];
+/* 0x176 */ s16 storySequence;
 } MarioWork;
 
 extern MarioWork marioSt;
@@ -80,6 +83,20 @@ void drawSequence(u32 cameraId, void* user) {
     sprintf(buffer, "S: %d", marioSt.storySequence);
 
     drawText2(buffer, -232.f, 120.f, 0.7f, getColorWhite(0xFF));  
+}
+
+void drawCurMap(u32 cameraId, void* user) {
+    //when buffer[16] is too large, it shifts the memory card to an address where it fails to be read from
+    //aka, it's probably missing an align somewhere
+    char buffer[16];
+    
+    memset(buffer, 0, sizeof(buffer));
+
+    (void)cameraId;
+    (void)user;
+    sprintf(buffer, "M: %s", marioSt.curMap);
+
+    drawText2(buffer, -232.f, 105.f, 0.7f, getColorWhite(0xFF));  
 }
 
 void drawOnDebugLayer(DispCallback func, float order) {
@@ -103,11 +120,12 @@ void renderCustomText(void) {
 
     drawOnDebugLayer((void*)drawLastSetFlag, 0.f);
     drawOnDebugLayer((void*)drawSequence, 0.f);
+    drawOnDebugLayer((void*)drawCurMap, 0.f);
 }
 
 typedef struct Unk {
-    char unk_00[0x178];
-    u32 sw_flags[32]; //unknown size
+/* 0x000 */ char unk_00[0x178];
+/* 0x178 */ u32 sw_flags[32]; //unknown size
 } Unk;
 
 extern Unk* gp;
