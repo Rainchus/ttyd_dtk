@@ -414,7 +414,7 @@
 .endfn set_depthPlaneOffset
 
 # .text:0x588 | 0x533C | size: 0x24
-.fn evt_StatusClose, local
+.fn evt_StatusClose_gor_02, global
 /* 0000533C 00005408  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 00005340 0000540C  7C 08 02 A6 */	mflr r0
 /* 00005344 00005410  90 01 00 14 */	stw r0, 0x14(r1)
@@ -424,10 +424,10 @@
 /* 00005354 00005420  7C 08 03 A6 */	mtlr r0
 /* 00005358 00005424  38 21 00 10 */	addi r1, r1, 0x10
 /* 0000535C 00005428  4E 80 00 20 */	blr
-.endfn evt_StatusClose
+.endfn evt_StatusClose_gor_02
 
 # .text:0x5AC | 0x5360 | size: 0x24
-.fn evt_StatusOpen, local
+.fn evt_StatusOpen_gor_02, global
 /* 00005360 0000542C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 00005364 00005430  7C 08 02 A6 */	mflr r0
 /* 00005368 00005434  90 01 00 14 */	stw r0, 0x14(r1)
@@ -437,7 +437,7 @@
 /* 00005378 00005444  7C 08 03 A6 */	mtlr r0
 /* 0000537C 00005448  38 21 00 10 */	addi r1, r1, 0x10
 /* 00005380 0000544C  4E 80 00 20 */	blr
-.endfn evt_StatusOpen
+.endfn evt_StatusOpen_gor_02
 
 # .text:0x5D0 | 0x5384 | size: 0xF0
 .fn evt_gor_door_out_info, local
@@ -18848,7 +18848,7 @@
 .endobj evt_gor_offscren_door_entry
 
 # .data:0x91A8 | 0x27CF0 | size: 0x10C
-.obj mario_kirimomi_event, local
+.obj mario_kirimomi_event, global
 	.4byte 0x0002005B
 	.4byte evt_mario_set_pose
 	.4byte str_M_N_H_gor_00019c04
@@ -18919,7 +18919,7 @@
 .endobj mario_kirimomi_event
 
 # .data:0x92B4 | 0x27DFC | size: 0x20
-.obj cam_yurasu_event, local
+.obj cam_yurasu_event, global
 	.4byte 0x0005005B
 	.4byte evt_cam_shake
 	.4byte 0x00000004
@@ -19237,7 +19237,7 @@
 	.4byte 0x00000000
 	.4byte 0x00000002
 	.4byte 0x0001005B
-	.4byte evt_StatusOpen
+	.4byte evt_StatusOpen_gor_02
 	.4byte 0x0001000A
 	.4byte 0x00000190
 	.4byte 0x0002005B
@@ -19285,7 +19285,7 @@
 	.4byte 0x0001000A
 	.4byte 0x000007D0
 	.4byte 0x0001005B
-	.4byte evt_StatusClose
+	.4byte evt_StatusClose_gor_02
 	.4byte 0x0004005B
 	.4byte evt_party_set_dir
 	.4byte 0x00000000

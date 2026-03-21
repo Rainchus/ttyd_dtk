@@ -2,6 +2,8 @@
 #include "mod/drawText.h"
 #include "src/Custom/extra_dol_file.h"
 
+//NOTE: if rodata grows too much, the memory card breaks? probably a missing align somewhere
+
 #define GREEN_DURATION 3.0f
 
 static int flagID = 0;
@@ -25,8 +27,6 @@ void drawText2(const char *text, float posX, float posY, float scale, u32 color)
 }
 
 void drawLastSetFlag(u32 cameraId, void *user) {
-    //when buffer[16] is too large, it shifts the memory card to an address where it fails to be read from
-    //aka, it's probably missing an align somewhere
     char buffer[16];
     memset(buffer, 0, sizeof(buffer));
 
@@ -41,8 +41,6 @@ void drawLastSetFlag(u32 cameraId, void *user) {
 }
 
 void drawSequence(u32 cameraId, void* user) {
-    //when buffer[16] is too large, it shifts the memory card to an address where it fails to be read from
-    //aka, it's probably missing an align somewhere
     char buffer[16];
     
     memset(buffer, 0, sizeof(buffer));
@@ -55,8 +53,6 @@ void drawSequence(u32 cameraId, void* user) {
 }
 
 void drawCurMap(u32 cameraId, void* user) {
-    //when buffer[16] is too large, it shifts the memory card to an address where it fails to be read from
-    //aka, it's probably missing an align somewhere
     char buffer[16];
     
     memset(buffer, 0, sizeof(buffer));
@@ -105,29 +101,9 @@ void swSetNew(s32 value) {
     gp->sw_flags[word_index] |= (1 << bit_index);
 }
 
-u8 checkButtonComboEveryFrame(u32 combo)
-{
+u8 checkButtonComboEveryFrame(u32 combo) {
     return (keyGetButton(0) & combo) == combo;
 }
-
-enum
-{
-    PAD_DPAD_LEFT = 0x0001,
-    PAD_DPAD_RIGHT = 0x0002,
-    PAD_DPAD_DOWN = 0x0004,
-    PAD_DPAD_UP = 0x0008,
-    PAD_Z = 0x0010,
-    PAD_R = 0x0020,
-    PAD_L = 0x0040,
-    // unused = 0x0080,
-    PAD_A = 0x0100,
-    PAD_B = 0x0200,
-    PAD_X = 0x0400,
-    PAD_Y = 0x0800,
-    PAD_START = 0x1000,
-};
-
-
 
 //returns key pressed by padID
 u32 autoMashTextCheck(u32 padID) {

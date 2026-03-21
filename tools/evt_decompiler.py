@@ -90,23 +90,23 @@ OPCODES = {
     0x47: ("MO_READ_FLOAT3",        1),
     0x48: ("MO_READ_FLOAT4",        1),
     0x49: ("MO_READ_FLOAT_INDEXED", 2),
-    0x4A: ("CLAMP_INT",             3),
-    0x4B: ("SET_UW_BASE",           1),
-    0x4C: ("SET_UF_BASE",           1),
-    0x4D: ("SET_ALLOC_UW",          1),
-    0x4E: ("ANDI",                  2),
-    0x4F: ("ANDI_RAW",              2),
-    0x50: ("ORI",                   2),
-    0x51: ("ORI_RAW",               2),
-    0x52: ("CVT_MS_F",              2),
-    0x53: ("CVT_F_MS",              2),
-    0x54: ("STORE_INT",             2),
-    0x55: ("STORE_FLOAT",           2),
-    0x56: ("GET_INT",               2),
-    0x57: ("GET_FLOAT",             2),
-    0x58: ("STORE_INT_IND",         2),
-    0x59: ("STORE_FLOAT_IND",       2),
-    0x5A: ("LOAD_INT_IND",          2),
+    0x4A: ("SET_UW_BASE",           1),
+    0x4B: ("SET_UF_BASE",           1),
+    0x4C: ("ALLOC_UW",              1),
+    0x4D: ("ANDI",                  2),
+    0x4E: ("ANDI_RAW",              2),
+    0x4F: ("ORI",                   2),
+    0x50: ("ORI_RAW",               2),
+    0x51: ("CVT_MS_F",              2),
+    0x52: ("CVT_F_MS",              2),
+    0x53: ("STORE_INT",             2),
+    0x54: ("STORE_FLOAT",           2),
+    0x55: ("GET_INT",               2),
+    0x56: ("GET_FLOAT",             2),
+    0x57: ("STORE_INT_IND",         2),
+    0x58: ("STORE_FLOAT_IND",       2),
+    0x59: ("LOAD_INT_IND",          2),
+    0x5A: ("LOAD_FLOAT_IND",        2),
     0x5B: ("CALL",                 -1),  # variable: func_ptr + N args
     0x5C: ("SCRIPT_ASYNC",          1),
     0x5D: ("SCRIPT_ASYNC_TID",      2),
@@ -130,6 +130,12 @@ OPCODES = {
     0x6F: ("BEGIN_CHILD_THREAD_TID",1),
     0x70: ("END_CHILD_THREAD",      0),
     0x70: ("END_CHILD_THREAD",      0),
+    0x71: ("DBG_REPORT",            1),
+    0x72: ("DBG_MSG_CLEAR",         0),
+    0x73: ("DBG_EXPR_TO_STRING",    2),
+    0x74: ("DBG_SET_MODE",          1),
+    0x75: ("DBG_REM",               0),
+    0x76: ("DBG_BP",                0),
 }
 
 # Opcodes that increase indent level for the lines that follow
@@ -359,7 +365,7 @@ def is_evt_script(tokens: list) -> bool:
         # Opcodes that take pointer/symbol arguments
         # CALL (0x5B): func ptr at slot 1, str_ refs at other slots
         # Script-pointer opcodes (0x5D-0x61): take evt script symbol at slot 1
-        PTR_OPCODES = {0x5B, 0x5C, 0x5D, 0x5E, 0x5F, 0x60}
+        PTR_OPCODES = {0x5B, 0x5C, 0x5D, 0x5E, 0x5F, 0x60, 0x6C, 0x6F, 0x71}
         is_call = (opcode == 0x5B)
         is_ptr_opcode = (opcode in PTR_OPCODES)
         for j in range(1, argc + 1):
@@ -415,6 +421,12 @@ def decompile_script(name: str, tokens: list) -> str:
 
         # Adjust indent before closing keywords
         if opcode in INDENT_CLOSE:
+            indent = max(0, indent - 1)
+
+        # CASE opcodes close the previous case's block before opening a new one
+        # (same pattern as ELSE: dedent then re-indent after emitting)
+        CASE_OPCODES = {0x24, 0x25, 0x26, 0x27, 0x28, 0x29, 0x2A, 0x2B, 0x2C, 0x2D, 0x2F}
+        if opcode in CASE_OPCODES:
             indent = max(0, indent - 1)
 
         pad = "    " * indent

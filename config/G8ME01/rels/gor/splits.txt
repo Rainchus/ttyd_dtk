@@ -126,3 +126,5 @@ REL/gor/gor_11.s:
 	.data       start:0x0004D5F0 end:0x0004D7AC
 
 REL/gor/gor_01_extra.c:
+
+REL/gor/gor_02_extra.c:

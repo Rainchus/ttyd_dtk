@@ -2,12 +2,6 @@
 
 extern EvtScript nancy_talk;
 
-void evt_mario_normalize(void);
-void evt_mario_get_pos(void);
-void evt_msg_toge(void);
-void evt_npc_change_interrupt(void);
-void evt_npc_restart_regular_event(void);
-
 EVT_BEGIN(nancy_init_check_new) {
     CALL(evt_npc_change_interrupt, PTR("me"), 6, 0)
     LOOP(0)

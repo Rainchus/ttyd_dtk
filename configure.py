@@ -490,7 +490,8 @@ config.libs = [
             Object(Matching, "REL/gor/evt_lect_gor.s"),
             Object(Matching, "REL/gor/gor_12.s"),
             Object(Matching, "REL/gor/gor_11.s"),
-            Object(Matching, "REL/gor/gor_01_extra.c")
+            Object(Matching, "REL/gor/gor_01_extra.c"),
+            Object(Matching, "REL/gor/gor_02_extra.c")
         ]
     ),
     Rel('gra',

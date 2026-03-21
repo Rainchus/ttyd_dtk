@@ -86,23 +86,23 @@ enum EvtOpcode
 /* 0x47 */ EVT_OPC_READF3,
 /* 0x48 */ EVT_OPC_READF4,
 /* 0x49 */ EVT_OPC_READF_N,
-/* 0x4A */ EVT_OPC_CLAMP_INT,
-/* 0x4B */ EVT_OPC_SET_USER_WRK,
-/* 0x4C */ EVT_OPC_SET_USER_FLG,
-/* 0x4D */ EVT_OPC_ALLOC_USER_WRK,
-/* 0x4E */ EVT_OPC_AND,
-/* 0x4F */ EVT_OPC_ANDI,
-/* 0x50 */ EVT_OPC_OR,
-/* 0x51 */ EVT_OPC_ORI,
-/* 0x52 */ EVT_OPC_SET_FRAME_FROM_MSEC,
-/* 0x53 */ EVT_OPC_SET_MSEC_FROM_FRAME,
-/* 0x54 */ EVT_OPC_SET_RAM,
-/* 0x55 */ EVT_OPC_SET_RAMF,
-/* 0x56 */ EVT_OPC_GET_RAM,
-/* 0x57 */ EVT_OPC_GET_RAMF,
-/* 0x58 */ EVT_OPC_SETR,
-/* 0x59 */ EVT_OPC_SETRF,
-/* 0x5A */ EVT_OPC_GETR,
+/* 0x4A */ EVT_OPC_SET_USER_WRK,
+/* 0x4B */ EVT_OPC_SET_USER_FLG,
+/* 0x4C */ EVT_OPC_ALLOC_USER_WRK,
+/* 0x4D */ EVT_OPC_AND,
+/* 0x4E */ EVT_OPC_ANDI,
+/* 0x4F */ EVT_OPC_OR,
+/* 0x50 */ EVT_OPC_ORI,
+/* 0x51 */ EVT_OPC_SET_FRAME_FROM_MSEC,
+/* 0x52 */ EVT_OPC_SET_MSEC_FROM_FRAME,
+/* 0x53 */ EVT_OPC_SET_RAM,
+/* 0x54 */ EVT_OPC_SET_RAMF,
+/* 0x55 */ EVT_OPC_GET_RAM,
+/* 0x56 */ EVT_OPC_GET_RAMF,
+/* 0x57 */ EVT_OPC_SETR,
+/* 0x58 */ EVT_OPC_SETRF,
+/* 0x59 */ EVT_OPC_GETR,
+/* 0x5A */ EVT_OPC_GETRF,
 /* 0x5B */ EVT_OPC_USER_FUNC,
 /* 0x5C */ EVT_OPC_RUN_EVT,
 /* 0x5D */ EVT_OPC_RUN_EVT_ID,
@@ -343,7 +343,7 @@ typedef struct EventWork {
 // CALL uses NUMARGS to count only the non-pointer args (everything after FUNC),
 // then adds 1 for the function pointer itself. NUMARGS only ever sees integer values.
 #define CALL(...)                       EVT_CMD(NUMARGS((Bytecode)__VA_ARGS__), EVT_OPC_USER_FUNC, (Bytecode)__VA_ARGS__),
-#define SCRIPT_ASYNC(script)            EVT_CMD(1, EVT_OPC_RUN_EVT, script),
+#define SCRIPT_ASYNC(script)            EVT_CMD(1, EVT_OPC_RUN_EVT, (Bytecode)(void*)script),
 #define SCRIPT_ASYNC_TID(script, expr)  EVT_CMD(2, EVT_OPC_RUN_EVT_ID, script, expr),
 #define SCRIPT_SYNC(script)             EVT_CMD(1, EVT_OPC_RUN_CHILD_EVT, (Bytecode)(void*)(script)),
 #define STOP_TID(script)                EVT_CMD(1, EVT_OPC_DELETE_EVT, script),
@@ -366,6 +366,13 @@ typedef struct EventWork {
 #define BEGIN_CHILD_THREAD              EVT_CMD0(EVT_OPC_BROTHER_EVT)
 #define BEGIN_CHILD_THREAD_TID(expr)    EVT_CMD(1, EVT_OPC_BROTHER_EVT_ID, expr),
 #define END_CHILD_THREAD                EVT_CMD0(EVT_OPC_END_BROTHER)
+
+#define DBG_REPORT(msg)                 EVT_CMD(1, EVT_OPC_DEBUG_PUT_MSG, msg),
+#define DBG_MSG_CLEAR                   EVT_CMD0(EVT_OPC_DEBUG_MSG_CLEAR)
+#define DBG_EXPR_TO_STRING(expr)        EVT_CMD(1, EVT_OPC_DEBUG_PUT_REG, expr),
+#define DBG_SET_MODE(mode)              EVT_CMD(1, EVT_OPC_DEBUG_NAME, mode),
+#define DBG_REM                         EVT_CMD0(EVT_OPC_DEBUG_REM)
+#define DBG_BP                          EVT_CMD0(EVT_OPC_DEBUG_BP)
 
 // Data types
 #define EVTDAT_ADDR_MAX     -290000000
@@ -500,5 +507,10 @@ extern void evt_snd_sfxon_3d(void);
 extern void evt_sub_intpl_msec_get_value(void);
 extern void evt_sub_intpl_msec_init(void);
 extern void evt_pouch_party_join(void);
+void evt_mario_normalize(void);
+void evt_mario_get_pos(void);
+void evt_msg_toge(void);
+void evt_npc_change_interrupt(void);
+void evt_npc_restart_regular_event(void);
 
 #endif //_EVT_H_
