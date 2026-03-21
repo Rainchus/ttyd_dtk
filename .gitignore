@@ -4,6 +4,7 @@ __pycache__
 .ninja_*
 .mypy_cache
 *.exe
+!tools/dtk.exe
 build
 build.ninja
 objdiff.json
@@ -16,3 +17,4 @@ ctx.c
 data
 ida
 compile_commands.json
+*.iso

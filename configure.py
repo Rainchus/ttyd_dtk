@@ -141,7 +141,7 @@ version_num = VERSIONS.index(config.version)
 
 # Apply arguments
 config.build_dir = args.build_dir
-config.dtk_path = args.dtk
+config.dtk_path = args.dtk or Path("tools/dtk.exe")
 config.objdiff_path = args.objdiff
 config.binutils_path = args.binutils
 config.compilers_path = args.compilers
