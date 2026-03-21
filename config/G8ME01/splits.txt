@@ -348,7 +348,7 @@ windowdrv.o:
 	.sbss       start:0x8041EA18 end:0x8041EA30
 	.sdata2     start:0x80420528 end:0x804205A8
 
-msgdrv.o:
+msgdrv.s:
 	.text       start:0x8007FDF4 end:0x800849F4
 	.rodata     start:0x802C30A8 end:0x802C3450
 	.data       start:0x8030F4B0 end:0x8030F668

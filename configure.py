@@ -312,6 +312,7 @@ config.libs = [
             Object(Matching, "mariost.s"),
             Object(Matching, "seq_logo.s"),
             Object(Matching, "swdrv.s"),
+            Object(Matching, "msgdrv.s"),
         ]
     ),
     Rel('aaa',
