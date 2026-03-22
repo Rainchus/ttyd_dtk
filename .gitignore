@@ -4,7 +4,7 @@ __pycache__
 .ninja_*
 .mypy_cache
 *.exe
-!tools/dtk.exe
+!tools/dtk/dtk.exe
 build
 build.ninja
 objdiff.json
