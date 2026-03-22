@@ -187,3 +187,9 @@ REL/tik/unit_lecture_frankli_kuriboo.s:
 REL/tik/unit_hennya.s:
 	.rodata     start:0x00005AA8 end:0x00005BC1
 	.data       start:0x000304D0 end:0x00031090
+
+REL/tik/unit_kuriboo_extra.c:
+
+REL/tik/unit_togekuri_extra.c:
+
+REL/tik/unit_patakuri_extra.c:

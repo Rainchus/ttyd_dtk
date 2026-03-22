@@ -757,7 +757,7 @@ battle_unit.o:
 	.data       start:0x80364180 end:0x80364348
 	.sdata2     start:0x804226A0 end:0x804226D0
 
-ac_table.o:
+ac_table.c:
 	.data       start:0x80364348 end:0x803644F0
 
 battle_unit_event.o:
@@ -3580,3 +3580,5 @@ si/SISamplingRate.c:
 	.text       start:0x802BF018 end:0x802BF120
 	.data       start:0x803C52C8 end:0x803C535B
 	.sbss       start:0x8041F420 end:0x8041F424
+
+ac_timing_extra.s:

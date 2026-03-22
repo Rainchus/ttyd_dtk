@@ -3602,7 +3602,7 @@
 	.4byte 0xFE363C80
 	.4byte str_prologue_aaa_00000610
 	.4byte 0x0001005C
-	.4byte evt_prologue
+	.4byte evt_prologue_new #MOD: evt_prologue_new
 	.4byte 0x00010009
 	.4byte 0x00000001
 	.4byte 0x00000002
