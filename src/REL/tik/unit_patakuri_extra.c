@@ -392,41 +392,7 @@ static EVT_BEGIN(wait_event) {
 API_CALLABLE(getPlayer2Input);
 
 EVT_BEGIN(decide_attack_tik_patakuri) {
-    //wait on p2 to select an attack
-    LABEL(0)
-    LOOP(0)
-        CALL(getPlayer2Input, LVar0) //get player input, either 0 for nothing, 1 for headbonk, 2 for double headbonk
-        IF_INT_NE(LVar0, 0)
-            BREAK_LOOP
-        END_IF
-        WAIT_FRAMES(1)
-    END_LOOP
-
-    //execute selected attack, use sync so it waits on script to finish executing before exiting
-    IF_INT_EQ(LVar0, 1) //normal single swipe into mario/ally
-        SCRIPT_SYNC(attack_event_patakuri)
-        RETURN
-    END_IF
-
-    IF_INT_EQ(LVar0, 2)  //normal single swipe into mario/ally
-        SCRIPT_SYNC(attack_event_patakuri)
-        RETURN
-    END_IF
-
-    IF_INT_EQ(LVar0, 3) //use item if held
-        CALL(btlevtcmd_EnemyItemUseCheck, -2, LVar0)
-        IF_INT_NE(LVar0, 0)
-            SCRIPT_SYNC(LVar0)
-            CALL(btlevtcmd_StartWaitEvent, -2)
-            RETURN
-        ELSE
-            WAIT_FRAMES(1)
-            GOTO(0)
-        END_IF
-    END_IF
-
-    //if it got here, something unexpected has happened
-
+    SCRIPT_SYNC(attack_event_patakuri)
     RETURN
     END
 };
