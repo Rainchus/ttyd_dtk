@@ -398,14 +398,14 @@ EVT_BEGIN(decide_attack_tik_patakuri) {
 };
 
 EVT_BEGIN(init_event) {
-    CALL(btlevtcmd_SetEventWait, -2, PTR(wait_event))
-    CALL(btlevtcmd_SetEventAttack, -2, PTR(decide_attack_tik_kuribo))
-    CALL(btlevtcmd_SetEventDamage, -2, PTR(damage_event))
-    CALL(btlevtcmd_SetEventConfusion, -2, PTR(decide_attack_tik_kuribo))
-    CALL(btlevtcmd_SetRunSound, -2, PTR("SFX_ENM_KURI_MOVE1"), PTR("SFX_ENM_KURI_MOVE2"), 0, 6, 6)
-    CALL(btlevtcmd_SetWalkSound, -2, PTR("SFX_ENM_KURI_MOVE1"), PTR("SFX_ENM_KURI_MOVE2"), 0, 6, 6)
-    CALL(btlevtcmd_SetJumpSound, -2, PTR("SFX_ENM_KURI_JUMP1"), PTR("SFX_ENM_KURI_LANDING1"))
-    CALL(btlevtcmd_StartWaitEvent, -2)
+    // CALL(btlevtcmd_SetEventWait, -2, PTR(wait_event))
+    // CALL(btlevtcmd_SetEventAttack, -2, PTR(decide_attack_tik_kuribo))
+    // CALL(btlevtcmd_SetEventDamage, -2, PTR(damage_event))
+    // CALL(btlevtcmd_SetEventConfusion, -2, PTR(decide_attack_tik_kuribo))
+    // CALL(btlevtcmd_SetRunSound, -2, PTR("SFX_ENM_KURI_MOVE1"), PTR("SFX_ENM_KURI_MOVE2"), 0, 6, 6)
+    // CALL(btlevtcmd_SetWalkSound, -2, PTR("SFX_ENM_KURI_MOVE1"), PTR("SFX_ENM_KURI_MOVE2"), 0, 6, 6)
+    // CALL(btlevtcmd_SetJumpSound, -2, PTR("SFX_ENM_KURI_JUMP1"), PTR("SFX_ENM_KURI_LANDING1"))
+    // CALL(btlevtcmd_StartWaitEvent, -2)
     RETURN
     END
 };

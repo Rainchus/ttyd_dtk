@@ -304,6 +304,7 @@ config.libs = [
             #extra files added here
             Object(Matching, "ac_table.c"),
             Object(Matching, "ac_timing_extra.s"),
+            Object(Matching, "mario.s"),
         ]
     ),
     Rel('aaa',
