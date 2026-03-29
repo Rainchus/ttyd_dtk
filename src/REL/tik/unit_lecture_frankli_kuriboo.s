@@ -427,7 +427,7 @@
 	.4byte 0x0003005B
 	.4byte btlevtcmd_SetEventPhase
 	.4byte 0xFFFFFFFE
-	.4byte phase_event
+	.4byte phase_event_frankli_tik_lecture
 	.4byte 0x0003005B
 	.4byte btlevtcmd_SetEventDamage
 	.4byte 0xFFFFFFFE

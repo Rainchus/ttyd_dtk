@@ -1,3 +1,6 @@
+#ifndef _BATTLE_H_
+#define _BATTLE_H_
+
 #include "common_structs.h"
 
 // Types of battle unit (actors in battle - Goomba, System, Mario, etc.)
@@ -730,3 +733,54 @@ typedef struct BattleGroupSetup {
 /* 0x18 */ PointDropData* fp_drop_table;  // pointer to PointDropData[5]
 /* 0x1C */ s32 unk_1C;
 } BattleGroupSetup; //sizeof 0x20
+
+typedef struct StatusVulnerability {
+/* 0x00 */ u8 sleep;
+/* 0x01 */ u8 stop;
+/* 0x02 */ u8 dizzy;
+/* 0x03 */ u8 poison;
+/* 0x04 */ u8 confuse;
+/* 0x05 */ u8 electreic;
+/* 0x06 */ u8 burn;
+/* 0x07 */ u8 freeze;
+/* 0x08 */ u8 huge;
+/* 0x09 */ u8 tiny;
+/* 0x0A */ u8 atkUp;
+/* 0x0B */ u8 atkDown;
+/* 0x0C */ u8 defUp;
+/* 0x0D */ u8 defDown;
+/* 0x0E */ u8 allergic;
+/* 0x0F */ u8 fright;
+/* 0x10 */ u8 galeForce;
+/* 0x11 */ u8 fast;
+/* 0x12 */ u8 slow;
+/* 0x13 */ u8 dodgy;
+/* 0x14 */ u8 invisible;
+/* 0x15 */ u8 ohko;
+} StatusVulnerability; //sizeof 0x16
+
+s32 weaponGetPowerDefault(void); //unsure on signature
+void evt_eff64(void);
+void evt_btl_camera_set_homing_unitparts(void);
+void evt_sub_random(void);
+void evt_btl_camera_set_mode(void);
+void evt_btl_camera_set_homing_unit(void);
+void evt_btl_camera_set_moveSpeedLv(void);
+void evt_btl_camera_set_zoom(void);
+void evt_btl_camera_nomove_y_onoff(void);
+void krb_get_dir(void);
+void _krb_get_dir_tik_kuribo(void);
+void evt_eff(void);
+void evt_snd_sfxon_3d(void);
+void evt_audience_acrobat_notry(void);
+void _set_hustle(void);
+void evt_btl_camera_add_zoom(void);
+void evt_btl_camera_shake_h(void);
+void evt_audience_ap_recovery(void);
+void btlevtcmd_CheckStatus(void);
+API_CALLABLE(btlevtcmd_GetUnitId);
+API_CALLABLE(btlevtcmd_SetDispOffset);
+
+extern EvtScript btldefaultevt_Damage;
+extern EvtScript subsetevt_confuse_flustered;
+#endif //_BATTLE_H_

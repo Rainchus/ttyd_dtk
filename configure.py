@@ -907,6 +907,7 @@ config.libs = [
             Object(Matching, "REL/tik/unit_nokonoko.s"),
             Object(Matching, "REL/tik/evt_lect_tik.s"),
             Object(Matching, "REL/tik/unit_lecture_frankli_kuriboo.s"),
+            Object(Matching, "REL/tik/unit_lecture_frankli_kuriboo_extra.c"),
             Object(Matching, "REL/tik/unit_hennya.s"),
             Object(Matching, "REL/tik/battle_database_tik_extra.c"),
             Object(Matching, "REL/tik/unit_gabon.c"),

@@ -2,120 +2,12 @@
 #include "evt.h"
 #include "evt_functions.h"
 #include "game/battle.h"
+#include "game/btlevt.h"
+#include "dolphin/math.h"
 
-void btlevtcmd_get_turn(void);
-void evt_eff64(void);
-void btlevtcmd_SetUnitWork(void);
-void btlevtcmd_AnimeChangePoseFromTable(void);
-void btlevtcmd_check_battleflag(void);
-void btlevtcmd_GetFirstAttackTarget(void);
-void btlevtcmd_GetEnemyBelong(void);
-void btlevtcmd_SamplingEnemy(void);
-void btlevtcmd_ChoiceSamplingEnemy(void);
-void btlevtcmd_CheckToken(void);
-void btlevtcmd_EnemyItemUseCheck(void);
-void btlevtcmd_StartWaitEvent(void);
-void btlevtcmd_RunDataEventChild(void);
-void evt_btl_camera_set_homing_unitparts(void);
-void evt_sub_random(void);
-void btlevtcmd_DrawLots(void);
-void btlevtcmd_JumpSetting(void);
-void evt_btl_camera_set_mode(void);
-void evt_btl_camera_set_homing_unit(void);
-void evt_btl_camera_set_moveSpeedLv(void);
-void evt_btl_camera_set_zoom(void);
-void btlevtcmd_WeaponAftereffect(void);
-void btlevtcmd_AttackDeclare(void);
-void btlevtcmd_WaitGuardMove(void);
-void btlevtcmd_PayWeaponCost(void);
-void btlevtcmd_AnimeChangePoseType(void);
-void btlevtcmd_GetPos(void);
-void btlevtcmd_FaceDirectionAdd(void);
-void btlevtcmd_CalculateFaceDirection(void);
-void btlevtcmd_ChangeFaceDirection(void);
-void btlevtcmd_SetMoveSpeed(void);
-void btlevtcmd_MovePosition(void);
-void btlevtcmd_AnimeChangePoseType(void);
-void btlevtcmd_CalculateFaceDirection(void);
-void btlevtcmd_ChangeFaceDirection(void);
-void evt_btl_camera_nomove_y_onoff(void);
-void btlevtcmd_GetPosFloat(void);
-void krb_get_dir(void);
-void _krb_get_dir_tik_kuribo(void);
-void btlevtcmd_AddScale(void);
-void btlevtcmd_SetRotate(void);
-void btlevtcmd_AnimeChangePose(void);
-void btlevtcmd_GetUnitWork(void);
-extern void btlevtcmd_CheckDamage(void);
-extern void btlevtcmd_FaceDirectionSub(void);
-extern void btlevtcmd_GetHitPos(void);
-extern void btlevtcmd_GetHomePos(void);
-extern void btlevtcmd_JumpContinue(void);
-extern void btlevtcmd_JumpPosition(void);
-extern void btlevtcmd_MoveDirectionAdd(void);
-extern void btlevtcmd_PreCheckDamage(void);
-extern void btlevtcmd_ResetFaceDirection(void);
-extern void btlevtcmd_ResultACDefence(void);
-extern void btlevtcmd_SetMoveSoundDataWork(void);
-extern void btlevtcmd_StartAvoid(void);
-extern void btlevtcmd_snd_se(void);
-extern void evt_btl_camera_add_zoom(void);
-extern void evt_btl_camera_shake_h(void);
-extern void btlevtcmd_SetEventAttack(void);
-extern void btlevtcmd_SetEventConfusion(void);
-extern void btlevtcmd_SetEventDamage(void);
-extern void btlevtcmd_SetEventWait(void);
-extern void btlevtcmd_SetJumpSound(void);
-extern void btlevtcmd_SetRunSound(void);
-extern void btlevtcmd_SetWalkSound(void);
-void btlevtcmd_GetSelectEnemy(void);
-void btlevtcmd_CommandGetWeaponAddress(void);
-void btlevtcmd_CommandPayWeaponCost(void);
-void btlevtcmd_AcGetDifficulty(void);
-void btlevtcmd_AcSetParamAll(void);
-void btlevtcmd_AcSetFlag(void);
-void btlevtcmd_GetStatusMg(void);
-void btlevtcmd_GetHeight(void);
-void btlevtcmd_GetBodyId(void);
-void btlevtcmd_AnimeChangePose(void);  // already declared, skip
-void btlevtcmd_ftof(void);
-void btlevtcmd_WaitEventEnd(void);
-void btlevtcmd_AnnounceMessage(void);
-void evt_eff(void);
-void evt_snd_sfxon_3d(void);
-void evt_audience_acrobat_notry(void);
-void _set_hustle(void);
+#define KURIBOO_ATTACK_DAMAGE 1
 
-// AC/audience functions (kept from Goombella)
-extern void btlevtcmd_AcSetDifficulty(void);
-extern void btlevtcmd_SetupAC(void);
-extern void btlevtcmd_StartAC(void);
-extern void btlevtcmd_StopAC(void);
-extern void btlevtcmd_ResultAC(void);
-extern void btlevtcmd_GetResultAC(void);
-extern void btlevtcmd_GetResultCountAC(void);
-extern void btlevtcmd_ACRStart(void);
-extern void btlevtcmd_ACRGetResult(void);
-extern void btlevtcmd_AudienceDeclareACResult(void);
-extern void btlevtcmd_AudienceDeclareAcrobatResult(void);
-extern void btlevtcmd_ACSuccessEffect(void);
-extern void btlevtcmd_ac_timing_flag_onoff(void);
-extern void btlevtcmd_ac_timing_get_success_frame(void);
-extern void btlevtcmd_GetResultPrizeLv(void);
-extern void btlevtcmd_InviteApInfoReport(void);
-extern void btlevtcmd_SetScale(void);
-extern void btlevtcmd_SetFallAccel(void);
-extern void btlevtcmd_GetFaceDirection(void);
-extern void btlevtcmd_AddRotate(void);
-extern void btlevtcmd_GetRotate(void);
-extern void btlevtcmd_SetRotateOffset(void);
-extern void btlevtcmd_MarioJumpPosition(void);
-extern void btlevtcmd_MarioJumpParam(void);
-extern void btlevtcmd_GetTakeoffPosition(void);
-extern void btlevtcmd_GetMoveFrame(void);
-extern void btlevtcmd_CommandGetWeaponActionLv(void);
-extern void evt_audience_ap_recovery(void);
- 
+extern EvtScript btldefaultevt_Dummy;
 extern EvtScript btldefaultevt_Damage;
 extern EvtScript subsetevt_confuse_flustered;
 
@@ -134,8 +26,6 @@ DefensesAttr defence_attr = {
     0,
     0,
 };
-
-extern EvtScript btldefaultevt_Dummy;
 
 //?
 DataTable data_table = {
@@ -168,51 +58,30 @@ static PoseTable pose_table[] = {
     {0x00000045, "KUR_S_1"},
 };
 
-//??
-char regist[] = { //kuriboo regist
-    0x64,
-    0x6E,
-    0x64,
-    0x64,
-    0x64,
-    0x64,
-    0x64,
-    0x64,
-    0x64,
-    0x64,
-    0x64,
-    0x64,
-    0x64,
-    0x64,
-    0x64,
-    0x6E,
-    0x64,
-    0x64,
-    0x64,
-    0x64,
-    0x64,
-    0x96,
+static StatusVulnerability regist = {
+/* sleep */     100,
+/* stop */      110,
+/* dizzy */     100,
+/* poison */    100,
+/* confuse */   100,
+/* electric */  100,
+/* burn */      100,
+/* freeze */    100,
+/* huge */      100,
+/* tiny */      100,
+/* atkUp */     100,
+/* atkDown */   100,
+/* defUp */     100,
+/* defDown */   100,
+/* allergic */  100,
+/* fright */    110,
+/* galeForce */ 100,
+/* fast */      100,
+/* slow */      100,
+/* dodgy */     100,
+/* invisible */ 100,
+/* ohko */      150,
 };
-
-
-// ActorPartBlueprint parts[] = { //called BattleUnitKindPart by ttyd-utils docs
-//     {
-//     /*.partsTotal = */                  1,
-//     /*.unk_04 = */                      "btl_un_kuriboo",
-//     /*.unk_08 = */                      "c_gabon",
-//     /*mPartOffsetPos = */               {0.0f, 0.0f, 0.0f},
-//     /*mPartHitBaseOffset = */           {0.0f, 22.0f, 0.0f},
-//     /*mPartHitCursorBaseOffset = */     {0.0f, 30.0f, 0.0f},
-//     /*.targetOffset = */                {20, 30},
-//     /*.opacity = */                     255,
-//     /*.unk_36 = */                      {0, 0},
-//     /*.defenseTable = */                defence,
-//     /*.defenseAttr = */                 defence_attr,
-//     /*.unk_40 = */                      9,
-//     /*.unk_44 = */                      0,
-//     /*.poseTable = */                   pose_table,
-//     }
-// };
 
 ActorPartBlueprint parts[] = { //called BattleUnitKindPart by ttyd-utils docs
     {
@@ -233,141 +102,243 @@ ActorPartBlueprint parts[] = { //called BattleUnitKindPart by ttyd-utils docs
     }
 };
 
-s32 weaponGetPowerDefault(void); //unsure on signature
-
 BattleWeapon weapon_tik_kuriboo_attack = {
-/*.unk_00 = */       0x00000000,
-/*.unk_04 = */       0x00000000,
-/*.unk_08 = */       0x00000000,
-/*.unk_0C = */       0x00000000,
-/*.unk_10 = */       100,
-/*.unk_11 = */       0,
-/*.unk_12 = */       0,
-/*.unk_13 = */       1,
-/*.unk_14 = */       1.0f,
-/*.unk_18 = */       1,
-/*.unk_19 = */       1,
-/*.unk_1A = */       1,
-/*.unk_1B = */       1,
-/*.unk_1C = */       weaponGetPowerDefault,
-/*.unk_20 = */       0x00000001, //damage
-/*.unk_24 = */       0x00000000,
-/*.unk_28 = */       0x00000000,
-/*.unk_2C = */       0x00000000,
-/*.unk_30 = */       0x00000000,
-/*.unk_34 = */       0x00000000,
-/*.unk_38 = */       0x00000000,
-/*.unk_3C = */       0x00000000,
-/*.unk_40 = */       0x00000000,
-/*.unk_44 = */       0x00000000,
-/*.unk_48 = */       0x00000000,
-/*.unk_4C = */       0x00000000,
-/*.unk_50 = */       0x00000000,
-/*.unk_54 = */       0x00000000,
-/*.unk_58 = */       0x00000000,
-/*.unk_5C = */       0x00000000,
-/*.unk_60 = */       0x00000000,
-/*.unk_flags1 = */   0x01101260,
-/*.unk_flags2 = */   0x20001000,
-/*.unk_6C = */       0,
-/*.unk_6D = */       0,
-/*.unk_6E = */       3,
-/*.unk_6F = */       2,
-/*.unk_70 = */       0x00000000,
-/*.unk_74 = */       0x00005087,
-/*.unk_78 = */       0x00000000,
-/*.unk_7C = */       0x80002004,
-/*.unk_80 = */       0x00000000,
-/*.unk_84 = */       0x00000000,
-/*.unk_88 = */       0x00000000,
-/*.unk_8C = */       0x00000000,
-/*.unk_90 = */       0x00000000,
-/*.unk_94 = */       0x00000000,
-/*.unk_98 = */       0x00000000,
-/*.unk_9C = */       0x00000000,
-/*.unk_A0 = */       0x00000000,
-/*.unk_A4 = */       0x00000000,
-/*.unk_A8 = */       0x00000000,
-/*.unk_AC = */       0x00000000,
-/*.unk_B0 = */       0x00000000,
-/*.unk_B4 = */       0,
-/*.unk_B5 = */       0,
-/*.unk_B6 = */       0,
-/*.unk_B7 = */       100,
-/*.unk_B8 = */       0x00000000,
-/*.unk_BC = */       0x00000000,
+/*.mNameMsg = */                NULL,
+/*.mIcon = */                   0x0000,
+/*.mItemId = */                 0x00000000,
+/*.mDescMsg = */                NULL,
+/*.mBaseAccuracy = */           100,
+/*.mBaseFpCost = */             0,
+/*.mBaseSpCost = */             0,
+/*.mSuperguardable = */         1,
+/*.unk_14 = */                  1.0f,
+/*.mStylishCommandMultiplier = */  1,
+/*.unk_19 = */                  1,
+/*.mBingoSlotIncChance = */     1,
+/*.unk_1B = */                  1,
+/*.mWeaponGetPowerDefault = */  weaponGetPowerDefault,
+/*.mBaseDamageParams = */       {KURIBOO_ATTACK_DAMAGE,
+                                0,
+                                0,
+                                0,
+                                0,
+                                0,
+                                0,
+                                0},
+
+/*.mBaseFpDamageFunction = */   NULL,
+
+/*.mBaseFpDamageParams = */     {0, 0, 0, 0, 0, 0, 0, 0},
+
+
+/*.mTargetFlagsHigh = */        (SingleTarget |
+                                OnlyTargetPreferredParts |
+                                CannotTargetSelf |
+                                CannotTargetOwnAlliance |
+                                CannotTargetSystemUnits |
+                                CannotTargetTreeOrSwitch),
+                                
+/*.mTargetFlagsLo = */          ATP_TARGET_OPPOSITE_ALLIANCE_DIRECTION | ATP_JUMP_LIKE,
+/*.mWeaponElementType = */      0,
+/*.mDamagePattern = */          0,
+/*.mWeaponAcLevel = */          3,
+/*.unk_6F = */                  2,
+/*.mActionCommandMsg = */       NULL,
+
+/*.mSpecialPropertyFlags = */   (ASP_BADGE_CAN_AFFECT_POWER |
+                                ASP_STATUS_CAN_AFFECT_POWER |
+                                ASP_IS_CHARGEABLE |
+                                ASP_CAN_BREAK_ICE |
+                                ASP_GROUNDS_WINGED_ENEMIES |
+                                ASP_FLIP_SHELL_ENEMIES),
+
+/*.mResistanceFlags = */        0,
+
+/*.mTargetWeightingFlags = */   (ATW_CHOOSE_WEIGHTED_RANDOMLY |
+                                ATW_UNK_2000 |
+                                ATW_PREFER_FRONT),
+/*.mSleepChance = */            0,
+/*.mSleepTime = */              0,
+/*.mStopChance = */             0,
+/*.mStopTime = */               0,
+/*.mDizzyChance = */            0,
+/*.mDizzyTime = */              0,
+/*.mPoisonChance = */           0,
+/*.mPoisonTime = */             0,
+/*.mPoisonStrength = */         0,
+/*.mConfuseChance = */          0,
+/*.mConfuseTime = */            0,
+/*.mElectricChance = */         0,
+/*.mElectricTime = */           0,
+/*.mDodgyChance = */            0,
+/*.mDodgyTime = */              0,
+/*.mBurnChance = */             0,
+/*.mBurnTime = */               0,
+/*.mFreezeChance = */           0,
+/*.mFreezeTime = */             0,
+/*.mSizeChangeChance = */       0,
+/*.mSizeChangeTime = */         0,
+/*.mSizeChangeStrength = */     0,
+/*.mAtkChangeChance = */        0,
+/*.mAtkChangeTime = */          0,
+/*.mAtkChangeStrength = */      0,
+/*.mDefChangeChance = */        0,
+/*.mDefChangeTime = */          0,
+/*.mDefChangeStrength = */      0,
+/*.mAllergicChance = */         0,
+/*.mAllergicTime = */           0,
+/*.mOKHOChance = */             0,
+/*.mChargeStrength = */         0,
+/*.mFastChance = */             0,
+/*.mFastTime = */               0,
+/*.mSlowChance = */             0,
+/*.mSlowTime = */               0,
+/*.mFrightChance = */           0,
+/*.mGaleForceChance = */        0,
+/*.mPaybackTime = */            0,
+/*.mHoldFastTime = */           0,
+/*.mInvisibleChance = */        0,
+/*.mInvisibleTime = */          0,
+/*.mHpRegenTime = */            0,
+/*.mHpRegenStrength = */        0,
+/*.mFpRegenTime = */            0,
+/*.mFpRegenStrength = */        0,
+/*.mAttackScript = */           NULL,
+/*.mBgA1A2FallWeight = */       0,
+/*.mBgA1FallWeight = */         0,
+/*.mBgA2FallWeight = */         0,
+/*.mBgANoFallWeight = */        100,
+/*.mBgBFallChance = */          0,
+/*.mNozzleTurnChance = */       0,
+/*.mNozzleFireChance = */       0,
+/*.mCeilingFallChance = */      0,
+/*.mObjectFallChance = */       0,
+/*.unk_BD = */                  0,
+/*.unk_BE = */                  {0, 0}
 };
 
-BattleWeapon weapon_tik_kuriboo_charge = {
-/*.unk_00 = */       0x00000000,
-/*.unk_04 = */       0x00000000,
-/*.unk_08 = */       0x00000000,
-/*.unk_0C = */       0x00000000,
-/*.unk_10 = */       100,
-/*.unk_11 = */       0,
-/*.unk_12 = */       0,
-/*.unk_13 = */       1,
-/*.unk_14 = */       1.0f,
-/*.unk_18 = */       1,
-/*.unk_19 = */       1,
-/*.unk_1A = */       1,
-/*.unk_1B = */       1,
-/*.unk_1C = */       weaponGetPowerDefault,
-/*.unk_20 = */       0x00000001,
-/*.unk_24 = */       0x00000000,
-/*.unk_28 = */       0x00000000,
-/*.unk_2C = */       0x00000000,
-/*.unk_30 = */       0x00000000,
-/*.unk_34 = */       0x00000000,
-/*.unk_38 = */       0x00000000,
-/*.unk_3C = */       0x00000000,
-/*.unk_40 = */       0x00000000,
-/*.unk_44 = */       0x00000000,
-/*.unk_48 = */       0x00000000,
-/*.unk_4C = */       0x00000000,
-/*.unk_50 = */       0x00000000,
-/*.unk_54 = */       0x00000000,
-/*.unk_58 = */       0x00000000,
-/*.unk_5C = */       0x00000000,
-/*.unk_60 = */       0x00000000,
-/*.unk_flags1 = */   0x01004020,
-/*.unk_flags2 = */   0x20000000,
-/*.unk_6C = */       0,
-/*.unk_6D = */       0,
-/*.unk_6E = */       3,
-/*.unk_6F = */       2,
-/*.unk_70 = */       0x00000000,
-/*.unk_74 = */       0x00000108,
-/*.unk_78 = */       0x000007FF,
-/*.unk_7C = */       0x00000000,
-/*.unk_80 = */       0x00000000,
-/*.unk_84 = */       0x00000000,
-/*.unk_88 = */       0x00000000,
-/*.unk_8C = */       0x00000000,
-/*.unk_90 = */       0x00000000,
-/*.unk_94 = */       0x00000000,
-/*.unk_98 = */       0x00000000,
-/*.unk_9C = */       0x00000002, //charge amount
-/*.unk_A0 = */       0x00000000,
-/*.unk_A4 = */       0x00000000,
-/*.unk_A8 = */       0x00000000,
-/*.unk_AC = */       0x00000000,
-/*.unk_B0 = */       0x00000000,
-/*.unk_B4 = */       0,
-/*.unk_B5 = */       0,
-/*.unk_B6 = */       0,
-/*.unk_B7 = */       100,
-/*.unk_B8 = */       0x00000000,
-/*.unk_BC = */       0x00000000,
+BattleWeapon weapon_tik_kuriboo_attack_charge = {
+/*.mNameMsg = */                NULL,
+/*.mIcon = */                   0x0000,
+/*.mItemId = */                 0x00000000,
+/*.mDescMsg = */                NULL,
+/*.mBaseAccuracy = */           100,
+/*.mBaseFpCost = */             0,
+/*.mBaseSpCost = */             0,
+/*.mSuperguardable = */         1,
+/*.unk_14 = */                  1.0f,
+/*.mStylishCommandMultiplier = */  1,
+/*.unk_19 = */                  1,
+/*.mBingoSlotIncChance = */     1,
+/*.unk_1B = */                  1,
+/*.mWeaponGetPowerDefault = */  weaponGetPowerDefault,
+/*.mBaseDamageParams = */       {KURIBOO_ATTACK_DAMAGE,
+                                0,
+                                0,
+                                0,
+                                0,
+                                0,
+                                0,
+                                0},
+
+/*.mBaseFpDamageFunction = */   NULL,
+
+/*.mBaseFpDamageParams = */     {0, 0, 0, 0, 0, 0, 0, 0},
+
+
+/*.mTargetFlagsHigh = */        (SingleTarget |
+                                OnlyTargetPreferredParts |
+                                CannotTargetSelf |
+                                CannotTargetOwnAlliance |
+                                CannotTargetSystemUnits |
+                                CannotTargetTreeOrSwitch),
+                                
+/*.mTargetFlagsLo = */          ATP_TARGET_OPPOSITE_ALLIANCE_DIRECTION | ATP_JUMP_LIKE,
+/*.mWeaponElementType = */      0,
+/*.mDamagePattern = */          0,
+/*.mWeaponAcLevel = */          3,
+/*.unk_6F = */                  2,
+/*.mActionCommandMsg = */       NULL,
+
+/*.mSpecialPropertyFlags = */   (ASP_BADGE_CAN_AFFECT_POWER |
+                                ASP_STATUS_CAN_AFFECT_POWER |
+                                ASP_IS_CHARGEABLE |
+                                ASP_CAN_BREAK_ICE |
+                                ASP_GROUNDS_WINGED_ENEMIES |
+                                ASP_FLIP_SHELL_ENEMIES),
+
+/*.mResistanceFlags = */        0,
+
+/*.mTargetWeightingFlags = */   (ATW_CHOOSE_WEIGHTED_RANDOMLY |
+                                ATW_UNK_2000 |
+                                ATW_PREFER_FRONT),
+/*.mSleepChance = */            0,
+/*.mSleepTime = */              0,
+/*.mStopChance = */             0,
+/*.mStopTime = */               0,
+/*.mDizzyChance = */            0,
+/*.mDizzyTime = */              0,
+/*.mPoisonChance = */           0,
+/*.mPoisonTime = */             0,
+/*.mPoisonStrength = */         0,
+/*.mConfuseChance = */          0,
+/*.mConfuseTime = */            0,
+/*.mElectricChance = */         0,
+/*.mElectricTime = */           0,
+/*.mDodgyChance = */            0,
+/*.mDodgyTime = */              0,
+/*.mBurnChance = */             0,
+/*.mBurnTime = */               0,
+/*.mFreezeChance = */           0,
+/*.mFreezeTime = */             0,
+/*.mSizeChangeChance = */       0,
+/*.mSizeChangeTime = */         0,
+/*.mSizeChangeStrength = */     0,
+/*.mAtkChangeChance = */        0,
+/*.mAtkChangeTime = */          0,
+/*.mAtkChangeStrength = */      0,
+/*.mDefChangeChance = */        0,
+/*.mDefChangeTime = */          0,
+/*.mDefChangeStrength = */      0,
+/*.mAllergicChance = */         0,
+/*.mAllergicTime = */           0,
+/*.mOKHOChance = */             0,
+/*.mChargeStrength = */         2, //charge for +2
+/*.mFastChance = */             0,
+/*.mFastTime = */               0,
+/*.mSlowChance = */             0,
+/*.mSlowTime = */               0,
+/*.mFrightChance = */           0,
+/*.mGaleForceChance = */        0,
+/*.mPaybackTime = */            0,
+/*.mHoldFastTime = */           0,
+/*.mInvisibleChance = */        0,
+/*.mInvisibleTime = */          0,
+/*.mHpRegenTime = */            0,
+/*.mHpRegenStrength = */        0,
+/*.mFpRegenTime = */            0,
+/*.mFpRegenStrength = */        0,
+/*.mAttackScript = */           NULL,
+/*.mBgA1A2FallWeight = */       0,
+/*.mBgA1FallWeight = */         0,
+/*.mBgA2FallWeight = */         0,
+/*.mBgANoFallWeight = */        100,
+/*.mBgBFallChance = */          0,
+/*.mNozzleTurnChance = */       0,
+/*.mNozzleFireChance = */       0,
+/*.mCeilingFallChance = */      0,
+/*.mObjectFallChance = */       0,
+/*.unk_BD = */                  0,
+/*.unk_BE = */                  {0, 0}
 };
 
-EVT_BEGIN(wait_event) {
+static EVT_BEGIN(wait_event) {
     CALL(btlevtcmd_AnimeChangePoseFromTable, -2, 1)
     RETURN
     END
 };
 
-EVT_BEGIN(damage_event) {
+static EVT_BEGIN(damage_event) {
     SET(LVarA, -2)
     SET(LVarB, 1)
     SCRIPT_SYNC(btldefaultevt_Damage)
@@ -375,13 +346,127 @@ EVT_BEGIN(damage_event) {
     END
 };
 
-EVT_BEGIN(phase_event) {
+static EVT_BEGIN(phase_event) {
     RETURN
     END
 };
 
+#define MAX_LIL_OINKS 11
 
-EVT_BEGIN(attack_event) {
+enum LilOinkFlags {
+    LIL_OINK_FLAG_VISIBLE = 1,
+    LIL_OINK_FLAG_ANIM_CHANGED = 2,
+};
+
+enum LilOinkTypes {
+    LIL_OINK_TYPE_BLACK     = 0,
+    LIL_OINK_TYPE_WHITE     = 1,
+    LIL_OINK_TYPE_PINK      = 2,
+    LIL_OINK_TYPE_PIKACHU   = 3,
+    LIL_OINK_TYPE_SHROOM    = 4,
+    LIL_OINK_TYPE_FLOWER    = 5,
+    LIL_OINK_TYPE_STAR      = 6,
+    LIL_OINK_TYPE_QUESTION  = 7,
+    LIL_OINK_TYPE_SILVER    = 8,
+    LIL_OINK_TYPE_GOLD      = 9,
+};
+
+enum LilOinkAnims {
+    LIL_OINK_ANIM_0 = 0,
+    LIL_OINK_ANIM_1 = 1,
+    LIL_OINK_ANIM_2 = 2,
+    LIL_OINK_ANIM_3 = 3,
+    LIL_OINK_ANIM_4 = 4,
+    LIL_OINK_ANIM_5 = 5,
+};
+
+typedef struct BoobooN64FXData {
+    /* 0x000 */ s32 timeLeft;
+    /* 0x004 */ s32 lifetime;
+    /* 0x008 */ s32 flags[MAX_LIL_OINKS];
+    /* 0x034 */ f32 x[MAX_LIL_OINKS];
+    /* 0x060 */ f32 y[MAX_LIL_OINKS];
+    /* 0x08C */ f32 z[MAX_LIL_OINKS];
+    /* 0x0B8 */ f32 rot[MAX_LIL_OINKS];
+    /* 0x0E4 */ u8 type[MAX_LIL_OINKS];
+    /* 0x0EF */ s8 nextAnim[MAX_LIL_OINKS];
+    /* 0x0FA */ u8 anim[MAX_LIL_OINKS];
+    /* 0x105 */ u8 gfxFrame[MAX_LIL_OINKS];
+    /* 0x110 */ f32 jumpOffset[MAX_LIL_OINKS];
+    /* 0x13C */ s8 animTime[MAX_LIL_OINKS];
+} BoobooN64FXData; // size = 0x148
+
+/* The effect base struct, returned by effEntry() */
+typedef struct EffectEntry {
+    /* 0x00 */ u8  pad[0x08];
+    /* 0x08 */ s32 numParts;        /* set to 1, likely effect type/variant */
+    /* 0x0C */ void* workUnits;  /* heap-allocated array of 11 work units */
+    /* 0x10 */ void* mainFunc;             /* pointer to effBoobooMain update function */
+    /* 0x14 */ char* name;                 /* pointer to effect name string */
+} EffectEntry;
+
+// API_CALLABLE(SpawnBoobooEffect) {
+//     Bytecode* args = script->args;
+//     s32 outVar = *args++;
+//     f32 x = evtGetValue(script, *args++);
+//     f32 y = evtGetValue(script, *args++);
+//     f32 z = evtGetValue(script, *args++);
+//     s32 type = evtGetValue(script, *args++);
+
+//     EffectEntry* effect = (EffectEntry*)effBoobooN64Entry();
+//     BoobooN64FXData* data = (BoobooN64FXData*)effect->workUnits;
+
+//     data->type[0] = type;
+//     data->x[0] = x;
+//     data->y[0] = y;
+//     data->z[0] = z;
+//     data->rot[0] = 270.0f;
+//     data->flags[0] |= LIL_OINK_FLAG_VISIBLE;
+//     data->flags[0] |= LIL_OINK_FLAG_ANIM_CHANGED;
+//     data->nextAnim[0] = LIL_OINK_ANIM_2;
+
+//     evtSetValue(script, outVar, (s32)effect);
+//     return 2;
+// }
+
+API_CALLABLE(SpawnBoobooEffect) {
+    Bytecode* args = script->args;
+    s32 outVar = *args++;
+    f32 x = evtGetValue(script, *args++);
+    f32 y = evtGetValue(script, *args++);
+    f32 z = evtGetValue(script, *args++);
+    s32 i;
+    f32 radius = 40.0f;
+
+    EffectEntry* effect = (EffectEntry*)effBoobooN64Entry();
+    BoobooN64FXData* data = (BoobooN64FXData*)effect->workUnits;
+
+    for (i = 0; i < MAX_LIL_OINKS; i++) {
+        f32 angle = (i * 360.0f / MAX_LIL_OINKS) * (M_PI / 180.0f);
+
+        data->type[i] = i % 10;
+        data->x[i] = x + (radius * sinf(angle));
+        data->y[i] = y;
+        data->z[i] = z + (radius * cosf(angle));
+        data->rot[i] = 270.0f;  /* face left */
+        data->flags[i] |= LIL_OINK_FLAG_VISIBLE;
+        data->flags[i] |= LIL_OINK_FLAG_ANIM_CHANGED;
+        data->nextAnim[i] = LIL_OINK_ANIM_2;
+    }
+
+    evtSetValue(script, outVar, (s32)effect);
+    return 2;
+}
+
+// static EVT_BEGIN(attack_event) {
+//     CALL(btlevtcmd_GetPos, -2, LVar0, LVar1, LVar2)
+//     CALL(SpawnBoobooEffect, LVar3, LVar0, LVar1, LVar2, 0)
+//     WAIT_FRAMES(180)
+//     RETURN
+//     END
+// };
+
+static EVT_BEGIN(attack_event) {
     CALL(btlevtcmd_check_battleflag, LVar0, 2)
     IF_INT_NE(LVar0, 0)
         WAIT_MS(750)
@@ -399,6 +484,12 @@ EVT_BEGIN(attack_event) {
         END_IF
         GOTO(99)
     END_IF
+    CALL(btlevtcmd_EnemyItemUseCheck, -2, LVar0)
+    IF_INT_NE(LVar0, 0)
+        SCRIPT_SYNC(LVar0)
+        CALL(btlevtcmd_StartWaitEvent, -2)
+        RETURN
+    END_IF
     CALL(btlevtcmd_JumpSetting, -2, 20, FLOAT(0.000), FLOAT(0.600))
     CALL(evt_btl_camera_set_mode, 0, 8)
     CALL(evt_btl_camera_set_homing_unit, 0, -2, LVar3)
@@ -408,30 +499,100 @@ EVT_BEGIN(attack_event) {
     CALL(btlevtcmd_AttackDeclare, -2, LVar3, LVar4)
     CALL(btlevtcmd_WaitGuardMove)
     CALL(btlevtcmd_PayWeaponCost, -2, PTR(&weapon_tik_kuriboo_attack))
-    CALL(btlevtcmd_AnimeChangePoseType, -2, 1, 40) //walking anim
+    CALL(btlevtcmd_AnimeChangePoseType, -2, 1, 42)
     CALL(btlevtcmd_GetPos, LVar3, LVar0, LVar1, LVar2)
-    CALL(btlevtcmd_SetMoveSpeed, -2, FLOAT(1.500))
-    ADD(LVar0, 50)
+    CALL(btlevtcmd_FaceDirectionAdd, LVar3, LVar0, 100)
+    CALL(btlevtcmd_CalculateFaceDirection, -2, -1, LVar0, LVar2, 1, LVarF)
+    CALL(btlevtcmd_ChangeFaceDirection, -2, LVarF)
+    CALL(btlevtcmd_SetMoveSpeed, -2, FLOAT(4.000))
     CALL(btlevtcmd_MovePosition, -2, LVar0, 0, LVar2, 0, -1, 1)
-    CALL(btlevtcmd_AnimeChangePoseType, -2, 1, 28) //stand still
-    WAIT_FRAMES(30) //pm64 clubba waits 15 frames, so at 60fps that would be 30 frames
-
-    CALL(btlevtcmd_AnimeChangePoseType, -2, 1, 50) //attack anim
-    WAIT_FRAMES(18)
-    //TODO: do damage event here
+    CALL(btlevtcmd_AnimeChangePoseType, -2, 1, 43)
+    CALL(btlevtcmd_CalculateFaceDirection, -2, -1, LVar3, LVar4, 16, LVarF)
+    CALL(btlevtcmd_ChangeFaceDirection, -2, LVarF)
+    WAIT_MS(170)
+    CALL(evt_btl_camera_set_mode, 0, 3)
+    CALL(evt_btl_camera_nomove_y_onoff, 0, 1)
+    BEGIN_THREAD
+        CALL(btlevtcmd_GetPosFloat, -2, LVar5, LVar6, LVar7)
+        SET(LVar8, 0)
+        LOOP(32)
+            CALL(btlevtcmd_GetPosFloat, -2, LVar9, LVarA, LVarB)
+            CALL(krb_get_dir, LVar5, LVar6, LVar9, LVarA, LVar8)
+            CALL(btlevtcmd_SetRotate, -2, 0, 0, LVar8)
+            SET_FLOAT(LVar5, LVar9)
+            SET_FLOAT(LVar6, LVarA)
+            WAIT_FRAMES(1)
+        END_LOOP
+    END_THREAD
+    BEGIN_THREAD
+        LOOP(12)
+            WAIT_FRAMES(1)
+        END_LOOP
+        SET(LVarF, 50)
+        CALL(btlevtcmd_AnimeChangePoseType, -2, 1, LVarF)
+    END_THREAD
+    CALL(btlevtcmd_GetHitPos, LVar3, LVar4, LVar0, LVar1, LVar2)
+    CALL(btlevtcmd_JumpPosition, -2, LVar0, LVar1, LVar2, 32, -1)
+    CALL(btlevtcmd_PreCheckDamage, -2, LVar3, LVar4, PTR(&weapon_tik_kuriboo_attack), 256, LVar5)
+    SWITCH(LVar5)
+    CASE_OR_EQ(4)
+        GOTO(90)
+        CASE_END
+    CASE_INT_EQ(3)
+        CALL(btlevtcmd_StartAvoid, LVar3, 38)
+        GOTO(90)
+        CASE_END
+    CASE_INT_EQ(6)
+        CALL(btlevtcmd_StartAvoid, LVar3, 39)
+        GOTO(90)
+    CASE_INT_EQ(2)
+        CALL(btlevtcmd_StartAvoid, LVar3, 40)
+        GOTO(90)
+    CASE_INT_EQ(1)
+        GOTO(91)
+        CASE_END
+    CASE_DEFAULT
+        GOTO(91)
+        CASE_END
+    END_SWITCH
+    LABEL(90)
+    CALL(btlevtcmd_JumpContinue, -2)
+    CALL(btlevtcmd_SetRotate, -2, 0, 0, 0)
+    SET(LVarF, 69)
+    CALL(btlevtcmd_AnimeChangePoseType, -2, 1, LVarF)
+    CALL(btlevtcmd_GetPos, -2, LVar0, LVar1, LVar2)
+    CALL(btlevtcmd_MoveDirectionAdd, -2, LVar0, 30)
+    CALL(btlevtcmd_JumpPosition, -2, LVar0, LVar1, LVar2, 20, -1)
+    CALL(btlevtcmd_MoveDirectionAdd, -2, LVar0, 20)
+    CALL(btlevtcmd_JumpPosition, -2, LVar0, LVar1, LVar2, 10, -1)
+    WAIT_MS(500)
+    GOTO(95)
+    LABEL(91)
+    CALL(evt_btl_camera_shake_h, 0, 1, 1, 8, 0)
+    CALL(evt_btl_camera_set_moveSpeedLv, 0, 2)
+    CALL(evt_btl_camera_add_zoom, 0, -50)
+    CALL(btlevtcmd_snd_se, -2, PTR("SFX_ENM_KURI_ATTACK1"), FLOAT(-19531.250), 0, FLOAT(-19531.250))
     CALL(btlevtcmd_ResultACDefence, LVar3, PTR(&weapon_tik_kuriboo_attack))
     CALL(btlevtcmd_CheckDamage, -2, LVar3, LVar4, PTR(&weapon_tik_kuriboo_attack), 256, LVar5)
-    WAIT_FRAMES(30)
-    
-    // --- Return home ---
+    CALL(btlevtcmd_SetRotate, -2, 0, 0, 0)
+    SET(LVarF, 69)
+    CALL(btlevtcmd_AnimeChangePoseType, -2, 1, LVarF)
+    CALL(btlevtcmd_GetPos, -2, LVar0, LVar1, LVar2)
+    SET(LVar1, 0)
+    CALL(btlevtcmd_FaceDirectionSub, -2, LVar0, 40)
+    CALL(btlevtcmd_JumpPosition, -2, LVar0, LVar1, LVar2, 30, -1)
+    CALL(btlevtcmd_FaceDirectionSub, -2, LVar0, 20)
+    CALL(btlevtcmd_JumpPosition, -2, LVar0, LVar1, LVar2, 12, -1)
+    CALL(btlevtcmd_FaceDirectionSub, -2, LVar0, 10)
+    CALL(btlevtcmd_JumpPosition, -2, LVar0, LVar1, LVar2, 6, -1)
+    GOTO(95)
     LABEL(95)
     CALL(evt_btl_camera_set_mode, 0, 0)
     CALL(btlevtcmd_SetMoveSoundDataWork, -2, PTR("SFX_ENM_KURI_MOVE1"), PTR("SFX_ENM_KURI_MOVE2"), 0, 3, 3, 0, 0)
-    CALL(btlevtcmd_AnimeChangePoseType, -2, 1, 42)   // gabon_R_1 (run back)
-    CALL(btlevtcmd_SetMoveSpeed, -2, FLOAT(3.500))
+    CALL(btlevtcmd_AnimeChangePoseType, -2, 1, 41)
+    CALL(btlevtcmd_SetMoveSpeed, -2, FLOAT(5.000))
     CALL(btlevtcmd_GetHomePos, -2, LVar0, LVar1, LVar2)
     CALL(btlevtcmd_MovePosition, -2, LVar0, LVar1, LVar2, 0, -2, 0)
-    
     LABEL(99)
     CALL(btlevtcmd_ResetFaceDirection, -2)
     CALL(btlevtcmd_StartWaitEvent, -2)
@@ -453,7 +614,7 @@ static EVT_BEGIN(init_event) {
 };
 
 BattleUnitKind unit_kuriboo_24_data_1CDA8 = {
-/* 0x00 */                      UNUSED_TEST, //controls what comes up when you tattle
+/* 0x00 */                      GOOMBA, //controls what comes up when you tattle
 /* 0x04 */                      "btl_un_gabon",
 /* maxHP */                     2,
 /* maxFP */                     0,
@@ -496,7 +657,7 @@ BattleUnitKind unit_kuriboo_24_data_1CDA8 = {
 /* mIceDamageSfxName */         "SFX_BTL_DAMAGE_ICE1",
 /* mExplosionDamageSfxName */   "SFX_BTL_DAMAGE_BIRIBIRI1",
 /* mDefaultAttributes */        0x00040000,
-/* regist */                    regist,
+/* regist */                    &regist,
 /* mNumParts */                 1,
 /* unk_B5 */                    0,
 /* unk_B6 */                    0,
@@ -505,57 +666,3 @@ BattleUnitKind unit_kuriboo_24_data_1CDA8 = {
 /* init_evt */                  init_event,
 /* dataTable */                 &data_table,
 };
-
-// BattleUnitKind unit_kuriboo_24_data_1CDA8 = {
-// /* 0x00 */                      UNUSED_TEST, //controls what comes up when you tattle
-// /* 0x04 */                      "btl_un_kuriboo",
-// /* maxHP */                     8,
-// /* maxFP */                     0,
-// /* mDangerHP */                 4,
-// /* mPerilHP */                  1,
-// /* mLevel */                    13,
-// /* mBonusExp*/                  0,
-// /* mBonusCoin */                1,
-// /* mBonusCoinRate */            60,
-// /* mBaseCoin */                 0,
-// /* mRunRate */                  70,
-// /* mPowerBounceSoftCap */       9999,
-// /* width */                     23,
-// /* height */                    25,
-// /* hitOffset */                 {5, 25},
-// /* unk_1E */                    0x0000, //padding
-// /* mCenterOffset */             {0, 12.0f, 0.0f},
-// /* mHpGaugeOffset */            {0, 0},
-// /* mTalkTogeBaseOffset */       {0.0f, 0.0f, 0.0f},
-// /* mHeldItemBaseOffset */       {12.0f, 0.0f, -10.0f},
-// /* mBurnFlameOffset */          {12.0f, 0.0f, -10.0f},
-// /* unk_54 */                    0.0f,
-// /* unk_58 */                    0.0f,
-// /* mBintaHitOffset */           {11.5f, 0.0f, 0.0f},
-// /* mKissHitOffset */            {11.5f, 18.5f, 0.0f},
-// /* mCutBaseOffset */            {0.0f, 12.0f, 0.0f},
-// /* mCutWidth */                 23.0f,
-// /* mCutHeight */                25.0f,
-// /* mTurnOrder */                0,
-// /* mTurnOrderVariance */        0,
-// /* mSwallowChance */            0,
-// /* mSwallowAttributes */        2,
-// /* mUltraHammerKnockChance */   100, //always 100 or 0
-// /* mItemStealParam */           20, //always 20 or 0
-// /* unk_8E */                    0, //padding
-// /* unk_8F */                    0, //padding
-// /* mStarPointDispOffset */      {0.0f, 0.0f, 0.0f},
-// /* mDamagedSfxName */           "SFX_ENM_KURI_DAMAGED1",
-// /* mFireDamageSfxName */        "SFX_BTL_DAMAGE_FIRE1",
-// /* mIceDamageSfxName */         "SFX_BTL_DAMAGE_ICE1",
-// /* mExplosionDamageSfxName */   "SFX_BTL_DAMAGE_BIRIBIRI1",
-// /* mDefaultAttributes */        0x00040000,
-// /* regist */        regist,
-// /* mNumParts */        1,
-// /* unk_B5 */        0,
-// /* unk_B6 */        0,
-// /* unk_B7 */        0,
-// /* mParts */        &parts[0],
-// /* init_evt */      init_event,
-// /* dataTable */     &data_table,
-// };

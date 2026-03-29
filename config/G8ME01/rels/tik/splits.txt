@@ -199,3 +199,5 @@ REL/tik/battle_database_tik_extra.c:
 REL/tik/unit_gabon.c:
 
 REL/tik/unit_white_gabon.c:
+
+REL/tik/unit_lecture_frankli_kuriboo_extra.c:

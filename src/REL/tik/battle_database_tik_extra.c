@@ -6,6 +6,7 @@
 /* External symbol declarations */
 extern BattleUnitKind unit_tik_white_gabon;
 extern BattleUnitKind unit_tik_gabon;
+extern BattleUnitKind unit_tik_gabon_during_frankli_lecture;
 extern BattleUnitKind unit_kuriboo_24_data_1CDA8;
 extern BattleUnitKind unit_togekuri_24_data_23200;
 extern BattleUnitKind unit_patakuri_24_data_21B48;
@@ -24,7 +25,7 @@ BattleUnitSetup btlparty_tik_tik_01_01_off_1[] = {
     /* position */          { 20.0f, 0.0f, -10.0f },
     /* addl_target_offset_x */  0,
     /* battle_unit_work */  { 0, 0, 0, 0 },
-    /* item_drop_table */              battle_item_kurikuri,
+    /* item_drop_table */   battle_item_kurikuri,
     },
     {
     /* unit_kind_params */  &unit_togekuri_24_data_23200,
@@ -34,7 +35,7 @@ BattleUnitSetup btlparty_tik_tik_01_01_off_1[] = {
     /* position */          { 60.0f, 0.0f, 0.0f },
     /* addl_target_offset_x */  0,
     /* battle_unit_work */  { 0, 0, 0, 0 },
-    /* item_drop_table */              battle_item_togekuri,
+    /* item_drop_table */   battle_item_togekuri,
     },
     {
     /* unit_kind_params */  &unit_patakuri_24_data_21B48,
@@ -44,40 +45,40 @@ BattleUnitSetup btlparty_tik_tik_01_01_off_1[] = {
     /* position */          { 100.0f, 40.0f, 10.0f },
     /* addl_target_offset_x */  0,
     /* battle_unit_work */  { 0, 0, 0, 0 },
-    /* item_drop_table */              battle_item_patakuri,
+    /* item_drop_table */   battle_item_patakuri,
     },
     {
     /* unit_kind_params */  &unit_lecture_frankli_kuriboo_24_data_2FF60,
     /* ally_status */       1,
     /* 0x05 */              { 0, 0, 0 },
     /* attack_phase */      0x04000004,
-    /* position */          { 140.0f, 0.0f, 20.0f },
+    /* position */          { 240.0f, 0.0f, 20.0f },
     /* addl_target_offset_x */  0,
     /* battle_unit_work */  { 0, 0, 0, 0 },
-    /* item_drop_table */              NULL,
+    /* item_drop_table */   NULL,
     },
 
     //extra entries
     {
-    /* unit_kind_params */  &unit_tik_gabon,
+    /* unit_kind_params */  &unit_tik_gabon_during_frankli_lecture,
     /* ally_status */       1,
     /* 0x05 */              { 0, 0, 0 },
     /* attack_phase */      0x04000004,
-    /* position */          { 140.0f, 0.0f, 30.0f },
+    /* position */          { 240.0f, 0.0f, 30.0f },
     /* addl_target_offset_x */  0,
     /* battle_unit_work */  { 0, 0, 0, 0 },
     /* item_drop_table */   battle_item_kurikuri,
     },
-    {
-    /* unit_kind_params */  &unit_tik_white_gabon,
-    /* ally_status */       1,
-    /* 0x05 */              { 0, 0, 0 },
-    /* attack_phase */      0x04000004,
-    /* position */          { 180.0f, 0.0f, 30.0f },
-    /* addl_target_offset_x */  0,
-    /* battle_unit_work */  { 0, 0, 0, 0 },
-    /* item_drop_table */   battle_item_kurikuri,
-    },
+    // {
+    // /* unit_kind_params */  &unit_tik_white_gabon,
+    // /* ally_status */       1,
+    // /* 0x05 */              { 0, 0, 0 },
+    // /* attack_phase */      0x04000004,
+    // /* position */          { 180.0f, 0.0f, 30.0f },
+    // /* addl_target_offset_x */  0,
+    // /* battle_unit_work */  { 0, 0, 0, 0 },
+    // /* item_drop_table */   battle_item_kurikuri,
+    // },
 };
 
 extern PointDropData battle_heart_drop_param_default[];
