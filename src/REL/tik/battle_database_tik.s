@@ -1505,70 +1505,6 @@
 	.4byte 0x00000005
 .endobj btlgrp_tik_tik_gesso
 
-# .data:0x950 | 0x18970 | size: 0xC0
-.obj btlparty_tik_tik_01_01_off_1, local
-	.4byte unit_kuriboo_24_data_1CDA8
-	.4byte 0x01000000
-	.4byte 0x04000004
-	.4byte 0x41F00000
-	.4byte 0x00000000
-	.4byte 0xC1200000
-	.4byte 0x00000000
-	.4byte 0x00000000
-	.4byte 0x00000000
-	.4byte 0x00000000
-	.4byte 0x00000000
-	.4byte battle_item_kurikuri
-	.4byte unit_togekuri_24_data_23200
-	.4byte 0x01000000
-	.4byte 0x04000004
-	.4byte 0x428C0000
-	.4byte 0x00000000
-	.4byte 0x00000000
-	.4byte 0x00000000
-	.4byte 0x00000000
-	.4byte 0x00000000
-	.4byte 0x00000000
-	.4byte 0x00000000
-	.4byte battle_item_togekuri
-	.4byte unit_patakuri_24_data_21B48
-	.4byte 0x01000000
-	.4byte 0x04000004
-	.4byte 0x42DC0000
-	.4byte 0x42200000
-	.4byte 0x41200000
-	.4byte 0x00000000
-	.4byte 0x00000000
-	.4byte 0x00000000
-	.4byte 0x00000000
-	.4byte 0x00000000
-	.4byte battle_item_patakuri
-	.4byte unit_lecture_frankli_kuriboo_24_data_2FF60
-	.4byte 0x01000000
-	.4byte 0x04000004
-	.4byte 0x43160000
-	.4byte 0x00000000
-	.4byte 0x41A00000
-	.4byte 0x00000000
-	.4byte 0x00000000
-	.4byte 0x00000000
-	.4byte 0x00000000
-	.4byte 0x00000000
-	.4byte 0x00000000
-.endobj btlparty_tik_tik_01_01_off_1
-
-# .data:0xA10 | 0x18A30 | size: 0x20
-.obj btlgrp_tik_tik_01_01_off_1, local
-	.4byte 0x00000004
-	.4byte btlparty_tik_tik_01_01_off_1
-	.4byte 0x00000000
-	.4byte 0x00000000
-	.4byte 0x00000064
-	.4byte battle_heart_drop_param_default
-	.4byte battle_flower_drop_param_default
-	.4byte 0x00000005
-.endobj btlgrp_tik_tik_01_01_off_1
-
 # .data:0xA30 | 0x18A50 | size: 0x60
 .obj btlparty_tik_tik_01_02_off_1, local
 	.4byte unit_togekuri_24_data_23200
@@ -4046,6 +3982,7 @@
 .endobj btlgrpsel_tik_btlno_tik_20_06_off
 
 # .data:0x28F0 | 0x1A910 | size: 0x7F8
+#BattleSetupData
 .obj btlsetup_tik_tbl_24_data_1A910, global
 	.4byte str_マップstg_00_1_tik_0000b3e0
 	.4byte 0x00000000

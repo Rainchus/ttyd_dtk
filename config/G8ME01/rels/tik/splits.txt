@@ -193,3 +193,9 @@ REL/tik/unit_kuriboo_extra.c:
 REL/tik/unit_togekuri_extra.c:
 
 REL/tik/unit_patakuri_extra.c:
+
+REL/tik/battle_database_tik_extra.c:
+
+REL/tik/unit_gabon.c:
+
+REL/tik/unit_white_gabon.c:

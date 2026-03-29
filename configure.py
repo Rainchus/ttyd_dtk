@@ -305,6 +305,7 @@ config.libs = [
             Object(Matching, "ac_table.c"),
             Object(Matching, "ac_timing_extra.s"),
             Object(Matching, "mario.s"),
+            Object(Matching, "battle_monosiri.s"),
         ]
     ),
     Rel('aaa',
@@ -907,6 +908,9 @@ config.libs = [
             Object(Matching, "REL/tik/evt_lect_tik.s"),
             Object(Matching, "REL/tik/unit_lecture_frankli_kuriboo.s"),
             Object(Matching, "REL/tik/unit_hennya.s"),
+            Object(Matching, "REL/tik/battle_database_tik_extra.c"),
+            Object(Matching, "REL/tik/unit_gabon.c"),
+            Object(Matching, "REL/tik/unit_white_gabon.c"),
         ]
     ),
     Rel('tou',

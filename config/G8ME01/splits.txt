@@ -794,7 +794,7 @@ battle_item_data.o:
 	.sdata      start:0x80416E38 end:0x80416F50
 	.sdata2     start:0x804227C0 end:0x80422828
 
-battle_monosiri.o:
+battle_monosiri.s:
 	.text       start:0x8012ED2C end:0x8012EF34
 	.rodata     start:0x802F0758 end:0x802F35D0
 	.data       start:0x8036CF40 end:0x8036E828
